@@ -13,9 +13,13 @@
             <a href="/" class="btn btn-ghost text-xl">Voidlink</a>
             <nav>
                 <ul class="menu menu-horizontal p-0">
-                    <li><a href="/" class="hover:underline focus:outline focus:ring-2 focus:ring-blue-400">Home</a></li>
-                    <li><a href="/accounts/login/" class="hover:underline focus:outline focus:ring-2 focus:ring-blue-400">Login</a></li>
-                    <li><a href="/accounts/signup/" class="hover:underline focus:outline focus:ring-2 focus:ring-blue-400">Sign Up</a></li>
+                    <li><a href="/" class="focus:outline focus:ring-2 focus:ring-blue-400">Home</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="/accounts/logout/" class="focus:outline focus:ring-2 focus:ring-blue-400">Logout</a></li>
+                    {% else %}
+                        <li><a href="/accounts/login/" class="focus:outline focus:ring-2 focus:ring-blue-400">Login</a></li>
+                        <li><a href="/accounts/signup/" class="focus:outline focus:ring-2 focus:ring-blue-400">Sign Up</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>

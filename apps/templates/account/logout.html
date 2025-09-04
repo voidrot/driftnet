@@ -2,13 +2,17 @@
 {% load i18n %}
 {% block title %}{% trans "Sign Out" %}{% endblock %}
 {% block account_content %}
-<h1 class="text-2xl font-bold mb-6">{% trans "Sign Out" %}</h1>
-<form method="post" action="{% url 'account_logout' %}" class="space-y-4" aria-label="Sign Out Form">
-    {% csrf_token %}
-    <div class="alert alert-warning mb-4" role="status">
-        {% trans "Are you sure you want to sign out?" %}
+<div class="card bg-base-100 shadow-xl max-w-md mx-auto">
+    <div class="card-body">
+        <h1 class="card-title text-center text-3xl mb-6">{% trans "Sign Out" %}</h1>
+        <form method="post" action="{% url 'account_logout' %}" class="space-y-4" aria-label="Sign Out Form">
+            {% csrf_token %}
+            <div class="alert alert-warning mb-4">
+                {% trans "Are you sure you want to sign out?" %}
+            </div>
+            <button type="submit" class="btn btn-error w-full">{% trans "Sign Out" %}</button>
+            <a href="/" class="btn btn-ghost w-full mt-2">{% trans "Cancel" %}</a>
+        </form>
     </div>
-    <button type="submit" class="btn btn-error w-full">{% trans "Sign Out" %}</button>
-    <a href="/" class="btn btn-ghost w-full mt-2">{% trans "Cancel" %}</a>
-</form>
+</div>
 {% endblock %}
