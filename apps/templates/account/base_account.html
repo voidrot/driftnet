@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Account{% endblock %} - Voidlink</title>
+    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
+</head>
+<body class="bg-base-200 text-base-content min-h-screen">
+    <a href="#maincontent" class="sr-only focus:not-sr-only">Skip to main</a>
+    <header class="navbar bg-base-100 shadow mb-8">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="btn btn-ghost text-xl">Voidlink</a>
+            <nav>
+                <ul class="menu menu-horizontal p-0">
+                    <li><a href="/accounts/login/">Login</a></li>
+                    <li><a href="/accounts/signup/">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main id="maincontent" class="container mx-auto max-w-lg p-4">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer p-4 bg-base-100 text-base-content mt-8">
+        <div class="container mx-auto text-center">
+            &copy; {{ year|default:2025 }} Voidlink
+        </div>
+    </footer>
+</body>
+</html>

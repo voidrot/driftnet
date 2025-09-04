@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<main id="maincontent" class="container mx-auto px-4 py-12">
+  <header class="mb-8 text-center">
+    <h1 class="text-4xl font-bold mb-2">Voidlink</h1>
+    <p class="text-lg text-gray-700">Your EVE Online Intelligence Dashboard</p>
+    <a href="#features" class="sr-only">Skip to main features</a>
+  </header>
+  <section class="mb-12" id="features">
+    <h2 class="text-2xl font-semibold mb-4">What Voidlink Can Do</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-xl font-bold mb-2">EVE API Integration</h3>
+        <p class="text-gray-600">Connect your EVE Online account and view real-time character, corporation, and alliance data.</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-xl font-bold mb-2">zKillboard Insights</h3>
+        <p class="text-gray-600">Analyze killmails, ship losses, and PvP stats with data from zKillboard.</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-xl font-bold mb-2">Decision Support</h3>
+        <p class="text-gray-600">Get actionable intelligence for fleet ops, market moves, and strategic planning.</p>
+      </div>
+    </div>
+  </section>
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold mb-4">How It Works</h2>
+    <ol class="list-decimal list-inside text-gray-700">
+      <li>Sign up and link your EVE Online account.</li>
+      <li>Explore dashboards for your characters, corporations, and alliances.</li>
+      <li>Access killboard analytics and market data.</li>
+      <li>Make informed decisions with Voidlink's intelligence tools.</li>
+    </ol>
+  </section>
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold mb-4">Get Started</h2>
+    <a href="/account/signup/" class="inline-block bg-blue-600 text-white font-bold py-2 px-6 rounded hover:bg-blue-700 focus:outline focus:ring-2 focus:ring-blue-400">Sign Up</a>
+  </section>
+</main>
+{% endblock %}
