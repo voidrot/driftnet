@@ -16,14 +16,27 @@
       <div class="container mx-auto flex justify-between items-center">
   <a href="{% url 'landing' %}" class="btn btn-ghost text-xl">Voidlink</a>
         <nav>
-          <ul class="menu menu-horizontal p-0">
+          <ul class="menu menu-horizontal p-0 flex items-center gap-2">
             <li>
               <a href="{% url 'landing' %}" class="focus:outline focus:ring-2 focus:ring-blue-400">Home</a>
             </li>
             {% if user.is_authenticated %}
-              <li>
-           <a href="{% url 'account_logout' %}"
-             class="focus:outline focus:ring-2 focus:ring-blue-400">Logout</a>
+              <li class="relative">
+                <div class="dropdown dropdown-end">
+                  <button type="button" aria-haspopup="true" aria-expanded="false" aria-label="Open user menu"
+                    class="focus:outline-none focus:ring-0 flex items-center gap-2 px-2 py-1 bg-transparent border-0">
+                    <span class="sr-only">User menu</span>
+                    <span class="inline-block max-w-[6rem] md:max-w-[10rem] truncate">{{ user.username }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 mt-2">
+                    <li><a href="{% url 'users:profile' %}" class="focus:outline-none focus:ring-0">Profile</a></li>
+                    <li><a href="{% url 'account_logout' %}" class="focus:outline-none focus:ring-0">Logout</a></li>
+                  </ul>
+                </div>
               </li>
             {% else %}
               <li>
@@ -43,9 +56,15 @@
       {% block content %}{% endblock content %}
     </div>
     <footer class="w-full footer-center bg-base-100 text-base-content p-4 mt-12">
-      <div class="text-center">
-        <p>© {{ year|default:2025 }} Voidlink. All rights reserved.</p>
+      <div class="container mx-auto text-center">
+        <p class="text-sm">© {{ year|default:2025 }} Voidlink. All rights reserved.</p>
+        <p class="text-sm mt-1">
+          <a href="{% url 'terms' %}" class="hover:underline">Terms of Service</a>
+          <span class="mx-2 text-muted">·</span>
+          <a href="{% url 'ccp' %}" class="hover:underline">CCP / EVE Disclaimer</a>
+        </p>
       </div>
     </footer>
+  <script src="{% static 'js/navbar.js' %}" defer></script>
   </body>
 </html>
