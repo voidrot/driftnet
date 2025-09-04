@@ -1,40 +1,44 @@
 {% extends "account/base_account.html" %}
 {% load i18n %}
 {% block title %}{% trans "Sign In" %}{% endblock %}
-{% block content %}
-<h1 class="text-2xl font-bold mb-6">{% trans "Sign In" %}</h1>
-<form method="post" action="{% url 'account_login' %}" class="space-y-4" aria-label="Sign In Form">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
-    <div class="form-control">
-        <label for="id_login" class="label">
-            <span class="label-text">{% trans "Email or Username" %}</span>
-        </label>
-        <input type="text" name="login" id="id_login" class="input input-bordered w-full" required autocomplete="username">
-        {% if form.login.errors %}
-            <span class="text-error" id="error_login">{{ form.login.errors|join:", " }}</span>
-        {% endif %}
+{% block account_content %}
+<div class="card bg-base-100 shadow-xl max-w-md mx-auto">
+    <div class="card-body">
+        <h1 class="card-title text-center text-3xl mb-6">{% trans "Sign In" %}</h1>
+        <form method="post" action="{% url 'account_login' %}" class="space-y-4" aria-label="Sign In Form">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-control">
+                <label for="id_login" class="label">
+                    <span class="label-text">{% trans "Email or Username" %}</span>
+                </label>
+                <input type="text" name="login" id="id_login" class="input input-bordered w-full" required autocomplete="username">
+                {% if form.login.errors %}
+                    <span class="text-error" id="error_login">{{ form.login.errors|join:", " }}</span>
+                {% endif %}
+            </div>
+            <div class="form-control">
+                <label for="id_password" class="label">
+                    <span class="label-text">{% trans "Password" %}</span>
+                </label>
+                <input type="password" name="password" id="id_password" class="input input-bordered w-full" required autocomplete="current-password">
+                {% if form.password.errors %}
+                    <span class="text-error" id="error_password">{{ form.password.errors|join:", " }}</span>
+                {% endif %}
+            </div>
+            <div class="flex items-center justify-between">
+                <label class="cursor-pointer label">
+                    <input type="checkbox" name="remember" class="checkbox">
+                    <span class="label-text ml-2">{% trans "Remember Me" %}</span>
+                </label>
+                <a href="{% url 'account_reset_password' %}" class="link link-hover">{% trans "Forgot Password?" %}</a>
+            </div>
+            <button type="submit" class="btn btn-primary w-full mt-4">{% trans "Sign In" %}</button>
+        </form>
+        <p class="mt-6 text-center">
+            {% trans "Don't have an account?" %}
+            <a href="{% url 'account_signup' %}" class="link link-primary">{% trans "Sign Up" %}</a>
+        </p>
     </div>
-    <div class="form-control">
-        <label for="id_password" class="label">
-            <span class="label-text">{% trans "Password" %}</span>
-        </label>
-        <input type="password" name="password" id="id_password" class="input input-bordered w-full" required autocomplete="current-password">
-        {% if form.password.errors %}
-            <span class="text-error" id="error_password">{{ form.password.errors|join:", " }}</span>
-        {% endif %}
-    </div>
-    <div class="flex items-center justify-between">
-        <label class="cursor-pointer label">
-            <input type="checkbox" name="remember" class="checkbox">
-            <span class="label-text ml-2">{% trans "Remember Me" %}</span>
-        </label>
-        <a href="{% url 'account_reset_password' %}" class="link link-hover">{% trans "Forgot Password?" %}</a>
-    </div>
-    <button type="submit" class="btn btn-primary w-full mt-4">{% trans "Sign In" %}</button>
-</form>
-<p class="mt-6 text-center">
-    {% trans "Don't have an account?" %}
-    <a href="{% url 'account_signup' %}" class="link link-primary">{% trans "Sign Up" %}</a>
-</p>
+</div>
 {% endblock %}
