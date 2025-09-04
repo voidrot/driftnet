@@ -1,4 +1,3 @@
-
 import os
 import uuid
 
@@ -18,6 +17,7 @@ ALLAUTH_URLS = [
     (f'{BASE_URL}/accounts/social/connections/', 'Social Account Connections', True),
 ]
 
+
 # Helper to sign up a user
 def signup_user(page: Page, email: str, password: str):
     page.goto(f'{BASE_URL}/accounts/signup/')
@@ -29,6 +29,7 @@ def signup_user(page: Page, email: str, password: str):
     page.get_by_role('button', name='Sign Up').click()
     if '/accounts/email/' in page.url or '/accounts/confirm-email/' in page.url:
         login_user(page, email, password)
+
 
 # Helper to login a user
 def login_user(page: Page, email: str, password: str):
@@ -76,6 +77,7 @@ def test_login_form_fields_and_error(page: Page):
     page.get_by_role('button', name='Sign In').click()
     expect(page.get_by_text('This field is required.', exact=False)).to_be_visible()
 
+
 def test_signup_form_creates_user_and_login(page: Page, test_user):
     email, password = test_user
     page.goto(f'{BASE_URL}/accounts/signup/')
@@ -92,6 +94,7 @@ def test_signup_form_creates_user_and_login(page: Page, test_user):
         page.get_by_role('button', name='Sign In').click()
     assert '/accounts/login/' not in page.url, 'Signup or login failed.'
 
+
 def test_signup_form_fields_and_error(page: Page):
     page.goto(f'{BASE_URL}/accounts/signup/')
     expect(page.get_by_role('heading', name='Sign Up')).to_be_visible()
@@ -99,11 +102,13 @@ def test_signup_form_fields_and_error(page: Page):
     page.get_by_role('button', name='Sign Up').click()
     expect(page.get_by_text('This field is required.', exact=False)).to_be_visible()
 
+
 def test_password_reset_flow(page: Page):
     page.goto(f'{BASE_URL}/accounts/password/reset/')
     expect(page.get_by_label('Email')).to_be_visible()
     page.get_by_role('button', name='Reset Password').click()
     expect(page.get_by_text('This field is required.', exact=False)).to_be_visible()
+
 
 # Accessibility: test skip link focus
 def test_skip_link_focus(page: Page):

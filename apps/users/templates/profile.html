@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Account settings - Voidlink{% endblock title %}
+{% block content %}
+  <main id="maincontent"
+        class="container mx-auto px-4 py-6"
+        tabindex="-1"
+        role="main">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-2xl font-semibold mb-4">Account settings</h1>
+      <p class="mb-6 text-base-content/80">
+        Manage your account details and preferences. This page is a placeholder and will be updated as we build out the application.
+      </p>
+      <section aria-labelledby="account-info"
+               class="bg-base-100 p-6 rounded-lg shadow mb-6">
+        <h2 id="account-info" class="text-lg font-medium mb-3">Account information</h2>
+        <dl>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
+            <dt class="font-semibold">Username</dt>
+            <dd class="md:col-span-2">
+              {{ user.username|default:"—" }}
+            </dd>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
+            <dt class="font-semibold">Email</dt>
+            <dd class="md:col-span-2">
+              {{ user.email|default:"—" }}
+            </dd>
+          </div>
+        </dl>
+        <div class="mt-4">
+          <a class="btn btn-primary mr-2" href="{% url 'account_email' %}">Manage emails</a>
+          <a class="btn btn-outline" href="{% url 'account_change_password' %}">Change password</a>
+        </div>
+      </section>
+      <section aria-labelledby="preferences"
+               class="bg-base-100 p-6 rounded-lg shadow mb-6">
+        <h2 id="preferences" class="text-lg font-medium mb-3">Preferences</h2>
+        <p class="text-sm text-base-content/70">Coming soon — notification and display preferences will appear here.</p>
+      </section>
+      <section aria-labelledby="support" class="text-sm">
+        <h3 id="support" class="font-medium mb-2">Need help?</h3>
+        <p>
+          Visit our <a href="{% url 'help' %}" class="link link-primary">help center</a> or contact <a href="mailto:support@voidlink.example" class="link">support</a>.
+        </p>
+      </section>
+      <p class="mt-8 text-xs text-base-content/60">
+        This page was created as a temporary placeholder. We'll add editable settings, forms, and client-side validation in upcoming iterations.
+      </p>
+    </div>
+  </main>
+{% endblock content %}
