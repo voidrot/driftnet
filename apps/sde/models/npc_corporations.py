@@ -1,0 +1,42 @@
+from django.db import models
+
+
+class NpcCorporation(models.Model):
+    id = models.IntegerField(primary_key=True)
+    ceo_id = models.IntegerField(default=None, null=True)
+    deleted = models.BooleanField()
+    description_id = models.JSONField(default=dict, null=True)
+    extent = models.TextField()
+    has_player_personnel_manager = models.BooleanField()
+    initial_price = models.IntegerField()
+    member_limit = models.IntegerField()
+    min_security = models.IntegerField()
+    minimum_join_standing = models.IntegerField()
+    name_id = models.JSONField()
+    public_shares = models.IntegerField()
+    send_char_termination_message = models.BooleanField()
+    shares = models.IntegerField()
+    size = models.TextField()
+    station_id = models.IntegerField(default=None, null=True)
+    tax_rate = models.FloatField()
+    ticker_name = models.TextField()
+    unique_name = models.BooleanField()
+    allowed_member_races = models.JSONField(default=list, null=True)
+    corporation_trades = models.JSONField(default=dict, null=True)
+    divisions = models.JSONField(default=dict, null=True)
+    enemy_id = models.IntegerField(default=None, null=True)
+    faction_id = models.IntegerField(default=None, null=True)
+    friend_id = models.IntegerField(default=None, null=True)
+    icon_id = models.IntegerField(default=None, null=True)
+    investors = models.JSONField(default=dict, null=True)
+    lp_offer_tables = models.JSONField(default=list, null=True)
+    main_activity_id = models.IntegerField(default=None, null=True)
+    race_id = models.IntegerField(default=None, null=True)
+    size_factor = models.FloatField(default=None, null=True)
+    solar_system_id = models.IntegerField(default=None, null=True)
+    exchange_rates = models.JSONField(default=dict, null=True)
+    secondary_activity_id = models.IntegerField(default=None, null=True)
+    url = models.TextField(default=None)
+
+    def __str__(self):
+        return f"{self.name_id["en"]}"
