@@ -10,4 +10,4 @@ class Certificate(models.Model):
     skill_types = models.JSONField()
 
     def __str__(self):
-        return f"{self.id}"
+        return f'{self.id}'

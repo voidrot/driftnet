@@ -29,13 +29,13 @@ class Command(BaseCommand):
         self.universe_files = collect_files(Path(settings.SDE_WORKSPACE / 'universe'))
         self.bsd_files = collect_files(Path(settings.SDE_WORKSPACE / 'bsd'))
         self.fsd_files = collect_files(Path(settings.SDE_WORKSPACE / 'fsd'))
-        
-        ignored_files = [
-            'translationLanguages.json'
-        ]
-        
+
+        ignored_files = ['translationLanguages.json']
+
         # Filter out ignored files
-        self.universe_files = [f for f in self.universe_files if f.name not in ignored_files]
+        self.universe_files = [
+            f for f in self.universe_files if f.name not in ignored_files
+        ]
         self.bsd_files = [f for f in self.bsd_files if f.name not in ignored_files]
         self.fsd_files = [f for f in self.fsd_files if f.name not in ignored_files]
 
@@ -141,14 +141,7 @@ class Command(BaseCommand):
         return fields
 
     def gen_fsd_models(self):
-        # files = [
-        #     Path(settings.SDE_WORKSPACE / 'fsd' / 'controlTowerResources.json'),
-        #     Path(settings.SDE_WORKSPACE / 'fsd' / 'stationOperations.json'),
-        #     Path(settings.SDE_WORKSPACE / 'bsd' / 'invFlags.json'),
-        #     Path(settings.SDE_WORKSPACE / 'fsd' / 'races.json'),
-        # ]
         for fsd_file in self.fsd_files:
-            # for fsd_file in files:
             fields = {}
             logger.info(f'Processing FSD file: {fsd_file.parts[-1]}')
             model_file_name = self.convert_to_snake_case(
@@ -159,10 +152,27 @@ class Command(BaseCommand):
             self.gen_model_file(model_file_name, fields)
 
     def gen_bsd_models(self):
-        pass
+        for bsd_file in self.bsd_files:
+            fields = {}
+            logger.info(f'Processing BSD file: {bsd_file.parts[-1]}')
+            model_file_name = self.convert_to_snake_case(
+                bsd_file.parts[-1].replace('.json', '')
+            )
+            with Path(bsd_file).open('r', encoding='utf-8') as f:
+                fields = self.extract_fields(json.load(f))
+            self.gen_model_file(model_file_name, fields)
 
     def gen_universe_models(self):
-        pass
+        # TODO: Handle the universe files that are not simple lists of objects or are a single list or object
+        for universe_file in self.universe_files:
+            fields = {}
+            logger.info(f'Processing Universe file: {universe_file}')
+            model_file_name = self.convert_to_snake_case(
+                universe_file.parts[-1].replace('.json', '')
+            )
+            with Path(universe_file).open('r', encoding='utf-8') as f:
+                fields = self.extract_fields(json.load(f))
+            self.gen_model_file(model_file_name, fields)
 
     def gen_model_file(self, model_name, fields):
         lines = []
@@ -178,9 +188,9 @@ class Command(BaseCommand):
         lines.append('')
         lines.append('    def __str__(self):')
         if 'name_id' in fields:
-            lines.append(f'        return f"{{self.name_id["en"]}}"')
+            lines.append(f'        return f\'{{self.name_id["en"]}}\'')
         else:
-            lines.append(f'        return f"{{self.id}}"')
+            lines.append(f"        return f'{{self.id}}'")
 
         # end of file
         lines.append('')

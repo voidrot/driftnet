@@ -7,4 +7,4 @@ class StationService(models.Model):
     description_id = models.JSONField(default=dict, null=True)
 
     def __str__(self):
-        return f"{self.id}"
+        return f'{self.id}'

@@ -13,4 +13,4 @@ class Group(models.Model):
     icon_id = models.IntegerField(default=None, null=True)
 
     def __str__(self):
-        return f"{self.id}"
+        return f'{self.id}'

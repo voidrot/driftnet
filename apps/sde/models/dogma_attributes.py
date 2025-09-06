@@ -23,4 +23,4 @@ class DogmaAttribute(models.Model):
     display_when_zero = models.BooleanField(default=False, null=True)
 
     def __str__(self):
-        return f"{self.id}"
+        return f'{self.id}'

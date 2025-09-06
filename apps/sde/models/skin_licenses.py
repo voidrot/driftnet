@@ -9,4 +9,4 @@ class SkinLicense(models.Model):
     is_single_use = models.BooleanField(default=False, null=True)
 
     def __str__(self):
-        return f"{self.id}"
+        return f'{self.id}'

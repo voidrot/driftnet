@@ -12,4 +12,4 @@ class GraphicId(models.Model):
     sof_layout = models.JSONField(default=list, null=True)
 
     def __str__(self):
-        return f"{self.id}"
+        return f'{self.id}'

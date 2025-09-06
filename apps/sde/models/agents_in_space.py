@@ -9,4 +9,4 @@ class AgentsInSpace(models.Model):
     type_id = models.IntegerField()
 
     def __str__(self):
-        return f"{self.id}"
+        return f'{self.id}'
