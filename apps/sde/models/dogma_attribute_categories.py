@@ -7,4 +7,4 @@ class DogmaAttributeCategory(models.Model):
     name = models.TextField()
 
     def __str__(self):
-        return f"{self.id}"
+        return f'{self.id}'

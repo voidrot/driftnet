@@ -8,4 +8,4 @@ class SkinMaterial(models.Model):
     skin_material_id = models.IntegerField()
 
     def __str__(self):
-        return f"{self.id}"
+        return f'{self.id}'

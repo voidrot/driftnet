@@ -6,4 +6,4 @@ class ContrabandType(models.Model):
     factions = models.JSONField()
 
     def __str__(self):
-        return f"{self.id}"
+        return f'{self.id}'

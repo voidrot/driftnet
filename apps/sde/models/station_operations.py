@@ -17,4 +17,4 @@ class StationOperation(models.Model):
     station_types = models.JSONField(default=dict, null=True)
 
     def __str__(self):
-        return f"{self.id}"
+        return f'{self.id}'

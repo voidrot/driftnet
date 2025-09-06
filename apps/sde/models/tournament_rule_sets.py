@@ -11,4 +11,4 @@ class TournamentRuleSet(models.Model):
     rule_set_name = models.TextField()
 
     def __str__(self):
-        return f"{self.id}"
+        return f'{self.id}'
