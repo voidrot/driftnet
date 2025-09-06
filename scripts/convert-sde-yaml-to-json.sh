@@ -39,4 +39,7 @@ while IFS= read -r -d '' file; do
   fi
 done
 
+# delete unneeded files
+rm -fr "${ROOT_DIR}/universe/hidden"
+
 echo "All conversions complete."
