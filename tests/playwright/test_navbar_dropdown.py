@@ -9,6 +9,7 @@ BASE_URL = 'http://localhost:8000'
 
 # Reuse existing helpers from other tests where appropriate
 
+
 def signup_user(page: Page, email: str, password: str):
     page.goto(f'{BASE_URL}/accounts/signup/')
     expect(page.get_by_role('heading', name='Sign Up')).to_be_visible()
@@ -55,8 +56,7 @@ def test_navbar_dropdown_click_and_keyboard(page: Page, test_user):
     tolerance = 6
     diff = abs(home_center_y - user_center_y)
     assert diff <= tolerance, (
-        'Navbar items misaligned: '
-        f'{home_center_y} vs {user_center_y}'
+        f'Navbar items misaligned: {home_center_y} vs {user_center_y}'
     )
 
     # Click to open dropdown

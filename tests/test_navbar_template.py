@@ -9,7 +9,8 @@ def render_template_for_user(username=None):
         tpl = Template(fh.read())
 
     user_like = type(
-        'U', (),
+        'U',
+        (),
         {
             'is_authenticated': bool(username),
             'username': username,

@@ -19,6 +19,7 @@ base_settings = [
     'components/sentry.py',
     'components/session.py',
     'components/static.py',
+    'components/app_settings.py',
     f'environments/{ENV}.py',
     optional('environments/local.py'),
 ]
