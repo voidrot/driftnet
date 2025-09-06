@@ -1,0 +1,31 @@
+from django.db import models
+
+
+class SolarSystem(models.Model):
+    id = models.IntegerField(primary_key=True)
+    border = models.BooleanField()
+    center = models.JSONField()
+    corridor = models.BooleanField()
+    fringe = models.BooleanField()
+    hub = models.BooleanField()
+    international = models.BooleanField()
+    luminosity = models.FloatField()
+    max = models.JSONField()
+    min = models.JSONField()
+    radius = models.FloatField()
+    regional = models.BooleanField()
+    security = models.FloatField()
+    security_class = models.TextField(default=None)
+    solar_system_id = models.IntegerField()
+    solar_system_name_id = models.IntegerField()
+    sun_type_id = models.IntegerField(default=None, null=True)
+    wormhole_class_id = models.IntegerField(default=None, null=True)
+    description_id = models.IntegerField(default=None, null=True)
+    visual_effect = models.TextField(default=None)
+    disallowed_anchor_categories = models.JSONField(default=list, null=True)
+    disallowed_anchor_groups = models.JSONField(default=list, null=True)
+    faction_id = models.IntegerField(default=None, null=True)
+    secondary_sun = models.JSONField(default=dict, null=True)
+
+    def __str__(self):
+        return f'{self.id}'

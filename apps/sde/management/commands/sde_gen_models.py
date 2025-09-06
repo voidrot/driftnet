@@ -163,16 +163,89 @@ class Command(BaseCommand):
             self.gen_model_file(model_file_name, fields)
 
     def gen_universe_models(self):
-        # TODO: Handle the universe files that are not simple lists of objects or are a single list or object
+        # Build files into single objects
+        region_collection = []
+        constellation_collection = []
+        solar_system_collection = []
+        landmark_collection = []
+        planets_collection = []
+        moons_collection = []
+        stars_collection = []
+        stargates_collection = []
+        astroid_belts_collection = []
+
         for universe_file in self.universe_files:
-            fields = {}
-            logger.info(f'Processing Universe file: {universe_file}')
-            model_file_name = self.convert_to_snake_case(
-                universe_file.parts[-1].replace('.json', '')
-            )
-            with Path(universe_file).open('r', encoding='utf-8') as f:
-                fields = self.extract_fields(json.load(f))
-            self.gen_model_file(model_file_name, fields)
+            if universe_file.parts[-1] == 'region.json':
+                with Path(universe_file).open('r', encoding='utf-8') as f:
+                    region_collection.append(json.load(f))
+            elif universe_file.parts[-1] == 'constellation.json':
+                with Path(universe_file).open('r', encoding='utf-8') as f:
+                    constellation_collection.append(json.load(f))
+            elif universe_file.parts[-1] == 'solarsystem.json':
+                with Path(universe_file).open('r', encoding='utf-8') as f:
+                    solar_system_data = json.load(f)
+                    planets = solar_system_data.get('planets', {})
+                    for k, v in planets.items():
+                        moons = v.get('moons', {})
+                        if len(moons) > 0:
+                            for _, mv in moons.items():
+                                moons_collection.append(mv)
+                            del planets[k]['moons']
+                        astroid_belts = v.get('asteroidBelts', {})
+                        if len(astroid_belts) > 0:
+                            for _, av in astroid_belts.items():
+                                astroid_belts_collection.append(av)
+                            del planets[k]['asteroidBelts']
+                        planets_collection.append(v)
+                    del solar_system_data['planets']
+                    if 'star' in solar_system_data:
+                        stars_collection.append(solar_system_data.get('star', {}))
+                        del solar_system_data['star']
+                    if 'stargates' in solar_system_data:
+                        for _, sgv in solar_system_data.get('stargates', {}).items():
+                            stargates_collection.append(sgv)
+                        del solar_system_data['stargates']
+                    solar_system_collection.append(solar_system_data)
+            elif universe_file.parts[-1] == 'landmarks.json':
+                with Path(universe_file).open('r', encoding='utf-8') as f:
+                    landmark_collection = json.load(f)
+
+        # Generate region model
+        model_file_name = self.convert_to_snake_case('regions')
+        region_fields = self.extract_fields(region_collection)
+        self.gen_model_file(model_file_name, region_fields)
+        # generate constellation model
+        model_file_name = self.convert_to_snake_case('constellations')
+        constellation_fields = self.extract_fields(constellation_collection)
+        self.gen_model_file(model_file_name, constellation_fields)
+        # generate solar system model
+        model_file_name = self.convert_to_snake_case('solarSystems')
+        solar_system_fields = self.extract_fields(solar_system_collection)
+        self.gen_model_file(model_file_name, solar_system_fields)
+        # generate planet model
+        model_file_name = self.convert_to_snake_case('planets')
+        planet_fields = self.extract_fields(planets_collection)
+        self.gen_model_file(model_file_name, planet_fields)
+        # generate moon model
+        model_file_name = self.convert_to_snake_case('moons')
+        moon_fields = self.extract_fields(moons_collection)
+        self.gen_model_file(model_file_name, moon_fields)
+        # generate star model
+        model_file_name = self.convert_to_snake_case('stars')
+        star_fields = self.extract_fields(stars_collection)
+        self.gen_model_file(model_file_name, star_fields)
+        # generate stargate model
+        model_file_name = self.convert_to_snake_case('stargates')
+        stargate_fields = self.extract_fields(stargates_collection)
+        self.gen_model_file(model_file_name, stargate_fields)
+        # generate asteroid belt model
+        model_file_name = self.convert_to_snake_case('asteroidBelts')
+        asteroid_belt_fields = self.extract_fields(astroid_belts_collection)
+        self.gen_model_file(model_file_name, asteroid_belt_fields)
+        # generate landmark model
+        model_file_name = self.convert_to_snake_case('landmarks')
+        landmark_fields = self.extract_fields(landmark_collection)
+        self.gen_model_file(model_file_name, landmark_fields)
 
     def gen_model_file(self, model_name, fields):
         lines = []
@@ -208,7 +281,7 @@ class Command(BaseCommand):
         self.collect_all_files()
         logger.info('Generating universe models...')
         self.gen_universe_models()
-        logger.info('Generating BSD models...')
-        self.gen_bsd_models()
-        logger.info('Generating FSD models...')
-        self.gen_fsd_models()
+        # logger.info('Generating BSD models...')
+        # self.gen_bsd_models()
+        # logger.info('Generating FSD models...')
+        # self.gen_fsd_models()
