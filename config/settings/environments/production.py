@@ -1,11 +1,12 @@
 import logging
 
 import sentry_sdk
-from config.env import env
 from sentry_sdk.integrations.celery import CeleryIntegration
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
+
+from config.env import env
 
 STORAGES = {
     'default': {
@@ -21,7 +22,7 @@ LOGGING = {
     'disable_existing_loggers': True,
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s',
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s',  # noqa: E501
         },
     },
     'handlers': {

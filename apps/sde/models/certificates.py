@@ -8,6 +8,3 @@ class Certificate(models.Model):
     name = models.TextField()
     recommended_for = models.JSONField(default=list, null=True)
     skill_types = models.JSONField()
-
-    def __str__(self):
-        return f'{self.id}'

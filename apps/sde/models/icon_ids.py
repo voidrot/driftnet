@@ -6,6 +6,3 @@ class IconId(models.Model):
     description = models.TextField(default=None)
     icon_file = models.TextField()
     obsolete = models.BooleanField(default=False, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

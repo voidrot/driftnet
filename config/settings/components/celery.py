@@ -1,9 +1,11 @@
-from config.env import env
-from config.settings.components.common import USE_TZ, TIME_ZONE
 import ssl
 
-REDIS_URL = env('REDIS_URL', default='redis://redis:6379/0')  # type: ignore
-REDIS_SSL = REDIS_URL.startswith('rediss://')  # type: ignore
+from config.env import env
+from config.settings.components.common import TIME_ZONE
+from config.settings.components.common import USE_TZ
+
+REDIS_URL = env('REDIS_URL', default='redis://redis:6379/0')  # type: ignore  # noqa: PGH003
+REDIS_SSL = REDIS_URL.startswith('rediss://')  # type: ignore  # noqa: PGH003
 
 if USE_TZ:
     # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-timezone

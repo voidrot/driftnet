@@ -8,6 +8,3 @@ class MetaGroup(models.Model):
     icon_id = models.IntegerField(default=None, null=True)
     icon_suffix = models.TextField(default=None)
     description_id = models.JSONField(default=dict, null=True)
-
-    def __str__(self):
-        return f'{self.name_id["en"]}'

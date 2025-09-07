@@ -1,4 +1,4 @@
-from config.env import BASE_DIR, APPS_DIR
+from config.env import APPS_DIR
 
 # STATIC
 # ------------------------------------------------------------------------------

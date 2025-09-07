@@ -8,6 +8,3 @@ class Landmark(models.Model):
     position = models.JSONField()
     icon_id = models.IntegerField(default=None, null=True)
     location_id = models.IntegerField(default=None, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

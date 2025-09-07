@@ -6,6 +6,3 @@ class Blueprint(models.Model):
     activities = models.JSONField()
     blueprint_type_id = models.IntegerField()
     max_production_limit = models.IntegerField()
-
-    def __str__(self):
-        return f'{self.id}'

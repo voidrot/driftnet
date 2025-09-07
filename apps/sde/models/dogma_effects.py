@@ -30,6 +30,3 @@ class DogmaEffect(models.Model):
     npc_activation_chance_attribute_id = models.IntegerField(default=None, null=True)
     fitting_usage_chance_attribute_id = models.IntegerField(default=None, null=True)
     resistance_attribute_id = models.IntegerField(default=None, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

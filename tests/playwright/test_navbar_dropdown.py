@@ -2,7 +2,8 @@ import os
 import uuid
 
 import pytest
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
+from playwright.sync_api import expect
 
 BASE_URL = 'http://localhost:8000'
 

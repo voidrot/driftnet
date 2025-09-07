@@ -21,6 +21,3 @@ class DogmaAttribute(models.Model):
     max_attribute_id = models.IntegerField(default=None, null=True)
     min_attribute_id = models.IntegerField(default=None, null=True)
     display_when_zero = models.BooleanField(default=False, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

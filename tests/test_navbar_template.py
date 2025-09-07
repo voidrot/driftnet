@@ -1,6 +1,7 @@
 from pathlib import Path
 
-from django.template import Context, Template
+from django.template import Context
+from django.template import Template
 
 
 def render_template_for_user(username=None):

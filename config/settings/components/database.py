@@ -1,13 +1,14 @@
-from config.env import BASE_DIR, APPS_DIR
+from config.env import APPS_DIR
+from config.env import env
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('POSTGRES_DB', default='hotshot'),
-        'USER': env('POSTGRES_USER', default='hotshot'),
-        'PASSWORD': env('POSTGRES_PASSWORD', default='hotshotpass'),
-        'HOST': env('POSTGRES_HOST', default='localhost'),
-        'PORT': env('POSTGRES_PORT', default='5432'),
+        'NAME': env('POSTGRES_DB', default='hotshot'),  # pyright: ignore[reportArgumentType]
+        'USER': env('POSTGRES_USER', default='hotshot'),  # pyright: ignore[reportArgumentType]
+        'PASSWORD': env('POSTGRES_PASSWORD', default='hotshotpass'),  # pyright: ignore[reportArgumentType]
+        'HOST': env('POSTGRES_HOST', default='localhost'),  # pyright: ignore[reportArgumentType]
+        'PORT': env('POSTGRES_PORT', default='5432'),  # pyright: ignore[reportArgumentType]
     }
 }
 

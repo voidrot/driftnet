@@ -8,6 +8,3 @@ class CharacterAttribute(models.Model):
     name_id = models.JSONField()
     notes = models.TextField()
     short_description = models.TextField()
-
-    def __str__(self):
-        return f'{self.name_id["en"]}'

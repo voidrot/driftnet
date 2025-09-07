@@ -9,6 +9,3 @@ class TournamentRuleSet(models.Model):
     points = models.JSONField()
     rule_set_id = models.TextField()
     rule_set_name = models.TextField()
-
-    def __str__(self):
-        return f'{self.id}'

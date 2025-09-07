@@ -13,6 +13,3 @@ class Bloodline(models.Model):
     perception = models.IntegerField()
     race_id = models.IntegerField()
     willpower = models.IntegerField()
-
-    def __str__(self):
-        return f'{self.name_id["en"]}'

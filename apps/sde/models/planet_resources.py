@@ -12,6 +12,3 @@ class PlanetResource(models.Model):
     mature_silo_max = models.IntegerField(default=None, null=True)
     reagent_harvest_amount = models.IntegerField(default=None, null=True)
     reagent_type_id = models.IntegerField(default=None, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

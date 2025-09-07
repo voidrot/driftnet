@@ -15,6 +15,3 @@ class Faction(models.Model):
     size_factor = models.IntegerField()
     solar_system_id = models.IntegerField()
     unique_name = models.BooleanField()
-
-    def __str__(self):
-        return f'{self.name_id["en"]}'

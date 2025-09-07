@@ -26,6 +26,3 @@ class SolarSystem(models.Model):
     disallowed_anchor_groups = models.JSONField(default=list, null=True)
     faction_id = models.IntegerField(default=None, null=True)
     secondary_sun = models.JSONField(default=dict, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

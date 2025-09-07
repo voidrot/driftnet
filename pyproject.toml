@@ -196,16 +196,19 @@ ignore = [
           # of types for comparison.
           # Deactivated because it can make the code slow:
           # https://github.com/astral-sh/ruff/issues/7871
-  "COM812"
+  "COM812",
+  "DJ008"
 ]
 # The fixes in extend-unsafe-fixes will require
 # provide the `--unsafe-fixes` flag when fixing.
 extend-unsafe-fixes = [
   "UP038",
 ]
+extend-select = ["I"]
 
 [tool.ruff.lint.isort]
 force-single-line = true
+known-first-party = ["apps", "config"]
 
 [tool.ruff.lint.flake8-quotes]
 inline-quotes = "single"

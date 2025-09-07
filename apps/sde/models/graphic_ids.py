@@ -10,6 +10,3 @@ class GraphicId(models.Model):
     sof_hull_name = models.TextField(default=None)
     sof_race_name = models.TextField(default=None)
     sof_layout = models.JSONField(default=list, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

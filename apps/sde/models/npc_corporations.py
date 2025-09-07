@@ -37,6 +37,3 @@ class NpcCorporation(models.Model):
     exchange_rates = models.JSONField(default=dict, null=True)
     secondary_activity_id = models.IntegerField(default=None, null=True)
     url = models.TextField(default=None)
-
-    def __str__(self):
-        return f'{self.name_id["en"]}'

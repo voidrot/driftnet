@@ -1,17 +1,17 @@
 import argparse
 import hashlib
 import logging
-from dataclasses import dataclass
-from pathlib import Path
-from typing import Any
+import subprocess
 import zipfile
+from pathlib import Path
+from pathlib import Path as _Path
+from typing import Any
 
 import httpx
 from django.conf import settings
 from django.core.management.base import BaseCommand
+
 from apps.sde.models import Checksum
-import subprocess
-from pathlib import Path as _Path
 
 logger = logging.getLogger(__name__)
 
@@ -102,13 +102,12 @@ class Command(BaseCommand):
                 f'SDE checksum failed - got {checksum}, expected {remote_checksum}'
             )
             return False
-        else:
-            logger.info(f'SDE checksum passed for {checksum}')
-            Checksum.objects.update_or_create(
-                name='sde.zip',
-                checksum=checksum,
-            )
-            return True
+        logger.info(f'SDE checksum passed for {checksum}')
+        Checksum.objects.update_or_create(
+            name='sde.zip',
+            checksum=checksum,
+        )
+        return True
 
     # Download the SDE data
     def download_sde(self, force_download: bool) -> None:

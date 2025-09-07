@@ -15,6 +15,3 @@ class StationOperation(models.Model):
     research_factor = models.FloatField()
     services = models.JSONField()
     station_types = models.JSONField(default=dict, null=True)
-
-    def __str__(self):
-        return f'{self.id}'
