@@ -10,6 +10,3 @@ class Moon(models.Model):
     type_id = models.IntegerField()
     npc_stations = models.JSONField(default=dict, null=True)
     moon_name_id = models.IntegerField(default=None, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

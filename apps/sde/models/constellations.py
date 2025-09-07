@@ -11,6 +11,3 @@ class Constellation(models.Model):
     radius = models.FloatField()
     faction_id = models.IntegerField(default=None, null=True)
     wormhole_class_id = models.IntegerField(default=None, null=True)
-
-    def __str__(self):
-        return f'{self.name_id["en"]}'

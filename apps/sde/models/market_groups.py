@@ -8,6 +8,3 @@ class MarketGroup(models.Model):
     icon_id = models.IntegerField(default=None, null=True)
     name_id = models.JSONField()
     parent_group_id = models.IntegerField(default=None, null=True)
-
-    def __str__(self):
-        return f'{self.name_id["en"]}'

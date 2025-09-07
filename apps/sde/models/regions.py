@@ -12,6 +12,3 @@ class Region(models.Model):
     nebula = models.IntegerField()
     region_id = models.IntegerField()
     wormhole_class_id = models.IntegerField(default=None, null=True)
-
-    def __str__(self):
-        return f'{self.name_id["en"]}'

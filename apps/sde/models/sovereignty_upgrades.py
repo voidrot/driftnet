@@ -9,6 +9,3 @@ class SovereigntyUpgrade(models.Model):
     mutually_exclusive_group = models.TextField()
     power_allocation = models.IntegerField()
     workforce_allocation = models.IntegerField()
-
-    def __str__(self):
-        return f'{self.id}'

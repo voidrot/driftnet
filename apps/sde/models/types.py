@@ -25,6 +25,3 @@ class Type(models.Model):
     masteries = models.JSONField(default=dict, null=True)
     traits = models.JSONField(default=dict, null=True)
     sof_material_set_id = models.IntegerField(default=None, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

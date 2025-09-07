@@ -6,6 +6,3 @@ class Category(models.Model):
     name = models.JSONField()
     published = models.BooleanField()
     icon_id = models.IntegerField(default=None, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

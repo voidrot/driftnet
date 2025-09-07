@@ -7,6 +7,3 @@ class SkinLicense(models.Model):
     license_type_id = models.IntegerField()
     skin_id = models.IntegerField()
     is_single_use = models.BooleanField(default=False, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

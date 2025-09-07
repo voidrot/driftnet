@@ -1,18 +1,24 @@
-from pathlib import Path
-from pprint import pprint
+import json
+import logging
 import re
+from pathlib import Path
+
+import inflect
 from django.conf import settings
 from django.core.management.base import BaseCommand
-import logging
+from django.template import Context
+from django.template import Template
 
-import json
+from .helpers import INIT_MODEL_TEMPLATE
+from .helpers import MODEL_INDEX_RULES
+from .helpers import MODEL_PRIMARY_KEY_ID_OVERRIDE
+from .helpers import MODEL_TEMPLATE
 from .helpers import collect_files
-import inflect
 
 try:
     from yaml import CLoader as Loader
 except ImportError:
-    from yaml import Loader
+    pass
 
 logger = logging.getLogger(__name__)
 p = inflect.engine()
@@ -64,7 +70,7 @@ class Command(BaseCommand):
             return name
         return word
 
-    def extract_fields(self, data):
+    def extract_fields(self, data, model_name, add_id_field=True):
         fields = {}
         field_types = {}
         field_found = {}
@@ -93,10 +99,12 @@ class Command(BaseCommand):
                     field_found[field_name] += 1
                 if type(value).__name__ not in field_types[field_name]:
                     field_types[field_name].append(type(value).__name__)
-        pprint('Field types:')
-        pprint(field_types)
+        # pprint('Field types:')
+        # pprint(field_types)
         # add id field first
-        fields['id'] = 'models.IntegerField(primary_key=True)'
+
+        if add_id_field:
+            fields['id'] = 'models.IntegerField(primary_key=True)'
 
         type_map = {
             'int': (
@@ -121,7 +129,7 @@ class Command(BaseCommand):
             logging.debug(
                 f'optional: {is_optional} | {field_name}: {field_found[field_name]} vs {len(converted_data)}'
             )
-            # check if we have mizxed types, such as int and float
+            # check if we have mixed types, such as int and float
             # if so we want to choose the higher type
             chosen_type = None
             if len(field_values) > 1:
@@ -134,6 +142,12 @@ class Command(BaseCommand):
 
             for py_type, (optional_field, required_field) in type_map.items():
                 if py_type == chosen_type:
+                    if model_name in MODEL_PRIMARY_KEY_ID_OVERRIDE:
+                        if field_name == MODEL_PRIMARY_KEY_ID_OVERRIDE[model_name]:
+                            fields[field_name] = (
+                                required_field.split('(')[0] + '(primary_key=True)'
+                            )
+                            break
                     fields[field_name] = (
                         optional_field if is_optional else required_field
                     )
@@ -148,7 +162,7 @@ class Command(BaseCommand):
                 fsd_file.parts[-1].replace('.json', '')
             )
             with Path(fsd_file).open('r', encoding='utf-8') as f:
-                fields = self.extract_fields(json.load(f))
+                fields = self.extract_fields(json.load(f), model_file_name)
             self.gen_model_file(model_file_name, fields)
 
     def gen_bsd_models(self):
@@ -159,7 +173,9 @@ class Command(BaseCommand):
                 bsd_file.parts[-1].replace('.json', '')
             )
             with Path(bsd_file).open('r', encoding='utf-8') as f:
-                fields = self.extract_fields(json.load(f))
+                fields = self.extract_fields(
+                    json.load(f), model_file_name, add_id_field=False
+                )
             self.gen_model_file(model_file_name, fields)
 
     def gen_universe_models(self):
@@ -212,68 +228,84 @@ class Command(BaseCommand):
 
         # Generate region model
         model_file_name = self.convert_to_snake_case('regions')
-        region_fields = self.extract_fields(region_collection)
+        region_fields = self.extract_fields(region_collection, model_file_name)
         self.gen_model_file(model_file_name, region_fields)
         # generate constellation model
         model_file_name = self.convert_to_snake_case('constellations')
-        constellation_fields = self.extract_fields(constellation_collection)
+        constellation_fields = self.extract_fields(
+            constellation_collection, model_file_name
+        )
         self.gen_model_file(model_file_name, constellation_fields)
         # generate solar system model
         model_file_name = self.convert_to_snake_case('solarSystems')
-        solar_system_fields = self.extract_fields(solar_system_collection)
+        solar_system_fields = self.extract_fields(
+            solar_system_collection, model_file_name
+        )
         self.gen_model_file(model_file_name, solar_system_fields)
         # generate planet model
         model_file_name = self.convert_to_snake_case('planets')
-        planet_fields = self.extract_fields(planets_collection)
+        planet_fields = self.extract_fields(planets_collection, model_file_name)
         self.gen_model_file(model_file_name, planet_fields)
         # generate moon model
         model_file_name = self.convert_to_snake_case('moons')
-        moon_fields = self.extract_fields(moons_collection)
+        moon_fields = self.extract_fields(moons_collection, model_file_name)
         self.gen_model_file(model_file_name, moon_fields)
         # generate star model
         model_file_name = self.convert_to_snake_case('stars')
-        star_fields = self.extract_fields(stars_collection)
+        star_fields = self.extract_fields(stars_collection, model_file_name)
         self.gen_model_file(model_file_name, star_fields)
         # generate stargate model
         model_file_name = self.convert_to_snake_case('stargates')
-        stargate_fields = self.extract_fields(stargates_collection)
+        stargate_fields = self.extract_fields(stargates_collection, model_file_name)
         self.gen_model_file(model_file_name, stargate_fields)
         # generate asteroid belt model
         model_file_name = self.convert_to_snake_case('asteroidBelts')
-        asteroid_belt_fields = self.extract_fields(astroid_belts_collection)
+        asteroid_belt_fields = self.extract_fields(
+            astroid_belts_collection, model_file_name
+        )
         self.gen_model_file(model_file_name, asteroid_belt_fields)
         # generate landmark model
         model_file_name = self.convert_to_snake_case('landmarks')
-        landmark_fields = self.extract_fields(landmark_collection)
+        landmark_fields = self.extract_fields(landmark_collection, model_file_name)
         self.gen_model_file(model_file_name, landmark_fields)
 
     def gen_model_file(self, model_name, fields):
-        lines = []
+        context = {
+            'model_name': self.convert_to_singular_noun(
+                self.convert_to_pascal_case(model_name)
+            ),
+            'fields': fields,
+            'indexes': MODEL_INDEX_RULES.get(model_name, []),
+        }
 
-        lines.append('from django.db import models')
-        lines.append('')
-        lines.append('')
-        lines.append(
-            f'class {self.convert_to_singular_noun(self.convert_to_pascal_case(model_name))}(models.Model):'
-        )
-        for field_name, field_type in fields.items():
-            lines.append(f'    {field_name} = {field_type}')
-        lines.append('')
-        lines.append('    def __str__(self):')
-        if 'name_id' in fields:
-            lines.append(f'        return f\'{{self.name_id["en"]}}\'')
-        else:
-            lines.append(f"        return f'{{self.id}}'")
-
-        # end of file
-        lines.append('')
+        template = Template(MODEL_TEMPLATE)
 
         with Path(
             settings.BASE_DIR / 'apps' / 'sde' / 'models' / f'{model_name}.py'
         ).open('w', encoding='utf-8') as f:
-            f.write('\n'.join(lines))
+            f.write(template.render(Context(context)))
 
-        # print('\n'.join(lines))
+    def gen_model_init(self):
+        context = {'models': [], 'imports': []}
+        template = Template(INIT_MODEL_TEMPLATE)
+
+        # get all model files in the models directory
+        model_files = set(
+            Path(settings.BASE_DIR / 'apps' / 'sde' / 'models').glob('*.py')
+        )
+
+        for model_file in model_files:
+            if model_file.parts[-1] == '__init__.py':
+                continue
+            file = model_file.parts[-1].replace('.py', '')
+            name = self.convert_to_singular_noun(self.convert_to_pascal_case(file))
+            context['models'].append(name)
+            context['imports'].append(f'from .{file} import {name}')
+
+        with Path(settings.BASE_DIR / 'apps' / 'sde' / 'models' / '__init__.py').open(
+            'w', encoding='utf-8'
+        ) as f:
+            f.write(template.render(Context(context)))
 
     def handle(self, *args, **options):
         logger.info('Generating SDE models...')
@@ -281,7 +313,10 @@ class Command(BaseCommand):
         self.collect_all_files()
         logger.info('Generating universe models...')
         self.gen_universe_models()
-        # logger.info('Generating BSD models...')
-        # self.gen_bsd_models()
-        # logger.info('Generating FSD models...')
-        # self.gen_fsd_models()
+        logger.info('Generating BSD models...')
+        self.gen_bsd_models()
+        logger.info('Generating FSD models...')
+        self.gen_fsd_models()
+        logger.info('Generating __init__.py for models...')
+        self.gen_model_init()
+        logger.info('SDE model generation complete.')

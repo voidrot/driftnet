@@ -8,6 +8,3 @@ class Race(models.Model):
     name_id = models.JSONField()
     ship_type_id = models.IntegerField(default=None, null=True)
     skills = models.JSONField(default=dict, null=True)
-
-    def __str__(self):
-        return f'{self.name_id["en"]}'

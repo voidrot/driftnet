@@ -55,3 +55,8 @@ logs *args:
 # manage: Executes `manage.py` command.
 manage *args:
     uv run python ./manage.py "{{args}}"
+
+format:
+    @echo "Formatting Code..."
+    uv run ruff check --fix
+    uv run ruff format

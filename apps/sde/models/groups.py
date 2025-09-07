@@ -11,6 +11,3 @@ class Group(models.Model):
     published = models.BooleanField()
     use_base_price = models.BooleanField()
     icon_id = models.IntegerField(default=None, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

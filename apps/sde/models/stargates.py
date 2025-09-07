@@ -6,6 +6,3 @@ class Stargate(models.Model):
     destination = models.IntegerField()
     position = models.JSONField()
     type_id = models.IntegerField()
-
-    def __str__(self):
-        return f'{self.id}'

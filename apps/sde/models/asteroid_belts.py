@@ -7,6 +7,3 @@ class AsteroidBelt(models.Model):
     statistics = models.JSONField(default=dict, null=True)
     type_id = models.IntegerField()
     asteroid_belt_name_id = models.IntegerField(default=None, null=True)
-
-    def __str__(self):
-        return f'{self.id}'

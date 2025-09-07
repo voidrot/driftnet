@@ -7,6 +7,3 @@ class PlanetSchematic(models.Model):
     name_id = models.JSONField()
     pins = models.JSONField()
     types = models.JSONField()
-
-    def __str__(self):
-        return f'{self.name_id["en"]}'

@@ -1,4 +1,6 @@
-from config.env import env, APPS_DIR, BASE_DIR
+from config.env import APPS_DIR
+from config.env import BASE_DIR
+from config.env import env
 
 DEBUG = env('DEBUG')
 TEST = False
