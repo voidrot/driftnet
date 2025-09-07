@@ -17,6 +17,11 @@ MODEL_INDEX_RULES = {
 
 MODEL_PRIMARY_KEY_ID_OVERRIDE = {
     'inv_items': 'item_id',
+    'inv_flags': 'flag_id',
+    'inv_names': 'item_id',
+    'inv_positions': 'item_id',
+    'inv_unique_names': 'item_id',
+    'sta_stations': 'station_id',
     'stars': 'id',
 }
 

@@ -1,5 +1,6 @@
 import argparse
 import hashlib
+import json
 import logging
 import subprocess
 import zipfile
@@ -12,6 +13,22 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 
 from apps.sde.models import Checksum
+from apps.sde.models.agents import Agent
+from apps.sde.models.agents_in_space import AgentsInSpace
+from apps.sde.models.ancestries import Ancestry
+from apps.sde.models.bloodlines import Bloodline
+from apps.sde.models.blueprints import Blueprint
+from apps.sde.models.categories import Category
+from apps.sde.models.certificates import Certificate
+from apps.sde.models.character_attributes import CharacterAttribute
+from apps.sde.models.contraband_types import ContrabandType
+from apps.sde.models.control_tower_resources import ControlTowerResource
+from apps.sde.models.inv_flags import InvFlag
+from apps.sde.models.inv_items import InvItem
+from apps.sde.models.inv_names import InvName
+from apps.sde.models.inv_positions import InvPosition
+from apps.sde.models.inv_unique_names import InvUniqueName
+from apps.sde.models.sta_stations import StaStation
 
 logger = logging.getLogger(__name__)
 
@@ -175,6 +192,483 @@ class Command(BaseCommand):
         else:
             logger.info('YAML->JSON conversion completed successfully')
 
+    def get_file_checksum(self, file_path: Path) -> str:
+        """Calculate the MD5 checksum of a file."""
+        # Ensure we have a Path object and the file exists
+        path = Path(file_path)
+        if not path.exists() or not path.is_file():
+            logger.warning('File for checksum not found or not a file: %s', path)
+            return ''
+
+        md5_hash = hashlib.md5()
+        try:
+            # Read and update hash string value in blocks (8K buffer)
+            with path.open('rb') as f:
+                for chunk in iter(lambda: f.read(8192), b''):
+                    md5_hash.update(chunk)
+        except Exception:
+            logger.exception('Failed calculating checksum for %s', path)
+            return ''
+
+        return md5_hash.hexdigest()
+
+    def build_file_path(self, sub_path: str, filename: str) -> tuple[Path, Path]:
+        filename_base = filename.rsplit('.', 1)[0]  # Remove extension if present
+        return (
+            Path(settings.SDE_WORKSPACE / sub_path / f'{filename_base}.json'),
+            Path(settings.SDE_WORKSPACE / sub_path / f'{filename_base}.yaml'),
+        )
+
+    def load_bsd_inv_flags(self) -> None:
+        logger.info('Loading invFlags from BSD data...')
+        json_file, yaml_file = self.build_file_path('bsd', 'invFlags')
+        existing_checksum = self.local_checksum_lookup('bsd/invFlags.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('invFlags.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for item in data:
+                    InvFlag(
+                        flag_id=item.get('flagID'),
+                        flag_name=item.get('flagName'),
+                        flag_text=item.get('flagText'),
+                        order_id=item.get('orderID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading invFlags from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='bsd/invFlags.yaml',
+            checksum=checksum,
+        )
+
+    def load_bsd_inv_items(self) -> None:
+        logger.info('Loading invItems from BSD data...')
+        json_file, yaml_file = self.build_file_path('bsd', 'invItems')
+        existing_checksum = self.local_checksum_lookup('bsd/invItems.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('invItems.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for item in data:
+                    InvItem(
+                        item_id=item.get('itemID'),
+                        flag_id=item.get('flagID'),
+                        location_id=item.get('locationID'),
+                        owner_id=item.get('ownerID'),
+                        quantity=item.get('quantity'),
+                        type_id=item.get('typeID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading invItems from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='bsd/invItems.yaml',
+            checksum=checksum,
+        )
+
+    def load_bsd_inv_names(self) -> None:
+        logger.info('Loading invNames from BSD data...')
+        json_file, yaml_file = self.build_file_path('bsd', 'invNames')
+        existing_checksum = self.local_checksum_lookup('bsd/invNames.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('invNames.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for item in data:
+                    InvName(
+                        item_id=item.get('itemID'),
+                        item_name=item.get('itemName'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading invNames from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='bsd/invNames.yaml',
+            checksum=checksum,
+        )
+
+    def load_bsd_inv_positions(self) -> None:
+        logger.info('Loading invPositions from BSD data...')
+        json_file, yaml_file = self.build_file_path('bsd', 'invPositions')
+        existing_checksum = self.local_checksum_lookup('bsd/invPositions.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('invPositions.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for item in data:
+                    InvPosition(
+                        item_id=item.get('itemID'),
+                        pitch=item.get('pitch'),
+                        roll=item.get('roll'),
+                        yaw=item.get('yaw'),
+                        x=item.get('x'),
+                        y=item.get('y'),
+                        z=item.get('z'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading invPositions from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='bsd/invPositions.yaml',
+            checksum=checksum,
+        )
+
+    def load_bsd_inv_unique_names(self) -> None:
+        logger.info('Loading invUniqueNames from BSD data...')
+        json_file, yaml_file = self.build_file_path('bsd', 'invUniqueNames')
+        existing_checksum = self.local_checksum_lookup('bsd/invUniqueNames.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('invUniqueNames.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for item in data:
+                    InvUniqueName(
+                        item_id=item.get('itemID'),
+                        group_id=item.get('groupID'),
+                        item_name=item.get('itemName'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading invUniqueNames from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='bsd/invUniqueNames.yaml',
+            checksum=checksum,
+        )
+
+    def load_bsd_sta_stations(self) -> None:
+        logger.info('Loading staStations from BSD data...')
+        json_file, yaml_file = self.build_file_path('bsd', 'staStations')
+        existing_checksum = self.local_checksum_lookup('bsd/staStations.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('staStations.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for item in data:
+                    StaStation(
+                        station_id=item.get('stationID'),
+                        security=item.get('security'),
+                        station_type_id=item.get('stationTypeID'),
+                        corporation_id=item.get('corporationID'),
+                        solar_system_id=item.get('solarSystemID'),
+                        constellation_id=item.get('constellationID'),
+                        region_id=item.get('regionID'),
+                        station_name=item.get('stationName'),
+                        x=item.get('x'),
+                        y=item.get('y'),
+                        z=item.get('z'),
+                        reprocessing_efficiency=item.get('reprocessingEfficiency'),
+                        reprocessing_stations_take=item.get('reprocessingStationsTake'),
+                        reprocessing_hangar_flag=item.get('reprocessingHangarFlag'),
+                        docking_cost_per_volume=item.get('dockingCostPerVolume'),
+                        max_ship_volume_dockable=item.get('maxShipVolumeDockable'),
+                        office_rental_cost=item.get('officeRentalCost'),
+                        operation_id=item.get('operationID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading staStations from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='bsd/staStations.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_agents(self) -> None:
+        logger.info('Loading agents from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'agents')
+        existing_checksum = self.local_checksum_lookup('fsd/agents.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('agents.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    Agent(
+                        id=k,
+                        agent_type_id=v.get('agentTypeID'),
+                        corporation_id=v.get('corporationID'),
+                        division_id=v.get('divisionID'),
+                        is_locator=v.get('isLocator'),
+                        level=v.get('level'),
+                        location_id=v.get('locationID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading agents from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/agents.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_agents_in_space(self) -> None:
+        logger.info('Loading agentsInSpace from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'agentsInSpace')
+        existing_checksum = self.local_checksum_lookup('fsd/agentsInSpace.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('agentsInSpace.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    AgentsInSpace(
+                        id=k,
+                        dungeon_id=v.get('dungeonID'),
+                        solar_system_id=v.get('solarSystemID'),
+                        spawn_point_id=v.get('spawnPointID'),
+                        type_id=v.get('typeID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading agentsInSpace from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/agentsInSpace.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_ancestries(self) -> None:
+        logger.info('Loading ancestries from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'ancestries')
+        existing_checksum = self.local_checksum_lookup('fsd/ancestries.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('ancestries.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    Ancestry(
+                        id=k,
+                        bloodline_id=v.get('bloodlineID'),
+                        charisma=v.get('charisma'),
+                        description_id=v.get('descriptionID'),
+                        icon_id=v.get('iconID'),
+                        intelligence=v.get('intelligence'),
+                        memory=v.get('memory'),
+                        name_id=v.get('nameID'),
+                        perception=v.get('perception'),
+                        short_description=v.get('shortDescription'),
+                        willpower=v.get('willpower'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading ancestries from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/ancestries.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_bloodlines(self) -> None:
+        logger.info('Loading bloodlines from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'bloodlines')
+        existing_checksum = self.local_checksum_lookup('fsd/bloodlines.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('bloodlines.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    Bloodline(
+                        id=k,
+                        charisma=v.get('charisma'),
+                        corporation_id=v.get('corporationID'),
+                        description_id=v.get('descriptionID'),
+                        icon_id=v.get('iconID'),
+                        intelligence=v.get('intelligence'),
+                        memory=v.get('memory'),
+                        name_id=v.get('nameID'),
+                        perception=v.get('perception'),
+                        race_id=v.get('raceID'),
+                        willpower=v.get('willpower'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading bloodlines from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/bloodlines.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_blueprints(self) -> None:
+        logger.info('Loading blueprints from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'blueprints')
+        existing_checksum = self.local_checksum_lookup('fsd/blueprints.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('blueprints.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    Blueprint(
+                        id=k,
+                        actibities=v.get('activities'),
+                        blueprint_type_id=v.get('blueprintTypeID'),
+                        max_production_limit=v.get('maxProductionLimit'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading blueprints from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/blueprints.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_categories(self) -> None:
+        logger.info('Loading categories from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'categories')
+        existing_checksum = self.local_checksum_lookup('fsd/categories.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('categories.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    Category(
+                        id=k,
+                        name=v.get('name'),
+                        published=v.get('published'),
+                        icon_id=v.get('iconID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading categories from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/categories.yaml',
+            checksum=checksum,
+        )
+    
+    def load_fsd_certificates(self) -> None:
+        logger.info('Loading certificates from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'certificates')
+        existing_checksum = self.local_checksum_lookup('fsd/certificates.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('certificates.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    Certificate(
+                        id=k,
+                        description=v.get('description'),
+                        group_id=v.get('groupID'),
+                        name=v.get('name'),
+                        recommended_for=v.get('recommendedFor'),
+                        skill_types=v.get('skillTypes'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading certificates from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/certificates.yaml',
+            checksum=checksum,
+        )
+        
+    def load_fsd_character_attributes(self) -> None:
+        logger.info('Loading characterAttributes from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'characterAttributes')
+        existing_checksum = self.local_checksum_lookup('fsd/characterAttributes.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('characterAttributes.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    CharacterAttribute(
+                        id=k,
+                        description=v.get('description'),
+                        icon_id=v.get('iconID'),
+                        name_id=v.get('nameID'),
+                        notes=v.get('notes'),
+                        short_description=v.get('shortDescription'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading characterAttributes from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/characterAttributes.yaml',
+            checksum=checksum,
+        )
+        
+    def load_fsd_contraband_types(self) -> None:
+        logger.info('Loading contrabandTypes from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'contrabandTypes')
+        existing_checksum = self.local_checksum_lookup('fsd/contrabandTypes.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('contrabandTypes.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    ContrabandType(
+                        id=k,
+                        factions=v.get('factions'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading contrabandTypes from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/contrabandTypes.yaml',
+            checksum=checksum,
+        )
+    
+    def load_fsd_control_tower_resources(self) -> None:
+        logger.info('Loading controlTowerResources from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'controlTowerResources')
+        existing_checksum = self.local_checksum_lookup('fsd/controlTowerResources.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('controlTowerResources.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    ControlTowerResource(
+                        id=k,
+                        resources=v.get('resources'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading controlTowerResources from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/controlTowerResources.yaml',
+            checksum=checksum,
+        )
+
     def handle(self, *args: Any, **options: Any) -> None:
         # Setup the workspace
         self.setup_workspace()
@@ -189,5 +683,24 @@ class Command(BaseCommand):
         if options.get('download_only', False):
             logger.info('Download-only flag set, skipping further processing')
             return
-        # logger.info(self.local_checksums)
-        # logger.info(self.remote_checksums)
+        # Load data into the database
+        ## Load BSD data
+        self.load_bsd_inv_flags()
+        self.load_bsd_inv_items()
+        self.load_bsd_inv_names()
+        self.load_bsd_inv_positions()
+        self.load_bsd_inv_unique_names()
+        self.load_bsd_sta_stations()
+        ## Load FSD data
+        self.load_fsd_agents()
+        self.load_fsd_agents_in_space()
+        self.load_fsd_ancestries()
+        self.load_fsd_bloodlines()
+        self.load_fsd_blueprints()
+        self.load_fsd_categories()
+        self.load_fsd_certificates()
+        self.load_fsd_character_attributes()
+        self.load_fsd_contraband_types()
+        self.load_fsd_control_tower_resources()
+
+        logger.info('SDE processing completed')

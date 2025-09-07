@@ -2,7 +2,7 @@ from django.db import models
 
 
 class InvPosition(models.Model):
-    item_id = models.IntegerField()
+    item_id = models.IntegerField(primary_key=True)
     pitch = models.IntegerField(default=None, null=True)
     roll = models.IntegerField(default=None, null=True)
     x = models.FloatField()
