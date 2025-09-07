@@ -1,3 +1,4 @@
+import contextlib
 import json
 import logging
 import re
@@ -15,9 +16,7 @@ from .helpers import MODEL_PRIMARY_KEY_ID_OVERRIDE
 from .helpers import MODEL_TEMPLATE
 from .helpers import collect_files
 
-try:
-    from yaml import CLoader as Loader
-except ImportError:
+with contextlib.suppress(ImportError):
     pass
 
 logger = logging.getLogger(__name__)
@@ -204,12 +203,12 @@ class Command(BaseCommand):
                     for k, v in planets.items():
                         moons = v.get('moons', {})
                         if len(moons) > 0:
-                            for _, mv in moons.items():
+                            for mv in moons.values():
                                 moons_collection.append(mv)
                             del planets[k]['moons']
                         astroid_belts = v.get('asteroidBelts', {})
                         if len(astroid_belts) > 0:
-                            for _, av in astroid_belts.items():
+                            for av in astroid_belts.values():
                                 astroid_belts_collection.append(av)
                             del planets[k]['asteroidBelts']
                         planets_collection.append(v)
@@ -218,7 +217,7 @@ class Command(BaseCommand):
                         stars_collection.append(solar_system_data.get('star', {}))
                         del solar_system_data['star']
                     if 'stargates' in solar_system_data:
-                        for _, sgv in solar_system_data.get('stargates', {}).items():
+                        for sgv in solar_system_data.get('stargates', {}).values():
                             stargates_collection.append(sgv)
                         del solar_system_data['stargates']
                     solar_system_collection.append(solar_system_data)
