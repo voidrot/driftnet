@@ -98,10 +98,8 @@ class Command(BaseCommand):
                     field_found[field_name] += 1
                 if type(value).__name__ not in field_types[field_name]:
                     field_types[field_name].append(type(value).__name__)
-        # pprint('Field types:')
-        # pprint(field_types)
-        # add id field first
 
+        # add id field first
         if add_id_field:
             fields['id'] = 'models.IntegerField(primary_key=True)'
 
@@ -177,7 +175,7 @@ class Command(BaseCommand):
                 )
             self.gen_model_file(model_file_name, fields)
 
-    def gen_universe_models(self):
+    def gen_universe_models(self):  # noqa: C901, PLR0912, PLR0915
         # Build files into single objects
         region_collection = []
         constellation_collection = []
@@ -204,12 +202,12 @@ class Command(BaseCommand):
                         moons = v.get('moons', {})
                         if len(moons) > 0:
                             for mv in moons.values():
-                                moons_collection.append(mv)
+                                moons_collection.append(mv)  # noqa: PERF402
                             del planets[k]['moons']
                         astroid_belts = v.get('asteroidBelts', {})
                         if len(astroid_belts) > 0:
                             for av in astroid_belts.values():
-                                astroid_belts_collection.append(av)
+                                astroid_belts_collection.append(av)  # noqa: PERF402
                             del planets[k]['asteroidBelts']
                         planets_collection.append(v)
                     del solar_system_data['planets']
@@ -218,7 +216,7 @@ class Command(BaseCommand):
                         del solar_system_data['star']
                     if 'stargates' in solar_system_data:
                         for sgv in solar_system_data.get('stargates', {}).values():
-                            stargates_collection.append(sgv)
+                            stargates_collection.append(sgv)  # noqa: PERF402
                         del solar_system_data['stargates']
                     solar_system_collection.append(solar_system_data)
             elif universe_file.parts[-1] == 'landmarks.json':
