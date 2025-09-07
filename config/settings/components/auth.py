@@ -7,8 +7,6 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
-# https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
-# AUTH_USER_MODEL = 'users.User'
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
 LOGIN_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
@@ -38,14 +36,4 @@ ACCOUNT_LOGIN_METHODS = {'email'}
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
 # https://docs.allauth.org/en/latest/account/configuration.html
-# ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-# https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-# # https://docs.allauth.org/en/latest/account/configuration.html
-# ACCOUNT_ADAPTER = 'voidlink.users.adapters.AccountAdapter'
-# # https://docs.allauth.org/en/latest/account/forms.html
-# ACCOUNT_FORMS = {'signup': 'voidlink.users.forms.UserSignupForm'}
-# # https://docs.allauth.org/en/latest/socialaccount/configuration.html
-# SOCIALACCOUNT_ADAPTER = 'voidlink.users.adapters.SocialAccountAdapter'
-# # https://docs.allauth.org/en/latest/socialaccount/configuration.html
-# SOCIALACCOUNT_FORMS = {'signup': 'voidlink.users.forms.UserSocialSignupForm'}

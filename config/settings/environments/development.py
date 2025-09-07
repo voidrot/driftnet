@@ -30,7 +30,6 @@ MIDDLEWARE = [*MIDDLEWARE, 'debug_toolbar.middleware.DebugToolbarMiddleware']
 
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda _request: DEBUG,
-    # 'INTERCEPT_REDIRECTS': False,
     'DISABLE_PANELS': [
         'debug_toolbar.panels.redirects.RedirectsPanel',
         # Disable profiling panel due to an issue with Python 3.12:
