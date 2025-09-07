@@ -23,12 +23,38 @@ from apps.sde.models.certificates import Certificate
 from apps.sde.models.character_attributes import CharacterAttribute
 from apps.sde.models.contraband_types import ContrabandType
 from apps.sde.models.control_tower_resources import ControlTowerResource
+from apps.sde.models.corporation_activities import CorporationActivity
+from apps.sde.models.dogma_attribute_categories import DogmaAttributeCategory
+from apps.sde.models.dogma_attributes import DogmaAttribute
+from apps.sde.models.dogma_effects import DogmaEffect
+from apps.sde.models.factions import Faction
+from apps.sde.models.graphic_ids import GraphicId
+from apps.sde.models.groups import Group
+from apps.sde.models.icon_ids import IconId
 from apps.sde.models.inv_flags import InvFlag
 from apps.sde.models.inv_items import InvItem
 from apps.sde.models.inv_names import InvName
 from apps.sde.models.inv_positions import InvPosition
 from apps.sde.models.inv_unique_names import InvUniqueName
+from apps.sde.models.market_groups import MarketGroup
+from apps.sde.models.meta_groups import MetaGroup
+from apps.sde.models.npc_corporation_divisions import NpcCorporationDivision
+from apps.sde.models.npc_corporations import NpcCorporation
+from apps.sde.models.planet_resources import PlanetResource
+from apps.sde.models.planet_schematics import PlanetSchematic
+from apps.sde.models.races import Race
+from apps.sde.models.research_agents import ResearchAgent
+from apps.sde.models.skin_licenses import SkinLicense
+from apps.sde.models.skin_materials import SkinMaterial
+from apps.sde.models.skins import Skin
+from apps.sde.models.sovereignty_upgrades import SovereigntyUpgrade
 from apps.sde.models.sta_stations import StaStation
+from apps.sde.models.station_operations import StationOperation
+from apps.sde.models.station_services import StationService
+from apps.sde.models.tournament_rule_sets import TournamentRuleSet
+from apps.sde.models.type_dogma import TypeDogma
+from apps.sde.models.type_materials import TypeMaterial
+from apps.sde.models.types import Type
 
 logger = logging.getLogger(__name__)
 
@@ -564,7 +590,7 @@ class Command(BaseCommand):
             name='fsd/categories.yaml',
             checksum=checksum,
         )
-    
+
     def load_fsd_certificates(self) -> None:
         logger.info('Loading certificates from FSD data...')
         json_file, yaml_file = self.build_file_path('fsd', 'certificates')
@@ -592,14 +618,16 @@ class Command(BaseCommand):
             name='fsd/certificates.yaml',
             checksum=checksum,
         )
-        
+
     def load_fsd_character_attributes(self) -> None:
         logger.info('Loading characterAttributes from FSD data...')
         json_file, yaml_file = self.build_file_path('fsd', 'characterAttributes')
         existing_checksum = self.local_checksum_lookup('fsd/characterAttributes.yaml')
         checksum = self.get_file_checksum(yaml_file)
         if existing_checksum == checksum and existing_checksum != '':
-            logger.info('characterAttributes.yaml checksum matches existing, skipping load')
+            logger.info(
+                'characterAttributes.yaml checksum matches existing, skipping load'
+            )
             return
         try:
             with Path(json_file).open() as f:
@@ -620,7 +648,7 @@ class Command(BaseCommand):
             name='fsd/characterAttributes.yaml',
             checksum=checksum,
         )
-        
+
     def load_fsd_contraband_types(self) -> None:
         logger.info('Loading contrabandTypes from FSD data...')
         json_file, yaml_file = self.build_file_path('fsd', 'contrabandTypes')
@@ -644,14 +672,16 @@ class Command(BaseCommand):
             name='fsd/contrabandTypes.yaml',
             checksum=checksum,
         )
-    
+
     def load_fsd_control_tower_resources(self) -> None:
         logger.info('Loading controlTowerResources from FSD data...')
         json_file, yaml_file = self.build_file_path('fsd', 'controlTowerResources')
         existing_checksum = self.local_checksum_lookup('fsd/controlTowerResources.yaml')
         checksum = self.get_file_checksum(yaml_file)
         if existing_checksum == checksum and existing_checksum != '':
-            logger.info('controlTowerResources.yaml checksum matches existing, skipping load')
+            logger.info(
+                'controlTowerResources.yaml checksum matches existing, skipping load'
+            )
             return
         try:
             with Path(json_file).open() as f:
@@ -666,6 +696,847 @@ class Command(BaseCommand):
             return
         Checksum.objects.update_or_create(
             name='fsd/controlTowerResources.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_corporation_activities(self) -> None:
+        logger.info('Loading corporationActivities from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'corporationActivities')
+        existing_checksum = self.local_checksum_lookup('fsd/corporationActivities.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info(
+                'corporationActivities.yaml checksum matches existing, skipping load'
+            )
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    CorporationActivity(
+                        id=k,
+                        name_id=v.get('nameID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading corporationActivities from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/corporationActivities.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_dogma_attribute_categories(self) -> None:
+        logger.info('Loading dogmaAttributeCategories from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'dogmaAttributeCategories')
+        existing_checksum = self.local_checksum_lookup(
+            'fsd/dogmaAttributeCategories.yaml'
+        )
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info(
+                'dogmaAttributeCategories.yaml checksum matches existing, skipping load'
+            )
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    DogmaAttributeCategory(
+                        id=k,
+                        description=v.get('description'),
+                        name=v.get('name'),
+                    ).save()
+        except Exception:
+            logger.exception(
+                'Failed loading dogmaAttributeCategories from %s', json_file
+            )
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/dogmaAttributeCategories.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_dogma_attributes(self) -> None:
+        logger.info('Loading dogmaAttributes from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'dogmaAttributes')
+        existing_checksum = self.local_checksum_lookup('fsd/dogmaAttributes.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('dogmaAttributes.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    DogmaAttribute(
+                        id=k,
+                        attribute_id=v.get('attributeID'),
+                        category_id=v.get('categoryID'),
+                        data_type=v.get('dataType'),
+                        default_value=v.get('defaultValue'),
+                        description=v.get('description'),
+                        high_is_good=v.get('highIsGood'),
+                        name=v.get('name'),
+                        published=v.get('published'),
+                        stackable=v.get('stackable'),
+                        display_name_id=v.get('displayNameID'),
+                        icon_id=v.get('iconID'),
+                        tooltip_description_id=v.get('tooltipDescriptionID'),
+                        tooltip_title_id=v.get('tooltipTitleID'),
+                        unit_id=v.get('unitID'),
+                        charge_recharge_time_id=v.get('chargeRechargeTimeID'),
+                        max_attribute_id=v.get('maxAttributeID'),
+                        min_attribute_id=v.get('minAttributeID'),
+                        display_when_zero=v.get('displayWhenZero'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading dogmaAttributes from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/dogmaAttributes.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_dogma_effects(self) -> None:
+        logger.info('Loading dogmaEffects from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'dogmaEffects')
+        existing_checksum = self.local_checksum_lookup('fsd/dogmaEffects.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('dogmaEffects.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    DogmaEffect(
+                        id=k,
+                        disallow_auto_repeat=v.get('disallowAutoRepeat'),
+                        discharge_attribute_id=v.get('dischargeAttributeID'),
+                        duration_attribute_id=v.get('durationAttributeID'),
+                        effect_category=v.get('effectCategory'),
+                        effect_id=v.get('effectID'),
+                        effect_name=v.get('effectName'),
+                        electronic_chance=v.get('electronicChance'),
+                        guid=v.get('guid'),
+                        is_assistance=v.get('isAssistance'),
+                        is_offensive=v.get('isOffensive'),
+                        is_warp_safe=v.get('isWarpSafe'),
+                        propulsion_chance=v.get('propulsionChance'),
+                        published=v.get('published'),
+                        range_chance=v.get('rangeChance'),
+                        distribution=v.get('distribution'),
+                        falloff_attribute_id=v.get('falloffAttributeID'),
+                        range_attribute_id=v.get('rangeAttributeID'),
+                        tracking_speed_attribute_id=v.get('trackingSpeedAttributeID'),
+                        description_id=v.get('descriptionID'),
+                        display_name_id=v.get('displayNameID'),
+                        icon_id=v.get('iconID'),
+                        modifier_info=v.get('modifierInfo'),
+                        sfx_name=v.get('sfxName'),
+                        npc_usage_chance_attribute_id=v.get(
+                            'npcUsageChanceAttributeID'
+                        ),
+                        npc_activation_chance_attribute_id=v.get(
+                            'npcActivationChanceAttributeID'
+                        ),
+                        fitting_usage_chance_attribute_id=v.get(
+                            'fittingUsageChanceAttributeID'
+                        ),
+                        resistance_attribute_id=v.get('resistanceAttributeID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading dogmaEffects from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/dogmaEffects.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_factions(self) -> None:
+        logger.info('Loading factions from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'factions')
+        existing_checksum = self.local_checksum_lookup('fsd/factions.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('factions.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    Faction(
+                        id=k,
+                        corporation_id=v.get('corporationID'),
+                        description_id=v.get('descriptionID'),
+                        flat_logo=v.get('flatLogo'),
+                        flat_logo_with_name=v.get('flatLogoWithName'),
+                        icon_id=v.get('iconID'),
+                        member_races=v.get('memberRaces'),
+                        militia_corporation_id=v.get('militiaCorporationID'),
+                        name_id=v.get('nameID'),
+                        short_description_id=v.get('shortDescriptionID'),
+                        size_factor=v.get('sizeFactor'),
+                        solar_system_id=v.get('solarSystemID'),
+                        unique_name=v.get('uniqueName'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading factions from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/factions.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_graphic_ids(self) -> None:
+        logger.info('Loading graphicIds from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'graphicIDs')
+        existing_checksum = self.local_checksum_lookup('fsd/graphicIDs.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('graphicIDs.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    GraphicId(
+                        id=k,
+                        description=v.get('description'),
+                        graphic_file=v.get('graphicFile'),
+                        icon_info=v.get('iconInfo'),
+                        sof_faction_name=v.get('sofFactionName'),
+                        sof_hull_name=v.get('sofHullName'),
+                        sof_race_name=v.get('sofRaceName'),
+                        sof_layout=v.get('sofLayout'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading graphicIDs from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/graphicIDs.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_groups(self) -> None:
+        logger.info('Loading groups from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'groups')
+        existing_checksum = self.local_checksum_lookup('fsd/groups.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('groups.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    Group(
+                        id=k,
+                        anchorable=v.get('anchorable'),
+                        anchored=v.get('anchored'),
+                        category_id=v.get('categoryID'),
+                        fittable_non_singleton=v.get('fittableNonSingleton'),
+                        name=v.get('name'),
+                        published=v.get('published'),
+                        use_base_price=v.get('useBasePrice'),
+                        icon_id=v.get('iconID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading groups from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/groups.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_icon_ids(self) -> None:
+        logger.info('Loading iconIds from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'iconIDs')
+        existing_checksum = self.local_checksum_lookup('fsd/iconIDs.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('iconIDs.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    IconId(
+                        id=k,
+                        description=v.get('description'),
+                        icon_file=v.get('iconFile'),
+                        obsolete=v.get('obsolete'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading iconIDs from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/iconIDs.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_market_groups(self) -> None:
+        logger.info('Loading marketGroups from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'marketGroups')
+        existing_checksum = self.local_checksum_lookup('fsd/marketGroups.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('marketGroups.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    MarketGroup(
+                        id=k,
+                        description_id=v.get('descriptionID'),
+                        has_types=v.get('hasTypes'),
+                        icon_id=v.get('iconID'),
+                        name_id=v.get('nameID'),
+                        parent_group_id=v.get('parentGroupID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading marketGroups from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/marketGroups.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_meta_groups(self) -> None:
+        logger.info('Loading metaGroups from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'metaGroups')
+        existing_checksum = self.local_checksum_lookup('fsd/metaGroups.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('metaGroups.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    MetaGroup(
+                        id=k,
+                        color=v.get('color'),
+                        name_id=v.get('nameID'),
+                        icon_id=v.get('iconID'),
+                        icon_suffix=v.get('iconSuffix'),
+                        description_id=v.get('descriptionID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading metaGroups from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/metaGroups.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_npc_corporation_divisions(self) -> None:
+        logger.info('Loading npcCorporationDivisions from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'npcCorporationDivisions')
+        existing_checksum = self.local_checksum_lookup(
+            'fsd/npcCorporationDivisions.yaml'
+        )
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info(
+                'npcCorporationDivisions.yaml checksum matches existing, skipping load'
+            )
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    NpcCorporationDivision(
+                        id=k,
+                        description=v.get('description'),
+                        internal_name=v.get('internalName'),
+                        leader_type_name_id=v.get('leaderTypeNameID'),
+                        name_id=v.get('nameID'),
+                        description_id=v.get('descriptionID'),
+                    ).save()
+        except Exception:
+            logger.exception(
+                'Failed loading npcCorporationDivisions from %s', json_file
+            )
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/npcCorporationDivisions.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_npc_corporations(self) -> None:
+        logger.info('Loading npcCorporations from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'npcCorporations')
+        existing_checksum = self.local_checksum_lookup('fsd/npcCorporations.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('npcCorporations.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    NpcCorporation(
+                        id=k,
+                        ceo_id=v.get('ceoID'),
+                        deleted=v.get('deleted'),
+                        description_id=v.get('descriptionID'),
+                        extent=v.get('extent'),
+                        has_player_personnel_manager=v.get('hasPlayerPersonnelManager'),
+                        initial_price=v.get('initialPrice'),
+                        member_limit=v.get('memberLimit'),
+                        min_security=v.get('minSecurity'),
+                        minimum_join_standing=v.get('minimumJoinStanding'),
+                        name_id=v.get('nameID'),
+                        public_shares=v.get('publicShares'),
+                        send_char_termination_message=v.get(
+                            'sendCharTerminationMessage'
+                        ),
+                        shares=v.get('shares'),
+                        size=v.get('size'),
+                        station_id=v.get('stationID'),
+                        tax_rate=v.get('taxRate'),
+                        ticker_name=v.get('tickerName'),
+                        unique_name=v.get('uniqueName'),
+                        allowed_member_races=v.get('allowedMemberRaces'),
+                        corporation_trades=v.get('corporationTrades'),
+                        divisions=v.get('divisions'),
+                        enemy_id=v.get('enemyID'),
+                        faction_id=v.get('factionID'),
+                        friend_id=v.get('friendID'),
+                        icon_id=v.get('iconID'),
+                        investors=v.get('investors'),
+                        lp_offer_tables=v.get('lpOfferTables'),
+                        main_activity_id=v.get('mainActivityID'),
+                        race_id=v.get('raceID'),
+                        size_factor=v.get('sizeFactor'),
+                        solar_system_id=v.get('solarSystemID'),
+                        exchange_rate=v.get('exchangeRate'),
+                        secondary_activity_id=v.get('secondaryActivityID'),
+                        url=v.get('url'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading npcCorporations from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/npcCorporations.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_planet_resources(self) -> None:
+        logger.info('Loading planetResources from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'planetResources')
+        existing_checksum = self.local_checksum_lookup('fsd/planetResources.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('planetResources.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    PlanetResource(
+                        id=k,
+                        power=v.get('power'),
+                        workforce=v.get('workforce'),
+                        cycle_minutes=v.get('cycleMinutes'),
+                        harvest_silo_max=v.get('harvestSiloMax'),
+                        maturation_cycle_minutes=v.get('maturationCycleMinutes'),
+                        maturation_percent=v.get('maturationPercent'),
+                        mature_silo_max=v.get('matureSiloMax'),
+                        reagent_harvest_amount=v.get('reagentHarvestAmount'),
+                        reagent_type_id=v.get('reagentTypeID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading planetResources from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/planetResources.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_planet_schematics(self) -> None:
+        logger.info('Loading planetSchematics from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'planetSchematics')
+        existing_checksum = self.local_checksum_lookup('fsd/planetSchematics.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info(
+                'planetSchematics.yaml checksum matches existing, skipping load'
+            )
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    PlanetSchematic(
+                        id=k,
+                        cycle_time=v.get('cycleTime'),
+                        name_id=v.get('nameID'),
+                        pins=v.get('pins'),
+                        types=v.get('types'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading planetSchematics from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/planetSchematics.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_races(self) -> None:
+        logger.info('Loading planetSchematics from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'races')
+        existing_checksum = self.local_checksum_lookup('fsd/races.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('races.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    Race(
+                        id=k,
+                        description_id=v.get('descriptionID'),
+                        icon_id=v.get('iconID'),
+                        name_id=v.get('nameID'),
+                        ship_type_id=v.get('shipTypeID'),
+                        skills=v.get('skills'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading races from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/races.yaml',
+            checksum=checksum,
+        )
+
+    def load_research_agents(self) -> None:
+        logger.info('Loading researchAgents from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'researchAgents')
+        existing_checksum = self.local_checksum_lookup('fsd/researchAgents.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('researchAgents.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    ResearchAgent(
+                        id=k,
+                        skills=v.get('skills'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading researchAgents from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/researchAgents.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_skin_licenses(self) -> None:
+        logger.info('Loading skinLicenses from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'skinLicenses')
+        existing_checksum = self.local_checksum_lookup('fsd/skinLicenses.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('skinLicenses.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    SkinLicense(
+                        id=k,
+                        duration=v.get('duration'),
+                        license_type_id=v.get('licenseTypeID'),
+                        skin_id=v.get('skinID'),
+                        is_single_use=v.get('isSingleUse'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading skinLicenses from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/skinLicenses.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_skin_materials(self) -> None:
+        logger.info('Loading skinMaterials from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'skinMaterials')
+        existing_checksum = self.local_checksum_lookup('fsd/skinMaterials.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('skinMaterials.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    SkinMaterial(
+                        id=k,
+                        display_name_id=v.get('displayNameID'),
+                        material_set_id=v.get('materialSetID'),
+                        skin_material_id=v.get('skinMaterialID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading skinMaterials from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/skinMaterials.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_skins(self) -> None:
+        logger.info('Loading skins from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'skins')
+        existing_checksum = self.local_checksum_lookup('fsd/skins.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('skins.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    Skin(
+                        id=k,
+                        allow_ccpdevs=v.get('allowCCPDevs'),
+                        internal_name=v.get('internalName'),
+                        skin_id=v.get('skinID'),
+                        skin_material_id=v.get('skinMaterialID'),
+                        types=v.get('types'),
+                        visible_serenity=v.get('visibleSerenity'),
+                        visible_tranquility=v.get('visibleTranquility'),
+                        is_structure_skin=v.get('isStructureSkin', None),
+                        skin_description=v.get('skinDescription'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading skins from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/skins.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_sovereignty_upgrades(self) -> None:
+        logger.info('Loading sovereignty upgrades from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'sovereigntyUpgrades')
+        existing_checksum = self.local_checksum_lookup('fsd/sovereigntyUpgrades.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info(
+                'sovereigntyUpgrades.yaml checksum matches existing, skipping load'
+            )
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    SovereigntyUpgrade(
+                        id=k,
+                        fuel_hourly_upkeep=v.get('fuelHourlyUpkeep'),
+                        fuel_startup_cost=v.get('fuelStartupCost'),
+                        fuel_type_id=v.get('fuelTypeID'),
+                        mutually_exclusive_group=v.get('mutuallyExclusiveGroup'),
+                        power_allocation=v.get('powerAllocation'),
+                        workforce_allocation=v.get('workforceAllocation'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading sovereignty upgrades from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/sovereigntyUpgrades.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_station_operations(self) -> None:
+        logger.info('Loading station operations from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'stationOperations')
+        existing_checksum = self.local_checksum_lookup('fsd/stationOperations.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info(
+                'stationOperations.yaml checksum matches existing, skipping load'
+            )
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    StationOperation(
+                        id=k,
+                        activity_id=v.get('activityID'),
+                        border=v.get('border'),
+                        corridor=v.get('corridor'),
+                        description=v.get('description'),
+                        fringe=v.get('fringe'),
+                        hub=v.get('hub'),
+                        manufacturing_factor=v.get('manufacturingFactor'),
+                        operation_name_id=v.get('operationNameID'),
+                        ratio=v.get('ratio'),
+                        research_factor=v.get('researchFactor'),
+                        services=v.get('services'),
+                        station_types=v.get('stationTypes'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading station operations from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/stationOperations.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_station_services(self) -> None:
+        logger.info('Loading station services from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'stationServices')
+        existing_checksum = self.local_checksum_lookup('fsd/stationServices.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('stationServices.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    StationService(
+                        id=k,
+                        service_name_id=v.get('serviceNameID'),
+                        description_id=v.get('descriptionID', None),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading station services from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/stationServices.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_tournament_rule_set(self) -> None:
+        logger.info('Loading tournament rule set from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'tournamentRuleSet')
+        existing_checksum = self.local_checksum_lookup('fsd/tournamentRuleSet.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info(
+                'tournamentRuleSet.yaml checksum matches existing, skipping load'
+            )
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    TournamentRuleSet(
+                        id=k,
+                        banned=v.get('banned'),
+                        maximum_pilots_match=v.get('maximumPilotsMatch'),
+                        minimum_pilots_match=v.get('minimumPilotsMatch'),
+                        points=v.get('points'),
+                        rule_set_id=v.get('ruleSetID'),
+                        rule_set_name=v.get('ruleSetName'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading tournament rule set from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/tournamentRuleSet.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_type_dogma(self) -> None:
+        logger.info('Loading type dogma from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'typeDogma')
+        existing_checksum = self.local_checksum_lookup('fsd/typeDogma.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('typeDogma.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    TypeDogma(
+                        id=k,
+                        dogma_attributes=v.get('dogmaAttributes'),
+                        dogma_effects=v.get('dogmaEffects'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading type dogma from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/typeDogma.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_type_materials(self) -> None:
+        logger.info('Loading type materials from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'typeMaterials')
+        existing_checksum = self.local_checksum_lookup('fsd/typeMaterials.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('typeMaterials.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    TypeMaterial(
+                        id=k,
+                        materials=v.get('materials'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading type materials from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/typeMaterials.yaml',
+            checksum=checksum,
+        )
+
+    def load_fsd_types(self) -> None:
+        logger.info('Loading types from FSD data...')
+        json_file, yaml_file = self.build_file_path('fsd', 'types')
+        existing_checksum = self.local_checksum_lookup('fsd/types.yaml')
+        checksum = self.get_file_checksum(yaml_file)
+        if existing_checksum == checksum and existing_checksum != '':
+            logger.info('types.yaml checksum matches existing, skipping load')
+            return
+        try:
+            with Path(json_file).open() as f:
+                data = json.load(f)
+                for k, v in data:
+                    Type(
+                        id=k,
+                        group_id=v.get('groupID'),
+                        mass=v.get('mass'),
+                        name=v.get('name'),
+                        portion_size=v.get('portionSize'),
+                        published=v.get('published'),
+                        volume=v.get('volume'),
+                        radius=v.get('radius'),
+                        description=v.get('description'),
+                        graphic_id=v.get('graphicID'),
+                        sound_id=v.get('soundID'),
+                        icon_id=v.get('iconID'),
+                        race_id=v.get('raceID'),
+                        sof_faction_name=v.get('sofFactionName'),
+                        base_price=v.get('basePrice'),
+                        market_group_id=v.get('marketGroupID'),
+                        capacity=v.get('capacity'),
+                        meta_group_id=v.get('metaGroupID'),
+                        variation_parent_type_id=v.get('variationParentTypeID'),
+                        faction_id=v.get('factionID'),
+                        masteries=v.get('masteries'),
+                        traits=v.get('traits'),
+                        sof_material_set_id=v.get('sofMaterialSetID'),
+                    ).save()
+        except Exception:
+            logger.exception('Failed loading types from %s', json_file)
+            return
+        Checksum.objects.update_or_create(
+            name='fsd/types.yaml',
             checksum=checksum,
         )
 
@@ -702,5 +1573,32 @@ class Command(BaseCommand):
         self.load_fsd_character_attributes()
         self.load_fsd_contraband_types()
         self.load_fsd_control_tower_resources()
+        self.load_fsd_corporation_activities()
+        self.load_fsd_dogma_attribute_categories()
+        self.load_fsd_dogma_attributes()
+        self.load_fsd_dogma_effects()
+        self.load_fsd_factions()
+        self.load_fsd_graphic_ids()
+        self.load_fsd_groups()
+        self.load_fsd_icon_ids()
+        self.load_fsd_market_groups()
+        self.load_fsd_meta_groups()
+        self.load_fsd_npc_corporation_divisions()
+        self.load_fsd_npc_corporations()
+        self.load_fsd_planet_resources()
+        self.load_fsd_planet_schematics()
+        self.load_fsd_races()
+        self.load_research_agents()
+        self.load_fsd_skin_licenses()
+        self.load_fsd_skin_materials()
+        self.load_fsd_skins()
+        self.load_fsd_sovereignty_upgrades()
+        self.load_fsd_station_operations()
+        self.load_fsd_station_services()
+        self.load_fsd_tournament_rule_set()
+        self.load_fsd_type_dogma()
+        self.load_fsd_type_materials()
+        self.load_fsd_types()
+        # Load Universe data
 
         logger.info('SDE processing completed')
