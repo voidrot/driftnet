@@ -11,4 +11,4 @@ def characters(request):
 @login_required
 def profile(request):
     """Render the user profile / account settings placeholder page."""
-    return render(request, 'profile.html')
+    return render(request, 'profile.html', {'characters': []})
