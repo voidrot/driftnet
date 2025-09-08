@@ -14,6 +14,7 @@ from .helpers import INIT_MODEL_TEMPLATE
 from .helpers import MODEL_INDEX_RULES
 from .helpers import MODEL_PRIMARY_KEY_ID_OVERRIDE
 from .helpers import MODEL_TEMPLATE
+from .helpers import UNIVERSE_LOOKUP_TEMPLATE
 from .helpers import collect_files
 
 with contextlib.suppress(ImportError):
@@ -99,10 +100,6 @@ class Command(BaseCommand):
                 if type(value).__name__ not in field_types[field_name]:
                     field_types[field_name].append(type(value).__name__)
 
-        # add id field first
-        if add_id_field:
-            fields['id'] = 'models.IntegerField(primary_key=True)'
-
         type_map = {
             'int': (
                 'models.IntegerField(default=None, null=True)',
@@ -120,7 +117,7 @@ class Command(BaseCommand):
             'list': ('models.JSONField(default=list, null=True)', 'models.JSONField()'),
             'dict': ('models.JSONField(default=dict, null=True)', 'models.JSONField()'),
         }
-
+        # add id field first
         for field_name, field_values in field_types.items():
             is_optional = field_found[field_name] != len(converted_data)
             logging.debug(
@@ -304,6 +301,14 @@ class Command(BaseCommand):
         ) as f:
             f.write(template.render(Context(context)))
 
+    def gen_universe_lookup_model(self):
+        template = Template(UNIVERSE_LOOKUP_TEMPLATE)
+        context = {}
+        with Path(
+            settings.BASE_DIR / 'apps' / 'sde' / 'models' / 'universe_lookup.py'
+        ).open('w', encoding='utf-8') as f:
+            f.write(template.render(Context(context)))
+
     def handle(self, *args, **options):
         logger.info('Generating SDE models...')
         logger.info('Collecting all SDE files...')
@@ -314,6 +319,8 @@ class Command(BaseCommand):
         self.gen_bsd_models()
         logger.info('Generating FSD models...')
         self.gen_fsd_models()
+        logger.info('Generating universe_lookup.py model...')
+        self.gen_universe_lookup_model()
         logger.info('Generating __init__.py for models...')
         self.gen_model_init()
         logger.info('SDE model generation complete.')

@@ -16,11 +16,13 @@ from apps.sde.models import Checksum
 from apps.sde.models.agents import Agent
 from apps.sde.models.agents_in_space import AgentsInSpace
 from apps.sde.models.ancestries import Ancestry
+from apps.sde.models.asteroid_belts import AsteroidBelt
 from apps.sde.models.bloodlines import Bloodline
 from apps.sde.models.blueprints import Blueprint
 from apps.sde.models.categories import Category
 from apps.sde.models.certificates import Certificate
 from apps.sde.models.character_attributes import CharacterAttribute
+from apps.sde.models.constellations import Constellation
 from apps.sde.models.contraband_types import ContrabandType
 from apps.sde.models.control_tower_resources import ControlTowerResource
 from apps.sde.models.corporation_activities import CorporationActivity
@@ -38,15 +40,19 @@ from apps.sde.models.inv_positions import InvPosition
 from apps.sde.models.inv_unique_names import InvUniqueName
 from apps.sde.models.market_groups import MarketGroup
 from apps.sde.models.meta_groups import MetaGroup
+from apps.sde.models.moons import Moon
 from apps.sde.models.npc_corporation_divisions import NpcCorporationDivision
 from apps.sde.models.npc_corporations import NpcCorporation
 from apps.sde.models.planet_resources import PlanetResource
 from apps.sde.models.planet_schematics import PlanetSchematic
+from apps.sde.models.planets import Planet
 from apps.sde.models.races import Race
+from apps.sde.models.regions import Region
 from apps.sde.models.research_agents import ResearchAgent
 from apps.sde.models.skin_licenses import SkinLicense
 from apps.sde.models.skin_materials import SkinMaterial
 from apps.sde.models.skins import Skin
+from apps.sde.models.solar_systems import SolarSystem
 from apps.sde.models.sovereignty_upgrades import SovereigntyUpgrade
 from apps.sde.models.sta_stations import StaStation
 from apps.sde.models.station_operations import StationOperation
@@ -55,6 +61,7 @@ from apps.sde.models.tournament_rule_sets import TournamentRuleSet
 from apps.sde.models.type_dogma import TypeDogma
 from apps.sde.models.type_materials import TypeMaterial
 from apps.sde.models.types import Type
+from apps.sde.models.universe_lookup import UniverseLookup
 
 logger = logging.getLogger(__name__)
 
@@ -428,7 +435,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     Agent(
                         id=k,
                         agent_type_id=v.get('agentTypeID'),
@@ -457,7 +464,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     AgentsInSpace(
                         id=k,
                         dungeon_id=v.get('dungeonID'),
@@ -484,7 +491,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     Ancestry(
                         id=k,
                         bloodline_id=v.get('bloodlineID'),
@@ -517,7 +524,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     Bloodline(
                         id=k,
                         charisma=v.get('charisma'),
@@ -550,7 +557,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     Blueprint(
                         id=k,
                         actibities=v.get('activities'),
@@ -576,7 +583,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     Category(
                         id=k,
                         name=v.get('name'),
@@ -602,7 +609,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     Certificate(
                         id=k,
                         description=v.get('description'),
@@ -632,7 +639,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     CharacterAttribute(
                         id=k,
                         description=v.get('description'),
@@ -660,7 +667,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     ContrabandType(
                         id=k,
                         factions=v.get('factions'),
@@ -686,7 +693,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     ControlTowerResource(
                         id=k,
                         resources=v.get('resources'),
@@ -712,7 +719,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     CorporationActivity(
                         id=k,
                         name_id=v.get('nameID'),
@@ -740,7 +747,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     DogmaAttributeCategory(
                         id=k,
                         description=v.get('description'),
@@ -767,7 +774,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     DogmaAttribute(
                         id=k,
                         attribute_id=v.get('attributeID'),
@@ -808,7 +815,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     DogmaEffect(
                         id=k,
                         disallow_auto_repeat=v.get('disallowAutoRepeat'),
@@ -864,7 +871,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     Faction(
                         id=k,
                         corporation_id=v.get('corporationID'),
@@ -899,7 +906,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     GraphicId(
                         id=k,
                         description=v.get('description'),
@@ -929,7 +936,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     Group(
                         id=k,
                         anchorable=v.get('anchorable'),
@@ -960,7 +967,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     IconId(
                         id=k,
                         description=v.get('description'),
@@ -986,7 +993,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     MarketGroup(
                         id=k,
                         description_id=v.get('descriptionID'),
@@ -1014,7 +1021,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     MetaGroup(
                         id=k,
                         color=v.get('color'),
@@ -1046,7 +1053,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     NpcCorporationDivision(
                         id=k,
                         description=v.get('description'),
@@ -1076,7 +1083,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     NpcCorporation(
                         id=k,
                         ceo_id=v.get('ceoID'),
@@ -1135,7 +1142,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     PlanetResource(
                         id=k,
                         power=v.get('power'),
@@ -1169,7 +1176,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     PlanetSchematic(
                         id=k,
                         cycle_time=v.get('cycleTime'),
@@ -1196,7 +1203,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     Race(
                         id=k,
                         description_id=v.get('descriptionID'),
@@ -1224,7 +1231,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     ResearchAgent(
                         id=k,
                         skills=v.get('skills'),
@@ -1248,7 +1255,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     SkinLicense(
                         id=k,
                         duration=v.get('duration'),
@@ -1275,7 +1282,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     SkinMaterial(
                         id=k,
                         display_name_id=v.get('displayNameID'),
@@ -1301,7 +1308,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     Skin(
                         id=k,
                         allow_ccpdevs=v.get('allowCCPDevs'),
@@ -1335,7 +1342,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     SovereigntyUpgrade(
                         id=k,
                         fuel_hourly_upkeep=v.get('fuelHourlyUpkeep'),
@@ -1366,7 +1373,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     StationOperation(
                         id=k,
                         activity_id=v.get('activityID'),
@@ -1401,7 +1408,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     StationService(
                         id=k,
                         service_name_id=v.get('serviceNameID'),
@@ -1428,7 +1435,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     TournamentRuleSet(
                         id=k,
                         banned=v.get('banned'),
@@ -1457,7 +1464,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     TypeDogma(
                         id=k,
                         dogma_attributes=v.get('dogmaAttributes'),
@@ -1482,7 +1489,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     TypeMaterial(
                         id=k,
                         materials=v.get('materials'),
@@ -1506,7 +1513,7 @@ class Command(BaseCommand):
         try:
             with Path(json_file).open() as f:
                 data = json.load(f)
-                for k, v in data:
+                for k, v in data.items():
                     Type(
                         id=k,
                         group_id=v.get('groupID'),
@@ -1540,6 +1547,228 @@ class Command(BaseCommand):
             checksum=checksum,
         )
 
+    def load_universe_regions(self) -> None:
+        logger.info('Loading regions from Universe data...')
+        region_files = Path(self.workspace_dir / 'universe').rglob('region.yaml')
+        for region_file in region_files:
+            json_file = region_file.with_suffix('.json')
+            yaml_file = region_file.with_suffix('.yaml')
+            checksum_name = str(yaml_file).split(f'{self.workspace_dir}/')[1]
+            existing_checksum = self.local_checksum_lookup(checksum_name)
+            checksum = self.get_file_checksum(yaml_file)
+            if existing_checksum == checksum and existing_checksum != '':
+                logger.info('regions.yaml checksum matches existing, skipping load')
+                return
+            try:
+                with Path(json_file).open() as f:
+                    data = json.load(f)
+                    Region(
+                        region_id=data.get('regionID'),
+                        name_id=data.get('nameID'),
+                        nebula=data.get('nebula'),
+                        wormhole_class_id=data.get('wormholeClassID'),
+                        description_id=data.get('descriptionID'),
+                        faction_id=data.get('factionID'),
+                        center=data.get('center'),
+                        max=data.get('max'),
+                        min=data.get('min'),
+                    ).save()
+            except Exception:
+                logger.exception('Failed loading regions from %s', json_file)
+                return
+            Checksum.objects.update_or_create(
+                name=checksum_name,
+                checksum=checksum,
+            )
+
+    def load_universe_constellations(self) -> None:
+        logger.info('Loading constellations from Universe data...')
+        constellation_files = Path(self.workspace_dir / 'universe').rglob(
+            'constellation.yaml'
+        )
+        for constellation_file in constellation_files:
+            json_file = constellation_file.with_suffix('.json')
+            yaml_file = constellation_file.with_suffix('.yaml')
+            checksum_name = str(yaml_file).split(f'{self.workspace_dir}/')[1]
+            existing_checksum = self.local_checksum_lookup(checksum_name)
+            checksum = self.get_file_checksum(yaml_file)
+            if existing_checksum == checksum and existing_checksum != '':
+                logger.info(
+                    'constellations.yaml checksum matches existing, skipping load'
+                )
+                return
+            try:
+                with Path(json_file).open() as f:
+                    data = json.load(f)
+                    Constellation(
+                        constellation_id=data.get('constellationID'),
+                        name_id=data.get('nameID'),
+                        radius=data.get('radius'),
+                        center=data.get('center'),
+                        max=data.get('max'),
+                        min=data.get('min'),
+                    ).save()
+            except Exception:
+                logger.exception('Failed loading constellations from %s', json_file)
+                return
+            Checksum.objects.update_or_create(
+                name=checksum_name,
+                checksum=checksum,
+            )
+
+    def load_universe_solar_systems(self) -> None:
+        logger.info('Loading solar systems from Universe data...')
+        solar_system_files = Path(self.workspace_dir / 'universe').rglob(
+            'solarsystem.yaml'
+        )
+        for solar_system_file in solar_system_files:
+            json_file = solar_system_file.with_suffix('.json')
+            yaml_file = solar_system_file.with_suffix('.yaml')
+            checksum_name = str(yaml_file).split(f'{self.workspace_dir}/')[1]
+            existing_checksum = self.local_checksum_lookup(checksum_name)
+            checksum = self.get_file_checksum(yaml_file)
+            if existing_checksum == checksum and existing_checksum != '':
+                logger.info('solarsystem.yaml checksum matches existing, skipping load')
+                return
+            try:
+                with Path(json_file).open() as f:
+                    data = json.load(f)
+                    # Load base solar system data
+                    SolarSystem(
+                        solar_system_id=data.get('solarSystemID'),
+                        border=data.get('border'),
+                        center=data.get('center'),
+                        corridor=data.get('corridor'),
+                        fringe=data.get('fringe'),
+                        hub=data.get('hub'),
+                        international=data.get('international'),
+                        luminosity=data.get('luminosity'),
+                        max=data.get('max'),
+                        min=data.get('min'),
+                        radius=data.get('radius'),
+                        regional=data.get('regional'),
+                        security=data.get('security'),
+                        solar_system_name_id=data.get('solarSystemNameID'),
+                        sun_type_id=data.get('sunTypeID'),
+                        wormhole_class_id=data.get('wormholeClassID'),
+                    ).save()
+                    # load planet data
+                    planets = data.get('planets', [])
+                    for pk, pv in planets:
+                        Planet(
+                            id=pk,
+                            celestial_index=pv.get('celestialIndex'),
+                            planet_attributes=pv.get('attributes'),
+                            position=pv.get('position'),
+                            radius=pv.get('radius'),
+                            statistics=pv.get('statistics'),
+                            type_id=pv.get('typeID'),
+                            npc_stations=pv.get('npcStations'),
+                            planet_name_id=pv.get('planetNameID'),
+                        ).save()
+                        # load moon data
+                        moons = pv.get('moons', [])
+                        for mk, mv in moons:
+                            Moon(
+                                id=mk,
+                                planet_attributes=mv.get('attributes'),
+                                position=mv.get('position'),
+                                radius=mv.get('radius'),
+                                statistics=mv.get('statistics'),
+                                type_id=mv.get('typeID'),
+                                npc_stations=mv.get('npcStations'),
+                                moon_name_id=mv.get('moonNameID'),
+                            ).save()
+                        # load asteroid belt data
+                        asteroid_belt = pv.get('asteroidBelt', [])
+                        for ak, av in asteroid_belt:
+                            AsteroidBelt(
+                                id=ak,
+                                position=av.get('position'),
+                                statistics=av.get('statistics'),
+                                type_id=av.get('typeID'),
+                                asteroid_belt_name_id=av.get('asteroidBeltNameID'),
+                            ).save()
+            except Exception:
+                logger.exception('Failed loading solar systems from %s', json_file)
+                return
+            Checksum.objects.update_or_create(
+                name=checksum_name,
+                checksum=checksum,
+            )
+
+    def load_universe_lookups(self) -> None:
+        # Iterate over the universe subdirectories
+        universe_dir = Path(self.workspace_dir / 'universe')
+        for subdir in universe_dir.iterdir():
+            if subdir.is_dir() and subdir.name != 'landmarks':
+                for region_dir in subdir.iterdir():
+                    if region_dir.is_dir():
+                        with region_dir.joinpath('region.json').open() as f:
+                            region_id = json.load(f).get('regionID')
+                        for constellation_dir in region_dir.iterdir():
+                            if constellation_dir.is_dir():
+                                with constellation_dir.joinpath(
+                                    'constellation.json'
+                                ).open() as f:
+                                    constellation_id = json.load(f).get(
+                                        'constellationID'
+                                    )
+                                for solar_system_file in constellation_dir.rglob(
+                                    'solarsystem.json'
+                                ):
+                                    with solar_system_file.open() as f:
+                                        solar_system_data = json.load(f)
+                                        solar_system_id = solar_system_data.get(
+                                            'solarSystemID'
+                                        )
+                                        planets = solar_system_data.get('planets', {})
+                                        for pk, pv in planets.items():
+                                            moons = pv.get('moons', {}).keys()
+                                            asteroid_belts = pv.get(
+                                                'asteroidBelts', {}
+                                            ).keys()
+                                            ## Create the lookup mappings
+                                            combos = (
+                                                self.create_universe_lookup_mappings(
+                                                    region_id,
+                                                    constellation_id,
+                                                    solar_system_id,
+                                                    pk,
+                                                    list(moons),
+                                                    list(asteroid_belts),
+                                                )
+                                            )
+
+                                            for combo in combos:
+                                                UniverseLookup(**combo).save()
+        logger.info('Universe lookups loaded successfully.')
+
+    def create_universe_lookup_mappings(  # noqa: PLR0913
+        self,
+        region_id,
+        constellation_id,
+        solar_system_id,
+        planet_id,
+        moons,
+        asteroid_belts,
+    ) -> list[dict[str, int | None]]:
+        results = []
+        max_len = max(len(moons), len(asteroid_belts))
+        for i in range(max_len):
+            result = {
+                'region_id': region_id,
+                'constellation_id': constellation_id,
+                'solar_system_id': solar_system_id,
+                'planet_id': planet_id,
+                'moon_id': moons[i] if i < len(moons) else None,
+                'asteroid_belt_id': asteroid_belts[i]
+                if i < len(asteroid_belts)
+                else None,
+            }
+            results.append(result)
+        return results
+
     def handle(self, *args: Any, **options: Any) -> None:
         # Setup the workspace
         self.setup_workspace()
@@ -1557,48 +1786,53 @@ class Command(BaseCommand):
         # Load data into the database
         ## Load BSD data
         self.load_bsd_inv_flags()
-        self.load_bsd_inv_items()
-        self.load_bsd_inv_names()
-        self.load_bsd_inv_positions()
-        self.load_bsd_inv_unique_names()
-        self.load_bsd_sta_stations()
-        ## Load FSD data
-        self.load_fsd_agents()
-        self.load_fsd_agents_in_space()
-        self.load_fsd_ancestries()
-        self.load_fsd_bloodlines()
-        self.load_fsd_blueprints()
-        self.load_fsd_categories()
-        self.load_fsd_certificates()
-        self.load_fsd_character_attributes()
-        self.load_fsd_contraband_types()
-        self.load_fsd_control_tower_resources()
-        self.load_fsd_corporation_activities()
-        self.load_fsd_dogma_attribute_categories()
-        self.load_fsd_dogma_attributes()
-        self.load_fsd_dogma_effects()
-        self.load_fsd_factions()
-        self.load_fsd_graphic_ids()
-        self.load_fsd_groups()
-        self.load_fsd_icon_ids()
-        self.load_fsd_market_groups()
-        self.load_fsd_meta_groups()
-        self.load_fsd_npc_corporation_divisions()
-        self.load_fsd_npc_corporations()
-        self.load_fsd_planet_resources()
-        self.load_fsd_planet_schematics()
-        self.load_fsd_races()
-        self.load_research_agents()
-        self.load_fsd_skin_licenses()
-        self.load_fsd_skin_materials()
-        self.load_fsd_skins()
-        self.load_fsd_sovereignty_upgrades()
-        self.load_fsd_station_operations()
-        self.load_fsd_station_services()
-        self.load_fsd_tournament_rule_set()
-        self.load_fsd_type_dogma()
-        self.load_fsd_type_materials()
-        self.load_fsd_types()
-        # Load Universe data
+        # self.load_bsd_inv_items()
+        # self.load_bsd_inv_names()
+        # self.load_bsd_inv_positions()
+        # self.load_bsd_inv_unique_names()
+        # self.load_bsd_sta_stations()
+        # ## Load FSD data
+        # self.load_fsd_agents()
+        # self.load_fsd_agents_in_space()
+        # self.load_fsd_ancestries()
+        # self.load_fsd_bloodlines()
+        # self.load_fsd_blueprints()
+        # self.load_fsd_categories()
+        # self.load_fsd_certificates()
+        # self.load_fsd_character_attributes()
+        # self.load_fsd_contraband_types()
+        # self.load_fsd_control_tower_resources()
+        # self.load_fsd_corporation_activities()
+        # self.load_fsd_dogma_attribute_categories()
+        # self.load_fsd_dogma_attributes()
+        # self.load_fsd_dogma_effects()
+        # self.load_fsd_factions()
+        # self.load_fsd_graphic_ids()
+        # self.load_fsd_groups()
+        # self.load_fsd_icon_ids()
+        # self.load_fsd_market_groups()
+        # self.load_fsd_meta_groups()
+        # self.load_fsd_npc_corporation_divisions()
+        # self.load_fsd_npc_corporations()
+        # self.load_fsd_planet_resources()
+        # self.load_fsd_planet_schematics()
+        # self.load_fsd_races()
+        # self.load_research_agents()
+        # self.load_fsd_skin_licenses()
+        # self.load_fsd_skin_materials()
+        # self.load_fsd_skins()
+        # self.load_fsd_sovereignty_upgrades()
+        # self.load_fsd_station_operations()
+        # self.load_fsd_station_services()
+        # self.load_fsd_tournament_rule_set()
+        # self.load_fsd_type_dogma()
+        # self.load_fsd_type_materials()
+        # self.load_fsd_types()
+        # # Load Universe data
+        # self.load_universe_regions()
+        # self.load_universe_constellations()
+        # self.load_universe_solar_systems()
+        # # Load Universe Lookups
+        # self.load_universe_lookups()
 
         logger.info('SDE processing completed')
