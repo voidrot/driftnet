@@ -1,5 +1,7 @@
 import ssl
 
+from celery.schedules import crontab
+
 from config.env import env
 from config.settings.components.common import TIME_ZONE
 from config.settings.components.common import USE_TZ
@@ -45,3 +47,15 @@ CELERY_WORKER_SEND_TASK_EVENTS = True
 CELERY_TASK_SEND_SENT_EVENT = True
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#worker-hijack-root-logger
 CELERY_WORKER_HIJACK_ROOT_LOGGER = False
+
+
+CELERY_BEAT_SCHEDULE = {
+    'esi_cleanup_callbackredirect': {
+        'task': 'esi.tasks.cleanup_callbackredirect',
+        'schedule': crontab(hour='*/4'),
+    },
+    'esi_cleanup_token_subset': {  # 1/48th * 1hr = 48Hr/2Day Refresh Cycles.
+        'task': 'esi.tasks.cleanup_token_subset',
+        'schedule': crontab(minute='0', hour='*/1'),
+    },
+}

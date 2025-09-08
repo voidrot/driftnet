@@ -1,9 +1,37 @@
 {% extends "base.html" %}
-{% block title %}Characters - Voidlink{% endblock %}
+
+{% block title %}
+  Characters - Voidlink
+{% endblock title %}
 {% block content %}
-<main id="maincontent" tabindex="-1" class="container mx-auto px-4 py-8">
-  <h1 class="text-2xl font-bold mb-4">Characters</h1>
-  <p class="mb-4">This page will display your EVE Online characters. (Coming soon)</p>
-  <!-- Character list will go here -->
-</main>
-{% endblock %}
+  <main id="maincontent"
+        tabindex="-1"
+        class="flex flex-1 items-center justify-center min-h-[60vh] container mx-auto px-4 py-8">
+    <container>
+    <div class="flex flex-col items-center justify-center mb-4">
+      <h1 class="text-2xl font-bold mb-4 text-center">Characters</h1>
+  <a href="{% url 'esi:sso_redirect' %}" class="btn btn-primary mb-6" aria-label="Add Character">Add Character</a>
+    </div>
+    <div class="divider"></div>
+    {% if characters %}
+      <ul class="list bg-base-200 rounded-box w-full max-w-md mx-auto">
+        {% for character in characters %}
+          <li class="list-item flex items-center gap-3 py-3 px-4 border-b last:border-b-0">
+            <span class="font-semibold">{{ character.name }}</span>
+            {% if character.corporation %}
+              <span class="badge badge-outline">{{ character.corporation }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="card bg-base-100 shadow-md max-w-md mx-auto mt-8">
+        <div class="card-body">
+          <h2 class="card-title">No Characters Added</h2>
+          <p>You do not have any characters added yet. Click "Add Character" to get started.</p>
+        </div>
+      </div>
+    {% endif %}
+    </container>
+  </main>
+{% endblock content %}
