@@ -60,3 +60,18 @@ format:
     @echo "Formatting Code..."
     -uv run ruff check --fix --unsafe-fixes
     -uv run ruff format
+
+celery-worker:
+    @echo "Starting Celery worker..."
+    @docker compose up -d --remove-orphans
+    uv run celery -A config.celery_app worker -l INFO
+
+celery-beat:
+    @echo "Starting Celery beat..."
+    @docker compose up -d --remove-orphans
+    uv run celery -A config.celery_app beat -l INFO
+
+celery-flower:
+    @echo "Starting Celery Flower..."
+    @docker compose up -d --remove-orphans
+    uv run celery -A config.celery_app -b redis://localhost:6379 flower --port=5555
