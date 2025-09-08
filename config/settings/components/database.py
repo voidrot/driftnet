@@ -9,6 +9,9 @@ DATABASES = {
         'PASSWORD': env('POSTGRES_PASSWORD', default='hotshotpass'),  # pyright: ignore[reportArgumentType]
         'HOST': env('POSTGRES_HOST', default='localhost'),  # pyright: ignore[reportArgumentType]
         'PORT': env('POSTGRES_PORT', default='5432'),  # pyright: ignore[reportArgumentType]
+        'OPTIONS': {
+            'pool': True,
+        },
     }
 }
 

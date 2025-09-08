@@ -58,5 +58,5 @@ manage *args:
 
 format:
     @echo "Formatting Code..."
-    uv run ruff check --fix --unsafe-fixes
-    uv run ruff format
+    -uv run ruff check --fix --unsafe-fixes
+    -uv run ruff format
