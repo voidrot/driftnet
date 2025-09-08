@@ -20,6 +20,7 @@ base_settings = [
     'components/session.py',
     'components/static.py',
     'components/app_settings.py',
+    'components/esi.py',
     f'environments/{ENV}.py',
     optional('environments/local.py'),
 ]
