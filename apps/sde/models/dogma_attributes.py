@@ -9,7 +9,7 @@ class DogmaAttribute(models.Model):
     category_id = models.IntegerField(default=None, null=True)
     data_type = models.IntegerField()
     default_value = models.FloatField()
-    description = models.TextField(default=None)
+    description = models.TextField(default=None, null=True)
     high_is_good = models.BooleanField()
     name = models.TextField()
     published = models.BooleanField()

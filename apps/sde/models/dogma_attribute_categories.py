@@ -5,5 +5,5 @@ from django.db import models
 
 
 class DogmaAttributeCategory(models.Model):
-    description = models.TextField(default=None)
+    description = models.TextField(default=None, null=True)
     name = models.TextField()

@@ -2,6 +2,15 @@ from pathlib import Path
 
 
 def collect_files(collection_dir: Path):
+    """
+    Recursively collect all .json files in the given directory.
+
+    Args:
+        collection_dir (Path): The root directory to search for JSON files.
+
+    Returns:
+        list[Path]: List of Path objects for each .json file found.
+    """
     return [
         entry
         for entry in collection_dir.rglob('**')
@@ -15,6 +24,7 @@ MODEL_INDEX_RULES = {
     'inv_positions': ["models.Index(fields=['item_id'])"],
 }
 
+# Define primary key ID overrides for models
 MODEL_PRIMARY_KEY_ID_OVERRIDE = {
     'inv_items': 'item_id',
     'inv_flags': 'flag_id',
@@ -26,6 +36,7 @@ MODEL_PRIMARY_KEY_ID_OVERRIDE = {
     'regions': 'region_id',
     'constellations': 'constellation_id',
     'solar_systems': 'solar_system_id',
+    'tournament_rule_sets': 'rule_set_id',
 }
 
 MODEL_TEMPLATE = """
@@ -77,8 +88,8 @@ class UniverseLookup(models.Model):
     constellation_id = models.IntegerField()
     solar_system_id = models.IntegerField()
     planet_id = models.IntegerField(null=True)
-    moon_id = models.JSONField(default=list, null=True)
-    asteroid_belt_id = models.JSONField(default=list, null=True)
+    moons = models.JSONField(default=list, null=True)
+    asteroid_belts = models.JSONField(default=list, null=True)
 
     class Meta:
         unique_together = [
@@ -86,16 +97,14 @@ class UniverseLookup(models.Model):
             'constellation_id',
             'solar_system_id',
             'planet_id',
-            'moon_id',
-            'asteroid_belt_id',
         ]
         indexes = [
             models.Index(fields=['region_id']),
             models.Index(fields=['constellation_id']),
             models.Index(fields=['solar_system_id']),
             models.Index(fields=['planet_id']),
-            models.Index(fields=['moon_id']),
-            models.Index(fields=['asteroid_belt_id']),
+            models.Index(fields=['moons']),
+            models.Index(fields=['asteroid_belts']),
         ]
 {% endautoescape %}
 """

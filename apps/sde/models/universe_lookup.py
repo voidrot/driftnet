@@ -9,8 +9,8 @@ class UniverseLookup(models.Model):
     constellation_id = models.IntegerField()
     solar_system_id = models.IntegerField()
     planet_id = models.IntegerField(null=True)
-    moon_id = models.IntegerField(null=True)
-    asteroid_belt_id = models.IntegerField(null=True)
+    moons = models.JSONField(default=list, null=True)
+    asteroid_belts = models.JSONField(default=list, null=True)
 
     class Meta:
         unique_together = [
@@ -18,14 +18,12 @@ class UniverseLookup(models.Model):
             'constellation_id',
             'solar_system_id',
             'planet_id',
-            'moon_id',
-            'asteroid_belt_id',
         ]
         indexes = [
             models.Index(fields=['region_id']),
             models.Index(fields=['constellation_id']),
             models.Index(fields=['solar_system_id']),
             models.Index(fields=['planet_id']),
-            models.Index(fields=['moon_id']),
-            models.Index(fields=['asteroid_belt_id']),
+            models.Index(fields=['moons']),
+            models.Index(fields=['asteroid_belts']),
         ]

@@ -13,5 +13,5 @@ class Ancestry(models.Model):
     memory = models.IntegerField()
     name_id = models.JSONField()
     perception = models.IntegerField()
-    short_description = models.TextField(default=None)
+    short_description = models.TextField(default=None, null=True)
     willpower = models.IntegerField()

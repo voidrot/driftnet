@@ -5,10 +5,10 @@ from django.db import models
 
 
 class GraphicId(models.Model):
-    description = models.TextField(default=None)
-    graphic_file = models.TextField(default=None)
+    description = models.TextField(default=None, null=True)
+    graphic_file = models.TextField(default=None, null=True)
     icon_info = models.JSONField(default=dict, null=True)
-    sof_faction_name = models.TextField(default=None)
-    sof_hull_name = models.TextField(default=None)
-    sof_race_name = models.TextField(default=None)
+    sof_faction_name = models.TextField(default=None, null=True)
+    sof_hull_name = models.TextField(default=None, null=True)
+    sof_race_name = models.TextField(default=None, null=True)
     sof_layout = models.JSONField(default=list, null=True)

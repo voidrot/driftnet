@@ -9,5 +9,5 @@ class TournamentRuleSet(models.Model):
     maximum_pilots_match = models.IntegerField()
     maximum_points_match = models.IntegerField()
     points = models.JSONField()
-    rule_set_id = models.TextField()
+    rule_set_id = models.TextField(primary_key=True)
     rule_set_name = models.TextField()

@@ -8,5 +8,5 @@ class MetaGroup(models.Model):
     color = models.JSONField(default=list, null=True)
     name_id = models.JSONField()
     icon_id = models.IntegerField(default=None, null=True)
-    icon_suffix = models.TextField(default=None)
+    icon_suffix = models.TextField(default=None, null=True)
     description_id = models.JSONField(default=dict, null=True)

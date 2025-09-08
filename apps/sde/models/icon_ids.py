@@ -5,6 +5,6 @@ from django.db import models
 
 
 class IconId(models.Model):
-    description = models.TextField(default=None)
+    description = models.TextField(default=None, null=True)
     icon_file = models.TextField()
     obsolete = models.BooleanField(default=False, null=True)

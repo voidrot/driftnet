@@ -7,8 +7,8 @@ from django.db import models
 class Faction(models.Model):
     corporation_id = models.IntegerField(default=None, null=True)
     description_id = models.JSONField()
-    flat_logo = models.TextField(default=None)
-    flat_logo_with_name = models.TextField(default=None)
+    flat_logo = models.TextField(default=None, null=True)
+    flat_logo_with_name = models.TextField(default=None, null=True)
     icon_id = models.IntegerField()
     member_races = models.JSONField()
     militia_corporation_id = models.IntegerField(default=None, null=True)

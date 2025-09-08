@@ -70,18 +70,17 @@ class Command(BaseCommand):
             return name
         return word
 
-    def extract_fields(self, data, model_name, add_id_field=True):
+    def extract_fields(self, data, model_name):  # noqa: C901, PLR0912
         fields = {}
         field_types = {}
         field_found = {}
+        int_field_ranges = {}
 
         converted_data = []
 
         if isinstance(data, list):
             converted_data = data
-
         elif isinstance(data, dict):
-            # pass
             for item in data.items():
                 converted_data.append(item[1])
         else:
@@ -95,21 +94,41 @@ class Command(BaseCommand):
                 if field_name not in field_found:
                     field_types[field_name] = []
                     field_found[field_name] = 1
+                    if isinstance(value, int):
+                        int_field_ranges[field_name] = [value, value]
                 else:
                     field_found[field_name] += 1
+                    if isinstance(value, int):
+                        if field_name in int_field_ranges:
+                            int_field_ranges[field_name][0] = min(
+                                int_field_ranges[field_name][0], value
+                            )
+                            int_field_ranges[field_name][1] = max(
+                                int_field_ranges[field_name][1], value
+                            )
+                        else:
+                            int_field_ranges[field_name] = [value, value]
                 if type(value).__name__ not in field_types[field_name]:
                     field_types[field_name].append(type(value).__name__)
+
+        # Postgres integer range: -2147483648 to 2147483647
+        pg_int_min = -2147483648
+        pg_int_max = 2147483647
 
         type_map = {
             'int': (
                 'models.IntegerField(default=None, null=True)',
                 'models.IntegerField()',
             ),
+            'bigint': (
+                'models.BigIntegerField(default=None, null=True)',
+                'models.BigIntegerField()',
+            ),
             'float': (
                 'models.FloatField(default=None, null=True)',
                 'models.FloatField()',
             ),
-            'str': ('models.TextField(default=None)', 'models.TextField()'),
+            'str': ('models.TextField(default=None, null=True)', 'models.TextField()'),
             'bool': (
                 'models.BooleanField(default=False, null=True)',
                 'models.BooleanField()',
@@ -117,14 +136,12 @@ class Command(BaseCommand):
             'list': ('models.JSONField(default=list, null=True)', 'models.JSONField()'),
             'dict': ('models.JSONField(default=dict, null=True)', 'models.JSONField()'),
         }
-        # add id field first
+
         for field_name, field_values in field_types.items():
             is_optional = field_found[field_name] != len(converted_data)
             logging.debug(
                 f'optional: {is_optional} | {field_name}: {field_found[field_name]} vs {len(converted_data)}'
             )
-            # check if we have mixed types, such as int and float
-            # if so we want to choose the higher type
             chosen_type = None
             if len(field_values) > 1:
                 if 'float' in field_values:
@@ -133,6 +150,12 @@ class Command(BaseCommand):
                     chosen_type = 'str'
             else:
                 chosen_type = field_values[0]
+
+            # Determine if int or bigint is needed
+            if chosen_type == 'int' and field_name in int_field_ranges:
+                min_val, max_val = int_field_ranges[field_name]
+                if min_val < pg_int_min or max_val > pg_int_max:
+                    chosen_type = 'bigint'
 
             for py_type, (optional_field, required_field) in type_map.items():
                 if py_type == chosen_type:
@@ -167,9 +190,7 @@ class Command(BaseCommand):
                 bsd_file.parts[-1].replace('.json', '')
             )
             with Path(bsd_file).open('r', encoding='utf-8') as f:
-                fields = self.extract_fields(
-                    json.load(f), model_file_name, add_id_field=False
-                )
+                fields = self.extract_fields(json.load(f), model_file_name)
             self.gen_model_file(model_file_name, fields)
 
     def gen_universe_models(self):  # noqa: C901, PLR0912, PLR0915
