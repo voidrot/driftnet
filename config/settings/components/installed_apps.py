@@ -22,6 +22,7 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',
     'django_celery_results',
     'django_celery_beat',
+    'esi',
 ]
 
 INSTALLED_APPS = [*DJANGO_APPS, *THIRD_PARTY_APPS, *PROJECT_APPS]

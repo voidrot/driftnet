@@ -24,8 +24,10 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='landing.html'), name='landing'),
+    path('sso/', include('esi.urls', namespace='esi')),
     path('terms/', TemplateView.as_view(template_name='terms.html'), name='terms'),
     path('ccp/', TemplateView.as_view(template_name='ccp.html'), name='ccp'),
+    path('help/', TemplateView.as_view(template_name='help.html'), name='help'),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('users/', include('apps.users.urls')),
