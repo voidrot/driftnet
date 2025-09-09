@@ -1,26 +1,38 @@
 {% extends "base.html" %}
-{% block title %}CCP / EVE Online Disclaimer - Voidlink{% endblock title %}
 
+{% block title %}
+  CCP / EVE Online Disclaimer - Voidlink
+{% endblock title %}
 {% block content %}
-<main id="maincontent" class="container mx-auto p-6">
-  <h1 class="text-3xl font-bold mb-4">CCP / EVE Online Resources</h1>
-  <p class="mb-4 text-sm text-muted">Last updated: {% now "F j, Y" %}</p>
-
-  <section class="mb-6">
-  <p class="text-base mb-2">EVE Online, the EVE logo, and related marks are owned by CCP Games. These names, logos, artwork, screenshots, characters, and other game-related material are protected by intellectual property rights and belong to their respective owners.</p>
-
-  <p class="text-base mb-2">Where this site uses or links to CCP Games-owned material, those assets remain the intellectual property of CCP Games. Voidlink is an independent community project and is not affiliated with, endorsed by, or sponsored by CCP Games.</p>
-
-    <p class="text-base mb-2">Official Trademarks: you are permitted to use CCP's official trademarks only when they remain unchanged — do not stretch, deform, recolor, or otherwise modify the marks or logos in any way.</p>
-
-    <p class="text-base mb-2">Required disclaimer: <strong>This material is used with limited permission of CCP Games. No official affiliation or endorsement by CCP Games is stated or implied.</strong></p>
-
-  <p class="text-base mb-2">We make the origin of CCP Games intellectual property clear: any EVE-related artwork, screenshots, characters, logos, or other recognizable features shown on this site are the property of CCP Games and are used here for informational and community purposes only (non-commercial).</p>
-
-    <p class="text-base mb-2">If you represent CCP and have concerns about material on this site, or if you believe any content infringes your rights, please contact us at <a href="mailto:support@voidlink.example" class="text-link hover:underline">support@voidlink.example</a> so we can address the issue promptly.</p>
-
-    <p class="text-base mb-2">For official information from CCP regarding trademarks and intellectual property, see <a href="https://support.eveonline.com/hc/en-us/articles/8563917741084-EVE-Online-Content-Creation-Terms-of-Use" target="_blank" rel="noopener noreferrer" class="hover:underline">CCP Legal</a>.</p>
-  </section>
-
-</main>
+  <main id="maincontent" class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">CCP / EVE Online Resources</h1>
+    <p class="mb-4 text-sm text-muted">Last updated: {% now "F j, Y" %}</p>
+    <section class="mb-6">
+      <p class="text-base mb-2">
+        EVE Online, the EVE logo, and related marks are owned by CCP Games. These names, logos, artwork, screenshots, characters, and other game-related material are protected by intellectual property rights and belong to their respective owners.
+      </p>
+      <p class="text-base mb-2">
+        Where this site uses or links to CCP Games-owned material, those assets remain the intellectual property of CCP Games. Voidlink is an independent community project and is not affiliated with, endorsed by, or sponsored by CCP Games.
+      </p>
+      <p class="text-base mb-2">
+        Official Trademarks: you are permitted to use CCP's official trademarks only when they remain unchanged — do not stretch, deform, recolor, or otherwise modify the marks or logos in any way.
+      </p>
+      <p class="text-base mb-2">
+        Required disclaimer: <strong>This material is used with limited permission of CCP Games. No official affiliation or endorsement by CCP Games is stated or implied.</strong>
+      </p>
+      <p class="text-base mb-2">
+        We make the origin of CCP Games intellectual property clear: any EVE-related artwork, screenshots, characters, logos, or other recognizable features shown on this site are the property of CCP Games and are used here for informational and community purposes only (non-commercial).
+      </p>
+      <p class="text-base mb-2">
+        If you represent CCP and have concerns about material on this site, or if you believe any content infringes your rights, please contact us at <a href="mailto:support@voidlink.example"
+    class="text-link hover:underline">support@voidlink.example</a> so we can address the issue promptly.
+      </p>
+      <p class="text-base mb-2">
+        For official information from CCP regarding trademarks and intellectual property, see <a href="https://support.eveonline.com/hc/en-us/articles/8563917741084-EVE-Online-Content-Creation-Terms-of-Use"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="hover:underline">CCP Legal</a>.
+      </p>
+    </section>
+  </main>
 {% endblock content %}

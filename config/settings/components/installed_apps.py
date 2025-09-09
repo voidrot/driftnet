@@ -12,6 +12,7 @@ DJANGO_APPS = [
 PROJECT_APPS = [
     'apps.users.apps.UsersConfig',
     'apps.sde.apps.SdeConfig',
+    'apps.esi.apps.EsiConfig',
 ]
 
 THIRD_PARTY_APPS = [
@@ -22,7 +23,6 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',
     'django_celery_results',
     'django_celery_beat',
-    'esi',
 ]
 
 INSTALLED_APPS = [*DJANGO_APPS, *THIRD_PARTY_APPS, *PROJECT_APPS]
