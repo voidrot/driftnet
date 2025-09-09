@@ -10,7 +10,9 @@
     <container>
     <div class="flex flex-col items-center justify-center mb-4">
       <h1 class="text-2xl font-bold mb-4 text-center">Characters</h1>
-  <a href="{% url 'esi:sso_redirect' %}" class="btn btn-primary mb-6" aria-label="Add Character">Add Character</a>
+      <a href="{% url 'esi:sso_redirect' %}"
+         class="btn btn-primary mb-6"
+         aria-label="Add Character">Add Character</a>
     </div>
     <div class="divider"></div>
     {% if characters %}
@@ -18,9 +20,7 @@
         {% for character in characters %}
           <li class="list-item flex items-center gap-3 py-3 px-4 border-b last:border-b-0">
             <span class="font-semibold">{{ character.name }}</span>
-            {% if character.corporation %}
-              <span class="badge badge-outline">{{ character.corporation }}</span>
-            {% endif %}
+            {% if character.corporation %}<span class="badge badge-outline">{{ character.corporation }}</span>{% endif %}
           </li>
         {% endfor %}
       </ul>

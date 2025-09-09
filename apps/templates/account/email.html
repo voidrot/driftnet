@@ -37,13 +37,13 @@
                 </div>
               {% endif %}
             </label>
-       <input type="{{ field.field.widget.input_type }}"
-         name="{{ field.name }}"
-         id="{{ field.id_for_label }}"
-         class="input input-bordered w-full"
-         value="{{ field.value|default_if_none:'' }}"
-         {% if field.field.required %}required{% endif %}
-         {% if field.field.widget.attrs.autocomplete %}autocomplete="{{ field.field.widget.attrs.autocomplete }}"{% endif %} />
+            <input type="{{ field.field.widget.input_type }}"
+                   name="{{ field.name }}"
+                   id="{{ field.id_for_label }}"
+                   class="input input-bordered w-full"
+                   value="{{ field.value|default_if_none:'' }}"
+                   {% if field.field.required %}required{% endif %}
+                   {% if field.field.widget.attrs.autocomplete %}autocomplete="{{ field.field.widget.attrs.autocomplete }}"{% endif %} />
             {% if field.errors %}
               <span class="text-error" id="error_{{ field.name }}">{{ field.errors|join:", " }}</span>
             {% endif %}
