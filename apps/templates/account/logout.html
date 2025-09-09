@@ -16,7 +16,7 @@
         {% csrf_token %}
         <div class="alert alert-warning mb-4">{% trans "Are you sure you want to sign out?" %}</div>
         <button type="submit" class="btn btn-error w-full">{% trans "Sign Out" %}</button>
-  <a href="{% url 'landing' %}" class="btn btn-ghost w-full mt-2">{% trans "Cancel" %}</a>
+        <a href="{% url 'landing' %}" class="btn btn-ghost w-full mt-2">{% trans "Cancel" %}</a>
       </form>
     </div>
   </div>
