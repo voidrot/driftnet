@@ -60,6 +60,7 @@ format:
     @echo "Formatting Code..."
     -uv run ruff check --fix --unsafe-fixes
     -uv run ruff format
+    -uv run djlint . --reformat 
 
 celery-worker:
     @echo "Starting Celery worker..."
