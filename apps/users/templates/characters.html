@@ -20,13 +20,11 @@
       <!-- Expandable Scopes Section (custom toggle) -->
       <div class="mb-4 w-full flex justify-center" id="scopesToggleContainer">
         <button id="toggleScopesBtn"
-          type="button"
-          class="btn btn-soft btn-warning btn-sm font-semibold mb-2 text-center"
-          aria-haspopup="dialog"
-          aria-expanded="false"
-          aria-controls="scopesModal">
-          Show Scopes
-        </button>
+                type="button"
+                class="btn btn-soft btn-warning btn-sm font-semibold mb-2 text-center"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                aria-controls="scopesModal">Show Scopes</button>
         <!-- Modal -->
         <div id="scopesModal"
              class="fixed inset-0 z-50 flex items-center justify-center"
@@ -108,11 +106,16 @@
                 </button>
               </div>
               {% comment %} Modal for delete confirmation {% endcomment %}
-              <div id="deleteModal" class="modal fixed inset-0 flex items-center justify-center z-50" style="display:none; background: rgba(0,0,0,0.5);">
+              <div id="deleteModal"
+                   class="modal fixed inset-0 flex items-center justify-center z-50"
+                   style="display:none;
+                          background: rgba(0,0,0,0.5)">
                 <div class="modal-box bg-base-100 rounded-box p-6 shadow-lg w-full max-w-sm mx-auto relative z-10 flex flex-col items-center">
                   <h3 class="font-bold text-lg mb-2" id="deleteModalTitle">Confirm Deletion</h3>
                   <p class="py-4 text-center" id="deleteModalText">Are you sure you want to delete this character?</p>
-                  <form id="deleteModalForm" method="post" class="flex flex-row gap-2 justify-center w-full">
+                  <form id="deleteModalForm"
+                        method="post"
+                        class="flex flex-row gap-2 justify-center w-full">
                     {% csrf_token %}
                     <input type="hidden"
                            name="character_id"
