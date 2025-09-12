@@ -28,7 +28,7 @@
   });
   closeModalBtn.addEventListener('click', closeScopesModal);
   scopesModal.addEventListener('mousedown', function(e) {
-    if (e.target === scopesModal.querySelector('.absolute')) closeScopesModal();
+    if (e.target === scopesModal) closeScopesModal();
   });
   document.addEventListener('keydown', function(e) {
     if (scopesModal.style.display === 'flex') {
