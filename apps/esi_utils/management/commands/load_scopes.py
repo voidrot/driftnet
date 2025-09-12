@@ -10,7 +10,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         url = 'https://esi.evetech.net/latest/swagger.json'
         response = httpx.get(url, timeout=30.0)
-        if response.status_code == httpx.codes.OK:
+        if response.is_success:
             data = response.json()
             scopes = (
                 data.get('securityDefinitions', {}).get('evesso', {}).get('scopes', {})
