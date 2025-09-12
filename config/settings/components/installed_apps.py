@@ -36,7 +36,7 @@ PROJECT_APPS = [
     'apps.skills.apps.SkillsConfig',
     'apps.sovereignty.apps.SovereigntyConfig',
     'apps.wallet.apps.WalletConfig',
-    'apps.wars.apps.WarsConfig'
+    'apps.wars.apps.WarsConfig',
 ]
 
 THIRD_PARTY_APPS = [

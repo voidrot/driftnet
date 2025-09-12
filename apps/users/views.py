@@ -1,9 +1,12 @@
-
 import logging
+
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
+from django.shortcuts import render
 from django.views.decorators.http import require_POST
-from esi.models import Scope, Token
+from esi.models import Scope
+from esi.models import Token
 from esi.views import sso_redirect
 
 
@@ -15,7 +18,9 @@ def character_delete(request, character_id):
     token.delete()
     return redirect('users:characters')
 
+
 logger = logging.getLogger(__name__)
+
 
 @login_required
 def characters(request):
