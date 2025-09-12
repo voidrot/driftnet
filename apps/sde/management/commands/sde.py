@@ -103,7 +103,7 @@ class Command(BaseCommand):
     def get_remote_checksums(self):
         if not self.remote_checksums:
             res = httpx.get(settings.SDE_CHECKSUM_URL)
-            if res.status_code == 200:
+            if res.status_code == 200:  # noqa: PLR2004
                 for line in res.text.splitlines():
                     checksum, name = line.strip().split()
                     self.remote_checksums[name] = checksum
@@ -162,7 +162,7 @@ class Command(BaseCommand):
         return True
 
     # Download the SDE data
-    def download_sde(self, force_download: bool) -> None:
+    def download_sde(self, force_download: bool) -> None:  # noqa: FBT001
         needs_download = False
         if Path(self.workspace_dir / 'sde.zip').exists() and not force_download:
             logger.info('SDE zip already exists, validating checksums...')
@@ -227,7 +227,7 @@ class Command(BaseCommand):
         cmd = [str(script_path), str(self.workspace_dir)]
         logger.info('Running YAML->JSON conversion script: %s', ' '.join(cmd))
         try:
-            res = subprocess.run(cmd, capture_output=True, text=True, check=False)
+            res = subprocess.run(cmd, capture_output=True, text=True, check=False)  # noqa: S603
         except Exception:
             logger.exception('Failed to run conversion script')
             return
@@ -254,7 +254,7 @@ class Command(BaseCommand):
             logger.warning('File for checksum not found or not a file: %s', path)
             return ''
 
-        md5_hash = hashlib.md5()
+        md5_hash = hashlib.md5()  # noqa: S324
         try:
             # Read and update hash string value in blocks (8K buffer)
             with path.open('rb') as f:

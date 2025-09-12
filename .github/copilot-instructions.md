@@ -31,3 +31,4 @@ Voidlink is a django project that consumes data from EVE Online API, zKillboard 
 2. Global templates should go in `apps/templates/` and app specific templates should go in `apps/{app-name}/templates/`.
 3. Write playwright tests for all new frontend features and bug fixes.
 4. Ensure that all styling makes use of tailwind and DaisyUI components.
+5. Ensure that all javascript lives outside of the HTML templates and is included as static files.
