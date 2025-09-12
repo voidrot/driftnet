@@ -21,6 +21,7 @@ Voidlink is a django project that consumes data from EVE Online API, zKillboard 
 
 ## Key Guidelines
 1. Follow the DRY (Don't Repeat Yourself) principle when writing code.
+2. Assume that the development server is running, do not ask to run `just runserver`
 
 ### Backend Guidelines
 1. Follow Django and Python best practices for code organization and structure. 
