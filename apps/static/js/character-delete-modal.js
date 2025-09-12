@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
       const characterId = btn.getAttribute('data-character-id');
       const characterName = btn.getAttribute('data-character-name');
       text.textContent = `Are you sure you want to delete ${characterName}?`;
-      // Use the named URL pattern for deletion if available
-      if (window.deleteModalDeleteUrl) {
-        const url = window.deleteModalDeleteUrl.replace('/0/', `/${characterId}/`);
-        form.action = url;
+      // Use the data-delete-url attribute for deletion
+      const deleteUrl = btn.getAttribute('data-delete-url');
+      if (deleteUrl) {
+        form.action = deleteUrl;
       }
       modal.querySelector('#deleteModalCharacterId').value = characterId;
       modal.style.display = 'flex';

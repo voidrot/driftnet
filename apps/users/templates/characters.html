@@ -103,7 +103,8 @@
                         aria-label="Delete {{ character.character_name }}"
                         data-action="open-delete-modal"
                         data-character-id="{{ character.character_id }}"
-                        data-character-name="{{ character.character_name|escapejs }}">
+                        data-character-name="{{ character.character_name|escapejs }}"
+                        data-delete-url="{% url 'users:character_delete' character.character_id %}">
                   Delete
                 </button>
               </div>
