@@ -101,7 +101,9 @@
                 <button type="button"
                         class="btn btn-sm btn-error w-1/2 mx-auto"
                         aria-label="Delete {{ character.character_name }}"
-                        onclick="openDeleteModal('{{ character.character_id }}', '{{ character.character_name|escapejs }}')">
+                        data-action="open-delete-modal"
+                        data-character-id="{{ character.character_id }}"
+                        data-character-name="{{ character.character_name|escapejs }}">
                   Delete
                 </button>
               </div>
@@ -122,15 +124,13 @@
                            id="deleteModalCharacterId"
                            value="" />
                     <button type="submit" class="btn btn-error">Delete</button>
-                    <button type="button" class="btn btn-ghost ml-2" onclick="closeDeleteModal()">Cancel</button>
+                    <button type="button" class="btn btn-ghost ml-2" data-action="close-delete-modal">Cancel</button>
                   </form>
                 </div>
-                <div class="absolute inset-0" onclick="closeDeleteModal()"></div>
+                <div class="absolute inset-0" data-action="close-delete-modal"></div>
               </div>
-              <script>
-                window.deleteModalDeleteUrl = "{% url 'users:character_delete' 0 %}";
-              </script>
               <script src="{% static 'js/character-delete-modal.js' %}" defer></script>
+              <!-- JS for modal logic is handled in static/js/character-delete-modal.js -->
             </div>
           </div>
         {% endfor %}
