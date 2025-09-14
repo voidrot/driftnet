@@ -98,18 +98,23 @@
             <div class="card-body flex flex-col items-center">
               <h2 class="card-title w-full text-center justify-center flex">{{ character.character_name }}</h2>
               <div class="card-actions w-full flex justify-center mt-4">
-      {% if character.id %}
-        <button type="button"
-          class="btn btn-sm btn-error w-1/2 mx-auto"
-          aria-label="Delete {{ character.character_name }}"
-          data-action="open-delete-modal"
-          data-character-id="{{ character.character_id }}"
-          data-token-id="{{ character.id }}"
-          data-character-name="{{ character.character_name|escapejs }}"
-          data-delete-url="{% url 'users:character_delete' character.character_id character.id %}">Delete</button>
-      {% else %}
-        <button type="button" class="btn btn-sm btn-error w-1/2 mx-auto" disabled aria-label="Delete unavailable">Delete</button>
-      {% endif %}
+                {% if character.id %}
+                  <button type="button"
+                          class="btn btn-sm btn-error w-1/2 mx-auto"
+                          aria-label="Delete {{ character.character_name }}"
+                          data-action="open-delete-modal"
+                          data-character-id="{{ character.character_id }}"
+                          data-token-id="{{ character.id }}"
+                          data-character-name="{{ character.character_name|escapejs }}"
+                          data-delete-url="{% url 'users:character_delete' character.character_id character.id %}">
+                    Delete
+                  </button>
+                {% else %}
+                  <button type="button"
+                          class="btn btn-sm btn-error w-1/2 mx-auto"
+                          disabled
+                          aria-label="Delete unavailable">Delete</button>
+                {% endif %}
               </div>
               {% comment %} Modal for delete confirmation {% endcomment %}
               <div id="deleteModal"
@@ -123,14 +128,11 @@
                         method="post"
                         class="flex flex-row gap-2 justify-center w-full">
                     {% csrf_token %}
-          <input type="hidden"
-            name="character_id"
-            id="deleteModalCharacterId"
-            value="" />
-          <input type="hidden"
-            name="token_id"
-            id="deleteModalTokenId"
-            value="" />
+                    <input type="hidden"
+                           name="character_id"
+                           id="deleteModalCharacterId"
+                           value="" />
+                    <input type="hidden" name="token_id" id="deleteModalTokenId" value="" />
                     <button type="submit" class="btn btn-error">Delete</button>
                     <button type="button"
                             class="btn btn-ghost ml-2"
