@@ -12,14 +12,6 @@ SECRET_KEY = env(
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']  # noqa: S104
 
-
-CACHE = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': env('REDIS_URL', default='redis://redis:6379/1'),  # pyright: ignore[reportArgumentType]
-    }
-}
-
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-host
 EMAIL_HOST = env('EMAIL_HOST', default='mailpit')  # pyright: ignore[reportArgumentType]
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-port
