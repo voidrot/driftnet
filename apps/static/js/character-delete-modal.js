@@ -18,7 +18,13 @@ document.addEventListener('DOMContentLoaded', function () {
       if (deleteUrl) {
         form.action = deleteUrl;
       }
+      // Set both character_id and token_id hidden fields
       modal.querySelector('#deleteModalCharacterId').value = characterId;
+      const tokenId = btn.getAttribute('data-token-id');
+      const tokenInput = modal.querySelector('#deleteModalTokenId');
+      if (tokenInput && tokenId) {
+        tokenInput.value = tokenId;
+      }
       modal.style.display = 'flex';
       modal.classList.add('modal-open');
       // Accessibility: focus the first button in the modal

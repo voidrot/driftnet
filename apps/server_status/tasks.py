@@ -1,0 +1,23 @@
+import logging
+
+from celery import shared_task
+
+from apps.server_status.models import ServerStatus
+
+logger = logging.getLogger(__name__)
+
+
+@shared_task()
+def fetch_server_status():
+    """Query the EVE Online server status endpoint."""
+    from apps.shared.esi_client import esi
+
+    logger.debug('Fetching server status from ESI')
+    op = esi.client.Status.GetStatus()
+    response = op.result()
+    ServerStatus(
+        player_count=response.players,  # pyright: ignore[reportAttributeAccessIssue]
+        server_version=response.server_version,  # pyright: ignore[reportAttributeAccessIssue]
+        start_time=response.start_time,  # pyright: ignore[reportAttributeAccessIssue]
+        vip_mode=response.vip,  # pyright: ignore[reportAttributeAccessIssue]
+    ).save()

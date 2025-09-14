@@ -76,3 +76,13 @@ celery-flower:
     @echo "Starting Celery Flower..."
     @docker compose up -d --remove-orphans
     uv run celery -A config.celery_app -b redis://localhost:6379 flower --port=5555
+
+make-migrations *args:
+    @echo "Making migrations..."
+    @docker compose up -d --remove-orphans
+    uv run python ./manage.py makemigrations {{args}}
+
+migrate:
+    @echo "Applying migrations..."
+    @docker compose up -d --remove-orphans
+    uv run python ./manage.py migrate

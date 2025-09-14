@@ -68,7 +68,7 @@ LOGGING = {
     'root': {'level': 'INFO', 'handlers': ['console']},
     'loggers': {
         'django': {'level': 'INFO', 'handlers': ['console'], 'propagate': True},
-        'esi': {
+        'apps.esi': {
             'level': env('APPS_ESI_LOG_LEVEL'),
             'handlers': ['console'],
             'propagate': False,
@@ -205,6 +205,11 @@ LOGGING = {
         },
         'apps.wars': {
             'level': env('APPS_WARS_LOG_LEVEL'),
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'apps.server_status': {
+            'level': env('APPS_SERVER_STATUS_LOG_LEVEL'),
             'handlers': ['console'],
             'propagate': False,
         },
