@@ -12,7 +12,7 @@ DJANGO_APPS = [
 PROJECT_APPS = [
     'apps.users.apps.UsersConfig',
     'apps.sde.apps.SdeConfig',
-    'apps.esi_utils.apps.EsiUtilsConfig',
+    'apps.esi.apps.EsiConfig',
     'apps.dashboard.apps.DashboardConfig',
     'apps.alliance.apps.AllianceConfig',
     'apps.asset.apps.AssetConfig',
@@ -37,6 +37,7 @@ PROJECT_APPS = [
     'apps.sovereignty.apps.SovereigntyConfig',
     'apps.wallet.apps.WalletConfig',
     'apps.wars.apps.WarsConfig',
+    'apps.server_status.apps.ServerStatusConfig',
 ]
 
 THIRD_PARTY_APPS = [
@@ -47,7 +48,6 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',
     'django_celery_results',
     'django_celery_beat',
-    'esi',
 ]
 
 INSTALLED_APPS = [*DJANGO_APPS, *THIRD_PARTY_APPS, *PROJECT_APPS]

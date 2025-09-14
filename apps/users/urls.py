@@ -9,7 +9,7 @@ urlpatterns = [
     path('characters/', views.characters, name='characters'),
     path('characters/redirect/', views.character_redirect, name='character_redirect'),
     path(
-        'character/<int:character_id>/delete/',
+        'character/<int:character_id>/<int:token_id>/delete/',
         views.character_delete,
         name='character_delete',
     ),
