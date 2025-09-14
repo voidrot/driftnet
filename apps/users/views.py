@@ -12,11 +12,14 @@ from apps.esi.views import sso_redirect
 
 logger = logging.getLogger(__name__)
 
+
 @require_POST
 @login_required
 def character_delete(request, character_id, token_id):
     """Delete the token for the given character and user."""
-    token = get_object_or_404(Token, character_id=character_id, user=request.user, id=token_id)
+    token = get_object_or_404(
+        Token, character_id=character_id, user=request.user, id=token_id
+    )
     token.delete()
     return redirect('users:characters')
 
@@ -28,7 +31,9 @@ logger = logging.getLogger(__name__)
 def characters(request):
     """Render the user's EVE Online characters page."""
     context = {
-        'characters': Token.objects.filter(user=request.user.id),
+        'characters': Token.objects.filter(user=request.user.id).only(
+            'id', 'user', 'character_id'
+        ),
         'all_scopes': Scope.objects.all(),
     }
     logger.debug('loading with characters %s', context['characters'])

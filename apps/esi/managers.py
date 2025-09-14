@@ -127,7 +127,7 @@ class TokenManager(models.Manager['Token']):  # pyright: ignore[reportUndefinedV
 
         token_data = validate_jwt_token(access_token)
         logger.debug('Token data: %s', token_data)
-        token_detail = token_data.get("sub").split(":")
+        token_detail = token_data.get('sub').split(':')
 
         model = self.create(
             character_id=int(token_detail[2]),
