@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class EsiUtilsConfig(AppConfig):
+class ServerStatusConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.esi_utils'
+    name = 'apps.server_status'

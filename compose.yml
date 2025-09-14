@@ -33,6 +33,18 @@ services:
       MP_DATABASE: /data/mailpit.db
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1
+  
+  # mock-server:
+  #   image: stoplight/prism:5
+  #   command:
+  #     - mock
+  #     - --host
+  #     - '0.0.0.0'
+  #     - --errors
+  #     # - --dynamic
+  #     - https://esi.evetech.net/meta/openapi.yaml
+  #   ports:
+  #     - "4010:4010"
 
 volumes:
   postgres_data:

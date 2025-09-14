@@ -1,7 +1,7 @@
 import httpx
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from esi.models import Scope
+from apps.esi.models import Scope
 
 
 class Command(BaseCommand):
@@ -18,13 +18,13 @@ class Command(BaseCommand):
             scope_records = []
             for k, v in scopes.items():
                 scope_records.append(
-                    Scope(name=k, help_text=settings.ESI_SCOPES.get(k, v))
+                    Scope(name=k, description=settings.ESI_SCOPES.get(k, v))
                 )
             Scope.objects.bulk_create(
                 scope_records,
                 update_conflicts=True,
                 unique_fields=['name'],
-                update_fields=['help_text'],
+                update_fields=['description'],
             )
         else:
             self.stdout.write(self.style.ERROR('Failed to retrieve ESI scopes'))
