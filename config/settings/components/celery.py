@@ -51,11 +51,11 @@ CELERY_WORKER_HIJACK_ROOT_LOGGER = False
 
 CELERY_BEAT_SCHEDULE = {
     'esi_cleanup_callbackredirect': {
-        'task': 'esi.tasks.cleanup_callbackredirect',
+        'task': 'apps.esi.tasks.cleanup_callbackredirect',
         'schedule': crontab(hour='*/4'),
     },
     'esi_cleanup_token_subset': {  # 1/48th * 1hr = 48Hr/2Day Refresh Cycles.
-        'task': 'esi.tasks.cleanup_token_subset',
+        'task': 'apps.esi.tasks.cleanup_token_subset',
         'schedule': crontab(minute='0', hour='*/1'),
     },
 }

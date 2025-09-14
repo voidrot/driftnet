@@ -9,7 +9,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
-from apps.esi.app_settings import ESI_TOKEN_VALID_DURATION
+from apps.esi.app_settings import ESI_OAUTH_URL, ESI_TOKEN_VALID_DURATION
 from apps.esi.exceptions import TokenError
 from apps.esi.exceptions import TokenExpiredError
 from apps.esi.exceptions import TokenNotRefreshableError
@@ -100,10 +100,10 @@ class Token(models.Model):
         if not self.can_refresh:
             raise TokenNotRefreshableError
 
-        auth_str = f'{settings.ESI_CLIENT_ID}:{settings.ESI_CLIENT_SECRET}'
+        auth_str = f'{settings.ESI_SSO_CLIENT_ID}:{settings.ESI_SSO_CLIENT_SECRET}'
         auth = base64.b64encode(auth_str.encode()).decode()
         response = httpx.post(
-            settings.ESI_OAUTH_URL + '/token',
+            ESI_OAUTH_URL + '/token',
             headers={
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': f'Basic {auth}',
@@ -117,12 +117,16 @@ class Token(models.Model):
             raise TokenNotRefreshableError
             # TODO: Check this better so we can confidently delete the token if it's invalid
         token_data = response.json()
+        
+        decoded_token_data = Token.get_token_data(token_data.get('access_token'))
+        
+        logger.debug(f'Token refresh response: {decoded_token_data}')
 
-        if token_data is not None:
-            if self.character_owner_hash != token_data.get('owner'):
+        if token_data is not None and decoded_token_data is not None:
+            if self.character_owner_hash != decoded_token_data.get('owner'):
                 logger.warning(
                     f'Owner hash mismatch for token {self.pk}: '
-                    f'{self.character_owner_hash} != {token_data.get("owner")}'
+                    f'{self.character_owner_hash} != {decoded_token_data.get("owner")}'
                 )
                 raise TokenNotRefreshableError
 
@@ -159,9 +163,14 @@ class Token(models.Model):
         """
         Get a token for the given character ID and scopes.
         """
-        token = Token.objects.filter(character_id=character_id).require_scopes(scopes).first()
+        token = (
+            Token.objects.filter(character_id=character_id)
+            .require_scopes(scopes)
+            .first()
+        )
         if not token:
-            raise TokenError('No token found for character with required scopes')
+            msg = 'No token found for character with required scopes'
+            raise TokenError(msg)
         return token
 
     # TODO: Do we want this?
@@ -181,9 +190,6 @@ class CallbackRedirect(models.Model):
     state = models.CharField(max_length=128)
     session_key = models.CharField(max_length=255, unique=True)
     url = models.CharField(max_length=255)
-    scopes = models.TextField(
-        help_text='Space-separated list of scopes to request',
-    )
     token = models.ForeignKey(Token, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self) -> str:
