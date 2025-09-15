@@ -10,11 +10,12 @@ logger = logging.getLogger(__name__)
 @shared_task()
 def fetch_server_status():
     """Query the EVE Online server status endpoint."""
-    from apps.shared.esi_client import esi
+    from apps.shared.providers import esi
 
     logger.debug('Fetching server status from ESI')
     op = esi.client.Status.GetStatus()
     response = op.result()
+    logger.debug('Server status response: %s', response)
     ServerStatus(
         player_count=response.players,  # pyright: ignore[reportAttributeAccessIssue]
         server_version=response.server_version,  # pyright: ignore[reportAttributeAccessIssue]
