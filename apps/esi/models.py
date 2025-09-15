@@ -9,7 +9,8 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
-from apps.esi.app_settings import ESI_OAUTH_URL, ESI_TOKEN_VALID_DURATION
+from apps.esi.app_settings import ESI_OAUTH_URL
+from apps.esi.app_settings import ESI_TOKEN_VALID_DURATION
 from apps.esi.exceptions import TokenError
 from apps.esi.exceptions import TokenExpiredError
 from apps.esi.exceptions import TokenNotRefreshableError
@@ -117,9 +118,9 @@ class Token(models.Model):
             raise TokenNotRefreshableError
             # TODO: Check this better so we can confidently delete the token if it's invalid
         token_data = response.json()
-        
+
         decoded_token_data = Token.get_token_data(token_data.get('access_token'))
-        
+
         logger.debug(f'Token refresh response: {decoded_token_data}')
 
         if token_data is not None and decoded_token_data is not None:

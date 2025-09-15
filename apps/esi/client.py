@@ -22,12 +22,14 @@ from tenacity import wait_combine
 from tenacity import wait_exponential
 
 from apps.esi.exceptions import ESIErrorLimitExceptionError
+from apps.esi.plugins import PatchCompatibilityDatePlugin
 from apps.esi.stubs import ESIClientStub
 
 from .app_settings import ESI_APP_UA_EMAIL
 from .app_settings import ESI_APP_UA_NAME
 from .app_settings import ESI_APP_UA_URL
 from .app_settings import ESI_APP_UA_VERSION
+from .app_settings import ESI_CACHE_RESPONSE
 from .app_settings import ESI_CLIENT_CONNECT_TIMEOUT
 from .app_settings import ESI_CLIENT_POOL_TIMEOUT
 from .app_settings import ESI_CLIENT_READ_TIMEOUT
@@ -65,7 +67,7 @@ def _retry_exceptions(exc: BaseException) -> bool:
     """
     Determine if a request should be retried based on the exception raised.
     """
-    if isinstance(exc, ESIErrorLimitException):
+    if isinstance(exc, ESIErrorLimitExceptionError):
         return False
     if isinstance(exc, RequestError):
         return True
@@ -102,7 +104,7 @@ def _load_openapi_client() -> OpenAPI:
         'X-Compatibility-Date': ESI_COMPATIBILITY_DATE,
     }
 
-    def session_factory(**kwargs):
+    def session_factory(**kwargs) -> Client:
         kwargs.pop('headers', None)
         return Client(
             headers=headers,
@@ -120,7 +122,7 @@ def _load_openapi_client() -> OpenAPI:
         url=ESI_OPENAPI_URL,
         session_factory=session_factory,
         use_operation_tags=True,
-        plugins=[],
+        plugins=[PatchCompatibilityDatePlugin()],
     )
 
 
@@ -228,10 +230,16 @@ class BaseESIClientOperation:
         """
         Store a response in the cache with an ETag and appropriate TTL.
         """
-        if 'ETag' in response.headers:
-            cache.set(f'{cache_key}:etag', response.headers['ETag'])
-
         expires = response.headers.get('Expires')
+        if 'ETag' in response.headers:
+            # Setting ETag to 3x the Expires time to allow for some leeway and to make sure that we dont keep a bunch
+            # of useless etags around if we are not making the requests
+            cache.set(
+                f'{cache_key}:etag',
+                response.headers['ETag'],
+                timeout=(_time_to_expire(expires) * 1.5) if expires else 86400,
+            )
+
         ttl = _time_to_expire(expires) if expires else 0
         if ttl > 0:
             try:
@@ -333,16 +341,111 @@ class ESIClientOperation(BaseESIClientOperation):
 
         return retry(__func)
 
-    def result(self):
-        raise NotImplementedError
+    def result(
+        self,
+        etag: str | None = None,
+        return_response: bool = False,
+        use_cache: bool = True,
+        is_retry: bool = False,
+        disable_etag: bool = False,
+        **extra,
+    ) -> tuple[Any, Response] | Any:
+        self.token = self._extract_token_param()
+        parameters = self._kwargs | extra
+        cache_key_base = self._cache_key()
+        cache_key = f'{cache_key_base}:data'
+        etag_key = f'{cache_key_base}:etag'
+
+        # make sure that we have an etag if we are using the cache
+        if not etag and not disable_etag and ESI_CACHE_RESPONSE:
+            etag = cache.get(etag_key)
+
+        # make sure that we skip trying to get a cache response if
+        # the cache is disabled for the request
+        if not use_cache or (not is_retry and disable_etag):
+            headers, data, response = self._get_cache(cache_key)
+        else:
+            headers, data, response = None, None, None
+
+        if response and use_cache:
+            expires = _time_to_expire(str(headers.get('Expires')))
+            if expires < 0:
+                logger.warning('cache expired by %d seconds, Forcing expiry', expires)
+                response = None
+                data = None
+                headers = None
+
+        if not response:
+            logger.debug('Cache miss for key %s', cache_key)
+            headers, data, response = self._make_request(parameters, etag)
+            if response.status_code == 420:  # noqa: PLR2004
+                reset = response.headers.get('X-RateLimit-Reset')
+                cache.set('esi_rate_limit:error_limit_reset', reset, timeout=int(reset))
+                raise ESIErrorLimitExceptionError(reset=reset)
+            if response.status_code == 304:
+                # Not modified, use cached data
+                logger.debug('Received 304 Not Modified, using cached data')
+                headers, data, response = self._get_cache(cache_key)
+                if not response and not is_retry:
+                    logger.debug(
+                        'Received 304 but no cached response found, forcing refetch without ETag'
+                    )
+                    return self.result(
+                        etag=None,
+                        return_response=return_response,
+                        use_cache=use_cache,
+                        is_retry=True,
+                        disable_etag=True,
+                        **extra,
+                    )
+                if not response and not data and not headers and is_retry:
+                    msg = 'Received 304 Not Modified but no cached response found after retry'
+                    raise ValueError(msg)
+            elif ESI_CACHE_RESPONSE and use_cache:
+                self._store_cache(cache_key, response)
+
+        return (data, response) if return_response else data
 
     def result_localized(self):
+        # If we do implement localization, we need to insert the 'Accept-Language' header
         raise NotImplementedError
 
-    def results(self):
-        raise NotImplementedError
+    def results(
+        self,
+        etag: str | None = None,
+        return_response: bool = False,
+        use_cache: bool = True,
+        **extra,
+    ) -> tuple[list[Any], Response | Any | None] | list[Any]:
+        all_results = []
+        last_response = None
+
+        if self._has_pages():
+            current_page = 1
+            total_pages = 1
+            while current_page <= total_pages:
+                self._kwargs['page'] = current_page
+                data, response = self.result(
+                    etag=etag, return_response=True, use_cache=use_cache, **extra
+                )
+                last_response = response
+                all_results.extend(data if isinstance(data, list) else [data])
+                total_pages = int(response.headers.get('X-Pages', '1'))
+                logger.debug(
+                    f'ESI Page Fetched {self.url} - {current_page}/{total_pages}'
+                )
+                current_page += 1
+        else:
+            data, response = self.result(
+                etag=etag, return_response=True, use_cache=use_cache, **extra
+            )
+            all_results.extend(data if isinstance(data, list) else [data])
+            last_response = response
+
+        return (all_results, last_response) if return_response else all_results
 
     def results_localized(self):
+        # If we do implement localization, we need to insert the 'Accept-Language' header
         raise NotImplementedError
 
     def required_scopes(self) -> list[str]:
@@ -405,6 +508,8 @@ class ESIClientProvider:
     """
     Class to provide a single point of access to the ESI API client.
     """
+
+    _client: ESIClient | None = None
 
     def __init__(self, **kwargs) -> None:
         self._kwargs = kwargs
