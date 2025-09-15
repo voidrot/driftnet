@@ -3,6 +3,8 @@ import os
 from celery import Celery
 from celery.signals import setup_logging
 from django.conf import settings
+from kombu import Exchange
+from kombu import Queue
 
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
@@ -15,16 +17,37 @@ app = Celery('voidlink')
 #   should have a `CELERY_` prefix.
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
-# Configure separate queues so we can use rate limiting to avoid
-# hitting API limits.
-# app.conf.task_queues = {
-#     Queue('default', Exchange('default'), routing_key='default'),
-#     Queue('esi', Exchange('esi'), routing_key='esi'),
-# }
 
-# app.conf.task_default_queue = 'default'
-# app.conf.task_default_exchange_type = 'direct'
-# app.conf.task_default_routing_key = 'default' # pyright: ignore[reportAttributeAccessIssue]
+# Configure multiple queues and exchanges
+app.conf.task_queues = (
+    Queue('default', Exchange('default'), routing_key='default'),
+    Queue('esi', Exchange('esi'), routing_key='esi'),
+    Queue(
+        'esi_server_status',
+        Exchange('esi_server_status'),
+        routing_key='esi_server_status',
+    ),
+    Queue('esi_wars', Exchange('esi_wars'), routing_key='esi_wars'),
+)
+
+app.conf.task_default_queue = 'default'
+app.conf.task_default_exchange = 'default'
+app.conf.task_default_exchange_type = 'direct'
+app.conf.task_default_routing_key = 'default'
+
+app.conf.task_routes = {
+    'apps.esi.tasks.*': {'queue': 'esi', 'exchange': 'esi', 'routing_key': 'esi'},
+    'apps.server_status.tasks.*': {
+        'queue': 'esi_server_status',
+        'exchange': 'esi_server_status',
+        'routing_key': 'esi_server_status',
+    },
+    'apps.wars.tasks.*': {
+        'queue': 'esi_wars',
+        'exchange': 'esi_wars',
+        'routing_key': 'esi_wars',
+    },
+}
 
 
 @setup_logging.connect

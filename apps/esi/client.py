@@ -547,9 +547,9 @@ class ESIClient(ESIClientStub):
 
     def __getattr__(self, tag: str) -> ESITag | OperationIndex:
         # underscore returns the raw aiopenapi3 client
-        if "_" in tag:
-            tag = tag.replace("_", " ")
-            
+        if '_' in tag:
+            tag = tag.replace('_', ' ')
+
         if tag == '_':
             return self.api._operationindex
 
