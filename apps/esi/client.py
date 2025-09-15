@@ -235,12 +235,15 @@ class BaseESIClientOperation:
             cached_response = cache.get(f'{cache_key}:data')
         except Exception as e:
             logger.error(
-                f'Error retrieving cache for key {cache_key}:data : {e}', exc_info=True
+                'Error retrieving cache for key %s:data : %s',
+                cache_key,
+                e,
+                exc_info=True,
             )
             return None, None, None
 
         if cached_response:
-            logger.debug(f'Cache hit for key {cache_key}')
+            logger.debug('Cache hit for key %s', cache_key)
             expires = _time_to_expire(str(cached_response.headers.get('Expires')))
 
             if expires <= 0:
@@ -280,10 +283,10 @@ class BaseESIClientOperation:
             try:
                 cache.set(f'{cache_key}:data', response, ttl)
                 logger.debug(
-                    f'Stored response in cache with key {cache_key} for {ttl}s'
+                    'Stored response in cache with key %s for %ss', cache_key, ttl
                 )
             except Exception:
-                logger.exception(f'Error storing cache for key {cache_key}')
+                logger.exception('Error storing cache for key %s', cache_key)
 
     def _extract_token_param(self) -> Token | None:
         """
@@ -547,6 +550,8 @@ class ESIClient(ESIClientStub):
 
     def __getattr__(self, tag: str) -> ESITag | OperationIndex:
         # underscore returns the raw aiopenapi3 client
+
+        # TODO: check if this is needed
         if '_' in tag:
             tag = tag.replace('_', ' ')
 
@@ -572,6 +577,8 @@ class ESIClientProvider:
 
     def __init__(self, **kwargs) -> None:
         self._kwargs = kwargs
+        if not self._client:
+            self._client = None  # making linters happy
 
     @property
     def client(self) -> ESIClient:

@@ -160,7 +160,7 @@ class TokenManager(models.Manager['Token']):  # pyright: ignore[reportUndefinedV
                 except IndexError:
                     # Unusual scope name, missing periods.
                     help_text = s.replace('_', ' ').capitalize()
-                scope = Scope.objects.create(name=s, help_text=help_text)
+                scope = Scope.objects.create(name=s, description=help_text)
                 model.scopes.add(scope)
         logger.debug('Added %d scopes to new token.', model.scopes.all().count())
 

@@ -49,6 +49,6 @@ def profile(request):
 @login_required
 def character_redirect(request):
     """Redirect to the character selection page."""
-    scopes = request.GET.get('scopes').split(' ')
+    scopes = request.GET.get('scopes', '').split(' ')
     logger.debug('Redirecting to character selection with scopes %s', scopes)
     return sso_redirect(request, scopes=scopes, return_to='users:characters')

@@ -23,7 +23,7 @@ def get_wars():
             logger.debug(f'War {war_id} has finished')
             continue
         logger.debug(f'Queueing war details fetch for war ID {war_id}')
-        get_war_details.apply_async(args=[], kwargs={'war_id': war_id})  # pyright: ignore[reportCallIssue]
+        get_war_details.apply_async(kwargs={'war_id': war_id})  # pyright: ignore[reportCallIssue]
         # TODO: Add call to killmails tasks to collect all killmails for a war
     logger.debug(f'Fetched {len(res)} wars from ESI')
 
