@@ -64,7 +64,9 @@ def cleanup_token_subset(fraction: int = 48) -> None:
 
     if expired_tokens.exists():
         logger.info(
-            f'Triggering bulk refresh of subset/possible {expired_tokens_subset.count()}/{expired_tokens.count()} expired tokens.'
+            'Triggering bulk refresh of subset/possible %d/%d expired tokens.',
+            expired_tokens_subset.count(),
+            expired_tokens.count(),
         )
         for token_pk in expired_tokens_subset.values_list('pk', flat=True):
             refresh_or_delete_token.apply_async(args=[token_pk], priority=8)
