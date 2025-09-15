@@ -1,6042 +1,4148 @@
 # flake8: noqa=E501
 # Auto Generated do not edit
-from typing import Any, Optional
+from typing import Any
 
-from esi.openapi_clients import ESIClientOperation
 from esi.models import Token
+from esi.openapi_clients import ESIClientOperation
 
 class GetAlliancesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """List all active player alliances"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """List all active player alliances"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """List all active player alliances"""
-        ...
+    ) -> list[int]: ...
 
 class GetAlliancesAllianceIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Public information about an alliance"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Public information about an alliance"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Public information about an alliance"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetAlliancesAllianceIdCorporationsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """List all current member corporations of an alliance"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """List all current member corporations of an alliance"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """List all current member corporations of an alliance"""
-        ...
+    ) -> list[int]: ...
 
 class GetAlliancesAllianceIdIconsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get the icon urls for a alliance  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get the icon urls for a alliance  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get the icon urls for a alliance  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdAssetsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of the characters assets"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of the characters assets"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of the characters assets"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdAssetsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of the corporation assets"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of the corporation assets"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of the corporation assets"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostCharactersCharacterIdAssetsLocationsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostCharactersCharacterIdAssetsNamesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostCorporationsCorporationIdAssetsLocationsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostCorporationsCorporationIdAssetsNamesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return names for a set of item ids, which you can get from corporation assets endpoint. Only valid for items that can customize names, like containers or ships"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return names for a set of item ids, which you can get from corporation assets endpoint. Only valid for items that can customize names, like containers or ships"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return names for a set of item ids, which you can get from corporation assets endpoint. Only valid for items that can customize names, like containers or ships"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdCalendarOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get 50 event summaries from the calendar. If no from_event ID is given, the resource will return the next 50 chronological event summaries from now. If a from_event ID is specified, it will return the next 50 chronological event summaries from after that event"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get 50 event summaries from the calendar. If no from_event ID is given, the resource will return the next 50 chronological event summaries from now. If a from_event ID is specified, it will return the next 50 chronological event summaries from after that event"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get 50 event summaries from the calendar. If no from_event ID is given, the resource will return the next 50 chronological event summaries from now. If a from_event ID is specified, it will return the next 50 chronological event summaries from after that event"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdCalendarEventIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get all the information for a specific event"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get all the information for a specific event"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get all the information for a specific event"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdCalendarEventIdAttendeesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get all invited attendees for a given event"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get all invited attendees for a given event"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get all invited attendees for a given event"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PutCharactersCharacterIdCalendarEventIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Set your response status to an event"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Set your response status to an event"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Set your response status to an event"""
-        ...
+    ) -> list[Any]: ...
 
 class GetCharactersCharacterIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Public information about a character"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Public information about a character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Public information about a character"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdAgentsResearchOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of agents research information for a character. The formula for finding the current research points with an agent is: currentPoints = remainderPoints + pointsPerDay * days(currentTime - researchStartDate)"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of agents research information for a character. The formula for finding the current research points with an agent is: currentPoints = remainderPoints + pointsPerDay * days(currentTime - researchStartDate)"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of agents research information for a character. The formula for finding the current research points with an agent is: currentPoints = remainderPoints + pointsPerDay * days(currentTime - researchStartDate)"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdBlueprintsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of blueprints the character owns"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of blueprints the character owns"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of blueprints the character owns"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdCorporationhistoryOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of all the corporations a character has been a member of"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of all the corporations a character has been a member of"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get a list of all the corporations a character has been a member of"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdFatigueOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Return a character's jump activation and fatigue information"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a character's jump activation and fatigue information"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a character's jump activation and fatigue information"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdMedalsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of medals the character has"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of medals the character has"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of medals the character has"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdNotificationsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return character notifications"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return character notifications"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return character notifications"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdNotificationsContactsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return notifications about having been added to someone's contact list"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return notifications about having been added to someone's contact list"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return notifications about having been added to someone's contact list"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdPortraitOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get portrait urls for a character  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get portrait urls for a character  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get portrait urls for a character  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdRolesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Returns a character's corporation roles"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a character's corporation roles"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns a character's corporation roles"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdStandingsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return character standings from agents, NPC corporations, and factions"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return character standings from agents, NPC corporations, and factions"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return character standings from agents, NPC corporations, and factions"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdTitlesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a character's titles"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a character's titles"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns a character's titles"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostCharactersAffiliationOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Bulk lookup of character IDs to corporation, alliance and faction"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Bulk lookup of character IDs to corporation, alliance and faction"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Bulk lookup of character IDs to corporation, alliance and faction"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostCharactersCharacterIdCspaOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost"""
-        ...
+    ) -> list[Any]: ...
 
 class GetCharactersCharacterIdClonesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """A list of the character's clones"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """A list of the character's clones"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """A list of the character's clones"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdImplantsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Return implants on the active clone of a character"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Return implants on the active clone of a character"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Return implants on the active clone of a character"""
-        ...
+    ) -> list[int]: ...
 
 class DeleteCharactersCharacterIdContactsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Bulk delete contacts"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Bulk delete contacts"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Bulk delete contacts"""
-        ...
+    ) -> list[Any]: ...
 
 class GetAlliancesAllianceIdContactsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return contacts of an alliance"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return contacts of an alliance"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return contacts of an alliance"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetAlliancesAllianceIdContactsLabelsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return custom labels for an alliance's contacts"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return custom labels for an alliance's contacts"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return custom labels for an alliance's contacts"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdContactsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return contacts of a character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return contacts of a character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return contacts of a character"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdContactsLabelsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return custom labels for a character's contacts"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return custom labels for a character's contacts"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return custom labels for a character's contacts"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdContactsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return contacts of a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return contacts of a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return contacts of a corporation"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdContactsLabelsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return custom labels for a corporation's contacts"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return custom labels for a corporation's contacts"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return custom labels for a corporation's contacts"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostCharactersCharacterIdContactsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Bulk add contacts with same settings"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Bulk add contacts with same settings"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Bulk add contacts with same settings"""
-        ...
+    ) -> list[Any]: ...
 
 class PutCharactersCharacterIdContactsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Bulk edit contacts with same settings"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Bulk edit contacts with same settings"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Bulk edit contacts with same settings"""
-        ...
+    ) -> list[Any]: ...
 
 class GetCharactersCharacterIdContractsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is "in_progress"."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is "in_progress"."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is "in_progress"."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdContractsContractIdBidsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Lists bids on a particular auction contract"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Lists bids on a particular auction contract"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Lists bids on a particular auction contract"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdContractsContractIdItemsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Lists items of a particular contract"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Lists items of a particular contract"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Lists items of a particular contract"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetContractsPublicBidsContractIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Lists bids on a public auction contract"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Lists bids on a public auction contract"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Lists bids on a public auction contract"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetContractsPublicItemsContractIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Lists items of a public contract"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Lists items of a public contract"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Lists items of a public contract"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetContractsPublicRegionIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a paginated list of all public contracts in the given region"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a paginated list of all public contracts in the given region"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns a paginated list of all public contracts in the given region"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdContractsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns contracts available to a corporation, only if the corporation is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is "in_progress"."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns contracts available to a corporation, only if the corporation is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is "in_progress"."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns contracts available to a corporation, only if the corporation is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is "in_progress"."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdContractsContractIdBidsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Lists bids on a particular auction contract"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Lists bids on a particular auction contract"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Lists bids on a particular auction contract"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdContractsContractIdItemsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Lists items of a particular contract"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Lists items of a particular contract"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Lists items of a particular contract"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Public information about a corporation"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Public information about a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Public information about a corporation"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdAlliancehistoryOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of all the alliances a corporation has been a member of"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of all the alliances a corporation has been a member of"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get a list of all the alliances a corporation has been a member of"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdBlueprintsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a list of blueprints the corporation owns"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a list of blueprints the corporation owns"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns a list of blueprints the corporation owns"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdContainersLogsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdDivisionsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Return corporation hangar and wallet division names, only show if a division is not using the default name"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return corporation hangar and wallet division names, only show if a division is not using the default name"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return corporation hangar and wallet division names, only show if a division is not using the default name"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdFacilitiesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a corporation's facilities"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a corporation's facilities"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a corporation's facilities"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdIconsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get the icon urls for a corporation"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get the icon urls for a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get the icon urls for a corporation"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdMedalsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a corporation's medals"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a corporation's medals"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns a corporation's medals"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdMedalsIssuedOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns medals issued by a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns medals issued by a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns medals issued by a corporation"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdMembersOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Return the current member list of a corporation, the token's character need to be a member of the corporation."""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Return the current member list of a corporation, the token's character need to be a member of the corporation."""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Return the current member list of a corporation, the token's character need to be a member of the corporation."""
-        ...
+    ) -> list[int]: ...
 
 class GetCorporationsCorporationIdMembersLimitOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> int:
-        """Return a corporation's member limit, not including CEO himself"""
-        ...
-
+    ) -> int: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Return a corporation's member limit, not including CEO himself"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Return a corporation's member limit, not including CEO himself"""
-        ...
+    ) -> list[int]: ...
 
 class GetCorporationsCorporationIdMembersTitlesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a corporation's members' titles"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a corporation's members' titles"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns a corporation's members' titles"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdMembertrackingOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns additional information about a corporation's members which helps tracking their activities"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns additional information about a corporation's members which helps tracking their activities"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns additional information about a corporation's members which helps tracking their activities"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdRolesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return the roles of all members if the character has the personnel manager role or any grantable role."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return the roles of all members if the character has the personnel manager role or any grantable role."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return the roles of all members if the character has the personnel manager role or any grantable role."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdRolesHistoryOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return how roles have changed for a coporation's members, up to a month"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return how roles have changed for a coporation's members, up to a month"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return how roles have changed for a coporation's members, up to a month"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdShareholdersOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return the current shareholders of a corporation."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return the current shareholders of a corporation."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return the current shareholders of a corporation."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdStandingsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return corporation standings from agents, NPC corporations, and factions"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return corporation standings from agents, NPC corporations, and factions"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return corporation standings from agents, NPC corporations, and factions"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdStarbasesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns list of corporation starbases (POSes)"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns list of corporation starbases (POSes)"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns list of corporation starbases (POSes)"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdStarbasesStarbaseIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Returns various settings and fuels of a starbase (POS)"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns various settings and fuels of a starbase (POS)"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns various settings and fuels of a starbase (POS)"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdStructuresOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of corporation structures. This route's version includes the changes to structures detailed in this blog: https://www.eveonline.com/article/upwell-2.0-structures-changes-coming-on-february-13th"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of corporation structures. This route's version includes the changes to structures detailed in this blog: https://www.eveonline.com/article/upwell-2.0-structures-changes-coming-on-february-13th"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get a list of corporation structures. This route's version includes the changes to structures detailed in this blog: https://www.eveonline.com/article/upwell-2.0-structures-changes-coming-on-february-13th"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdTitlesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a corporation's titles"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a corporation's titles"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns a corporation's titles"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsNpccorpsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of npc corporations  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of npc corporations  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Get a list of npc corporations  This route expires daily at 11:05"""
-        ...
+    ) -> list[int]: ...
 
 class GetCorporationsProjectsContributionOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Show your contribution to a corporation project."""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Show your contribution to a corporation project."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Show your contribution to a corporation project."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsProjectsContributorsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Listing of all contributors to a corporation project."""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Listing of all contributors to a corporation project."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Listing of all contributors to a corporation project."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsProjectsDetailOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get the details of a corporation project."""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get the details of a corporation project."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get the details of a corporation project."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsProjectsListingOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Listing of all (active) corporation projects."""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Listing of all (active) corporation projects."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Listing of all (active) corporation projects."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetDogmaAttributesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of dogma attribute ids  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of dogma attribute ids  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Get a list of dogma attribute ids  This route expires daily at 11:05"""
-        ...
+    ) -> list[int]: ...
 
 class GetDogmaAttributesAttributeIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a dogma attribute  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a dogma attribute  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a dogma attribute  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetDogmaDynamicItemsTypeIdItemIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Returns info about a dynamic item resulting from mutation with a mutaplasmid.  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns info about a dynamic item resulting from mutation with a mutaplasmid.  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns info about a dynamic item resulting from mutation with a mutaplasmid.  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetDogmaEffectsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of dogma effect ids  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of dogma effect ids  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Get a list of dogma effect ids  This route expires daily at 11:05"""
-        ...
+    ) -> list[int]: ...
 
 class GetDogmaEffectsEffectIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a dogma effect  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a dogma effect  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a dogma effect  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdFwStatsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Statistical overview of a character involved in faction warfare  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Statistical overview of a character involved in faction warfare  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Statistical overview of a character involved in faction warfare  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdFwStatsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Statistics about a corporation involved in faction warfare  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Statistics about a corporation involved in faction warfare  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Statistics about a corporation involved in faction warfare  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetFwLeaderboardsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetFwLeaderboardsCharactersOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetFwLeaderboardsCorporationsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetFwStatsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Statistical overviews of factions involved in faction warfare  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Statistical overviews of factions involved in faction warfare  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Statistical overviews of factions involved in faction warfare  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetFwSystemsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """An overview of the current ownership of faction warfare solar systems"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """An overview of the current ownership of faction warfare solar systems"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """An overview of the current ownership of faction warfare solar systems"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetFwWarsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Data about which NPC factions are at war  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Data about which NPC factions are at war  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Data about which NPC factions are at war  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class DeleteCharactersCharacterIdFittingsFittingIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Delete a fitting from a character"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Delete a fitting from a character"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Delete a fitting from a character"""
-        ...
+    ) -> list[Any]: ...
 
 class GetCharactersCharacterIdFittingsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return fittings of a character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return fittings of a character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return fittings of a character"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostCharactersCharacterIdFittingsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Save a new fitting for a character"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Save a new fitting for a character"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Save a new fitting for a character"""
-        ...
+    ) -> list[Any]: ...
 
 class DeleteFleetsFleetIdMembersMemberIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Kick a fleet member"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Kick a fleet member"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Kick a fleet member"""
-        ...
+    ) -> list[Any]: ...
 
 class DeleteFleetsFleetIdSquadsSquadIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Delete a fleet squad, only empty squads can be deleted"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Delete a fleet squad, only empty squads can be deleted"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Delete a fleet squad, only empty squads can be deleted"""
-        ...
+    ) -> list[Any]: ...
 
 class DeleteFleetsFleetIdWingsWingIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Delete a fleet wing, only empty wings can be deleted. The wing may contain squads, but the squads must be empty"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Delete a fleet wing, only empty wings can be deleted. The wing may contain squads, but the squads must be empty"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Delete a fleet wing, only empty wings can be deleted. The wing may contain squads, but the squads must be empty"""
-        ...
+    ) -> list[Any]: ...
 
 class GetCharactersCharacterIdFleetOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Return the fleet ID the character is in, if any."""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return the fleet ID the character is in, if any."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return the fleet ID the character is in, if any."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetFleetsFleetIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Return details about a fleet"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return details about a fleet"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return details about a fleet"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetFleetsFleetIdMembersOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return information about fleet members"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return information about fleet members"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return information about fleet members"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetFleetsFleetIdWingsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return information about wings in a fleet"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return information about wings in a fleet"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return information about wings in a fleet"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostFleetsFleetIdMembersOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Invite a character into the fleet. If a character has a CSPA charge set it is not possible to invite them to the fleet using ESI"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Invite a character into the fleet. If a character has a CSPA charge set it is not possible to invite them to the fleet using ESI"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Invite a character into the fleet. If a character has a CSPA charge set it is not possible to invite them to the fleet using ESI"""
-        ...
+    ) -> list[Any]: ...
 
 class PostFleetsFleetIdWingsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Create a new wing in a fleet"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Create a new wing in a fleet"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Create a new wing in a fleet"""
-        ...
+    ) -> list[Any]: ...
 
 class PostFleetsFleetIdWingsWingIdSquadsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Create a new squad in a fleet"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Create a new squad in a fleet"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Create a new squad in a fleet"""
-        ...
+    ) -> list[Any]: ...
 
 class PutFleetsFleetIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Update settings about a fleet"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Update settings about a fleet"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Update settings about a fleet"""
-        ...
+    ) -> list[Any]: ...
 
 class PutFleetsFleetIdMembersMemberIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Move a fleet member around"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Move a fleet member around"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Move a fleet member around"""
-        ...
+    ) -> list[Any]: ...
 
 class PutFleetsFleetIdSquadsSquadIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Rename a fleet squad"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Rename a fleet squad"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Rename a fleet squad"""
-        ...
+    ) -> list[Any]: ...
 
 class PutFleetsFleetIdWingsWingIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Rename a fleet wing"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Rename a fleet wing"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Rename a fleet wing"""
-        ...
+    ) -> list[Any]: ...
 
 class GetIncursionsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of current incursions"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of current incursions"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of current incursions"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdIndustryJobsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List industry jobs placed by a character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List industry jobs placed by a character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """List industry jobs placed by a character"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdMiningOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Paginated record of all mining done by a character for the past 30 days"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Paginated record of all mining done by a character for the past 30 days"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Paginated record of all mining done by a character for the past 30 days"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationCorporationIdMiningExtractionsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Extraction timers for all moon chunks being extracted by refineries belonging to a corporation."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Extraction timers for all moon chunks being extracted by refineries belonging to a corporation."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Extraction timers for all moon chunks being extracted by refineries belonging to a corporation."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationCorporationIdMiningObserversOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Paginated list of all entities capable of observing and recording mining for a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Paginated list of all entities capable of observing and recording mining for a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Paginated list of all entities capable of observing and recording mining for a corporation"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationCorporationIdMiningObserversObserverIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Paginated record of all mining seen by an observer"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Paginated record of all mining seen by an observer"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Paginated record of all mining seen by an observer"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdIndustryJobsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List industry jobs run by a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List industry jobs run by a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """List industry jobs run by a corporation"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetIndustryFacilitiesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of industry facilities"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of industry facilities"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of industry facilities"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetIndustrySystemsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return cost indices for solar systems"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return cost indices for solar systems"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return cost indices for solar systems"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetInsurancePricesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return available insurance levels for all ship types"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return available insurance levels for all ship types"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return available insurance levels for all ship types"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdKillmailsRecentOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of a character's kills and losses going back 90 days"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of a character's kills and losses going back 90 days"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of a character's kills and losses going back 90 days"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdKillmailsRecentOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of a corporation's kills and losses going back 90 days"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of a corporation's kills and losses going back 90 days"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get a list of a corporation's kills and losses going back 90 days"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetKillmailsKillmailIdKillmailHashOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Return a single killmail from its ID and hash"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a single killmail from its ID and hash"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a single killmail from its ID and hash"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdLocationOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdOnlineOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Checks if the character is currently online"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Checks if the character is currently online"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Checks if the character is currently online"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdShipOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get the current ship type, name and id"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get the current ship type, name and id"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get the current ship type, name and id"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdLoyaltyPointsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of loyalty points for all corporations the character has worked for"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of loyalty points for all corporations the character has worked for"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of loyalty points for all corporations the character has worked for"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetLoyaltyStoresCorporationIdOffersOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of offers from a specific corporation's loyalty store  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of offers from a specific corporation's loyalty store  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of offers from a specific corporation's loyalty store  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class DeleteCharactersCharacterIdMailLabelsLabelIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Delete a mail label"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Delete a mail label"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Delete a mail label"""
-        ...
+    ) -> list[Any]: ...
 
 class DeleteCharactersCharacterIdMailMailIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Delete a mail"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Delete a mail"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Delete a mail"""
-        ...
+    ) -> list[Any]: ...
 
 class GetCharactersCharacterIdMailOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return the 50 most recent mail headers belonging to the character that match the query criteria. Queries can be filtered by label, and last_mail_id can be used to paginate backwards"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return the 50 most recent mail headers belonging to the character that match the query criteria. Queries can be filtered by label, and last_mail_id can be used to paginate backwards"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return the 50 most recent mail headers belonging to the character that match the query criteria. Queries can be filtered by label, and last_mail_id can be used to paginate backwards"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdMailLabelsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Return a list of the users mail labels, unread counts for each label and a total unread count."""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of the users mail labels, unread counts for each label and a total unread count."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of the users mail labels, unread counts for each label and a total unread count."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdMailListsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return all mailing lists that the character is subscribed to"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return all mailing lists that the character is subscribed to"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return all mailing lists that the character is subscribed to"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdMailMailIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Return the contents of an EVE mail"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return the contents of an EVE mail"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return the contents of an EVE mail"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostCharactersCharacterIdMailOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Create and send a new mail"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Create and send a new mail"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Create and send a new mail"""
-        ...
+    ) -> list[Any]: ...
 
 class PostCharactersCharacterIdMailLabelsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Create a mail label"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Create a mail label"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Create a mail label"""
-        ...
+    ) -> list[Any]: ...
 
 class PutCharactersCharacterIdMailMailIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Update metadata about a mail"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Update metadata about a mail"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Update metadata about a mail"""
-        ...
+    ) -> list[Any]: ...
 
 class GetCharactersCharacterIdOrdersOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List open market orders placed by a character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List open market orders placed by a character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """List open market orders placed by a character"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdOrdersHistoryOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List cancelled and expired market orders placed by a character up to 90 days in the past."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List cancelled and expired market orders placed by a character up to 90 days in the past."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """List cancelled and expired market orders placed by a character up to 90 days in the past."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdOrdersOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List open market orders placed on behalf of a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List open market orders placed on behalf of a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """List open market orders placed on behalf of a corporation"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdOrdersHistoryOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetMarketsGroupsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of item groups  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of item groups  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Get a list of item groups  This route expires daily at 11:05"""
-        ...
+    ) -> list[int]: ...
 
 class GetMarketsGroupsMarketGroupIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on an item group  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on an item group  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on an item group  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetMarketsPricesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of prices"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of prices"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of prices"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetMarketsRegionIdHistoryOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of historical market statistics for the specified type in a region  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of historical market statistics for the specified type in a region  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of historical market statistics for the specified type in a region  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetMarketsRegionIdOrdersOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of orders in a region"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of orders in a region"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of orders in a region"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetMarketsRegionIdTypesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Return a list of type IDs that have active orders in the region, for efficient market indexing."""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Return a list of type IDs that have active orders in the region, for efficient market indexing."""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Return a list of type IDs that have active orders in the region, for efficient market indexing."""
-        ...
+    ) -> list[int]: ...
 
 class GetMarketsStructuresStructureIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return all orders in a structure"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return all orders in a structure"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return all orders in a structure"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetMetaChangelogOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get the changelog of this API."""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get the changelog of this API."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get the changelog of this API."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetMetaCompatibilityDatesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get a list of compatibility dates."""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of compatibility dates."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get a list of compatibility dates."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdPlanetsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a list of all planetary colonies owned by a character."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns a list of all planetary colonies owned by a character."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns a list of all planetary colonies owned by a character."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdPlanetsPlanetIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met."""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdCustomsOfficesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List customs offices owned by a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List customs offices owned by a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """List customs offices owned by a corporation"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseSchematicsSchematicIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a planetary factory schematic"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a planetary factory schematic"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a planetary factory schematic"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetRouteOriginDestinationOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get the systems between origin and destination"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get the systems between origin and destination"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Get the systems between origin and destination"""
-        ...
+    ) -> list[int]: ...
 
 class GetCharactersCharacterIdSearchOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Search for entities that match a given sub-string."""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Search for entities that match a given sub-string."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Search for entities that match a given sub-string."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdAttributesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Return attributes of a character"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return attributes of a character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return attributes of a character"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdSkillqueueOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List the configured skill queue for the given character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List the configured skill queue for the given character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """List the configured skill queue for the given character"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdSkillsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """List all trained skills for the given character"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """List all trained skills for the given character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """List all trained skills for the given character"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetSovereigntyCampaignsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Shows sovereignty data for campaigns."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Shows sovereignty data for campaigns."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Shows sovereignty data for campaigns."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetSovereigntyMapOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Shows sovereignty information for solar systems"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Shows sovereignty information for solar systems"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Shows sovereignty information for solar systems"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetSovereigntyStructuresOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Shows sovereignty data for structures."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Shows sovereignty data for structures."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Shows sovereignty data for structures."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetStatusOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """EVE Server status"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """EVE Server status"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """EVE Server status"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseAncestriesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get all character ancestries  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get all character ancestries  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get all character ancestries  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseAsteroidBeltsAsteroidBeltIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on an asteroid belt  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on an asteroid belt  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on an asteroid belt  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseBloodlinesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of bloodlines  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of bloodlines  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get a list of bloodlines  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseCategoriesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of item categories  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of item categories  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Get a list of item categories  This route expires daily at 11:05"""
-        ...
+    ) -> list[int]: ...
 
 class GetUniverseCategoriesCategoryIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information of an item category  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information of an item category  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information of an item category  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseConstellationsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of constellations  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of constellations  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Get a list of constellations  This route expires daily at 11:05"""
-        ...
+    ) -> list[int]: ...
 
 class GetUniverseConstellationsConstellationIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a constellation  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a constellation  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a constellation  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseFactionsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of factions  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of factions  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get a list of factions  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseGraphicsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of graphics  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of graphics  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Get a list of graphics  This route expires daily at 11:05"""
-        ...
+    ) -> list[int]: ...
 
 class GetUniverseGraphicsGraphicIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a graphic  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a graphic  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a graphic  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseGroupsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of item groups  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of item groups  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Get a list of item groups  This route expires daily at 11:05"""
-        ...
+    ) -> list[int]: ...
 
 class GetUniverseGroupsGroupIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on an item group  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on an item group  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on an item group  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseMoonsMoonIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a moon  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a moon  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a moon  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniversePlanetsPlanetIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a planet  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a planet  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a planet  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseRacesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of character races  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a list of character races  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get a list of character races  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseRegionsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of regions  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of regions  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Get a list of regions  This route expires daily at 11:05"""
-        ...
+    ) -> list[int]: ...
 
 class GetUniverseRegionsRegionIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a region  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a region  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a region  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseStargatesStargateIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a stargate  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a stargate  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a stargate  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseStarsStarIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a star  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a star  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a star  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseStationsStationIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a station  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a station  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a station  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseStructuresOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """List all public structures"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """List all public structures"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """List all public structures"""
-        ...
+    ) -> list[int]: ...
 
 class GetUniverseStructuresStructureIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Returns information on requested structure if you are on the ACL. Otherwise, returns "Forbidden" for all inputs."""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Returns information on requested structure if you are on the ACL. Otherwise, returns "Forbidden" for all inputs."""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Returns information on requested structure if you are on the ACL. Otherwise, returns "Forbidden" for all inputs."""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseSystemJumpsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get the number of jumps in solar systems within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with jumps will be listed"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get the number of jumps in solar systems within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with jumps will be listed"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get the number of jumps in solar systems within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with jumps will be listed"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseSystemKillsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseSystemsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of solar systems  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of solar systems  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Get a list of solar systems  This route expires daily at 11:05"""
-        ...
+    ) -> list[int]: ...
 
 class GetUniverseSystemsSystemIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a solar system.  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a solar system.  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a solar system.  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetUniverseTypesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of type ids  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Get a list of type ids  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Get a list of type ids  This route expires daily at 11:05"""
-        ...
+    ) -> list[int]: ...
 
 class GetUniverseTypesTypeIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Get information on a type  This route expires daily at 11:05"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get information on a type  This route expires daily at 11:05"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get information on a type  This route expires daily at 11:05"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostUniverseIdsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Resolve a set of names to IDs in the following categories: agents, alliances, characters, constellations, corporations factions, inventory_types, regions, stations, and systems. Only exact matches will be returned. All names searched for are cached for 12 hours"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Resolve a set of names to IDs in the following categories: agents, alliances, characters, constellations, corporations factions, inventory_types, regions, stations, and systems. Only exact matches will be returned. All names searched for are cached for 12 hours"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Resolve a set of names to IDs in the following categories: agents, alliances, characters, constellations, corporations factions, inventory_types, regions, stations, and systems. Only exact matches will be returned. All names searched for are cached for 12 hours"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostUniverseNamesOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types, Factions"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types, Factions"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types, Factions"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class PostUiAutopilotWaypointOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Set a solar system as autopilot waypoint"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Set a solar system as autopilot waypoint"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Set a solar system as autopilot waypoint"""
-        ...
+    ) -> list[Any]: ...
 
 class PostUiOpenwindowContractOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Open the contract window inside the client"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Open the contract window inside the client"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Open the contract window inside the client"""
-        ...
+    ) -> list[Any]: ...
 
 class PostUiOpenwindowInformationOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Open the information window for a character, corporation or alliance inside the client"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Open the information window for a character, corporation or alliance inside the client"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Open the information window for a character, corporation or alliance inside the client"""
-        ...
+    ) -> list[Any]: ...
 
 class PostUiOpenwindowMarketdetailsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Open the market details window for a specific typeID inside the client"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Open the market details window for a specific typeID inside the client"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Open the market details window for a specific typeID inside the client"""
-        ...
+    ) -> list[Any]: ...
 
 class PostUiOpenwindowNewmailOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> Any:
-        """Open the New Mail window, according to settings from the request if applicable"""
-        ...
-
+    ) -> Any: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[Any]:
-        """Open the New Mail window, according to settings from the request if applicable"""
-        ...
-
+    ) -> list[Any]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[Any]:
-        """Open the New Mail window, according to settings from the request if applicable"""
-        ...
+    ) -> list[Any]: ...
 
 class GetCharactersCharacterIdWalletOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> float:
-        """Returns a character's wallet balance"""
-        ...
-
+    ) -> float: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[float]:
-        """Returns a character's wallet balance"""
-        ...
-
+    ) -> list[float]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[float]:
-        """Returns a character's wallet balance"""
-        ...
+    ) -> list[float]: ...
 
 class GetCharactersCharacterIdWalletJournalOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Retrieve the given character's wallet journal going 30 days back"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Retrieve the given character's wallet journal going 30 days back"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Retrieve the given character's wallet journal going 30 days back"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCharactersCharacterIdWalletTransactionsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get wallet transactions of a character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get wallet transactions of a character"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get wallet transactions of a character"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdWalletsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a corporation's wallets"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get a corporation's wallets"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get a corporation's wallets"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdWalletsDivisionJournalOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Retrieve the given corporation's wallet journal for the given division going 30 days back"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Retrieve the given corporation's wallet journal for the given division going 30 days back"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Retrieve the given corporation's wallet journal for the given division going 30 days back"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetCorporationsCorporationIdWalletsDivisionTransactionsOperation(
     ESIClientOperation
 ):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get wallet transactions of a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Get wallet transactions of a corporation"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Get wallet transactions of a corporation"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetWarsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Return a list of wars"""
-        ...
-
+    ) -> list[int]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[int]:
-        """Return a list of wars"""
-        ...
-
+    ) -> list[int]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[int]:
-        """Return a list of wars"""
-        ...
+    ) -> list[int]: ...
 
 class GetWarsWarIdOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> dict[str, Any]:
-        """Return details about a war"""
-        ...
-
+    ) -> dict[str, Any]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return details about a war"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return details about a war"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class GetWarsWarIdKillmailsOperation(ESIClientOperation):
-    """ESIClientOperation, use result(), results() or results_localized()"""
     def result(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of kills related to a war"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results(
         self,
         etag: str | None = None,
         return_response: bool = False,
         use_cache: bool = True,
         **extra,
-    ) -> list[dict[str, Any]]:
-        """Return a list of kills related to a war"""
-        ...
-
+    ) -> list[dict[str, Any]]: ...
     def results_localized(
         self, languages: str | list[str] = 'en', **kwargs
-    ) -> list[dict[str, Any]]:
-        """Return a list of kills related to a war"""
-        ...
+    ) -> list[dict[str, Any]]: ...
 
 class ESIClientStub:
     class _Alliance:
         def GetAlliances(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetAlliancesOperation:
-            """List all active player alliances"""
-            ...
-
+        ) -> GetAlliancesOperation: ...
         def GetAlliancesAllianceId(
             self,
             alliance_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetAlliancesAllianceIdOperation:
-            """Public information about an alliance"""
-            ...
-
+        ) -> GetAlliancesAllianceIdOperation: ...
         def GetAlliancesAllianceIdCorporations(
             self,
             alliance_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetAlliancesAllianceIdCorporationsOperation:
-            """List all current member corporations of an alliance"""
-            ...
-
+        ) -> GetAlliancesAllianceIdCorporationsOperation: ...
         def GetAlliancesAllianceIdIcons(
             self,
             alliance_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetAlliancesAllianceIdIconsOperation:
-            """Get the icon urls for a alliance  This route expires daily at 11:05"""
-            ...
+        ) -> GetAlliancesAllianceIdIconsOperation: ...
 
-    Alliance: _Alliance = _Alliance()
+    Alliance: _Alliance = ...
 
     class _Assets:
         def GetCharactersCharacterIdAssets(
             self,
             character_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdAssetsOperation:
-            """Return a list of the characters assets"""
-            ...
-
+        ) -> GetCharactersCharacterIdAssetsOperation: ...
         def GetCorporationsCorporationIdAssets(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdAssetsOperation:
-            """Return a list of the corporation assets"""
-            ...
-
+        ) -> GetCorporationsCorporationIdAssetsOperation: ...
         def PostCharactersCharacterIdAssetsLocations(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostCharactersCharacterIdAssetsLocationsOperation:
-            """Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)"""
-            ...
-
+        ) -> PostCharactersCharacterIdAssetsLocationsOperation: ...
         def PostCharactersCharacterIdAssetsNames(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostCharactersCharacterIdAssetsNamesOperation:
-            """Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships."""
-            ...
-
+        ) -> PostCharactersCharacterIdAssetsNamesOperation: ...
         def PostCorporationsCorporationIdAssetsLocations(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostCorporationsCorporationIdAssetsLocationsOperation:
-            """Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)"""
-            ...
-
+        ) -> PostCorporationsCorporationIdAssetsLocationsOperation: ...
         def PostCorporationsCorporationIdAssetsNames(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostCorporationsCorporationIdAssetsNamesOperation:
-            """Return names for a set of item ids, which you can get from corporation assets endpoint. Only valid for items that can customize names, like containers or ships"""
-            ...
+        ) -> PostCorporationsCorporationIdAssetsNamesOperation: ...
 
-    Assets: _Assets = _Assets()
+    Assets: _Assets = ...
 
     class _Calendar:
         def GetCharactersCharacterIdCalendar(
             self,
             character_id: int,
             token: Token,
-            from_event: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            from_event: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdCalendarOperation:
-            """Get 50 event summaries from the calendar. If no from_event ID is given, the resource will return the next 50 chronological event summaries from now. If a from_event ID is specified, it will return the next 50 chronological event summaries from after that event"""
-            ...
-
+        ) -> GetCharactersCharacterIdCalendarOperation: ...
         def GetCharactersCharacterIdCalendarEventId(
             self,
             character_id: int,
             event_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdCalendarEventIdOperation:
-            """Get all the information for a specific event"""
-            ...
-
+        ) -> GetCharactersCharacterIdCalendarEventIdOperation: ...
         def GetCharactersCharacterIdCalendarEventIdAttendees(
             self,
             character_id: int,
             event_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdCalendarEventIdAttendeesOperation:
-            """Get all invited attendees for a given event"""
-            ...
-
+        ) -> GetCharactersCharacterIdCalendarEventIdAttendeesOperation: ...
         def PutCharactersCharacterIdCalendarEventId(
             self,
             character_id: int,
             event_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PutCharactersCharacterIdCalendarEventIdOperation:
-            """Set your response status to an event"""
-            ...
+        ) -> PutCharactersCharacterIdCalendarEventIdOperation: ...
 
-    Calendar: _Calendar = _Calendar()
+    Calendar: _Calendar = ...
 
     class _Character:
         def GetCharactersCharacterId(
             self,
             character_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdOperation:
-            """Public information about a character"""
-            ...
-
+        ) -> GetCharactersCharacterIdOperation: ...
         def GetCharactersCharacterIdAgentsResearch(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdAgentsResearchOperation:
-            """Return a list of agents research information for a character. The formula for finding the current research points with an agent is: currentPoints = remainderPoints + pointsPerDay * days(currentTime - researchStartDate)"""
-            ...
-
+        ) -> GetCharactersCharacterIdAgentsResearchOperation: ...
         def GetCharactersCharacterIdBlueprints(
             self,
             character_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdBlueprintsOperation:
-            """Return a list of blueprints the character owns"""
-            ...
-
+        ) -> GetCharactersCharacterIdBlueprintsOperation: ...
         def GetCharactersCharacterIdCorporationhistory(
             self,
             character_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdCorporationhistoryOperation:
-            """Get a list of all the corporations a character has been a member of"""
-            ...
-
+        ) -> GetCharactersCharacterIdCorporationhistoryOperation: ...
         def GetCharactersCharacterIdFatigue(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdFatigueOperation:
-            """Return a character's jump activation and fatigue information"""
-            ...
-
+        ) -> GetCharactersCharacterIdFatigueOperation: ...
         def GetCharactersCharacterIdMedals(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdMedalsOperation:
-            """Return a list of medals the character has"""
-            ...
-
+        ) -> GetCharactersCharacterIdMedalsOperation: ...
         def GetCharactersCharacterIdNotifications(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdNotificationsOperation:
-            """Return character notifications"""
-            ...
-
+        ) -> GetCharactersCharacterIdNotificationsOperation: ...
         def GetCharactersCharacterIdNotificationsContacts(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdNotificationsContactsOperation:
-            """Return notifications about having been added to someone's contact list"""
-            ...
-
+        ) -> GetCharactersCharacterIdNotificationsContactsOperation: ...
         def GetCharactersCharacterIdPortrait(
             self,
             character_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdPortraitOperation:
-            """Get portrait urls for a character  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetCharactersCharacterIdPortraitOperation: ...
         def GetCharactersCharacterIdRoles(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdRolesOperation:
-            """Returns a character's corporation roles"""
-            ...
-
+        ) -> GetCharactersCharacterIdRolesOperation: ...
         def GetCharactersCharacterIdStandings(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdStandingsOperation:
-            """Return character standings from agents, NPC corporations, and factions"""
-            ...
-
+        ) -> GetCharactersCharacterIdStandingsOperation: ...
         def GetCharactersCharacterIdTitles(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdTitlesOperation:
-            """Returns a character's titles"""
-            ...
-
+        ) -> GetCharactersCharacterIdTitlesOperation: ...
         def PostCharactersAffiliation(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostCharactersAffiliationOperation:
-            """Bulk lookup of character IDs to corporation, alliance and faction"""
-            ...
-
+        ) -> PostCharactersAffiliationOperation: ...
         def PostCharactersCharacterIdCspa(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostCharactersCharacterIdCspaOperation:
-            """Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost"""
-            ...
+        ) -> PostCharactersCharacterIdCspaOperation: ...
 
-    Character: _Character = _Character()
+    Character: _Character = ...
 
     class _Clones:
         def GetCharactersCharacterIdClones(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdClonesOperation:
-            """A list of the character's clones"""
-            ...
-
+        ) -> GetCharactersCharacterIdClonesOperation: ...
         def GetCharactersCharacterIdImplants(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdImplantsOperation:
-            """Return implants on the active clone of a character"""
-            ...
+        ) -> GetCharactersCharacterIdImplantsOperation: ...
 
-    Clones: _Clones = _Clones()
+    Clones: _Clones = ...
 
     class _Contacts:
         def DeleteCharactersCharacterIdContacts(
@@ -6044,551 +4150,434 @@ class ESIClientStub:
             character_id: int,
             contact_ids: list[Any],
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> DeleteCharactersCharacterIdContactsOperation:
-            """Bulk delete contacts"""
-            ...
-
+        ) -> DeleteCharactersCharacterIdContactsOperation: ...
         def GetAlliancesAllianceIdContacts(
             self,
             alliance_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetAlliancesAllianceIdContactsOperation:
-            """Return contacts of an alliance"""
-            ...
-
+        ) -> GetAlliancesAllianceIdContactsOperation: ...
         def GetAlliancesAllianceIdContactsLabels(
             self,
             alliance_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetAlliancesAllianceIdContactsLabelsOperation:
-            """Return custom labels for an alliance's contacts"""
-            ...
-
+        ) -> GetAlliancesAllianceIdContactsLabelsOperation: ...
         def GetCharactersCharacterIdContacts(
             self,
             character_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdContactsOperation:
-            """Return contacts of a character"""
-            ...
-
+        ) -> GetCharactersCharacterIdContactsOperation: ...
         def GetCharactersCharacterIdContactsLabels(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdContactsLabelsOperation:
-            """Return custom labels for a character's contacts"""
-            ...
-
+        ) -> GetCharactersCharacterIdContactsLabelsOperation: ...
         def GetCorporationsCorporationIdContacts(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdContactsOperation:
-            """Return contacts of a corporation"""
-            ...
-
+        ) -> GetCorporationsCorporationIdContactsOperation: ...
         def GetCorporationsCorporationIdContactsLabels(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdContactsLabelsOperation:
-            """Return custom labels for a corporation's contacts"""
-            ...
-
+        ) -> GetCorporationsCorporationIdContactsLabelsOperation: ...
         def PostCharactersCharacterIdContacts(
             self,
             character_id: int,
             standing: float,
             token: Token,
-            label_ids: Optional[list[Any]] = ...,
-            watched: Optional[bool] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            label_ids: list[Any] | None = ...,
+            watched: bool | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostCharactersCharacterIdContactsOperation:
-            """Bulk add contacts with same settings"""
-            ...
-
+        ) -> PostCharactersCharacterIdContactsOperation: ...
         def PutCharactersCharacterIdContacts(
             self,
             character_id: int,
             standing: float,
             token: Token,
-            label_ids: Optional[list[Any]] = ...,
-            watched: Optional[bool] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            label_ids: list[Any] | None = ...,
+            watched: bool | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PutCharactersCharacterIdContactsOperation:
-            """Bulk edit contacts with same settings"""
-            ...
+        ) -> PutCharactersCharacterIdContactsOperation: ...
 
-    Contacts: _Contacts = _Contacts()
+    Contacts: _Contacts = ...
 
     class _Contracts:
         def GetCharactersCharacterIdContracts(
             self,
             character_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdContractsOperation:
-            """Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is "in_progress"."""
-            ...
-
+        ) -> GetCharactersCharacterIdContractsOperation: ...
         def GetCharactersCharacterIdContractsContractIdBids(
             self,
             character_id: int,
             contract_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdContractsContractIdBidsOperation:
-            """Lists bids on a particular auction contract"""
-            ...
-
+        ) -> GetCharactersCharacterIdContractsContractIdBidsOperation: ...
         def GetCharactersCharacterIdContractsContractIdItems(
             self,
             character_id: int,
             contract_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdContractsContractIdItemsOperation:
-            """Lists items of a particular contract"""
-            ...
-
+        ) -> GetCharactersCharacterIdContractsContractIdItemsOperation: ...
         def GetContractsPublicBidsContractId(
             self,
             contract_id: int,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetContractsPublicBidsContractIdOperation:
-            """Lists bids on a public auction contract"""
-            ...
-
+        ) -> GetContractsPublicBidsContractIdOperation: ...
         def GetContractsPublicItemsContractId(
             self,
             contract_id: int,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetContractsPublicItemsContractIdOperation:
-            """Lists items of a public contract"""
-            ...
-
+        ) -> GetContractsPublicItemsContractIdOperation: ...
         def GetContractsPublicRegionId(
             self,
             region_id: int,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetContractsPublicRegionIdOperation:
-            """Returns a paginated list of all public contracts in the given region"""
-            ...
-
+        ) -> GetContractsPublicRegionIdOperation: ...
         def GetCorporationsCorporationIdContracts(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdContractsOperation:
-            """Returns contracts available to a corporation, only if the corporation is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is "in_progress"."""
-            ...
-
+        ) -> GetCorporationsCorporationIdContractsOperation: ...
         def GetCorporationsCorporationIdContractsContractIdBids(
             self,
             contract_id: int,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdContractsContractIdBidsOperation:
-            """Lists bids on a particular auction contract"""
-            ...
-
+        ) -> GetCorporationsCorporationIdContractsContractIdBidsOperation: ...
         def GetCorporationsCorporationIdContractsContractIdItems(
             self,
             contract_id: int,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdContractsContractIdItemsOperation:
-            """Lists items of a particular contract"""
-            ...
+        ) -> GetCorporationsCorporationIdContractsContractIdItemsOperation: ...
 
-    Contracts: _Contracts = _Contracts()
+    Contracts: _Contracts = ...
 
     class _Corporation:
         def GetCorporationsCorporationId(
             self,
             corporation_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdOperation:
-            """Public information about a corporation"""
-            ...
-
+        ) -> GetCorporationsCorporationIdOperation: ...
         def GetCorporationsCorporationIdAlliancehistory(
             self,
             corporation_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdAlliancehistoryOperation:
-            """Get a list of all the alliances a corporation has been a member of"""
-            ...
-
+        ) -> GetCorporationsCorporationIdAlliancehistoryOperation: ...
         def GetCorporationsCorporationIdBlueprints(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdBlueprintsOperation:
-            """Returns a list of blueprints the corporation owns"""
-            ...
-
+        ) -> GetCorporationsCorporationIdBlueprintsOperation: ...
         def GetCorporationsCorporationIdContainersLogs(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdContainersLogsOperation:
-            """Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation"""
-            ...
-
+        ) -> GetCorporationsCorporationIdContainersLogsOperation: ...
         def GetCorporationsCorporationIdDivisions(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdDivisionsOperation:
-            """Return corporation hangar and wallet division names, only show if a division is not using the default name"""
-            ...
-
+        ) -> GetCorporationsCorporationIdDivisionsOperation: ...
         def GetCorporationsCorporationIdFacilities(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdFacilitiesOperation:
-            """Return a corporation's facilities"""
-            ...
-
+        ) -> GetCorporationsCorporationIdFacilitiesOperation: ...
         def GetCorporationsCorporationIdIcons(
             self,
             corporation_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdIconsOperation:
-            """Get the icon urls for a corporation"""
-            ...
-
+        ) -> GetCorporationsCorporationIdIconsOperation: ...
         def GetCorporationsCorporationIdMedals(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdMedalsOperation:
-            """Returns a corporation's medals"""
-            ...
-
+        ) -> GetCorporationsCorporationIdMedalsOperation: ...
         def GetCorporationsCorporationIdMedalsIssued(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdMedalsIssuedOperation:
-            """Returns medals issued by a corporation"""
-            ...
-
+        ) -> GetCorporationsCorporationIdMedalsIssuedOperation: ...
         def GetCorporationsCorporationIdMembers(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdMembersOperation:
-            """Return the current member list of a corporation, the token's character need to be a member of the corporation."""
-            ...
-
+        ) -> GetCorporationsCorporationIdMembersOperation: ...
         def GetCorporationsCorporationIdMembersLimit(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdMembersLimitOperation:
-            """Return a corporation's member limit, not including CEO himself"""
-            ...
-
+        ) -> GetCorporationsCorporationIdMembersLimitOperation: ...
         def GetCorporationsCorporationIdMembersTitles(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdMembersTitlesOperation:
-            """Returns a corporation's members' titles"""
-            ...
-
+        ) -> GetCorporationsCorporationIdMembersTitlesOperation: ...
         def GetCorporationsCorporationIdMembertracking(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdMembertrackingOperation:
-            """Returns additional information about a corporation's members which helps tracking their activities"""
-            ...
-
+        ) -> GetCorporationsCorporationIdMembertrackingOperation: ...
         def GetCorporationsCorporationIdRoles(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdRolesOperation:
-            """Return the roles of all members if the character has the personnel manager role or any grantable role."""
-            ...
-
+        ) -> GetCorporationsCorporationIdRolesOperation: ...
         def GetCorporationsCorporationIdRolesHistory(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdRolesHistoryOperation:
-            """Return how roles have changed for a coporation's members, up to a month"""
-            ...
-
+        ) -> GetCorporationsCorporationIdRolesHistoryOperation: ...
         def GetCorporationsCorporationIdShareholders(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdShareholdersOperation:
-            """Return the current shareholders of a corporation."""
-            ...
-
+        ) -> GetCorporationsCorporationIdShareholdersOperation: ...
         def GetCorporationsCorporationIdStandings(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdStandingsOperation:
-            """Return corporation standings from agents, NPC corporations, and factions"""
-            ...
-
+        ) -> GetCorporationsCorporationIdStandingsOperation: ...
         def GetCorporationsCorporationIdStarbases(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdStarbasesOperation:
-            """Returns list of corporation starbases (POSes)"""
-            ...
-
+        ) -> GetCorporationsCorporationIdStarbasesOperation: ...
         def GetCorporationsCorporationIdStarbasesStarbaseId(
             self,
             corporation_id: int,
             starbase_id: int,
             system_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdStarbasesStarbaseIdOperation:
-            """Returns various settings and fuels of a starbase (POS)"""
-            ...
-
+        ) -> GetCorporationsCorporationIdStarbasesStarbaseIdOperation: ...
         def GetCorporationsCorporationIdStructures(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdStructuresOperation:
-            """Get a list of corporation structures. This route's version includes the changes to structures detailed in this blog: https://www.eveonline.com/article/upwell-2.0-structures-changes-coming-on-february-13th"""
-            ...
-
+        ) -> GetCorporationsCorporationIdStructuresOperation: ...
         def GetCorporationsCorporationIdTitles(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdTitlesOperation:
-            """Returns a corporation's titles"""
-            ...
-
+        ) -> GetCorporationsCorporationIdTitlesOperation: ...
         def GetCorporationsNpccorps(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsNpccorpsOperation:
-            """Get a list of npc corporations  This route expires daily at 11:05"""
-            ...
+        ) -> GetCorporationsNpccorpsOperation: ...
 
-    Corporation: _Corporation = _Corporation()
+    Corporation: _Corporation = ...
 
     class _Corporation_Projects:
         def GetCorporationsProjectsContribution(
@@ -6597,223 +4586,175 @@ class ESIClientStub:
             project_id: str,
             character_id: int,
             token: Token,
-            If_Modified_Since: Optional[str] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            If_Modified_Since: str | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsProjectsContributionOperation:
-            """Show your contribution to a corporation project."""
-            ...
-
+        ) -> GetCorporationsProjectsContributionOperation: ...
         def GetCorporationsProjectsContributors(
             self,
             corporation_id: int,
             project_id: str,
             token: Token,
-            after: Optional[str] = ...,
-            before: Optional[str] = ...,
-            limit: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            after: str | None = ...,
+            before: str | None = ...,
+            limit: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsProjectsContributorsOperation:
-            """Listing of all contributors to a corporation project."""
-            ...
-
+        ) -> GetCorporationsProjectsContributorsOperation: ...
         def GetCorporationsProjectsDetail(
             self,
             corporation_id: int,
             project_id: str,
             token: Token,
-            If_Modified_Since: Optional[str] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            If_Modified_Since: str | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsProjectsDetailOperation:
-            """Get the details of a corporation project."""
-            ...
-
+        ) -> GetCorporationsProjectsDetailOperation: ...
         def GetCorporationsProjectsListing(
             self,
             corporation_id: int,
             token: Token,
-            after: Optional[str] = ...,
-            before: Optional[str] = ...,
-            limit: Optional[int] = ...,
-            state: Optional[str] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            after: str | None = ...,
+            before: str | None = ...,
+            limit: int | None = ...,
+            state: str | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsProjectsListingOperation:
-            """Listing of all (active) corporation projects."""
-            ...
+        ) -> GetCorporationsProjectsListingOperation: ...
 
-    Corporation_Projects: _Corporation_Projects = _Corporation_Projects()
+    Corporation_Projects: _Corporation_Projects = ...
 
     class _Dogma:
         def GetDogmaAttributes(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetDogmaAttributesOperation:
-            """Get a list of dogma attribute ids  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetDogmaAttributesOperation: ...
         def GetDogmaAttributesAttributeId(
             self,
             attribute_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetDogmaAttributesAttributeIdOperation:
-            """Get information on a dogma attribute  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetDogmaAttributesAttributeIdOperation: ...
         def GetDogmaDynamicItemsTypeIdItemId(
             self,
             item_id: int,
             type_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetDogmaDynamicItemsTypeIdItemIdOperation:
-            """Returns info about a dynamic item resulting from mutation with a mutaplasmid.  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetDogmaDynamicItemsTypeIdItemIdOperation: ...
         def GetDogmaEffects(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetDogmaEffectsOperation:
-            """Get a list of dogma effect ids  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetDogmaEffectsOperation: ...
         def GetDogmaEffectsEffectId(
             self,
             effect_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetDogmaEffectsEffectIdOperation:
-            """Get information on a dogma effect  This route expires daily at 11:05"""
-            ...
+        ) -> GetDogmaEffectsEffectIdOperation: ...
 
-    Dogma: _Dogma = _Dogma()
+    Dogma: _Dogma = ...
 
     class _Faction_Warfare:
         def GetCharactersCharacterIdFwStats(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdFwStatsOperation:
-            """Statistical overview of a character involved in faction warfare  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetCharactersCharacterIdFwStatsOperation: ...
         def GetCorporationsCorporationIdFwStats(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdFwStatsOperation:
-            """Statistics about a corporation involved in faction warfare  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetCorporationsCorporationIdFwStatsOperation: ...
         def GetFwLeaderboards(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetFwLeaderboardsOperation:
-            """Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetFwLeaderboardsOperation: ...
         def GetFwLeaderboardsCharacters(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetFwLeaderboardsCharactersOperation:
-            """Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetFwLeaderboardsCharactersOperation: ...
         def GetFwLeaderboardsCorporations(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetFwLeaderboardsCorporationsOperation:
-            """Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetFwLeaderboardsCorporationsOperation: ...
         def GetFwStats(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetFwStatsOperation:
-            """Statistical overviews of factions involved in faction warfare  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetFwStatsOperation: ...
         def GetFwSystems(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetFwSystemsOperation:
-            """An overview of the current ownership of faction warfare solar systems"""
-            ...
-
+        ) -> GetFwSystemsOperation: ...
         def GetFwWars(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetFwWarsOperation:
-            """Data about which NPC factions are at war  This route expires daily at 11:05"""
-            ...
+        ) -> GetFwWarsOperation: ...
 
-    Faction_Warfare: _Faction_Warfare = _Faction_Warfare()
+    Faction_Warfare: _Faction_Warfare = ...
 
     class _Fittings:
         def DeleteCharactersCharacterIdFittingsFittingId(
@@ -6821,42 +4762,34 @@ class ESIClientStub:
             character_id: int,
             fitting_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> DeleteCharactersCharacterIdFittingsFittingIdOperation:
-            """Delete a fitting from a character"""
-            ...
-
+        ) -> DeleteCharactersCharacterIdFittingsFittingIdOperation: ...
         def GetCharactersCharacterIdFittings(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdFittingsOperation:
-            """Return fittings of a character"""
-            ...
-
+        ) -> GetCharactersCharacterIdFittingsOperation: ...
         def PostCharactersCharacterIdFittings(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostCharactersCharacterIdFittingsOperation:
-            """Save a new fitting for a character"""
-            ...
+        ) -> PostCharactersCharacterIdFittingsOperation: ...
 
-    Fittings: _Fittings = _Fittings()
+    Fittings: _Fittings = ...
 
     class _Fleets:
         def DeleteFleetsFleetIdMembersMemberId(
@@ -6864,444 +4797,355 @@ class ESIClientStub:
             fleet_id: int,
             member_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> DeleteFleetsFleetIdMembersMemberIdOperation:
-            """Kick a fleet member"""
-            ...
-
+        ) -> DeleteFleetsFleetIdMembersMemberIdOperation: ...
         def DeleteFleetsFleetIdSquadsSquadId(
             self,
             fleet_id: int,
             squad_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> DeleteFleetsFleetIdSquadsSquadIdOperation:
-            """Delete a fleet squad, only empty squads can be deleted"""
-            ...
-
+        ) -> DeleteFleetsFleetIdSquadsSquadIdOperation: ...
         def DeleteFleetsFleetIdWingsWingId(
             self,
             fleet_id: int,
             wing_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> DeleteFleetsFleetIdWingsWingIdOperation:
-            """Delete a fleet wing, only empty wings can be deleted. The wing may contain squads, but the squads must be empty"""
-            ...
-
+        ) -> DeleteFleetsFleetIdWingsWingIdOperation: ...
         def GetCharactersCharacterIdFleet(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdFleetOperation:
-            """Return the fleet ID the character is in, if any."""
-            ...
-
+        ) -> GetCharactersCharacterIdFleetOperation: ...
         def GetFleetsFleetId(
             self,
             fleet_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetFleetsFleetIdOperation:
-            """Return details about a fleet"""
-            ...
-
+        ) -> GetFleetsFleetIdOperation: ...
         def GetFleetsFleetIdMembers(
             self,
             fleet_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetFleetsFleetIdMembersOperation:
-            """Return information about fleet members"""
-            ...
-
+        ) -> GetFleetsFleetIdMembersOperation: ...
         def GetFleetsFleetIdWings(
             self,
             fleet_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetFleetsFleetIdWingsOperation:
-            """Return information about wings in a fleet"""
-            ...
-
+        ) -> GetFleetsFleetIdWingsOperation: ...
         def PostFleetsFleetIdMembers(
             self,
             fleet_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostFleetsFleetIdMembersOperation:
-            """Invite a character into the fleet. If a character has a CSPA charge set it is not possible to invite them to the fleet using ESI"""
-            ...
-
+        ) -> PostFleetsFleetIdMembersOperation: ...
         def PostFleetsFleetIdWings(
             self,
             fleet_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostFleetsFleetIdWingsOperation:
-            """Create a new wing in a fleet"""
-            ...
-
+        ) -> PostFleetsFleetIdWingsOperation: ...
         def PostFleetsFleetIdWingsWingIdSquads(
             self,
             fleet_id: int,
             wing_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostFleetsFleetIdWingsWingIdSquadsOperation:
-            """Create a new squad in a fleet"""
-            ...
-
+        ) -> PostFleetsFleetIdWingsWingIdSquadsOperation: ...
         def PutFleetsFleetId(
             self,
             fleet_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PutFleetsFleetIdOperation:
-            """Update settings about a fleet"""
-            ...
-
+        ) -> PutFleetsFleetIdOperation: ...
         def PutFleetsFleetIdMembersMemberId(
             self,
             fleet_id: int,
             member_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PutFleetsFleetIdMembersMemberIdOperation:
-            """Move a fleet member around"""
-            ...
-
+        ) -> PutFleetsFleetIdMembersMemberIdOperation: ...
         def PutFleetsFleetIdSquadsSquadId(
             self,
             fleet_id: int,
             squad_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PutFleetsFleetIdSquadsSquadIdOperation:
-            """Rename a fleet squad"""
-            ...
-
+        ) -> PutFleetsFleetIdSquadsSquadIdOperation: ...
         def PutFleetsFleetIdWingsWingId(
             self,
             fleet_id: int,
             wing_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PutFleetsFleetIdWingsWingIdOperation:
-            """Rename a fleet wing"""
-            ...
+        ) -> PutFleetsFleetIdWingsWingIdOperation: ...
 
-    Fleets: _Fleets = _Fleets()
+    Fleets: _Fleets = ...
 
     class _Incursions:
         def GetIncursions(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetIncursionsOperation:
-            """Return a list of current incursions"""
-            ...
+        ) -> GetIncursionsOperation: ...
 
-    Incursions: _Incursions = _Incursions()
+    Incursions: _Incursions = ...
 
     class _Industry:
         def GetCharactersCharacterIdIndustryJobs(
             self,
             character_id: int,
             token: Token,
-            include_completed: Optional[bool] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            include_completed: bool | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdIndustryJobsOperation:
-            """List industry jobs placed by a character"""
-            ...
-
+        ) -> GetCharactersCharacterIdIndustryJobsOperation: ...
         def GetCharactersCharacterIdMining(
             self,
             character_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdMiningOperation:
-            """Paginated record of all mining done by a character for the past 30 days"""
-            ...
-
+        ) -> GetCharactersCharacterIdMiningOperation: ...
         def GetCorporationCorporationIdMiningExtractions(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationCorporationIdMiningExtractionsOperation:
-            """Extraction timers for all moon chunks being extracted by refineries belonging to a corporation."""
-            ...
-
+        ) -> GetCorporationCorporationIdMiningExtractionsOperation: ...
         def GetCorporationCorporationIdMiningObservers(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationCorporationIdMiningObserversOperation:
-            """Paginated list of all entities capable of observing and recording mining for a corporation"""
-            ...
-
+        ) -> GetCorporationCorporationIdMiningObserversOperation: ...
         def GetCorporationCorporationIdMiningObserversObserverId(
             self,
             corporation_id: int,
             observer_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationCorporationIdMiningObserversObserverIdOperation:
-            """Paginated record of all mining seen by an observer"""
-            ...
-
+        ) -> GetCorporationCorporationIdMiningObserversObserverIdOperation: ...
         def GetCorporationsCorporationIdIndustryJobs(
             self,
             corporation_id: int,
             token: Token,
-            include_completed: Optional[bool] = ...,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            include_completed: bool | None = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdIndustryJobsOperation:
-            """List industry jobs run by a corporation"""
-            ...
-
+        ) -> GetCorporationsCorporationIdIndustryJobsOperation: ...
         def GetIndustryFacilities(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetIndustryFacilitiesOperation:
-            """Return a list of industry facilities"""
-            ...
-
+        ) -> GetIndustryFacilitiesOperation: ...
         def GetIndustrySystems(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetIndustrySystemsOperation:
-            """Return cost indices for solar systems"""
-            ...
+        ) -> GetIndustrySystemsOperation: ...
 
-    Industry: _Industry = _Industry()
+    Industry: _Industry = ...
 
     class _Insurance:
         def GetInsurancePrices(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetInsurancePricesOperation:
-            """Return available insurance levels for all ship types"""
-            ...
+        ) -> GetInsurancePricesOperation: ...
 
-    Insurance: _Insurance = _Insurance()
+    Insurance: _Insurance = ...
 
     class _Killmails:
         def GetCharactersCharacterIdKillmailsRecent(
             self,
             character_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdKillmailsRecentOperation:
-            """Return a list of a character's kills and losses going back 90 days"""
-            ...
-
+        ) -> GetCharactersCharacterIdKillmailsRecentOperation: ...
         def GetCorporationsCorporationIdKillmailsRecent(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdKillmailsRecentOperation:
-            """Get a list of a corporation's kills and losses going back 90 days"""
-            ...
-
+        ) -> GetCorporationsCorporationIdKillmailsRecentOperation: ...
         def GetKillmailsKillmailIdKillmailHash(
             self,
             killmail_hash: str,
             killmail_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetKillmailsKillmailIdKillmailHashOperation:
-            """Return a single killmail from its ID and hash"""
-            ...
+        ) -> GetKillmailsKillmailIdKillmailHashOperation: ...
 
-    Killmails: _Killmails = _Killmails()
+    Killmails: _Killmails = ...
 
     class _Location:
         def GetCharactersCharacterIdLocation(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdLocationOperation:
-            """Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable"""
-            ...
-
+        ) -> GetCharactersCharacterIdLocationOperation: ...
         def GetCharactersCharacterIdOnline(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdOnlineOperation:
-            """Checks if the character is currently online"""
-            ...
-
+        ) -> GetCharactersCharacterIdOnlineOperation: ...
         def GetCharactersCharacterIdShip(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdShipOperation:
-            """Get the current ship type, name and id"""
-            ...
+        ) -> GetCharactersCharacterIdShipOperation: ...
 
-    Location: _Location = _Location()
+    Location: _Location = ...
 
     class _Loyalty:
         def GetCharactersCharacterIdLoyaltyPoints(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdLoyaltyPointsOperation:
-            """Return a list of loyalty points for all corporations the character has worked for"""
-            ...
-
+        ) -> GetCharactersCharacterIdLoyaltyPointsOperation: ...
         def GetLoyaltyStoresCorporationIdOffers(
             self,
             corporation_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetLoyaltyStoresCorporationIdOffersOperation:
-            """Return a list of offers from a specific corporation's loyalty store  This route expires daily at 11:05"""
-            ...
+        ) -> GetLoyaltyStoresCorporationIdOffersOperation: ...
 
-    Loyalty: _Loyalty = _Loyalty()
+    Loyalty: _Loyalty = ...
 
     class _Mail:
         def DeleteCharactersCharacterIdMailLabelsLabelId(
@@ -7309,372 +5153,296 @@ class ESIClientStub:
             character_id: int,
             label_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> DeleteCharactersCharacterIdMailLabelsLabelIdOperation:
-            """Delete a mail label"""
-            ...
-
+        ) -> DeleteCharactersCharacterIdMailLabelsLabelIdOperation: ...
         def DeleteCharactersCharacterIdMailMailId(
             self,
             character_id: int,
             mail_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> DeleteCharactersCharacterIdMailMailIdOperation:
-            """Delete a mail"""
-            ...
-
+        ) -> DeleteCharactersCharacterIdMailMailIdOperation: ...
         def GetCharactersCharacterIdMail(
             self,
             character_id: int,
             token: Token,
-            labels: Optional[list[Any]] = ...,
-            last_mail_id: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            labels: list[Any] | None = ...,
+            last_mail_id: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdMailOperation:
-            """Return the 50 most recent mail headers belonging to the character that match the query criteria. Queries can be filtered by label, and last_mail_id can be used to paginate backwards"""
-            ...
-
+        ) -> GetCharactersCharacterIdMailOperation: ...
         def GetCharactersCharacterIdMailLabels(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdMailLabelsOperation:
-            """Return a list of the users mail labels, unread counts for each label and a total unread count."""
-            ...
-
+        ) -> GetCharactersCharacterIdMailLabelsOperation: ...
         def GetCharactersCharacterIdMailLists(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdMailListsOperation:
-            """Return all mailing lists that the character is subscribed to"""
-            ...
-
+        ) -> GetCharactersCharacterIdMailListsOperation: ...
         def GetCharactersCharacterIdMailMailId(
             self,
             character_id: int,
             mail_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdMailMailIdOperation:
-            """Return the contents of an EVE mail"""
-            ...
-
+        ) -> GetCharactersCharacterIdMailMailIdOperation: ...
         def PostCharactersCharacterIdMail(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostCharactersCharacterIdMailOperation:
-            """Create and send a new mail"""
-            ...
-
+        ) -> PostCharactersCharacterIdMailOperation: ...
         def PostCharactersCharacterIdMailLabels(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostCharactersCharacterIdMailLabelsOperation:
-            """Create a mail label"""
-            ...
-
+        ) -> PostCharactersCharacterIdMailLabelsOperation: ...
         def PutCharactersCharacterIdMailMailId(
             self,
             character_id: int,
             mail_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PutCharactersCharacterIdMailMailIdOperation:
-            """Update metadata about a mail"""
-            ...
+        ) -> PutCharactersCharacterIdMailMailIdOperation: ...
 
-    Mail: _Mail = _Mail()
+    Mail: _Mail = ...
 
     class _Market:
         def GetCharactersCharacterIdOrders(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdOrdersOperation:
-            """List open market orders placed by a character"""
-            ...
-
+        ) -> GetCharactersCharacterIdOrdersOperation: ...
         def GetCharactersCharacterIdOrdersHistory(
             self,
             character_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdOrdersHistoryOperation:
-            """List cancelled and expired market orders placed by a character up to 90 days in the past."""
-            ...
-
+        ) -> GetCharactersCharacterIdOrdersHistoryOperation: ...
         def GetCorporationsCorporationIdOrders(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdOrdersOperation:
-            """List open market orders placed on behalf of a corporation"""
-            ...
-
+        ) -> GetCorporationsCorporationIdOrdersOperation: ...
         def GetCorporationsCorporationIdOrdersHistory(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdOrdersHistoryOperation:
-            """List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past."""
-            ...
-
+        ) -> GetCorporationsCorporationIdOrdersHistoryOperation: ...
         def GetMarketsGroups(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetMarketsGroupsOperation:
-            """Get a list of item groups  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetMarketsGroupsOperation: ...
         def GetMarketsGroupsMarketGroupId(
             self,
             market_group_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetMarketsGroupsMarketGroupIdOperation:
-            """Get information on an item group  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetMarketsGroupsMarketGroupIdOperation: ...
         def GetMarketsPrices(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetMarketsPricesOperation:
-            """Return a list of prices"""
-            ...
-
+        ) -> GetMarketsPricesOperation: ...
         def GetMarketsRegionIdHistory(
             self,
             region_id: int,
             type_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetMarketsRegionIdHistoryOperation:
-            """Return a list of historical market statistics for the specified type in a region  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetMarketsRegionIdHistoryOperation: ...
         def GetMarketsRegionIdOrders(
             self,
             order_type: str,
             region_id: int,
-            page: Optional[int] = ...,
-            type_id: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            type_id: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetMarketsRegionIdOrdersOperation:
-            """Return a list of orders in a region"""
-            ...
-
+        ) -> GetMarketsRegionIdOrdersOperation: ...
         def GetMarketsRegionIdTypes(
             self,
             region_id: int,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetMarketsRegionIdTypesOperation:
-            """Return a list of type IDs that have active orders in the region, for efficient market indexing."""
-            ...
-
+        ) -> GetMarketsRegionIdTypesOperation: ...
         def GetMarketsStructuresStructureId(
             self,
             structure_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetMarketsStructuresStructureIdOperation:
-            """Return all orders in a structure"""
-            ...
+        ) -> GetMarketsStructuresStructureIdOperation: ...
 
-    Market: _Market = _Market()
+    Market: _Market = ...
 
     class _Meta:
         def GetMetaChangelog(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetMetaChangelogOperation:
-            """Get the changelog of this API."""
-            ...
-
+        ) -> GetMetaChangelogOperation: ...
         def GetMetaCompatibilityDates(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetMetaCompatibilityDatesOperation:
-            """Get a list of compatibility dates."""
-            ...
+        ) -> GetMetaCompatibilityDatesOperation: ...
 
-    Meta: _Meta = _Meta()
+    Meta: _Meta = ...
 
     class _Planetary_Interaction:
         def GetCharactersCharacterIdPlanets(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdPlanetsOperation:
-            """Returns a list of all planetary colonies owned by a character."""
-            ...
-
+        ) -> GetCharactersCharacterIdPlanetsOperation: ...
         def GetCharactersCharacterIdPlanetsPlanetId(
             self,
             character_id: int,
             planet_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdPlanetsPlanetIdOperation:
-            """Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met."""
-            ...
-
+        ) -> GetCharactersCharacterIdPlanetsPlanetIdOperation: ...
         def GetCorporationsCorporationIdCustomsOffices(
             self,
             corporation_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdCustomsOfficesOperation:
-            """List customs offices owned by a corporation"""
-            ...
-
+        ) -> GetCorporationsCorporationIdCustomsOfficesOperation: ...
         def GetUniverseSchematicsSchematicId(
             self,
             schematic_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseSchematicsSchematicIdOperation:
-            """Get information on a planetary factory schematic"""
-            ...
+        ) -> GetUniverseSchematicsSchematicIdOperation: ...
 
-    Planetary_Interaction: _Planetary_Interaction = _Planetary_Interaction()
+    Planetary_Interaction: _Planetary_Interaction = ...
 
     class _Routes:
         def GetRouteOriginDestination(
             self,
             destination: int,
             origin: int,
-            avoid: Optional[list[Any]] = ...,
-            connections: Optional[list[Any]] = ...,
-            flag: Optional[str] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            avoid: list[Any] | None = ...,
+            connections: list[Any] | None = ...,
+            flag: str | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetRouteOriginDestinationOperation:
-            """Get the systems between origin and destination"""
-            ...
+        ) -> GetRouteOriginDestinationOperation: ...
 
-    Routes: _Routes = _Routes()
+    Routes: _Routes = ...
 
     class _Search:
         def GetCharactersCharacterIdSearch(
@@ -7683,460 +5451,351 @@ class ESIClientStub:
             character_id: int,
             search: str,
             token: Token,
-            strict: Optional[bool] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            strict: bool | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdSearchOperation:
-            """Search for entities that match a given sub-string."""
-            ...
+        ) -> GetCharactersCharacterIdSearchOperation: ...
 
-    Search: _Search = _Search()
+    Search: _Search = ...
 
     class _Skills:
         def GetCharactersCharacterIdAttributes(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdAttributesOperation:
-            """Return attributes of a character"""
-            ...
-
+        ) -> GetCharactersCharacterIdAttributesOperation: ...
         def GetCharactersCharacterIdSkillqueue(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdSkillqueueOperation:
-            """List the configured skill queue for the given character"""
-            ...
-
+        ) -> GetCharactersCharacterIdSkillqueueOperation: ...
         def GetCharactersCharacterIdSkills(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdSkillsOperation:
-            """List all trained skills for the given character"""
-            ...
+        ) -> GetCharactersCharacterIdSkillsOperation: ...
 
-    Skills: _Skills = _Skills()
+    Skills: _Skills = ...
 
     class _Sovereignty:
         def GetSovereigntyCampaigns(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetSovereigntyCampaignsOperation:
-            """Shows sovereignty data for campaigns."""
-            ...
-
+        ) -> GetSovereigntyCampaignsOperation: ...
         def GetSovereigntyMap(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetSovereigntyMapOperation:
-            """Shows sovereignty information for solar systems"""
-            ...
-
+        ) -> GetSovereigntyMapOperation: ...
         def GetSovereigntyStructures(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetSovereigntyStructuresOperation:
-            """Shows sovereignty data for structures."""
-            ...
+        ) -> GetSovereigntyStructuresOperation: ...
 
-    Sovereignty: _Sovereignty = _Sovereignty()
+    Sovereignty: _Sovereignty = ...
 
     class _Status:
         def GetStatus(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetStatusOperation:
-            """EVE Server status"""
-            ...
+        ) -> GetStatusOperation: ...
 
-    Status: _Status = _Status()
+    Status: _Status = ...
 
     class _Universe:
         def GetUniverseAncestries(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseAncestriesOperation:
-            """Get all character ancestries  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseAncestriesOperation: ...
         def GetUniverseAsteroidBeltsAsteroidBeltId(
             self,
             asteroid_belt_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseAsteroidBeltsAsteroidBeltIdOperation:
-            """Get information on an asteroid belt  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseAsteroidBeltsAsteroidBeltIdOperation: ...
         def GetUniverseBloodlines(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseBloodlinesOperation:
-            """Get a list of bloodlines  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseBloodlinesOperation: ...
         def GetUniverseCategories(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseCategoriesOperation:
-            """Get a list of item categories  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseCategoriesOperation: ...
         def GetUniverseCategoriesCategoryId(
             self,
             category_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseCategoriesCategoryIdOperation:
-            """Get information of an item category  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseCategoriesCategoryIdOperation: ...
         def GetUniverseConstellations(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseConstellationsOperation:
-            """Get a list of constellations  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseConstellationsOperation: ...
         def GetUniverseConstellationsConstellationId(
             self,
             constellation_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseConstellationsConstellationIdOperation:
-            """Get information on a constellation  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseConstellationsConstellationIdOperation: ...
         def GetUniverseFactions(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseFactionsOperation:
-            """Get a list of factions  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseFactionsOperation: ...
         def GetUniverseGraphics(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseGraphicsOperation:
-            """Get a list of graphics  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseGraphicsOperation: ...
         def GetUniverseGraphicsGraphicId(
             self,
             graphic_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseGraphicsGraphicIdOperation:
-            """Get information on a graphic  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseGraphicsGraphicIdOperation: ...
         def GetUniverseGroups(
             self,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseGroupsOperation:
-            """Get a list of item groups  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseGroupsOperation: ...
         def GetUniverseGroupsGroupId(
             self,
             group_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseGroupsGroupIdOperation:
-            """Get information on an item group  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseGroupsGroupIdOperation: ...
         def GetUniverseMoonsMoonId(
             self,
             moon_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseMoonsMoonIdOperation:
-            """Get information on a moon  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseMoonsMoonIdOperation: ...
         def GetUniversePlanetsPlanetId(
             self,
             planet_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniversePlanetsPlanetIdOperation:
-            """Get information on a planet  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniversePlanetsPlanetIdOperation: ...
         def GetUniverseRaces(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseRacesOperation:
-            """Get a list of character races  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseRacesOperation: ...
         def GetUniverseRegions(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseRegionsOperation:
-            """Get a list of regions  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseRegionsOperation: ...
         def GetUniverseRegionsRegionId(
             self,
             region_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseRegionsRegionIdOperation:
-            """Get information on a region  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseRegionsRegionIdOperation: ...
         def GetUniverseStargatesStargateId(
             self,
             stargate_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseStargatesStargateIdOperation:
-            """Get information on a stargate  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseStargatesStargateIdOperation: ...
         def GetUniverseStarsStarId(
             self,
             star_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseStarsStarIdOperation:
-            """Get information on a star  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseStarsStarIdOperation: ...
         def GetUniverseStationsStationId(
             self,
             station_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseStationsStationIdOperation:
-            """Get information on a station  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseStationsStationIdOperation: ...
         def GetUniverseStructures(
             self,
-            filter: Optional[str] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            filter: str | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseStructuresOperation:
-            """List all public structures"""
-            ...
-
+        ) -> GetUniverseStructuresOperation: ...
         def GetUniverseStructuresStructureId(
             self,
             structure_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseStructuresStructureIdOperation:
-            """Returns information on requested structure if you are on the ACL. Otherwise, returns "Forbidden" for all inputs."""
-            ...
-
+        ) -> GetUniverseStructuresStructureIdOperation: ...
         def GetUniverseSystemJumps(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseSystemJumpsOperation:
-            """Get the number of jumps in solar systems within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with jumps will be listed"""
-            ...
-
+        ) -> GetUniverseSystemJumpsOperation: ...
         def GetUniverseSystemKills(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseSystemKillsOperation:
-            """Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed"""
-            ...
-
+        ) -> GetUniverseSystemKillsOperation: ...
         def GetUniverseSystems(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseSystemsOperation:
-            """Get a list of solar systems  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseSystemsOperation: ...
         def GetUniverseSystemsSystemId(
             self,
             system_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseSystemsSystemIdOperation:
-            """Get information on a solar system.  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseSystemsSystemIdOperation: ...
         def GetUniverseTypes(
             self,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseTypesOperation:
-            """Get a list of type ids  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseTypesOperation: ...
         def GetUniverseTypesTypeId(
             self,
             type_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetUniverseTypesTypeIdOperation:
-            """Get information on a type  This route expires daily at 11:05"""
-            ...
-
+        ) -> GetUniverseTypesTypeIdOperation: ...
         def PostUniverseIds(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostUniverseIdsOperation:
-            """Resolve a set of names to IDs in the following categories: agents, alliances, characters, constellations, corporations factions, inventory_types, regions, stations, and systems. Only exact matches will be returned. All names searched for are cached for 12 hours"""
-            ...
-
+        ) -> PostUniverseIdsOperation: ...
         def PostUniverseNames(
             self,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostUniverseNamesOperation:
-            """Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types, Factions"""
-            ...
+        ) -> PostUniverseNamesOperation: ...
 
-    Universe: _Universe = _Universe()
+    Universe: _Universe = ...
 
     class _User_Interface:
         def PostUiAutopilotWaypoint(
@@ -8145,191 +5804,152 @@ class ESIClientStub:
             clear_other_waypoints: bool,
             destination_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostUiAutopilotWaypointOperation:
-            """Set a solar system as autopilot waypoint"""
-            ...
-
+        ) -> PostUiAutopilotWaypointOperation: ...
         def PostUiOpenwindowContract(
             self,
             contract_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostUiOpenwindowContractOperation:
-            """Open the contract window inside the client"""
-            ...
-
+        ) -> PostUiOpenwindowContractOperation: ...
         def PostUiOpenwindowInformation(
             self,
             target_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostUiOpenwindowInformationOperation:
-            """Open the information window for a character, corporation or alliance inside the client"""
-            ...
-
+        ) -> PostUiOpenwindowInformationOperation: ...
         def PostUiOpenwindowMarketdetails(
             self,
             type_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostUiOpenwindowMarketdetailsOperation:
-            """Open the market details window for a specific typeID inside the client"""
-            ...
-
+        ) -> PostUiOpenwindowMarketdetailsOperation: ...
         def PostUiOpenwindowNewmail(
             self,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> PostUiOpenwindowNewmailOperation:
-            """Open the New Mail window, according to settings from the request if applicable"""
-            ...
+        ) -> PostUiOpenwindowNewmailOperation: ...
 
-    User_Interface: _User_Interface = _User_Interface()
+    User_Interface: _User_Interface = ...
 
     class _Wallet:
         def GetCharactersCharacterIdWallet(
             self,
             character_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdWalletOperation:
-            """Returns a character's wallet balance"""
-            ...
-
+        ) -> GetCharactersCharacterIdWalletOperation: ...
         def GetCharactersCharacterIdWalletJournal(
             self,
             character_id: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdWalletJournalOperation:
-            """Retrieve the given character's wallet journal going 30 days back"""
-            ...
-
+        ) -> GetCharactersCharacterIdWalletJournalOperation: ...
         def GetCharactersCharacterIdWalletTransactions(
             self,
             character_id: int,
             token: Token,
-            from_id: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            from_id: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCharactersCharacterIdWalletTransactionsOperation:
-            """Get wallet transactions of a character"""
-            ...
-
+        ) -> GetCharactersCharacterIdWalletTransactionsOperation: ...
         def GetCorporationsCorporationIdWallets(
             self,
             corporation_id: int,
             token: Token,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdWalletsOperation:
-            """Get a corporation's wallets"""
-            ...
-
+        ) -> GetCorporationsCorporationIdWalletsOperation: ...
         def GetCorporationsCorporationIdWalletsDivisionJournal(
             self,
             corporation_id: int,
             division: int,
             token: Token,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdWalletsDivisionJournalOperation:
-            """Retrieve the given corporation's wallet journal for the given division going 30 days back"""
-            ...
-
+        ) -> GetCorporationsCorporationIdWalletsDivisionJournalOperation: ...
         def GetCorporationsCorporationIdWalletsDivisionTransactions(
             self,
             corporation_id: int,
             division: int,
             token: Token,
-            from_id: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            from_id: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetCorporationsCorporationIdWalletsDivisionTransactionsOperation:
-            """Get wallet transactions of a corporation"""
-            ...
+        ) -> GetCorporationsCorporationIdWalletsDivisionTransactionsOperation: ...
 
-    Wallet: _Wallet = _Wallet()
+    Wallet: _Wallet = ...
 
     class _Wars:
         def GetWars(
             self,
-            max_war_id: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            max_war_id: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetWarsOperation:
-            """Return a list of wars"""
-            ...
-
+        ) -> GetWarsOperation: ...
         def GetWarsWarId(
             self,
             war_id: int,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetWarsWarIdOperation:
-            """Return details about a war"""
-            ...
-
+        ) -> GetWarsWarIdOperation: ...
         def GetWarsWarIdKillmails(
             self,
             war_id: int,
-            page: Optional[int] = ...,
-            Accept_Language: Optional[str] = ...,
-            If_None_Match: Optional[str] = ...,
-            X_Compatibility_Date: Optional[str] = ...,
-            X_Tenant: Optional[str] = ...,
+            page: int | None = ...,
+            Accept_Language: str | None = ...,
+            If_None_Match: str | None = ...,
+            X_Compatibility_Date: str | None = ...,
+            X_Tenant: str | None = ...,
             **kwargs: Any,
-        ) -> GetWarsWarIdKillmailsOperation:
-            """Return a list of kills related to a war"""
-            ...
+        ) -> GetWarsWarIdKillmailsOperation: ...
 
-    Wars: _Wars = _Wars()
+    Wars: _Wars = ...
