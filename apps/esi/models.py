@@ -180,14 +180,6 @@ class Token(models.Model):
             raise TokenError(msg)
         return token
 
-    # TODO: Do we want this?
-    # def get_esi_client(self, **kwargs) -> ESIClient:
-    #     """
-    #     Get an ESIClient instance authenticated with this token.
-    #     """
-    #     return ESIClient(token=self, **kwargs)
-
-
 class CallbackRedirect(models.Model):
     """
     Store state values for EVE SSO callback redirects.

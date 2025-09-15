@@ -49,6 +49,12 @@ def profile(request):
 @login_required
 def character_redirect(request):
     """Redirect to the character selection page."""
-    scopes = request.GET.get('scopes', '').split(' ')
-    logger.debug('Redirecting to character selection with scopes %s', scopes)
+    # SECURITY: ensure that only valid scopes are allowed to be passes to the redirect
+    allowed_scopes = set(Scope.objects.values_list('name', flat=True))  # or a static set/list if appropriate
+    requested_scopes = request.GET.get('scopes', '').split(' ')
+    scopes = [scope for scope in requested_scopes if scope in allowed_scopes and scope]
+    logger.debug(
+        'Redirecting to character selection with validated scopes %s (original: %s)',
+        scopes, requested_scopes
+    )
     return sso_redirect(request, scopes=scopes, return_to='users:characters')
