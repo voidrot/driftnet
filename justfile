@@ -65,7 +65,7 @@ format:
 celery-worker:
     @echo "Starting Celery worker..."
     @docker compose up -d --remove-orphans
-    uv run watchmedo auto-restart --directory=./apps --directory=./config --pattern=*.py --recursive -- celery -A config.celery_app worker -l INFO
+    uv run watchmedo auto-restart --directory=./apps --directory=./config --pattern=*.py --recursive -- celery -A config.celery_app worker -l DEBUG -Q default,esi,esi_server_status,esi_wars
 
 celery-beat:
     @echo "Starting Celery beat..."
