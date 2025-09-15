@@ -23,7 +23,7 @@ from tenacity import wait_exponential
 
 from apps.esi.exceptions import ESIErrorLimitExceptionError
 from apps.esi.plugins import PatchCompatibilityDatePlugin
-from apps.esi.stubs import ESIClientStub
+from apps.esi.client_stubs import ESIClientStub
 
 from .app_settings import ESI_APP_UA_EMAIL
 from .app_settings import ESI_APP_UA_NAME

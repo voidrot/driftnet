@@ -3,6 +3,7 @@ import logging
 from celery import shared_task
 
 from apps.server_status.models import ServerStatus
+from apps.shared.providers import esi
 
 logger = logging.getLogger(__name__)
 
@@ -10,7 +11,6 @@ logger = logging.getLogger(__name__)
 @shared_task()
 def fetch_server_status():
     """Query the EVE Online server status endpoint."""
-    from apps.shared.providers import esi
 
     logger.debug('Fetching server status from ESI')
     op = esi.client.Status.GetStatus()
