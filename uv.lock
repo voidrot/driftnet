@@ -2306,6 +2306,7 @@ dev = [
     { name = "pytest-playwright" },
     { name = "pytest-sugar" },
     { name = "ruff" },
+    { name = "watchdog" },
     { name = "watchfiles" },
     { name = "werkzeug", extra = ["watchdog"] },
 ]
@@ -2368,6 +2369,7 @@ dev = [
     { name = "pytest-playwright", specifier = ">=0.7.0" },
     { name = "pytest-sugar", specifier = ">=1.1.1" },
     { name = "ruff", specifier = ">=0.12.11" },
+    { name = "watchdog", specifier = ">=6.0.0" },
     { name = "watchfiles", specifier = ">=1.1.0" },
     { name = "werkzeug", extras = ["watchdog"], specifier = ">=3.1.3" },
 ]

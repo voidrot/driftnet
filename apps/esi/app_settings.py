@@ -14,6 +14,7 @@ ESI_TOKEN_URL = getattr(settings, 'ESI_CODE_EXCHANGE_URL', ESI_OAUTH_URL + '/tok
 ESI_OPENAPI_URL = getattr(
     settings, 'ESI_OPENAPI_URL', 'https://esi.evetech.net/meta/openapi.json'
 )
+ESI_API_URL = getattr(settings, 'ESI_API_URL', 'https://esi.evetech.net/')
 """The URL to the ESI OpenAPI specification."""
 ESI_SPEC_CACHE_DURATION = int(getattr(settings, 'ESI_SPEC_CACHE_DURATION', 3600))
 """The duration, in seconds, to cache the ESI OpenAPI specification."""
@@ -78,3 +79,7 @@ ESI_JWKS_METADATA_URL = (
 ESI_JWKS_ACCEPTED_ISSUERS = ('logineveonline.com', 'https://login.eveonline.com')
 """The accepted issuers to use when validating JWT tokens."""
 ESI_JWKS_METADATA_CACHE_TIME = 300
+
+# Cache Settings
+ESI_CACHE_RESPONSE = getattr(settings, 'ESI_CACHE_RESPONSE', True)
+"""Disable to stop caching endpoint responses."""
