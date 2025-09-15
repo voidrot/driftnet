@@ -121,13 +121,15 @@ class Token(models.Model):
 
         decoded_token_data = Token.get_token_data(token_data.get('access_token'))
 
-        logger.debug(f'Token refresh response: {decoded_token_data}')
+        logger.debug('Token refresh response: %s', decoded_token_data)
 
         if token_data is not None and decoded_token_data is not None:
             if self.character_owner_hash != decoded_token_data.get('owner'):
                 logger.warning(
-                    f'Owner hash mismatch for token {self.pk}: '
-                    f'{self.character_owner_hash} != {decoded_token_data.get("owner")}'
+                    'Owner hash mismatch for token %s: %s != %s',
+                    self.pk,
+                    self.character_owner_hash,
+                    decoded_token_data.get('owner'),
                 )
                 raise TokenNotRefreshableError
 
@@ -144,12 +146,16 @@ class Token(models.Model):
             self.refresh()
         except TokenError:
             logger.info(
-                f'Deleting token for character (ID: {self.character_id}) {self.character_name}'
+                'Deleting token for character (ID: %s) %s',
+                self.character_id,
+                self.character_name,
             )
             self.delete()
         else:
             logger.info(
-                f'Refreshed token for character (ID: {self.character_id}) {self.character_name}'
+                'Refreshed token for character (ID: %s) %s',
+                self.character_id,
+                self.character_name,
             )
 
     @classmethod

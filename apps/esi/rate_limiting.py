@@ -45,12 +45,12 @@ class ESIRateLimiter:
     def get_timeout(
         self, bucket: ESIRateLimitBucket, raise_on_limit: bool = True
     ) -> int:
-        curent_bucket = self.get_bucket(bucket)
-        if curent_bucket <= 0:
+        current_bucket = self.get_bucket(bucket)
+        if current_bucket <= 0:
             timeout = cache.ttl(self._slug_to_key(bucket.slug)) + 1
             msg = (
                 f"Rate limit for bucket '{bucket.slug}' exceeded: "
-                f'{curent_bucket}/{bucket.limit} in last {bucket.window}s. '
+                f'{current_bucket}/{bucket.limit} in last {bucket.window}s. '
                 f'Wait {timeout}s.'
             )
             if raise_on_limit:
