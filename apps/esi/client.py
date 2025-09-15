@@ -66,6 +66,8 @@ def _time_to_expire(expires_header: str) -> int:
     """
     try:
         expires_dt = datetime.strptime(str(expires_header), '%a, %d %b %Y %H:%M:%S %Z')
+        if expires_dt.tzinfo is None:
+            expires_dt = expires_dt.replace(tzinfo=UTC)
         return max(int((expires_dt - datetime.now(tz=UTC)).total_seconds()), 0)
     except ValueError:
         return 0
