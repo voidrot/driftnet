@@ -30,7 +30,7 @@ urlpatterns = [
     path('help/', TemplateView.as_view(template_name='help.html'), name='help'),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('users/', include('apps.users.urls')),
+    path('users/', include('apps.users.urls', namespace='users')),
 ]
 
 if settings.DEBUG:
