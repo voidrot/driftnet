@@ -1,6 +1,6 @@
 import base64
 import logging
-import random
+import secrets
 import string
 from urllib.parse import urlencode
 
@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 def generate_sso_redirect(scopes: str | list[str], return_to: str) -> tuple[str, str]:
     if isinstance(scopes, list):
         scopes = ' '.join(scopes)
-    state = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
+    state = secrets.token_urlsafe(16)
     params = {
         'response_type': 'code',
         'redirect_uri': settings.ESI_SSO_CALLBACK_URL,

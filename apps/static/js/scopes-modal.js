@@ -52,14 +52,16 @@
   // Add Character button logic
   if (addCharacterBtn) {
     addCharacterBtn.addEventListener('click', function() {
-      // Find all checked scopes
-      const checked = document.querySelectorAll('input[name="scopes"]:checked');
+      // Only collect checked scopes from the modal
+      const modal = document.getElementById('scopesModal');
+      const checked = modal ? modal.querySelectorAll('input[name="scopes"]:checked') : [];
       const scopes = Array.from(checked).map(cb => cb.value);
       const baseUrl = addCharacterBtn.getAttribute('data-redirect-url');
       const returnUrl = addCharacterBtn.getAttribute('data-return-url');
       const url = new URL(baseUrl, window.location.origin);
-      if (scopes.length > 0) {
-        url.searchParams.set('scopes', scopes.join(' '));
+      // Always send scopes param (empty string if none)
+      url.searchParams.set('scopes', scopes.join(' '));
+      if (returnUrl) {
         url.searchParams.set('return_to', returnUrl);
       }
       window.location.href = url.toString();
