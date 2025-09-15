@@ -107,7 +107,7 @@ class Command(BaseCommand):
             f.write('# flake8: noqa=E501\n')
             f.write('# Auto Generated do not edit\n')
             # Python Imports
-            f.write('from typing import Any, Optional\n\n')
+            f.write('from typing import Any\n\n')
             f.write('from esi.openapi_clients import ESIClientOperation\n')
             f.write('from esi.models import Token\n\n\n')
 
@@ -119,6 +119,7 @@ class Command(BaseCommand):
                 # result(), Results(), Results_Localized() etc. all live here
                 ops = stub_api._operationindex._tags[tag]
                 for nm, op in sorted(ops._operations.items()):
+                    op_type = op[0]
                     op_obj = op[2]
                     docstring = (
                         (op_obj.description or op_obj.summary or '')
@@ -129,11 +130,21 @@ class Command(BaseCommand):
 
                     response_type = 'Any'
                     try:
-                        resp_200 = op_obj.responses.get('200')
-                        if resp_200 and 'application/json' in resp_200.content:  # pyright: ignore[reportAttributeAccessIssue]
-                            response_type = schema_to_type(
-                                resp_200.content['application/json'].schema_  # pyright: ignore[reportAttributeAccessIssue]
-                            )
+                        match op_type:
+                            case 'post':
+                                resp_201 = op_obj.responses.get('201')
+                                if resp_201 and 'application/json' in resp_201.content:
+                                    response_type = schema_to_type(
+                                        resp_201.content['application/json'].schema_
+                                    )
+                            case 'put' | 'delete':
+                                response_type = 'None'
+                            case _:
+                                resp_200 = op_obj.responses.get('200')
+                                if resp_200 and 'application/json' in resp_200.content:
+                                    response_type = schema_to_type(
+                                        resp_200.content['application/json'].schema_
+                                    )
                     except Exception:
                         response_type = 'Any'
 
@@ -145,9 +156,12 @@ class Command(BaseCommand):
 
                     if op_class_name not in operation_classes:
                         f.write(f'class {op_class_name}(ESIClientOperation):\n')
-                        f.write(
-                            '    """ESIClientOperation, use result(), results() or results_localized()"""\n'
-                        )
+                        if response_type != 'None':
+                            f.write(
+                                '    """EsiOperation, use result(), results() or results_localized()"""\n'
+                            )
+                        else:
+                            f.write('    """EsiOperation, use result()"""\n')
 
                         # result()
                         f.write(
@@ -156,19 +170,25 @@ class Command(BaseCommand):
                         f.write(f'        """{docstring}"""\n') if docstring else None
                         f.write('        ...\n\n')
 
-                        # results()
-                        f.write(
-                            f'    def results(self, etag: str | None = None, return_response: bool = False, use_cache: bool = True, **extra) -> {results_type}:\n'
-                        )
-                        f.write(f'        """{docstring}"""\n') if docstring else None
-                        f.write('        ...\n\n')
+                        if response_type != 'None':
+                            # We only need the extra utility functions if its actually an endpoint that returns data
+                            # results()
+                            f.write(
+                                f'    def results(self, etag: str | None = None, return_response: bool = False, use_cache: bool = True, **extra) -> {results_type}:\n'
+                            )
+                            f.write(
+                                f'        """{docstring}"""\n'
+                            ) if docstring else None
+                            f.write('        ...\n\n')
 
-                        # results_localized()
-                        f.write(
-                            f"    def results_localized(self, languages: str | list[str] = 'en', **kwargs) -> {results_type}:\n"
-                        )
-                        f.write(f'        """{docstring}"""\n') if docstring else None
-                        f.write('        ...\n\n\n')
+                            # results_localized()
+                            f.write(
+                                f'    def results_localized(self, languages: list[str] | str | None = None, **extra) -> dict[str, {results_type}]:\n'
+                            )
+                            f.write(
+                                f'        """{docstring}"""\n'
+                            ) if docstring else None
+                            f.write('        ...\n\n\n')
 
                         operation_classes[op_class_name] = True
 
@@ -199,6 +219,11 @@ class Command(BaseCommand):
 
                     params = ['self']
                     optional_params = []
+                    if getattr(op_obj, 'requestBody', None):
+                        params.append(
+                            f'body: {schema_to_type(op_obj.requestBody.content["application/json"].schema_)}'
+                        )
+
                     for p in getattr(op_obj, 'parameters', []):
                         required = getattr(p, 'required', False)
                         schema_type_value = getattr(
@@ -210,7 +235,7 @@ class Command(BaseCommand):
                             param_type = 'Any'
                         default = ''
                         if not required:
-                            param_type = f'Optional[{param_type}]'
+                            param_type = f'{param_type} | None'
                             default = ' = ...'
                         param_name = p.name.replace('-', '_')
                         if param_name == 'authorization' and needs_oauth:

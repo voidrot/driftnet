@@ -1,6 +1,61 @@
 from aiopenapi3.plugin import Document
 
 
+class Trim204ContentType(Document):
+    """
+    Removes and content-type from responses on a 204 reponses
+    A 204 never has content...
+    """
+
+    def parsed(self, ctx: Document.Context) -> Document.Context:
+        spec = ctx.document
+        # Patch all paths
+        for path_item in spec.get('paths', {}).values():
+            for method_name in (
+                'get',
+                'post',
+                'put',
+                'delete',
+                'patch',
+                'options',
+                'head',
+            ):
+                method = path_item.get(method_name)
+                if not method:
+                    continue
+                if '204' in method['responses']:
+                    method['responses']['204'].pop('content', [])
+        return ctx
+
+
+class Add304ContentType(Document):
+    """
+    Adds 304 content-type to responses
+    A 304 never has content. ESI defualt has application/json
+    This is a hack for now
+    """
+
+    def parsed(self, ctx: Document.Context) -> Document.Context:
+        spec = ctx.document
+        # Patch all paths
+        for path_item in spec.get('paths', {}).values():
+            for method_name in (
+                'get',
+                'post',
+                'put',
+                'delete',
+                'patch',
+                'options',
+                'head',
+            ):
+                method = path_item.get(method_name)
+                if not method:
+                    continue
+                if '304' not in method['responses']:
+                    method['responses']['304'] = {'description': 'Not Modified'}
+        return ctx
+
+
 class RemoveSecurityParameter(Document):
     """
     Removes the whole OAuth2 securityScheme
