@@ -15,15 +15,17 @@ def _get_war_details(war_id: int) -> None:
 
     logger.debug(f'Fetched war details: {res}')
 
-    War(
+    War.objects.update_or_create(
         id=war_id,
-        declared=res.declared,
-        started=res.started,
-        finished=res.finished,
-        mutual=res.mutual,
-        open_for_allies=res.open_for_allies,
-        retracted=res.retracted,
-        aggressor=dict(res.aggressor),
-        allies=[dict(ally) for ally in res.allies] if res.allies else [],
-        defender=dict(res.defender),
-    ).save()
+        defaults={
+            'declared': res.declared,
+            'started': res.started,
+            'finished': res.finished,
+            'mutual': res.mutual,
+            'open_for_allies': res.open_for_allies,
+            'retracted': res.retracted,
+            'aggressor': dict(res.aggressor),
+            'allies': [dict(ally) for ally in res.allies] if res.allies else [],
+            'defender': dict(res.defender),
+        }
+    )

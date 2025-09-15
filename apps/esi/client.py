@@ -573,12 +573,9 @@ class ESIClientProvider:
     Class to provide a single point of access to the ESI API client.
     """
 
-    _client: ESIClient | None = None
-
     def __init__(self, **kwargs) -> None:
         self._kwargs = kwargs
-        if not self._client:
-            self._client = None  # making linters happy
+        self._client: ESIClient | None = None
 
     @property
     def client(self) -> ESIClient:

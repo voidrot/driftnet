@@ -56,7 +56,7 @@ ESI_APP_UA_VERSION = getattr(settings, 'ESI_APP_UA_VERSION', '0.0.1')
 """The version of the application to use in the User-Agent header."""
 ESI_APP_UA_URL = getattr(settings, 'ESI_APP_UA_URL', None)
 """The URL of the application to use in the User-Agent header."""
-ESI_APP_UA_EMAIL = getattr(settings, 'ESI_APP_UA_EMAIL', 'bbrady145@gmail.com')
+ESI_APP_UA_EMAIL = getattr(settings, 'ESI_APP_UA_EMAIL', None)
 """The email of the application to use in the User-Agent header."""
 
 # Token Settings
