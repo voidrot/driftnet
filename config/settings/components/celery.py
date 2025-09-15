@@ -58,4 +58,10 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'apps.esi.tasks.cleanup_token_subset',
         'schedule': crontab(minute='0', hour='*/1'),
     },
+    # Server Status Jobs
+    'server_status_query': {
+        'task': 'apps.server_status.tasks.fetch_server_status',
+        'schedule': 30.0,  # every 30 seconds
+    },
+    # Wars Jobs
 }
