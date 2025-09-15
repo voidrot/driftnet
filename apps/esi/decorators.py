@@ -75,7 +75,7 @@ def tokens_required(scopes='', new=False):
                 # collect tokens in db, check if still valid, return if any
                 tokens = (
                     Token.objects.filter(user__pk=request.user.pk)
-                    .require_scopes(scopes)
+                    .require_scopes(scopes)  # pyright: ignore[reportAttributeAccessIssue]
                     .require_valid()
                 )
                 if tokens.exists():
@@ -93,7 +93,7 @@ def tokens_required(scopes='', new=False):
                 request.user,
                 request.session.session_key[:5],
             )
-            from esi.views import sso_redirect
+            from apps.esi.views import sso_redirect
 
             return sso_redirect(request, scopes=scopes)
 
@@ -143,7 +143,7 @@ def token_required(scopes='', new=False):
                         if (
                             (token.user and token.user == request.user)
                             or not token.user
-                        ) and Token.objects.filter(pk=token_pk).require_scopes(
+                        ) and Token.objects.filter(pk=token_pk).require_scopes(  # pyright: ignore[reportAttributeAccessIssue]
                             scopes
                         ).require_valid().exists():
                             logger.debug(
@@ -159,14 +159,14 @@ def token_required(scopes='', new=False):
                 # present the user with token choices
                 tokens = (
                     Token.objects.filter(user__pk=request.user.pk)
-                    .require_scopes(scopes)
+                    .require_scopes(scopes)  # pyright: ignore[reportAttributeAccessIssue]
                     .require_valid()
                 )
                 if tokens.exists():
                     logger.debug(
                         'Returning list of available tokens for %s.', request.user
                     )
-                    from esi.views import select_token
+                    from apps.esi.views import select_token
 
                     return select_token(request, scopes=scopes, new=new)
                 logger.debug(
@@ -182,7 +182,7 @@ def token_required(scopes='', new=False):
                 request.user,
                 request.session.session_key[:5],
             )
-            from esi.views import sso_redirect
+            from apps.esi.views import sso_redirect
 
             return sso_redirect(request, scopes=scopes)
 
@@ -214,7 +214,7 @@ def single_use_token(scopes='', new=False):
             logger.debug(
                 'Redirecting session %s to SSO.', request.session.session_key[:5]
             )
-            from esi.views import sso_redirect
+            from apps.esi.views import sso_redirect
 
             return sso_redirect(request, scopes=scopes)
 
