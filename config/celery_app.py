@@ -15,6 +15,17 @@ app = Celery('voidlink')
 #   should have a `CELERY_` prefix.
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
+# Configure separate queues so we can use rate limiting to avoid
+# hitting API limits.
+# app.conf.task_queues = {
+#     Queue('default', Exchange('default'), routing_key='default'),
+#     Queue('esi', Exchange('esi'), routing_key='esi'),
+# }
+
+# app.conf.task_default_queue = 'default'
+# app.conf.task_default_exchange_type = 'direct'
+# app.conf.task_default_routing_key = 'default' # pyright: ignore[reportAttributeAccessIssue]
+
 
 @setup_logging.connect
 def config_loggers(*args, **kwargs):
