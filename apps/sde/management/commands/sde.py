@@ -57,6 +57,7 @@ from apps.sde.models.skins import Skin
 from apps.sde.models.solar_systems import SolarSystem
 from apps.sde.models.sovereignty_upgrades import SovereigntyUpgrade
 from apps.sde.models.sta_stations import StaStation
+from apps.sde.models.stars import Star
 from apps.sde.models.station_operations import StationOperation
 from apps.sde.models.station_services import StationService
 from apps.sde.models.tournament_rule_sets import TournamentRuleSet
@@ -2421,6 +2422,7 @@ class Command(BaseCommand):
         planet_records = []
         moon_records = []
         asteroid_belt_records = []
+        star_records = []
         try:
             for solar_system_file in solar_system_files:
                 json_file = solar_system_file.with_suffix('.json')
@@ -2459,6 +2461,17 @@ class Command(BaseCommand):
                                 )
                             ]
                         )
+                        # load star data
+                        star = data.get('star', None)
+                        if star:
+                            star_records.append(
+                                Star(
+                                    id=star.get('id'),
+                                    radius=star.get('radius'),
+                                    statistics=star.get('statistics'),
+                                    type_id=star.get('typeID'),
+                                )
+                            )
                         # load planet data
                         planets = data.get('planets', {})
                         for pk, pv in planets.items():
@@ -2540,6 +2553,16 @@ class Command(BaseCommand):
                     'wormhole_class_id',
                 ],
                 unique_fields=['solar_system_id'],
+            )
+            Star.objects.bulk_create(
+                star_records,
+                update_conflicts=True,
+                update_fields=[
+                    'radius',
+                    'statistics',
+                    'type_id',
+                ],
+                unique_fields=['id'],
             )
             Planet.objects.bulk_create(
                 planet_records,
