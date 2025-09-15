@@ -121,13 +121,18 @@ class TokenManager(models.Manager['Token']):  # pyright: ignore[reportUndefinedV
         token = exchange_code_for_token(code)
 
         access_token = token.get('access_token', None)
-        if not access_token:
+        if access_token:
+            # Validate that token is valid
+            if not validate_jwt_token(access_token):
+                msg = 'Access token returned from SSO is invalid'
+                raise ValueError(msg)
+        else:
             msg = 'No access token returned from SSO'
             raise ValueError(msg)
 
         token_data = validate_jwt_token(access_token)
         logger.debug('Token data: %s', token_data)
-        token_detail = token_data.get('sub').split(':')
+        token_detail = token_data.get('sub', '').split(':')
 
         model = self.create(
             character_id=int(token_detail[2]),
