@@ -27,5 +27,5 @@ def _get_war_details(war_id: int) -> None:
             'aggressor': dict(res.aggressor),
             'allies': [dict(ally) for ally in res.allies] if res.allies else [],
             'defender': dict(res.defender),
-        }
+        },
     )
