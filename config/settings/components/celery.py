@@ -64,4 +64,17 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': 30.0,  # every 30 seconds
     },
     # Wars Jobs
+    'get_wars': {  # This will queue up jobs to get ware info and killmails for active wars
+        'task': 'apps.wars.tasks.get_wars',
+        'schedule': crontab(minute='0', hour='*/1'),  # every hour
+    },
+    # Alliance Jobs
+    'get_alliance_list': {
+        'task': 'apps.alliance.tasks.get_alliance_list',
+        'schedule': crontab(minute='0', hour='*/1'),  # every hour
+    },
+    'get_alliance_icons': {
+        'task': 'apps.alliance.tasks.get_alliance_icons',
+        'schedule': crontab(minute='5', hour='11'),  # every day at 11:05 UTC
+    },
 }
