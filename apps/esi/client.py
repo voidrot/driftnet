@@ -275,10 +275,10 @@ class BaseESIClientOperation:
             cache.set(
                 f'{cache_key}:etag',
                 response.headers['ETag'],
-                timeout=(_time_to_expire(expires) * 1.5) if expires else 86400,
+                timeout=(_time_to_expire(expires) * 2) if expires else 86400,
             )
 
-        ttl = _time_to_expire(expires) if expires else 0
+        ttl = _time_to_expire(expires) * 2 if expires else 0
         if ttl > 0:
             try:
                 cache.set(f'{cache_key}:data', response, ttl)
@@ -401,13 +401,6 @@ class ESIClientOperation(BaseESIClientOperation):
         if not etag and not disable_etag and ESI_CACHE_RESPONSE:
             etag = cache.get(etag_key)
 
-        # # make sure that we skip trying to get a cache response if
-        # # the cache is disabled for the request
-        # if not use_cache or (not is_retry and disable_etag):
-        #     headers, data, response = self._get_cache(cache_key, etag=etag)
-        # else:
-        #     headers, data, response = None, None, None
-
         headers, data, response = (
             self._get_cache(cache_key, etag=etag)
             if use_cache and (not is_retry or not disable_etag)
@@ -415,7 +408,7 @@ class ESIClientOperation(BaseESIClientOperation):
         )
 
         if response and use_cache:
-            expires = _time_to_expire(str(headers.get('Expires')))  # pyright: ignore[reportOptionalMemberAccess]
+            expires = _time_to_expire(str(headers.get('Expires')))
             if expires < 0:
                 logger.warning('cache expired by %d seconds, Forcing expiry', expires)
                 response = None
@@ -430,38 +423,63 @@ class ESIClientOperation(BaseESIClientOperation):
                     reset = response.headers.get('X-RateLimit-Reset', None)
                     cache.set('esi_error_limit_reset', reset, timeout=reset)
                     raise ESIErrorLimitExceptionError(reset=reset)
+                if response.status_code == 304:
+                    # Not modified, use cached data and reset TTL
+                    logger.debug(
+                        'Received 304 Not Modified, using cached data and resetting TTL'
+                    )
+                    cached_headers, cached_data, cached_response = self._get_cache(
+                        cache_key, etag=etag
+                    )
+                    if cached_response:
+                        expires = response.headers.get('Expires')
+                        ttl = _time_to_expire(expires) if expires else 0
+                        try:
+                            cache.set(f'{cache_key}:data', cached_response, ttl)
+                            logger.debug(
+                                'Reset TTL for cached response with key %s for %ss',
+                                cache_key,
+                                ttl,
+                            )
+                        except Exception:
+                            logger.exception(
+                                'Error resetting TTL for cache key %s', cache_key
+                            )
+                        return (
+                            (cached_data, cached_response)
+                            if return_response
+                            else cached_data
+                        )
+                    if not cached_response and not is_retry:
+                        logger.debug(
+                            'Received 304 but no cached response found, forcing refetch without ETag'
+                        )
+                        return self.result(
+                            etag=None,
+                            return_response=return_response,
+                            use_cache=use_cache,
+                            is_retry=True,
+                            disable_etag=True,
+                            **extra,
+                        )
+                    if not cached_response and is_retry:
+                        logger.debug(
+                            'Received 304 but no cached response found on retry, raising 304'
+                        )
+                        raise HTTPNotModified(
+                            status_code=304,
+                            headers=response.headers,
+                        )
                 if ESI_CACHE_RESPONSE and use_cache:
                     self._store_cache(cache_key, response)
             except base_HTTPServerError as e:
                 raise HTTPServerError(
                     status_code=e.status_code, headers=e.headers, data=e.data
                 ) from e
-
             except base_HTTPClientError as e:
                 raise HTTPClientError(
                     status_code=e.status_code, headers=e.headers, data=e.data
                 ) from e
-            if response.status_code == 304:
-                # Not modified, use cached data
-                logger.debug('Received 304 Not Modified, using cached data')
-                headers, data, response = self._get_cache(cache_key, etag=etag)
-                if not response and not is_retry:
-                    logger.debug(
-                        'Received 304 but no cached response found, forcing refetch without ETag'
-                    )
-                    return self.result(
-                        etag=None,
-                        return_response=return_response,
-                        use_cache=use_cache,
-                        is_retry=True,
-                        disable_etag=True,
-                        **extra,
-                    )
-                if not response and is_retry:
-                    raise HTTPNotModified(
-                        status_code=304,
-                        headers=response.headers,  # pyright: ignore[reportAttributeAccessIssue]
-                    )
 
         return (data, response) if return_response else data
 

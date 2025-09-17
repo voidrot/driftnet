@@ -24,7 +24,7 @@ dependencies = [
     "flower>=2.0.1",
     "gunicorn>=23.0.0",
     "hiredis>=3.2.1",
-    "httpx>=0.28.1",
+    "httpx[http2]>=0.28.1",
     "httpx-auth>=0.23.1",
     "inflect>=7.5.0",
     "pillow>=11.3.0",
@@ -38,6 +38,7 @@ dependencies = [
     "uvicorn-worker>=0.3.0",
     "uvicorn[standard]>=0.35.0",
     "whitenoise[brotli]>=6.9.0",
+    "h2>=4.3.0",
 ]
 
 [dependency-groups]
