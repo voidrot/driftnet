@@ -59,8 +59,8 @@ COPY ./docker/local/start-beat.sh /start-celerybeat
 RUN sed -i 's/\r$//g' /start-celerybeat
 RUN chmod +x /start-celerybeat
 
-COPY ./docker/local/start-flower.sh /start-flower
-RUN sed -i 's/\r$//g' /start-flower
-RUN chmod +x /start-flower
+COPY ./docker/local/start-flower.sh /start-celeryflower
+RUN sed -i 's/\r$//g' /start-celeryflower
+RUN chmod +x /start-celeryflower
 
 ENTRYPOINT ["/entrypoint"]

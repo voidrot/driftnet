@@ -12,4 +12,4 @@ done
 echo 'Starting flower'
 
 
-watchmedo auto-restart --directory=./apps --directory=./config --pattern=*.py --recursive -- celery -A config.celery_app -b redis://redis:6379 flower --port=5555
+celery -A config.celery_app --broker=redis://redis:6379/5 flower --port=5555 --address='0.0.0.0'
