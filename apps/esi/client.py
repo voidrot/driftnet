@@ -12,8 +12,8 @@ from aiopenapi3.errors import HTTPClientError as base_HTTPClientError
 from aiopenapi3.errors import HTTPServerError as base_HTTPServerError
 from aiopenapi3.request import OperationIndex
 from aiopenapi3.request import RequestBase
-from django.conf import settings
-from django.core.cache import caches, CacheHandler
+from django.core.cache import CacheHandler
+from django.core.cache import caches
 from httpx import Client
 from httpx import HTTPStatusError
 from httpx import RequestError
@@ -49,7 +49,6 @@ from .app_settings import ESI_COMPATIBILITY_DATE
 from .app_settings import ESI_OPENAPI_URL
 from .models import Token
 
-from redis import Redis
 # import pickle
 
 logger = logging.getLogger(__name__)
@@ -273,10 +272,7 @@ class BaseESIClientOperation:
         if 'etag' in response.headers:
             # Setting ETag to 3x the Expires time to allow for some leeway and to make sure that we dont keep a bunch
             # of useless etags around if we are not making the requests
-            self._cache.set(
-                f'{cache_key}:etag',
-                response.headers.get('etag')
-            )
+            self._cache.set(f'{cache_key}:etag', response.headers.get('etag'))
 
         try:
             # self._cache.set(f'{cache_key}:data', pickle.dumps(response))

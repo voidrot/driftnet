@@ -17,7 +17,7 @@ build:
 # up: Start up containers.
 up:
     @echo "Starting up containers..."
-    @docker compose up -d --remove-orphans --build --quiet-build postgres redis mailpit app celery-beat celery-worker-default celery-flower
+    @docker compose up -d --remove-orphans --build --quiet-build postgres redis mailpit
 
 celery-up +target:
     @echo "Starting up containers with Celery..."
