@@ -75,6 +75,6 @@ CELERY_BEAT_SCHEDULE = {
     },
     'get_alliance_icons': {
         'task': 'apps.alliance.tasks.get_alliance_icons',
-        'schedule': crontab(minute='5', hour='11'),  # every day at 11:05 UTC
+        'schedule': crontab(minute='45', hour='11'),  # every day at 11:45 UTC
     },
 }

@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from config.env import env
 from config.env import BASE_DIR
+from config.env import env
 
 # SDE
 SDE_WORKSPACE = Path(BASE_DIR / '.sde_workspace')
