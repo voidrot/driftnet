@@ -22,7 +22,7 @@ up:
 celery-up +target:
     @echo "Starting up containers with Celery..."
     @just up
-    @docker compose up -d --remove-orphans --build --quiet-build celery-worker-{{target}}
+    @docker compose up -d --remove-orphans --build --quiet-build postgres redis mailpit app celery-beat celery-worker-default celery-flower celery-worker-{{target}}
 
 celery-down +target:
     @echo "Stopping Celery worker {{target}}..."
