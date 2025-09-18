@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from config.env import env
 from config.env import BASE_DIR
 
 # SDE
@@ -84,3 +85,5 @@ ESI_SCOPES = {
     'esi-corporations.read_fw_stats.v1': 'Allows reading corporation FW stats',
     'esi-corporations.read_projects.v1': 'Allows reading corporation projects',
 }
+
+ESI_REDIS_URL = env('REDIS_ESI_CACHE_URL', default='redis://redis:6379/1')
