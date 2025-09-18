@@ -10,9 +10,13 @@ logger = logging.getLogger(__name__)
 
 @wait_for_esi_errorlimit_reset()
 def _get_alliance_info(alliance_id: int):
-    """Helper function to get alliance info from ESI."""
+    """
+    Fetch alliance info from ESI and update or create the Alliance record.
+
+    Parameters:
+        alliance_id (int): The ID of the alliance to fetch info for.
+    """
     logger.info('Fetching info for alliance ID: %d', alliance_id)
-    # Call the ESI provider to get the alliance info
     op = esi.client.Alliance.GetAlliancesAllianceId(alliance_id=alliance_id)
     res = op.result()
     logger.info('Fetched info for alliance ID: %d', alliance_id)
@@ -33,10 +37,15 @@ def _get_alliance_info(alliance_id: int):
 
 @wait_for_esi_errorlimit_reset()
 def _get_alliance_icon(alliance_id: int) -> None:
+    """
+    Fetch alliance icon data from ESI and update or create the AllianceIcon record.
+
+    Parameters:
+        alliance_id (int): The ID of the alliance to fetch icon data for.
+    """
     logger.info('Fetching icons for alliance ID: %d', alliance_id)
-    # Call the ESI provider to get the alliance icons
     op = esi.client.Alliance.GetAlliancesAllianceIdIcons(alliance_id=alliance_id)
-    res = op.results()  # Fix: use .results as a property, not a method
+    res = op.results()
     AllianceIcon.objects.update_or_create(
         alliance_id=alliance_id,
         defaults={
