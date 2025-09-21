@@ -37,6 +37,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Ensure uv cache directory exists
+        run: mkdir -p ~/.cache/uv
+
       - name: Cache uv wheels
         uses: actions/cache@v4
         with:
