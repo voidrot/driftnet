@@ -71,10 +71,23 @@ CELERY_BEAT_SCHEDULE = {
     # Alliance Jobs
     'get_alliance_list': {
         'task': 'apps.alliance.tasks.get_alliance_list',
-        'schedule': crontab(minute='0', hour='*/1'),  # every hour
+        'schedule': crontab(minute='5', hour='*/1'),  # every hour
     },
     'get_alliance_icons': {
         'task': 'apps.alliance.tasks.get_alliance_icons',
         'schedule': crontab(minute='45', hour='11'),  # every day at 11:45 UTC
+    },
+    # Corporation Jobs
+    'update_corporation_info': {
+        'task': 'apps.corporation.tasks.update_corporation_info',
+        'schedule': crontab(minute='10', hour='*/1'),  # every hour
+    },
+    'get_corporation_icons': {
+        'task': 'apps.corporation.tasks.get_corporation_icons',
+        'schedule': crontab(minute='15', hour='*/1'),  # every hour
+    },
+    'update_corporation_alliance_history': {
+        'task': 'apps.corporation.tasks.update_corporation_alliance_history',
+        'schedule': crontab(minute='20', hour='*/1'),  # every hour
     },
 }

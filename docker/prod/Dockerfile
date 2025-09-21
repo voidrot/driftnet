@@ -49,10 +49,10 @@ ENV PATH="${APP_HOME}/.venv/bin:$PATH" \
     PYTHONUNBUFFERED=1
 
 COPY ./docker/entrypoint.sh /entrypoint
-COPY ./docker/local/start-app.sh /start-app
-COPY ./docker/local/start-worker.sh /start-celeryworker
-COPY ./docker/local/start-beat.sh /start-celerybeat
-COPY ./docker/local/start-flower.sh /start-celeryflower
+COPY ./docker/prod/start-app.sh /start-app
+COPY ./docker/prod/start-worker.sh /start-celeryworker
+COPY ./docker/prod/start-beat.sh /start-celerybeat
+COPY ./docker/prod/start-flower.sh /start-celeryflower
 
 RUN sed -i 's/\r$//g' /entrypoint && chmod +x /entrypoint \
     && sed -i 's/\r$//g' /start-app && chmod +x /start-app \

@@ -29,7 +29,7 @@ def get_alliance_list() -> None:
 def get_alliance_info(alliance_id: int) -> None:
     """
     Fetch and update info for a specific alliance by ID.
-    
+
     Parameters:
         alliance_id (int): The ID of the alliance to fetch info for.
     """
@@ -40,13 +40,14 @@ def get_alliance_info(alliance_id: int) -> None:
 def get_alliance_corporations(alliance_id: int) -> None:
     """
     Fetch and log the corporations for a specific alliance by ID.
-    
+
     Parameters:
         alliance_id (int): The ID of the alliance to fetch corporations for.
     """
     logger.info('Fetching corporations for alliance ID: %d', alliance_id)
     op = esi.client.Alliance.GetAlliancesAllianceIdCorporations(alliance_id=alliance_id)
     res = op.result()
+    # TODO: Call get_corporation_info for each corporation in res
     logger.info('Fetched %d corporations for alliance ID: %d', len(res), alliance_id)
 
 
@@ -57,14 +58,14 @@ def get_alliance_icons() -> None:
     """
     alliances = Alliance.objects.all().values_list('id', flat=True)
     for alliance_id in alliances:
-        get_alliance_icon.delay(kwargs={'alliance_id': alliance_id})
+        get_alliance_icon.delay(alliance_id)
 
 
 @shared_task(rate_limit='30/m')
 def get_alliance_icon(alliance_id: int) -> None:
     """
     Fetch and update the icon for a specific alliance by ID.
-    
+
     Parameters:
         alliance_id (int): The ID of the alliance to fetch the icon for.
     """
