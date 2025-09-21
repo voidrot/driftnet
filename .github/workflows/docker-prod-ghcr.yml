@@ -7,8 +7,12 @@ on:
     paths:
       - 'docker/prod/**'
       - 'apps/**'
+      - 'config/**'
+      - 'assets/**'
       - 'pyproject.toml'
       - 'uv.lock'
+      - 'manage.py'
+      - 'tailwind.css'
       - '.github/workflows/docker-prod-ghcr.yml'
   workflow_dispatch:
 
