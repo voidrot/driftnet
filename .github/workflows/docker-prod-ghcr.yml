@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'docker/prod/Dockerfile'
+      - 'docker/prod/**'
       - 'apps/**'
       - 'pyproject.toml'
       - 'uv.lock'
@@ -55,8 +55,8 @@ jobs:
           file: ${{ env.DOCKERFILE }}
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:prod-${{ github.sha }}
-            ghcr.io/${{ github.repository }}:prod-latest
+            ghcr.io/${{ github.repository }}:${{ github.sha }}
+            ghcr.io/${{ github.repository }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
