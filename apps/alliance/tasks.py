@@ -5,6 +5,7 @@ from celery import shared_task
 from apps.alliance.models import Alliance
 from apps.alliance.operations import _get_alliance_icon
 from apps.alliance.operations import _get_alliance_info
+from apps.corporation.tasks import get_corporation_info
 from apps.shared.providers import esi
 
 logger = logging.getLogger(__name__)
@@ -47,7 +48,8 @@ def get_alliance_corporations(alliance_id: int) -> None:
     logger.info('Fetching corporations for alliance ID: %d', alliance_id)
     op = esi.client.Alliance.GetAlliancesAllianceIdCorporations(alliance_id=alliance_id)
     res = op.result()
-    # TODO: Call get_corporation_info for each corporation in res
+    for corporation_id in res:
+        get_corporation_info.delay(corporation_id)
     logger.info('Fetched %d corporations for alliance ID: %d', len(res), alliance_id)
 
 
