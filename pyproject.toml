@@ -1,0 +1,194 @@
+[project]
+name = "voidlink"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiopenapi3>=0.8.1",
+    "argon2-cffi>=25.1.0",
+    "celery>=5.5.3",
+    "django>=5.2.6",
+    "django-allauth>=65.11.2",
+    "django-celery-beat>=2.8.1",
+    "django-celery-results>=2.6.0",
+    "django-csp>=4.0",
+    "django-daisy>=1.1.1",
+    "django-redis>=6.0.0",
+    "django-split-settings>=1.3.2",
+    "django-tailwind-cli>=4.4.0",
+    "environs>=14.3.0",
+    "fido2>=2.0.0",
+    "flower>=2.0.1",
+    "gunicorn>=23.0.0",
+    "h2>=4.3.0",
+    "hiredis>=3.2.1",
+    "httpx[http2]>=0.28.1",
+    "psycopg[binary,pool]>=3.2.10",
+    "python-jose[cryptography]>=3.5.0",
+    "redis[hiredis]>=6.4.0",
+    "sentry-sdk>=2.38.0",
+    "tenacity>=9.1.2",
+    "uvicorn-worker>=0.4.0",
+    "uvicorn[standard]>=0.36.0",
+    "whitenoise[brotli]>=6.11.0",
+]
+
+[dependency-groups]
+dev = [
+    "django-debug-toolbar>=6.0.0",
+    "django-stubs[compatible-mypy]>=5.2.5",
+    "django-zeal>=2.0.4",
+    "djlint>=1.36.4",
+    "flake8-in-file-ignores>=0.3.0",
+    "mypy>=1.18.2",
+    "playwright>=1.55.0",
+    "pre-commit>=4.3.0",
+    "pytest>=8.4.2",
+    "pytest-django>=4.11.1",
+    "pytest-playwright>=0.7.1",
+    "pytest-sugar>=1.1.1",
+    "ruff>=0.13.1",
+    "watchdog>=6.0.0",
+    "watchfiles>=1.1.0",
+    "werkzeug[watchdog]>=3.1.3",
+]
+
+# ==== mypy ====
+[tool.mypy]
+python_version = "3.12"
+check_untyped_defs = true
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+plugins = [
+    "mypy_django_plugin.main",
+]
+
+[[tool.mypy.overrides]]
+# Django migrations should not produce any errors:
+module = "*.migrations.*"
+ignore_errors = true
+
+[tool.django-stubs]
+django_settings_module = "config.settings"
+
+# ==== djLint ====
+[tool.djlint]
+blank_line_after_tag = "load,extends"
+close_void_tags = true
+format_css = true
+format_js = true
+# TODO: remove T002 when fixed https://github.com/djlint/djLint/issues/687
+ignore = "H006,H030,H031,T002"
+include = "H017,H035"
+indent = 2
+max_line_length = 119
+profile = "django"
+
+[tool.djlint.css]
+indent_size = 2
+
+[tool.djlint.js]
+indent_size = 2
+
+# ==== ruff ====
+[tool.ruff.lint]
+fixable = ["ALL"]
+unfixable = []
+select = [
+  "F",
+  "E",
+  "W",
+  "C90",
+  "I",
+  "N",
+  "UP",
+  "YTT",
+  # "ANN", # flake8-annotations: we should support this in the future but 100+ errors atm
+  "ASYNC",
+  "S",
+  "BLE",
+  "FBT",
+  "B",
+  "A",
+  "COM",
+  "C4",
+  "DTZ",
+  "T10",
+  "DJ",
+  "EM",
+  "EXE",
+  "FA",
+  'ISC',
+  "ICN",
+  "G",
+  'INP',
+  'PIE',
+  "T20",
+  'PYI',
+  'PT',
+  "Q",
+  "RSE",
+  "RET",
+  "SLF",
+  "SLOT",
+  "SIM",
+  "TID",
+  "TC",
+  "INT",
+  # "ARG", # Unused function argument
+  "PTH",
+  "ERA",
+  "PD",
+  "PGH",
+  "PL",
+  "TRY",
+  "FLY",
+  # "NPY",
+  # "AIR",
+  "PERF",
+  # "FURB",
+  # "LOG",
+  "RUF",
+]
+ignore = [
+  "S101", # Use of assert detected https://docs.astral.sh/ruff/rules/assert/
+  "RUF012", # Mutable class attributes should be annotated with `typing.ClassVar`
+  "SIM102", # sometimes it's better to nest
+#   "UP038", # Checks for uses of isinstance/issubclass that take a tuple
+#           # of types for comparison.
+#           # Deactivated because it can make the code slow:
+#           # https://github.com/astral-sh/ruff/issues/7871
+  "COM812",
+  "DJ008",
+  "E501",
+  "G004",
+  "DJ001",
+  "FBT002",
+  "FBT001"
+]
+# The fixes in extend-unsafe-fixes will require
+# provide the `--unsafe-fixes` flag when fixing.
+extend-unsafe-fixes = [
+#   "UP038",
+]
+extend-select = ["I"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+known-first-party = ["apps", "config"]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+line-ending = "auto"
+docstring-code-format = true
+
+[tool.ruff.lint.per-file-ignores]
+"apps/esi/client.py" = ["SLF001"]
+"apps/esi/management/commands/gen_client_stubs.py" = ["SLF001"]
