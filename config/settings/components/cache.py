@@ -4,14 +4,14 @@ from environs import validate
 CACHES = {
     'default': {
         'BACKEND': 'django_prometheus.cache.backends.redis.RedisCache',
-        'LOCATION': env(
-            'REDIS_APP_URL', default='redis://redis:6379/0', validate=validate.URL()
+        'LOCATION': env.str(
+            'REDIS_APP_URL', default='redis://redis:6379/0'
         ),
     },
     'esi': {
         'BACKEND': 'django_prometheus.cache.backends.redis.RedisCache',
-        'LOCATION': env(
-            'REDIS_ESI_URL', default='redis://redis:6379/0', validate=validate.URL()
+        'LOCATION': env.str(
+            'REDIS_ESI_URL', default='redis://redis:6379/0'
         ),
         'TIMEOUT': None,
     },

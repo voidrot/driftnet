@@ -76,3 +76,5 @@ STORAGES['dbbackup'] = {
         ),
     },
 }
+
+CONTENT_SECURITY_POLICY = {}

@@ -10,7 +10,7 @@ X_FRAME_OPTIONS = 'DENY'
 
 # === Django CSP Configuration ===
 CONTENT_SECURITY_POLICY = {
-    # "EXCLUDE_URL_PREFIXES": ["/excluded-path/"],
+    "EXCLUDE_URL_PREFIXES": ["/admin/"],
     'DIRECTIVES': {
         'default-src': [SELF, 'cdn.example.net'],
         'frame-ancestors': [SELF],
@@ -20,7 +20,7 @@ CONTENT_SECURITY_POLICY = {
 }
 
 CONTENT_SECURITY_POLICY_REPORT_ONLY = {
-    # "EXCLUDE_URL_PREFIXES": ["/excluded-path/"],
+    "EXCLUDE_URL_PREFIXES": ["/admin/"],
     'DIRECTIVES': {
         'default-src': [NONE],
         'connect-src': [SELF],
