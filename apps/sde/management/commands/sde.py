@@ -2516,7 +2516,7 @@ class Command(BaseCommand):
                                     ]
                                 )
                             # load asteroid belt data
-                            asteroid_belt = pv.get('asteroidBelt', {})
+                            asteroid_belt = pv.get('asteroidBelts', {})
                             for ak, av in asteroid_belt.items():
                                 asteroid_belt_records.extend(
                                     [
