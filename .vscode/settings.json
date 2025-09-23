@@ -1,5 +1,9 @@
 {
     "terminal.integrated.env.linux": {
         "PYTHONDONTWRITEBYTECODE": "1"
-    }
+    },
+    "cSpell.words": [
+        "postrun",
+        "prerun"
+    ]
 }
