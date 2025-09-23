@@ -301,3 +301,4 @@ pyrightconfig.json
 
 .django_tailwind_cli
 .sde_workspace
+playwright/.auth

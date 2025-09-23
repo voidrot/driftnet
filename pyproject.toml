@@ -44,11 +44,13 @@ dev = [
     "django-zeal>=2.0.4",
     "djlint>=1.36.4",
     "flake8-in-file-ignores>=0.3.0",
+    "hypothesis>=6.140.2",
     "mypy>=1.18.2",
     "playwright>=1.55.0",
     "pre-commit>=4.3.0",
     "pytest>=8.4.2",
     "pytest-django>=4.11.1",
+    "pytest-env>=1.1.5",
     "pytest-playwright>=0.7.1",
     "pytest-sugar>=1.1.1",
     "ruff>=0.13.1",
@@ -56,6 +58,24 @@ dev = [
     "watchfiles>=1.1.0",
     "werkzeug[watchdog]>=3.1.3",
 ]
+
+# ==== pytest ====
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--reuse-db --import-mode=importlib"
+python_files = [
+    "tests.py",
+    "*_tests.py",
+    "test_*.py",
+]
+DJANGO_SETTINGS_MODULE = "config.settings"
+env = [
+  "DJANGO_ALLOW_ASYNC_UNSAFE=true",
+  "DJANGO_ENV=testing",
+  "DJANGO_SETTINGS_MODULE=config.settings"
+]
+testpaths = "apps"
+markers = ["playwright: mark tests as Playwright end-to-end tests"]
 
 # ==== mypy ====
 [tool.mypy]
