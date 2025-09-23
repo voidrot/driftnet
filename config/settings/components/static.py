@@ -1,4 +1,5 @@
-from config.settings.components.common import APPS_DIR, BASE_DIR
+from config.settings.components.common import APPS_DIR
+from config.settings.components.common import BASE_DIR
 
 # STATIC
 # ------------------------------------------------------------------------------

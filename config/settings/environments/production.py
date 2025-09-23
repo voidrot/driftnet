@@ -1,5 +1,8 @@
 from environs import env
-from config.settings.components.apps import DJANGO_APPS, PROJECT_APPS, THIRD_PARTY_APPS
+
+from config.settings.components.apps import DJANGO_APPS
+from config.settings.components.apps import PROJECT_APPS
+from config.settings.components.apps import THIRD_PARTY_APPS
 
 DEBUG = False
 

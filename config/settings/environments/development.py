@@ -1,11 +1,12 @@
 from environs import env
 
-from config.settings.components.apps import DJANGO_APPS, THIRD_PARTY_APPS, PROJECT_APPS
+from config.settings.components.apps import DJANGO_APPS
+from config.settings.components.apps import PROJECT_APPS
+from config.settings.components.apps import THIRD_PARTY_APPS
 from config.settings.components.common import DEBUG
 from config.settings.components.logging import LOGGING
 from config.settings.components.middleware import MIDDLEWARE
 from config.settings.components.templates import TEMPLATES
-from config.settings.components.apps import THIRD_PARTY_APPS
 
 ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
 
@@ -40,17 +41,17 @@ CELERY_TASK_EAGER_PROPAGATES = True
 
 LOGGING['loggers'] = {
     'django': {
-        'level': env.log_level('DJANGO_LOG_LEVEL', default='DEBUG'),
+        'level': env.log_level('DJANGO_LOG_LEVEL', default='INFO'),
         'handlers': ['console'],
         'propagate': True,
     },
     'apps.users': {
-        'level': env.log_level('DJANGO_LOG_LEVEL', default='DEBUG'),
+        'level': env.log_level('DJANGO_LOG_LEVEL', default='INFO'),
         'handlers': ['console'],
         'propagate': False,
     },
     'apps.esi': {
-        'level': env.log_level('DJANGO_LOG_LEVEL', default='DEBUG'),
+        'level': env.log_level('DJANGO_LOG_LEVEL', default='INFO'),
         'handlers': ['console'],
         'propagate': False,
     },

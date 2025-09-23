@@ -30,6 +30,7 @@ SECRET_KEY = env.str(
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG', True)
+TEST = False
 
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[])
 
@@ -48,3 +49,5 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+ASGI_APPLICATION = 'config.asgi.application'
