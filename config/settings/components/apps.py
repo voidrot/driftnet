@@ -11,11 +11,14 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
+    'apps.sde',
     'apps.users',
     'apps.esi',
 ]
 
 THIRD_PARTY_APPS = [
+    'template_partials',
+    'django_htmx',
     'csp',
     'allauth',
     'allauth.account',

@@ -3,9 +3,11 @@ from environs import env
 from config.settings.components.apps import DJANGO_APPS
 from config.settings.components.apps import PROJECT_APPS
 from config.settings.components.apps import THIRD_PARTY_APPS
+from config.settings.components.common import BASE_DIR
 from config.settings.components.common import DEBUG
 from config.settings.components.logging import LOGGING
 from config.settings.components.middleware import MIDDLEWARE
+from config.settings.components.storages import STORAGES
 from config.settings.components.templates import TEMPLATES
 
 ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
@@ -21,14 +23,18 @@ THIRD_PARTY_APPS = [
     *THIRD_PARTY_APPS,
     'debug_toolbar',
     'zeal',
+    'django_prometheus',
+    'dbbackup',
 ]
 
 INSTALLED_APPS = [*DJANGO_APPS, *PROJECT_APPS, *THIRD_PARTY_APPS]
 
 MIDDLEWARE = [
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     *MIDDLEWARE,
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'zeal.middleware.zeal_middleware',
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 DEBUG_TOOLBAR_CONFIG = {
@@ -59,5 +65,14 @@ LOGGING['loggers'] = {
         'level': env.log_level('DJANGO_LOG_LEVEL', default='INFO'),
         'handlers': ['console'],
         'propagate': False,
+    },
+}
+
+STORAGES['dbbackup'] = {
+    'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    'OPTIONS': {
+        'location': str(
+            env.path('DJANGO_DBBACKUP_LOCATION', default=BASE_DIR / 'backups')
+        ),
     },
 }

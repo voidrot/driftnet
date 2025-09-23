@@ -3,13 +3,13 @@ from environs import validate
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'BACKEND': 'django_prometheus.cache.backends.redis.RedisCache',
         'LOCATION': env(
             'REDIS_APP_URL', default='redis://redis:6379/0', validate=validate.URL()
         ),
     },
     'esi': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'BACKEND': 'django_prometheus.cache.backends.redis.RedisCache',
         'LOCATION': env(
             'REDIS_ESI_URL', default='redis://redis:6379/0', validate=validate.URL()
         ),

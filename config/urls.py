@@ -24,6 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
+if not settings.TEST:
+    urlpatterns = [*urlpatterns, path('', include('django_prometheus.urls'))]
+
 if settings.DEBUG:
     if 'debug_toolbar' in settings.INSTALLED_APPS and settings.TEST is not True:
         import debug_toolbar
