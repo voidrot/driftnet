@@ -5,6 +5,11 @@ from zeal import zeal_context
 
 
 @pytest.fixture(autouse=True)
+def _media_storage(settings, tmpdir) -> None:
+    settings.MEDIA_ROOT = tmpdir.strpath
+
+
+@pytest.fixture(autouse=True)
 def ensure_django_settings(monkeypatch):
     """Ensure DJANGO_SETTINGS_MODULE is set for tests.
 
