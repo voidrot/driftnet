@@ -749,12 +749,20 @@ class ESIClient(ESIClientStub):
         Use with caution, as it will remove all cached data, potentially leading to increased
         API requests until the cache is repopulated.
         """
-        cache = caches[app_settings.ESI_CACHE_BACKEND_NAME]
         try:
-            cache.clear()
-            logger.info('Successfully purged all ESI cache.')
-        except Exception as e:
-            logger.error('Error purging ESI cache: %s', e, exc_info=True)  # noqa: G201
+            from django_redis import get_redis_connection  # noqa: PLC0415
+
+            _client = get_redis_connection(app_settings.ESI_CACHE_BACKEND_NAME)
+        except (NotImplementedError, ImportError):
+            from django.core.cache import caches  # noqa: PLC0415
+
+            default_cache = caches['default']
+            _client = default_cache.get_master_client()
+
+        keys = _client.keys('esi:*')
+        if keys:
+            deleted = _client.delete(*keys)
+        logger.info('Purged %d ESI cache keys', deleted)
 
 
 class ESIClientProvider:

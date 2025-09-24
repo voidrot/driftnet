@@ -226,3 +226,4 @@ docstring-code-format = true
 "apps/sde/admin.py" = ["SLF001"]
 "apps/esi/apps.py" = ["PLC0415"]
 "apps/**/tests.py" = ["SLF001"]
+"apps/**/management/commands/*.py" = ["SLF001"]

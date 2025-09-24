@@ -2,7 +2,8 @@ import logging
 
 from django.conf import settings
 from django.db import models
-from django_prometheus.models import ExportModelOperationsMixin
+
+from apps.esi.managers import TokenManager
 
 logger = logging.getLogger(__name__)
 
@@ -23,11 +24,11 @@ class Scope(models.Model):
         verbose_name_plural = 'Scopes'
         ordering = ['name']
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
-class Token(ExportModelOperationsMixin(models.Model)):
+class Token(models.Model):
     """An ESI token representing a user's authentication and authorization.
 
     Attributes:
@@ -62,5 +63,17 @@ class Token(ExportModelOperationsMixin(models.Model)):
         verbose_name_plural = 'Tokens'
         ordering = ['-created_at']
 
-    def __str__(self):
+    objects: TokenManager = TokenManager()
+
+    def __str__(self) -> str:
         return f'Token for {self.character_name} ({self.character_id})'
+
+class CallbackRedirect(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    state = models.CharField(max_length=128)
+    session_key = models.CharField(max_length=255, unique=True)
+    url = models.CharField(max_length=255)
+    token = models.ForeignKey(Token, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self) -> str:
+        return f'{self.session_key}: {self.url}'
