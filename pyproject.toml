@@ -68,11 +68,11 @@ dev = [
 
 # ==== pytest ====
 [tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "--reuse-db --import-mode=importlib"
+minversion = "8.0"
+addopts = "--ds=config.settings --reuse-db --import-mode=importlib"
 python_files = [
     "tests.py",
-    "*_tests.py",
+    # "*_tests.py",
     "test_*.py",
 ]
 DJANGO_SETTINGS_MODULE = "config.settings"
@@ -81,7 +81,8 @@ env = [
   "DJANGO_ENV=testing",
   "DJANGO_SETTINGS_MODULE=config.settings"
 ]
-testpaths = "apps"
+# testpaths = ["apps"]
+testpaths = ["apps"]
 markers = ["playwright: mark tests as Playwright end-to-end tests"]
 
 # ==== mypy ====
@@ -187,7 +188,7 @@ ignore = [
   "S101", # Use of assert detected https://docs.astral.sh/ruff/rules/assert/
   "RUF012", # Mutable class attributes should be annotated with `typing.ClassVar`
   "SIM102", # sometimes it's better to nest
-#   "UP038", # Checks for uses of isinstance/issubclass that take a tuple
+#   "UP038", # Checks for use"DJ008"s of isinstance/issubclass that take a tuple
 #           # of types for comparison.
 #           # Deactivated because it can make the code slow:
 #           # https://github.com/astral-sh/ruff/issues/7871
@@ -222,3 +223,6 @@ docstring-code-format = true
 [tool.ruff.lint.per-file-ignores]
 "apps/esi/client.py" = ["SLF001"]
 "apps/esi/management/commands/gen_client_stubs.py" = ["SLF001"]
+"apps/sde/admin.py" = ["SLF001"]
+"apps/esi/apps.py" = ["PLC0415"]
+"apps/**/tests.py" = ["SLF001"]

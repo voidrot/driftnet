@@ -21,7 +21,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/manage.py",
             "args": [
-                "sde"
+                "test_client"
             ],
             "django": true
         }

@@ -3,6 +3,8 @@
         "PYTHONDONTWRITEBYTECODE": "1"
     },
     "cSpell.words": [
+        "aiopenapi",
+        "operationindex",
         "postrun",
         "prerun"
     ]
