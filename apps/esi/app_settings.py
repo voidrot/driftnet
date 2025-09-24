@@ -1,3 +1,110 @@
+from django.conf import settings
+
+ESI_CONTACT_EMAIL = getattr(settings, 'ESI_CONTACT_EMAIL', None)
+"""Contact email for CCP to contact in case of issues with the application."""
+
+ESI_APP_URL = getattr(settings, 'ESI_APP_URL', None)
+"""URL for the application."""
+
+ESI_APP_NAME = getattr(settings, 'ESI_APP_NAME', 'Voidlink')
+"""Name of the application accessing the ESI API."""
+
+ESI_APP_VERSION = getattr(settings, 'ESI_APP_VERSION', None)
+"""Version of the application accessing the ESI API."""
+
+ESI_CLIENT_TENANT = getattr(settings, 'ESI_CLIENT_TENANT', 'tranquility')
+"""ESI client tenant, usually 'tranquility'."""
+
+ESI_COMPATIBILITY_DATE = getattr(settings, 'ESI_COMPATIBILITY_DATE', '2025-08-26')
+"""ESI compatibility date, in YYYY-MM-DD format."""
+
+ESI_CACHE_BACKEND_NAME = getattr(settings, 'ESI_CACHE_BACKEND_NAME', 'esi')
+"""Cache backend name for ESI caching."""
+
+ESI_OAUTH_URL = getattr(
+    settings, 'ESI_SSO_BASE_URL', 'https://login.eveonline.com/v2/oauth'
+)
+"""Base URL for EVE Online SSO OAuth2."""
+
+ESI_OAUTH_LOGIN_URL = getattr(
+    settings, 'ESI_SSO_LOGIN_URL', ESI_OAUTH_URL + '/authorize/'
+)
+"""Login URL for EVE Online SSO OAuth2."""
+
+ESI_TOKEN_URL = getattr(settings, 'ESI_CODE_EXCHANGE_URL', ESI_OAUTH_URL + '/token')
+"""The URL to redirect users to for EVE SSO login."""
+
+ESI_OPENAPI_URL = getattr(
+    settings, 'ESI_OPENAPI_URL', 'https://esi.evetech.net/meta/openapi.json'
+)
+"""The URL to the ESI OpenAPI specification."""
+
+ESI_API_URL = getattr(settings, 'ESI_API_URL', 'https://esi.evetech.net/')
+"""The base URL for the ESI API."""
+
+ESI_SPEC_CACHE_DURATION = int(getattr(settings, 'ESI_SPEC_CACHE_DURATION', 3600))
+"""The duration, in seconds, to cache the ESI OpenAPI specification."""
+
+ESI_CLIENT_CONNECT_TIMEOUT = getattr(settings, 'ESI_CLIENT_CONNECT_TIMEOUT', 5.0)
+"""Default connect timeout settings for the HTTPX client used to interact with the ESI API."""
+
+ESI_CLIENT_READ_TIMEOUT = getattr(settings, 'ESI_CLIENT_READ_TIMEOUT', 10.0)
+"""Default read timeout settings for the HTTPX client used to interact with the ESI API."""
+
+ESI_CLIENT_WRITE_TIMEOUT = getattr(settings, 'ESI_CLIENT_WRITE_TIMEOUT', 10.0)
+"""Default write timeout settings for the HTTPX client used to interact with the ESI API."""
+
+ESI_CLIENT_POOL_TIMEOUT = getattr(settings, 'ESI_CLIENT_POOL_TIMEOUT', 5.0)
+"""Default pool timeout settings for the HTTPX client used to interact with the ESI API."""
+
+ESI_CONNECTION_ERROR_MAX_RETRIES = getattr(
+    settings, 'ESI_CONNECTION_ERROR_MAX_RETRIES', 3
+)
+"""Max retries on failed connections."""
+
+ESI_SERVER_ERROR_MAX_RETRIES = getattr(settings, 'ESI_SERVER_ERROR_MAX_RETRIES', 3)
+"""Max retries on server errors."""
+
+ESI_SERVER_ERROR_BACKOFF_FACTOR = getattr(
+    settings, 'ESI_SERVER_ERROR_BACKOFF_FACTOR', 0.2
+)
+"""Backoff factor for retries on server error."""
+
+ESI_CONNECTION_POOL_MAXSIZE = getattr(settings, 'ESI_CONNECTION_POOL_MAXSIZE', 10)
+"""Max size of the connection pool.
+
+Increase this setting if you hav more parallel
+threads connected to ESI at the same time.
+"""
+
+ESI_TOKEN_VALID_DURATION = getattr(settings, 'ESI_TOKEN_VALID_DURATION', 1170)
+"""The duration, in seconds, that an ESI token is considered valid."""
+
+ESI_TOKEN_VERIFY_URL = getattr(
+    settings, 'ESI_TOKEN_EXCHANGE_URL', ESI_OAUTH_URL + '/verify'
+)
+"""The URL to verify ESI tokens."""
+
+ESI_TOKEN_JWT_AUDIENCE = str(getattr(settings, 'ESI_TOKEN_JWT_AUDIENCE', 'EVE Online'))
+"""The audience to use when validating JWT tokens."""
+
+ESI_TOKEN_JWK_SET_URL = 'https://login.eveonline.com/oauth/jwks'  # noqa: S105
+"""The URL to fetch the JWK set for validating JWT tokens."""
+
+ESI_JWKS_METADATA_URL = (
+    'https://login.eveonline.com/.well-known/oauth-authorization-server'
+)
+"""The URL to fetch the JWK set metadata for validating JWT tokens."""
+
+ESI_JWKS_ACCEPTED_ISSUERS = ('logineveonline.com', 'https://login.eveonline.com')
+"""The accepted issuers to use when validating JWT tokens."""
+
+ESI_JWKS_METADATA_CACHE_TIME = 300
+"""The duration, in seconds, to cache the JWK set metadata."""
+
+ESI_CACHE_RESPONSE = getattr(settings, 'ESI_CACHE_RESPONSE', True)
+"""Disable to stop caching endpoint responses."""
+
 ESI_SCOPES = {
     'publicData': 'Allows reading public data',
     'esi-calendar.respond_calendar_events.v1': 'Allows responding to calendar events',
