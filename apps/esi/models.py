@@ -1,4 +1,5 @@
 import logging
+from typing import ClassVar
 
 from django.conf import settings
 from django.db import models
@@ -64,7 +65,7 @@ class Token(models.Model):
         verbose_name_plural = 'Tokens'
         ordering = ['-created']
 
-    objects: TokenManager = TokenManager.from_queryset(TokenQuerySet)()
+    objects: ClassVar[TokenManager] = TokenManager.from_queryset(TokenQuerySet)()
 
     def __str__(self) -> str:
         return f'Token for {self.character_name} ({self.character_id})'
