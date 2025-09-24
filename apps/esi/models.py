@@ -3,7 +3,7 @@ import logging
 from django.conf import settings
 from django.db import models
 
-from apps.esi.managers import TokenManager
+from apps.esi.managers import TokenManager, TokenQuerySet
 
 logger = logging.getLogger(__name__)
 
@@ -53,6 +53,7 @@ class Token(models.Model):
         max_length=50, choices=TOKEN_TYPE_CHOICES, db_index=True
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
     access_token = models.CharField(max_length=255, editable=False)
     refresh_token = models.CharField(max_length=255, editable=False)
     character_owner_hash = models.CharField(max_length=255, db_index=True)
@@ -61,9 +62,9 @@ class Token(models.Model):
     class Meta:
         verbose_name = 'Token'
         verbose_name_plural = 'Tokens'
-        ordering = ['-created_at']
+        ordering = ['-created']
 
-    objects: TokenManager = TokenManager()
+    objects: TokenManager = TokenManager.from_queryset(TokenQuerySet)()
 
     def __str__(self) -> str:
         return f'Token for {self.character_name} ({self.character_id})'
