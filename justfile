@@ -1,7 +1,7 @@
 export COMPOSE_FILE := "compose.yaml"
 
 ## Just does not yet manage signals for subprocesses reliably, which can lead to unexpected behavior.
-## Exercise caution before expanding its usage in production environments. 
+## Exercise caution before expanding its usage in production environments.
 ## For more information, see https://github.com/casey/just/issues/2473 .
 
 
@@ -35,7 +35,7 @@ format:
     @echo "Formatting Code..."
     -uv run ruff check --fix --unsafe-fixes
     -uv run ruff format
-    -uv run djlint . --reformat 
+    -uv run djlint . --reformat
 
 # make-migrations: Create new migrations based on the changes detected to your models. Optionally takes app name as argument.
 make-migrations *args:
@@ -48,3 +48,10 @@ migrate *args:
     @echo "Applying migrations..."
     @docker compose up -d --remove-orphans
     uv run python ./manage.py migrate {{args}}
+
+# test: run unit tests
+test $DJANGO_ENV="testing":
+    @echo "Running tests..."
+    @docker compose up -d --remove-orphans
+    uv run python ./manage.py migrate
+    uv run pytest -q
