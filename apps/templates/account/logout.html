@@ -1,0 +1,15 @@
+{% extends "account/base_account.html" %}
+{% load i18n %}
+{% block title %}{% trans "Sign Out" %}{% endblock title %}
+{% block account_content %}
+  <div class="card bg-base-100 shadow-xl max-w-md mx-auto">
+    <div class="card-body text-center">
+      <h1 class="card-title text-3xl mb-6">{% trans "Sign Out" %}</h1>
+      <form method="post" action="" aria-label="Sign Out Form">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary w-full mt-4">{% trans "Sign Out" %}</button>
+      </form>
+      <p class="mt-6 text-center"><a href="{% url 'account_login' %}" class="link link-primary">{% trans "Sign In Again" %}</a></p>
+    </div>
+  </div>
+{% endblock account_content %}

@@ -55,3 +55,8 @@ test $DJANGO_ENV="testing":
     @docker compose up -d --remove-orphans
     uv run python ./manage.py migrate
     uv run pytest -q
+
+e2e $DJANGO_ENV="testing":
+    @echo "Running end-to-end tests..."
+    @docker compose up -d --remove-orphans
+    pytest -q e2e

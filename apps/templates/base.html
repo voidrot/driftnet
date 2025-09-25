@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      {% block title %}
+        Voidlink
+      {% endblock title %}
+    </title>
+    {% block meta %}
+    {% endblock meta %}
+    {% block css %}
+      <link rel="stylesheet" href="/static/css/tailwind.css" />
+    {% endblock css %}
+    {% block head %}
+    {% endblock head %}
+  </head>
+  <body class="bg-base-100 text-base-content min-h-screen">
+    <a href="#maincontent" class="sr-only focus:not-sr-only">Skip to main</a>
+    <header>
+      {% block header %}
+        <nav aria-label="Main navigation">
+          <!-- Add navigation here or override in child templates -->
+        </nav>
+      {% endblock header %}
+    </header>
+    <main id="maincontent" tabindex="-1">
+      {% block content %}
+      {% endblock content %}
+    </main>
+    <footer class="mt-8">
+      {% block footer %}
+        <div class="text-center text-xs py-4">&copy; {{ year|default:2025 }} Voidlink</div>
+      {% endblock footer %}
+    </footer>
+    {% block scripts %}
+    {% endblock scripts %}
+  </body>
+</html>
