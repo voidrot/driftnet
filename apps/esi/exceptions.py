@@ -53,3 +53,48 @@ class HTTPServerError(BaseHTTPServerError):
     Inherits from aiopenapi3.errors.HTTPServerError.
     Used to indicate that the server encountered an error or is otherwise incapable of performing the request.
     """
+
+
+class ESIException(Exception):  # noqa: N818
+    """
+    Base exception for all ESI-related errors.
+
+    All custom ESI exceptions should inherit from this class to allow
+    unified exception handling for ESI errors throughout the application.
+    """
+
+
+class TokenError(ESIException):
+    """
+    Base exception for token-related errors in ESI authentication.
+
+    All token exceptions should inherit from this class to allow unified handling
+    of authentication and authorization issues related to ESI tokens.
+    """
+
+
+class TokenInvalidError(TokenError):
+    """
+    Exception raised when an ESI authentication token is invalid.
+
+    This error indicates that the provided token is not recognized or has been revoked,
+    and cannot be used for authentication or API requests.
+    """
+
+
+class TokenExpiredError(TokenError):
+    """
+    Exception raised when an ESI authentication token has expired.
+
+    Indicates that the token is no longer valid due to expiration and cannot be refreshed.
+    Typically requires the user to re-authenticate to obtain a new token.
+    """
+
+
+class TokenNotRefreshableError(TokenError):
+    """
+    Exception raised when an ESI authentication token cannot be refreshed.
+
+    Indicates that the token is not eligible for refresh, possibly due to missing refresh privileges,
+    token type restrictions, or other ESI-specific constraints. Requires user re-authentication.
+    """

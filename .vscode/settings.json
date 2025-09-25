@@ -6,7 +6,8 @@
         "aiopenapi",
         "operationindex",
         "postrun",
-        "prerun"
+        "prerun",
+        "Refreshable"
     ],
     "mypy-type-checker.args": [
         "\"mypy-type-checker.args\" = [\"--config-file=pyproject.toml\"]"

@@ -1,5 +1,11 @@
 from django.conf import settings
 
+ESI_SSO_CLIENT_ID = getattr(settings, 'ESI_SSO_CLIENT_ID', None)
+"""Client ID for EVE SSO application."""
+
+ESI_SSO_CLIENT_SECRET = getattr(settings, 'ESI_SSO_CLIENT_SECRET', None)
+"""Client secret for EVE SSO application."""
+
 ESI_CONTACT_EMAIL = getattr(settings, 'ESI_CONTACT_EMAIL', None)
 """Contact email for CCP to contact in case of issues with the application."""
 
@@ -104,6 +110,8 @@ ESI_JWKS_METADATA_CACHE_TIME = 300
 
 ESI_CACHE_RESPONSE = getattr(settings, 'ESI_CACHE_RESPONSE', True)
 """Disable to stop caching endpoint responses."""
+
+ESI_BASIC_AUTH_STR = f'{ESI_SSO_CLIENT_ID}:{ESI_SSO_CLIENT_SECRET}'
 
 ESI_SCOPES = {
     'publicData': 'Allows reading public data',

@@ -166,7 +166,7 @@ class BaseESIClientOperation:
             spec_param_names = [
                 p.name for p in getattr(self.operation, 'parameters', [])
             ]
-        except Exception:  # noqa: BLE001
+        except Exception:
             spec_param_names = []
 
         # Build a set for both case-insensitive and exact lookups
@@ -321,7 +321,7 @@ class BaseESIClientOperation:
             return None, None, None
         try:
             cache = self._cache.get(cache_key)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             logger.warning('Error getting cache for key %s: %s', cache_key, e)
             return None, None, None
 

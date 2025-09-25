@@ -113,7 +113,7 @@ class Command(BaseCommand):
                                         resp_200.content['application/json'].schema_,
                                         models,
                                     )
-                    except Exception:  # noqa: BLE001, S110
+                    except Exception:  # noqa: S110
                         pass
                     if getattr(op_obj, 'requestBody', None):
                         with contextlib.suppress(Exception):

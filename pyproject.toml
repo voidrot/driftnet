@@ -5,65 +5,65 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "aiopenapi3>=0.8.1",
-    "argon2-cffi>=25.1.0",
-    "celery>=5.5.3",
-    "channels[daphne]>=4.3.1",
-    "daphne>=4.2.1",
-    "django>=5.2.6",
-    "django-allauth>=65.11.2",
-    "django-celery-beat>=2.8.1",
-    "django-celery-results>=2.6.0",
-    "django-crispy-forms>=2.4",
-    "django-csp>=4.0",
-    "django-dbbackup>=5.0.0",
-    "django-htmx>=1.26.0",
-    "django-prometheus>=2.4.1",
-    "django-redis>=6.0.0",
-    "django-split-settings>=1.3.2",
-    "django-tailwind-cli>=4.4.0",
-    "django-template-partials>=25.2",
-    "django-unfold>=0.65.0",
-    "environs>=14.3.0",
-    "fido2>=2.0.0",
-    "flower>=2.0.1",
-    "gunicorn>=23.0.0",
-    "h2>=4.3.0",
-    "hiredis>=3.2.1",
-    "httpx[http2]>=0.28.1",
-    "psycopg[binary,pool]>=3.2.10",
-    "python-jose[cryptography]>=3.5.0",
-    "redis[hiredis]>=6.4.0",
-    "sentry-sdk>=2.38.0",
-    "tenacity>=9.1.2",
-    "twisted[http2,tls]>=25.5.0",
-    "uvicorn-worker>=0.4.0",
-    "uvicorn[standard]>=0.36.0",
-    "whitenoise[brotli]>=6.11.0",
+  "aiopenapi3>=0.8.1",
+  "argon2-cffi>=25.1.0",
+  "celery>=5.5.3",
+  "channels[daphne]>=4.3.1",
+  "daphne>=4.2.1",
+  "django>=5.2.6",
+  "django-allauth>=65.11.2",
+  "django-celery-beat>=2.8.1",
+  "django-celery-results>=2.6.0",
+  "django-crispy-forms>=2.4",
+  "django-csp>=4.0",
+  "django-dbbackup>=5.0.0",
+  "django-htmx>=1.26.0",
+  "django-prometheus>=2.4.1",
+  "django-redis>=6.0.0",
+  "django-split-settings>=1.3.2",
+  "django-tailwind-cli>=4.4.0",
+  "django-template-partials>=25.2",
+  "django-unfold>=0.65.0",
+  "environs>=14.3.0",
+  "fido2>=2.0.0",
+  "flower>=2.0.1",
+  "gunicorn>=23.0.0",
+  "h2>=4.3.0",
+  "hiredis>=3.2.1",
+  "httpx[http2]>=0.28.1",
+  "psycopg[binary,pool]>=3.2.10",
+  "python-jose[cryptography]>=3.5.0",
+  "redis[hiredis]>=6.4.0",
+  "sentry-sdk>=2.38.0",
+  "tenacity>=9.1.2",
+  "twisted[http2,tls]>=25.5.0",
+  "uvicorn-worker>=0.4.0",
+  "uvicorn[standard]>=0.36.0",
+  "whitenoise[brotli]>=6.11.0",
 ]
 
 [dependency-groups]
 dev = [
-    "django-debug-toolbar>=6.0.0",
-    "django-stubs[compatible-mypy]>=5.2.5",
-    "django-zeal>=2.0.4",
-    "djlint>=1.36.4",
-    "factory-boy>=3.3.3",
-    "flake8-in-file-ignores>=0.3.0",
-    "hypothesis>=6.140.2",
-    "inflect>=7.5.0",
-    "mypy>=1.18.2",
-    "playwright>=1.55.0",
-    "pre-commit>=4.3.0",
-    "pytest>=8.4.2",
-    "pytest-django>=4.11.1",
-    "pytest-env>=1.1.5",
-    "pytest-playwright>=0.7.1",
-    "pytest-sugar>=1.1.1",
-    "ruff>=0.13.1",
-    "watchdog>=6.0.0",
-    "watchfiles>=1.1.0",
-    "werkzeug[watchdog]>=3.1.3",
+  "django-debug-toolbar>=6.0.0",
+  "django-stubs[compatible-mypy]>=5.2.5",
+  "django-zeal>=2.0.4",
+  "djlint>=1.36.4",
+  "factory-boy>=3.3.3",
+  "flake8-in-file-ignores>=0.3.0",
+  "hypothesis>=6.140.2",
+  "inflect>=7.5.0",
+  "mypy>=1.18.2",
+  "playwright>=1.55.0",
+  "pre-commit>=4.3.0",
+  "pytest>=8.4.2",
+  "pytest-django>=4.11.1",
+  "pytest-env>=1.1.5",
+  "pytest-playwright>=0.7.1",
+  "pytest-sugar>=1.1.1",
+  "ruff>=0.13.1",
+  "watchdog>=6.0.0",
+  "watchfiles>=1.1.0",
+  "werkzeug[watchdog]>=3.1.3",
 ]
 
 # ==== pytest ====
@@ -71,15 +71,15 @@ dev = [
 minversion = "8.0"
 addopts = "--ds=config.settings --reuse-db --import-mode=importlib"
 python_files = [
-    "tests.py",
-    # "*_tests.py",
-    "test_*.py",
+  "tests.py",
+  # "*_tests.py",
+  "test_*.py",
 ]
 DJANGO_SETTINGS_MODULE = "config.settings"
 env = [
   "DJANGO_ALLOW_ASYNC_UNSAFE=true",
   "DJANGO_ENV=testing",
-  "DJANGO_SETTINGS_MODULE=config.settings"
+  "DJANGO_SETTINGS_MODULE=config.settings",
 ]
 # testpaths = ["apps"]
 testpaths = ["apps"]
@@ -93,9 +93,7 @@ ignore_missing_imports = true
 warn_unused_ignores = true
 warn_redundant_casts = true
 warn_unused_configs = true
-plugins = [
-    "mypy_django_plugin.main",
-]
+plugins = ["mypy_django_plugin.main"]
 
 [[tool.mypy.overrides]]
 # Django migrations should not produce any errors:
@@ -185,25 +183,27 @@ select = [
   "RUF",
 ]
 ignore = [
-  "S101", # Use of assert detected https://docs.astral.sh/ruff/rules/assert/
+  "S101",   # Use of assert detected https://docs.astral.sh/ruff/rules/assert/
   "RUF012", # Mutable class attributes should be annotated with `typing.ClassVar`
   "SIM102", # sometimes it's better to nest
-#   "UP038", # Checks for use"DJ008"s of isinstance/issubclass that take a tuple
-#           # of types for comparison.
-#           # Deactivated because it can make the code slow:
-#           # https://github.com/astral-sh/ruff/issues/7871
+  #   "UP038", # Checks for use"DJ008"s of isinstance/issubclass that take a tuple
+  #           # of types for comparison.
+  #           # Deactivated because it can make the code slow:
+  #           # https://github.com/astral-sh/ruff/issues/7871
   "COM812",
   "DJ008",
   "E501",
   "G004",
   "DJ001",
   "FBT002",
-  "FBT001"
+  "FBT001",
+  "BLE001",
+  "TRY401",
 ]
 # The fixes in extend-unsafe-fixes will require
 # provide the `--unsafe-fixes` flag when fixing.
 extend-unsafe-fixes = [
-#   "UP038",
+  #   "UP038",
 ]
 extend-select = ["I"]
 
@@ -222,8 +222,60 @@ docstring-code-format = true
 
 [tool.ruff.lint.per-file-ignores]
 "apps/esi/client.py" = ["SLF001"]
-"apps/esi/management/commands/gen_client_stubs.py" = ["SLF001"]
+"apps/esi/management/commands/generate_esi_stubs.py" = [
+  "SLF001",
+  "ERA001",
+  "B007",
+  "PTH123",
+  "PTH118",
+  "PTH120",
+  "PLR0915",
+  "PLR0912",
+  "C901"
+]
 "apps/sde/admin.py" = ["SLF001"]
 "apps/esi/apps.py" = ["PLC0415"]
-"apps/**/tests.py" = ["SLF001"]
+"apps/**/tests.py" = [
+  "SLF001",
+  "S105",
+  "PLR2004",
+  "S106",
+  "PLC0415",
+  "S107",
+  "PLR0913",
+  "S311",
+  "N806",
+  "C901",
+]
+"apps/**/test_*.py" = [
+  "SLF001",
+  "S105",
+  "PLR2004",
+  "S106",
+  "PLC0415",
+  "S107",
+  "PLR0913",
+  "S311",
+  "N806",
+  "C901",
+]
+"apps/**/*_test.py" = [
+  "SLF001",
+  "S105",
+  "PLR2004",
+  "S106",
+  "PLC0415",
+  "S107",
+  "PLR0913",
+  "S311",
+  "N806",
+  "C901",
+]
 "apps/**/management/commands/*.py" = ["SLF001"]
+
+"apps/**/stubs.py" = [
+  "ERA001"
+]
+"apps/**/*_stubs.pyi" = [
+  "ERA001"
+]
