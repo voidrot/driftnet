@@ -17,22 +17,26 @@ Including another URLconf
 
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include
 from django.urls import path
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
     path('', TemplateView.as_view(template_name='landing.html'), name='landing'),
     path('terms', TemplateView.as_view(template_name='terms.html'), name='terms'),
     path('ccp', TemplateView.as_view(template_name='ccp.html'), name='ccp'),
+    path('sso/', include('apps.esi.urls', namespace='esi')),
+    path('accounts/', include('allauth.urls')),
+    path('users/', include('apps.users.urls', namespace='users')),
+    path('admin/', admin.site.urls),
 ]
 
 if not settings.TEST:
     urlpatterns = [*urlpatterns, path('', include('django_prometheus.urls'))]
 
 if settings.DEBUG:
+    urlpatterns += staticfiles_urlpatterns()
     if 'debug_toolbar' in settings.INSTALLED_APPS and settings.TEST is not True:
         import debug_toolbar
 

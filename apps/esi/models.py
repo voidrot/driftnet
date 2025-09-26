@@ -70,8 +70,8 @@ class Token(models.Model):
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
-    access_token = models.CharField(max_length=255, editable=False)
-    refresh_token = models.CharField(max_length=255, editable=False)
+    access_token = models.TextField(editable=False)
+    refresh_token = models.TextField(editable=False)
     character_owner_hash = models.CharField(max_length=255, db_index=True)
     scopes = models.ManyToManyField(Scope)
 

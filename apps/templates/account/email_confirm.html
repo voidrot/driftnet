@@ -1,0 +1,21 @@
+{% extends "account/base_account.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  {% trans "Confirm Email Address" %}
+{% endblock title %}
+{% block account_content %}
+  <h1 class="text-2xl font-bold mb-6">{% trans "Confirm Email Address" %}</h1>
+  <div class="alert alert-info mb-4" role="status">
+    {% if confirmation %}
+      {% trans "Please confirm that you want to associate this email address with your account." %}
+      <form method="post" action=".">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary mt-4">{% trans "Confirm" %}</button>
+      </form>
+    {% else %}
+      {% trans "This email confirmation link is invalid or has expired." %}
+    {% endif %}
+  </div>
+{% endblock account_content %}

@@ -1,8 +1,8 @@
 import httpx
 from django.core.management.base import BaseCommand
 
+from apps.esi import app_settings
 from apps.esi.models import Scope
-from apps.sde import app_settings
 
 
 class Command(BaseCommand):

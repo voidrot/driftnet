@@ -215,9 +215,7 @@ class TokenManager(models.Manager['Token']):
 
         logger.debug('Added %d scopes to new token.', model.scopes.all().count())
 
-        if not app_settings.ESI_ALWAYS_CREATE_TOKEN:
-            model = self._deduplicate_token(model)
-        return model
+        return self._deduplicate_token(model)
 
     def _extract_and_validate_token(self, code: str):
         """
