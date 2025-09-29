@@ -1,16 +1,16 @@
-# Voidlink Global Instructions
+# driftnet Global Instructions
 
-Voidlink is a django project that consumes data from EVE Online API, zKillboard API, and other sources to provide a comprehensive set of data to make informed decisions in the EVE Online universe.
+driftnet is a django project that consumes data from EVE Online API, zKillboard API, and other sources to provide a comprehensive set of data to make informed decisions in the EVE Online universe.
 
 ## Repository Structure
 
 - `config/`: Contains all the configuration settings for the Django project.
-- `apps/`: Contains the core application code and django apps for the Voidlink project.
-- `apps/static/`: Contains all the static files for the Voidlink project.
-- `apps/templates/`: Contains all global templates for the Voidlink project.
-- `app/**/templates/`: Contains all app-specific templates for the Voidlink project.
-- `apps/**/test.py` and `apps/**/tests/`: Contains all the unit test cases for the Voidlink project.
-- `e2e/`: Contains all the Playwright tests for the Voidlink project.
+- `apps/`: Contains the core application code and django apps for the driftnet project.
+- `apps/static/`: Contains all the static files for the driftnet project.
+- `apps/templates/`: Contains all global templates for the driftnet project.
+- `app/**/templates/`: Contains all app-specific templates for the driftnet project.
+- `apps/**/test.py` and `apps/**/tests/`: Contains all the unit test cases for the driftnet project.
+- `e2e/`: Contains all the Playwright tests for the driftnet project.
 - `justfile`: Contains all the commands to manage the project using `just`.
 
 ## Key Tools

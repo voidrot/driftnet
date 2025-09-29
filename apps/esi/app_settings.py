@@ -12,7 +12,7 @@ ESI_CONTACT_EMAIL = getattr(settings, 'ESI_CONTACT_EMAIL', None)
 ESI_APP_URL = getattr(settings, 'ESI_APP_URL', None)
 """URL for the application."""
 
-ESI_APP_NAME = getattr(settings, 'ESI_APP_NAME', 'Voidlink')
+ESI_APP_NAME = getattr(settings, 'ESI_APP_NAME', 'driftnet')
 """Name of the application accessing the ESI API."""
 
 ESI_APP_VERSION = getattr(settings, 'ESI_APP_VERSION', None)

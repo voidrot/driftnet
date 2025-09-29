@@ -7,7 +7,7 @@ from playwright.sync_api import expect
 def test_homepage_flow(page: Page, live_server):
     page.goto(live_server + '/')
     # Use exact match for the main heading to avoid strict mode violation
-    expect(page.get_by_role('heading', name='Voidlink', exact=True)).to_be_visible()
+    expect(page.get_by_role('heading', name='driftnet', exact=True)).to_be_visible()
     expect(page.get_by_text('Your EVE Online Intelligence Dashboard')).to_be_visible()
     expect(page.get_by_role('link', name='Sign Up')).to_be_visible()
     expect(page.get_by_text('EVE API Integration')).to_be_visible()
@@ -15,7 +15,7 @@ def test_homepage_flow(page: Page, live_server):
     expect(page.get_by_text('Decision Support')).to_be_visible()
     expect(page.get_by_text('Get Started')).to_be_visible()
     expect(page.get_by_text('How It Works')).to_be_visible()
-    expect(page.get_by_text('What Voidlink Can Do')).to_be_visible()
+    expect(page.get_by_text('What driftnet Can Do')).to_be_visible()
 
 
 @pytest.mark.playwright
@@ -49,6 +49,6 @@ def test_landing_page_features(page: Page, live_server):
     ).to_be_visible()
     expect(
         page.get_by_text(
-            "4. Make informed decisions with Voidlink's intelligence tools."
+            "4. Make informed decisions with driftnet's intelligence tools."
         )
     ).to_be_visible()

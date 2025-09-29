@@ -7,7 +7,7 @@ from config import settings
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 
-app = Celery('voidlink')
+app = Celery('driftnet')
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.

@@ -1,6 +1,10 @@
 from environs import env
 
+ALLAUTH_UI_THEME = 'dark'
+
 DJANGO_ADMIN_FORCE_ALLAUTH = False
+
+USERSESSIONS_TRACK_ACTIVITY = True
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
 LOGIN_REDIRECT_URL = '/'
@@ -50,3 +54,4 @@ ACCOUNT_LOGIN_METHODS = {'email'}
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
+

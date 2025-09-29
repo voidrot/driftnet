@@ -1,16 +1,19 @@
 {
-    "terminal.integrated.env.linux": {
-        "PYTHONDONTWRITEBYTECODE": "1"
-    },
-    "cSpell.words": [
-        "aiopenapi",
-        "operationindex",
-        "postrun",
-        "prerun",
-        "Refreshable"
-    ],
-    "mypy-type-checker.args": [
-        "\"mypy-type-checker.args\" = [\"--config-file=pyproject.toml\"]"
-    ],
-    "bookmarks.saveBookmarksInProject": true
+  "terminal.integrated.env.linux": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "cSpell.words": [
+    "aiopenapi",
+    "operationindex",
+    "postrun",
+    "prerun",
+    "Refreshable"
+  ],
+  "mypy-type-checker.args": [
+    "\"mypy-type-checker.args\" = [\"--config-file=pyproject.toml\"]"
+  ],
+  "bookmarks.saveBookmarksInProject": true,
+  "emmet.includeLanguages": {
+    "django-html": "html",
+  }
 }

@@ -19,10 +19,10 @@ run = 'docker compose down'
 description = "Run Django migrations"
 run = "uv run python manage.py migrate"
 
-[tasks.run]
+[tasks.dev]
 description = "Run the Django development server"
 depends = ['compose-up']
-run = "uv run ./manage.py tailwind runserver"
+run = "uv run ./manage.py tailwind runserver --force-default-runserver"
 
 [tasks.format]
 description = "Format code with ruff and djlint"

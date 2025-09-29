@@ -17,7 +17,7 @@ def test_ccp_page_content(page: Page, live_server):
     ).to_be_visible()
     expect(
         page.get_by_text(
-            'Voidlink is an independent community project and is not affiliated with, endorsed by, or sponsored by CCP Games.'
+            'driftnet is an independent community project and is not affiliated with, endorsed by, or sponsored by CCP Games.'
         )
     ).to_be_visible()
     expect(
@@ -41,5 +41,5 @@ def test_ccp_page_content(page: Page, live_server):
             'If you represent CCP and have concerns about material on this site, or if you believe any content infringes your rights, please contact us at'
         )
     ).to_be_visible()
-    expect(page.get_by_role('link', name='support@voidlink.example')).to_be_visible()
+    expect(page.get_by_role('link', name='support@driftnet.example')).to_be_visible()
     expect(page.get_by_role('link', name='CCP Legal')).to_be_visible()

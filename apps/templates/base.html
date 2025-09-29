@@ -1,26 +1,26 @@
 {% load django_htmx %}
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
-
-
       {% block title %}
-        Voidlink
+        driftnet
       {% endblock title %}
     </title>
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
     {% htmx_script %}
   </head>
-  <body class="bg-base-200 text-base-content min-h-screen flex flex-col" hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
+  <body class="bg-base-200 text-base-content min-h-screen flex flex-col"
+        hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
     <a href="#maincontent"
        class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:bg-blue-600 focus:text-white focus:p-2">Skip to main</a>
     <header class="navbar bg-base-100 shadow mb-8">
       <div class="container mx-auto flex justify-between items-center">
-        <a href="{% url 'landing' %}" class="btn btn-ghost text-xl">Voidlink</a>
+        <a href="{% url 'landing' %}" class="btn btn-ghost text-xl">driftnet</a>
         <nav>
           <ul class="menu menu-horizontal p-0 flex items-center gap-2">
             <li>
@@ -82,7 +82,7 @@
     </div>
     <footer class="w-full footer-center bg-base-100 text-base-content p-4 mt-12">
       <div class="container mx-auto text-center">
-        <p class="text-sm">© {{ year|default:2025 }} Voidlink. All rights reserved.</p>
+        <p class="text-sm">© {{ year|default:2025 }} driftnet. All rights reserved.</p>
         <p class="text-sm mt-1">
           <a href="{% url 'terms' %}" class="hover:underline">Terms of Service</a>
           <span class="mx-2 text-muted">·</span>

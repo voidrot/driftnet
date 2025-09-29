@@ -24,6 +24,6 @@ def test_terms_page_content(page: Page, live_server):
     expect(page.get_by_text('12. Contact')).to_be_visible()
     expect(
         page.get_by_text(
-            'If you have questions about these Terms, contact us at support@voidlink.example.'
+            'If you have questions about these Terms, contact us at support@driftnet.example.'
         )
     ).to_be_visible()

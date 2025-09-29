@@ -128,7 +128,8 @@ def _load_aiopenapi_client() -> OpenAPI:
         )
 
     return OpenAPI.load_sync(
-        url=app_settings.ESI_OPENAPI_URL + f'?compatibility_date={app_settings.ESI_COMPATIBILITY_DATE}',
+        url=app_settings.ESI_OPENAPI_URL
+        + f'?compatibility_date={app_settings.ESI_COMPATIBILITY_DATE}',
         session_factory=session_factory,
         use_operation_tags=True,
         plugins=_load_openapi_plugins(),
