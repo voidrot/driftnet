@@ -2735,6 +2735,9 @@
   .min-h-\[60vh\] {
     min-height: 60vh;
   }
+  .min-h-\[calc\(100vh-4rem\)\] {
+    min-height: calc(100vh - 4rem);
+  }
   .min-h-screen {
     min-height: 100vh;
   }
@@ -2756,8 +2759,8 @@
   .w-12 {
     width: calc(var(--spacing) * 12);
   }
-  .w-24 {
-    width: calc(var(--spacing) * 24);
+  .w-25 {
+    width: calc(var(--spacing) * 25);
   }
   .w-40 {
     width: calc(var(--spacing) * 40);
@@ -3203,6 +3206,10 @@
     --btn-p: 0.75rem;
     --size: calc(var(--size-field, 0.25rem) * 8);
   }
+  .btn-accent {
+    --btn-color: var(--color-accent);
+    --btn-fg: var(--color-accent-content);
+  }
   .btn-error {
     --btn-color: var(--color-error);
     --btn-fg: var(--color-error-content);
@@ -3211,9 +3218,17 @@
     --btn-color: var(--color-info);
     --btn-fg: var(--color-info-content);
   }
+  .btn-neutral {
+    --btn-color: var(--color-neutral);
+    --btn-fg: var(--color-neutral-content);
+  }
   .btn-primary {
     --btn-color: var(--color-primary);
     --btn-fg: var(--color-primary-content);
+  }
+  .btn-success {
+    --btn-color: var(--color-success);
+    --btn-fg: var(--color-success-content);
   }
   .btn-warning {
     --btn-color: var(--color-warning);
@@ -3322,11 +3337,6 @@
   .md\:w-32 {
     @media (width >= 48rem) {
       width: calc(var(--spacing) * 32);
-    }
-  }
-  .md\:w-auto {
-    @media (width >= 48rem) {
-      width: auto;
     }
   }
   .md\:max-w-\[10rem\] {

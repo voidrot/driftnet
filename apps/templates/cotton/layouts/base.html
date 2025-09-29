@@ -16,7 +16,7 @@
   </head>
   <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
     <c-navbar />
-    {{ slot }}
+    <div class="min-h-[calc(100vh-4rem)]">{{ slot }}</div>
     <c-footer />
   </body>
 </html>
