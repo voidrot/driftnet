@@ -4,3 +4,31 @@ python = "3.13"
 [env]
 _.file = '.env'
 _.path = ['.venv/bin']
+
+COMPOSE_FILE = 'compose.yaml'
+
+[tasks.compose-up]
+description = "Start docker compose base services"
+run = 'docker compose up -d --remove-orphans'
+
+[tasks.compose-down]
+description = "Stop docker compose base services"
+run = 'docker compose down'
+
+[tasks.migrate]
+description = "Run Django migrations"
+run = "uv run python manage.py migrate"
+
+[tasks.run]
+description = "Run the Django development server"
+depends = ['compose-up']
+run = "uv run ./manage.py tailwind runserver"
+
+[tasks.format]
+description = "Format code with ruff and djlint"
+quiet = true
+run = [
+  'uv run ruff check --fix --unsafe-fixes || true',
+  'uv run ruff format || true',
+  'uv run djlint . --reformat || true'
+]
