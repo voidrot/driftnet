@@ -21,6 +21,8 @@ THIRD_PARTY_APPS = [
     'template_partials',
     'django_htmx',
     'csp',
+    'organizations',
+    'allauth_ui',
     'allauth',
     'allauth.account',
     'allauth.mfa',
@@ -28,6 +30,8 @@ THIRD_PARTY_APPS = [
     'django_celery_results',
     'django_celery_beat',
     'crispy_forms',
+    'widget_tweaks',
+    'slippers',
 ]
 
 INSTALLED_APPS = [*DJANGO_APPS, *PROJECT_APPS, *THIRD_PARTY_APPS]

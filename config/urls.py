@@ -28,6 +28,7 @@ urlpatterns = [
     path('ccp', TemplateView.as_view(template_name='ccp.html'), name='ccp'),
     path('sso/', include('apps.esi.urls', namespace='esi')),
     path('accounts/', include('allauth.urls')),
+    path('teams/', include('organizations.urls')),
     path('users/', include('apps.users.urls', namespace='users')),
     path('admin/', admin.site.urls),
 ]
