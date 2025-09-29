@@ -1,3 +1,5 @@
+import keyword
+
 from aiopenapi3.plugin import Document
 
 
@@ -128,6 +130,34 @@ class TrimSecurityParameter(Document):
         if oauth2 and oauth2.get('type') == 'oauth2':
             oauth2.pop('in', None)
             oauth2.pop('name', None)
+        return ctx
+
+
+class PrefixReservedKeywords(Document):
+    """
+    Plugin for aiopenapi3 that prefixes reserved Python keywords in schema properties with '_' and sets x-python-alias for code generation.
+
+    Why:
+        OpenAPI schemas may use property names that are reserved Python keywords (e.g., 'from', 'class', 'def'), which causes syntax errors in generated models.
+        This plugin renames such properties by prefixing them with '_', and sets an 'x-python-alias' extension for code generators to use the alias for the Python attribute name.
+
+    Usage:
+        Register this plugin with aiopenapi3 to automatically patch OpenAPI documents after parsing.
+    """
+
+    def parsed(self, ctx: Document.Context) -> Document.Context:
+        spec = ctx.document
+        schemas = spec.get('components', {}).get('schemas', {})
+        for schema in schemas.values():
+            properties = schema.get('properties', {})
+            reserved = [p for p in properties if keyword.iskeyword(p)]
+            for prop_name in reserved:
+                new_name = '_' + prop_name
+                properties[new_name] = properties.pop(prop_name)
+                properties[new_name]['x-python-alias'] = prop_name
+                if 'required' in schema and prop_name in schema['required']:
+                    schema['required'].remove(prop_name)
+                    schema['required'].append(new_name)
         return ctx
 
 

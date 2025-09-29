@@ -31,7 +31,7 @@ def sanitize_operation_class(name: str) -> str:
 
 
 def schema_to_type(schema, models: dict) -> str:
-    """Convert an OpenAPI schema to a Python type hint or Pydantic model."""
+    """Convert an OpenAPI schema to a Python type hint or Pydantic model, recursively collecting referenced schemas."""
     if not schema:
         return 'Any'
     schema_type = getattr(schema, 'type', None)
@@ -48,13 +48,34 @@ def schema_to_type(schema, models: dict) -> str:
         ref = getattr(schema, 'ref', None)
         if ref:
             model_name = ref.split('/')[-1]
-            models[model_name] = schema
+            if model_name not in models:
+                models[model_name] = schema
+                # Recursively collect properties of referenced schema
+                props = getattr(schema, 'properties', {})
+                for prop_schema in props.values():
+                    schema_to_type(prop_schema, models)
             return model_name
         name = getattr(schema, 'title', None) or 'InlineModel'
         model_name = sanitize_class_name(name)
-        models[model_name] = schema
+        if model_name not in models:
+            models[model_name] = schema
+            # Recursively collect properties of inline object schema
+            props = getattr(schema, 'properties', {})
+            for prop_schema in props.values():
+                schema_to_type(prop_schema, models)
         return model_name
-    return TYPE_MAP.get(schema_type, 'Any')
+    # If schema has properties but no explicit type, treat as object
+    if hasattr(schema, 'properties') and getattr(schema, 'properties', None):
+        name = getattr(schema, 'title', None) or 'InlineModel'
+        model_name = sanitize_class_name(name)
+        if model_name not in models:
+            models[model_name] = schema
+            props = getattr(schema, 'properties', {})
+            for prop_schema in props.values():
+                schema_to_type(prop_schema, models)
+        return model_name
+    key = schema_type if isinstance(schema_type, str) else 'Any'
+    return TYPE_MAP.get(key, 'Any')
 
 
 class Command(BaseCommand):
@@ -78,14 +99,9 @@ class Command(BaseCommand):
         spec_root = stub_api._root
         with open(output_path, 'w', encoding='utf-8') as f:
             # File headers
-            f.write('# flake8: noqa=E501\n')
+            f.write('# ruff: noqa\n')
             f.write('# Auto Generated do not edit\n')
             # Python Imports
-            f.write('from typing import Any, List, Optional\n')
-            f.write('from pydantic import BaseModel\n')
-            f.write('from apps.esi.client import ESIClientOperation\n')
-            f.write('from apps.esi.models import Token\n\n\n')
-
             models = {}
             operation_classes = {}
 
@@ -122,6 +138,19 @@ class Command(BaseCommand):
                                 models,
                             )
 
+            # Scan models for alias usage
+            for model_name, schema in list(models.items()):
+                props = getattr(schema, 'properties', {})
+                for prop, prop_schema in props.items():
+                    alias = getattr(prop_schema, 'x-python-alias', None)
+                    if alias:
+                        break
+
+            f.write('from typing import Any, List, Optional\n')
+            f.write('from pydantic import BaseModel, Field\n')
+            f.write('from apps.esi.client import ESIClientOperation\n')
+            f.write('from apps.esi.models import Token\n\n\n')
+
             # Generate Pydantic models
             for model_name, schema in list(models.items()):
                 f.write(f'class {model_name}(BaseModel):\n')
@@ -133,8 +162,27 @@ class Command(BaseCommand):
                 for prop, prop_schema in props.items():
                     typ = schema_to_type(prop_schema, models)
                     is_required = prop in required
-                    default = '' if is_required else ' = None'
-                    f.write(f'    {prop}: {typ}{default}\n')
+                    # Check for alias in extensions['python-alias'] or x-python-alias
+                    alias = None
+                    if hasattr(prop_schema, 'extensions') and prop_schema.extensions:
+                        alias = prop_schema.extensions.get('python-alias')
+                    if not alias:
+                        alias = getattr(prop_schema, 'x-python-alias', None)
+                    # is_list = typ.startswith('List[')
+                    # Fix: Use Optional[List[...]] for optional list fields
+                    # if not is_required and is_list:
+                    if not is_required:
+                        typ = f'Optional[{typ}]'
+                    if alias:
+                        field_str = (
+                            f"Field(..., alias='{alias}')"
+                            if is_required
+                            else f"Field(None, alias='{alias}')"
+                        )
+                        f.write(f'    {prop}: {typ} = {field_str}\n')
+                    else:
+                        default = '' if is_required else ' = None'
+                        f.write(f'    {prop}: {typ}{default}\n')
                 f.write('\n')
 
             # Generate operation classes
@@ -179,7 +227,7 @@ class Command(BaseCommand):
                     )
 
                     if op_class_name not in operation_classes:
-                        f.write(f'class {op_class_name}(EsiOperation):\n')
+                        f.write(f'class {op_class_name}(ESIClientOperation):\n')
                         if response_type != 'None':
                             f.write(
                                 '    """ESIClientOperation, use result(), results() or results_localized()"""\n'

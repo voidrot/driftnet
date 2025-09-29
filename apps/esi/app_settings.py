@@ -21,7 +21,7 @@ ESI_APP_VERSION = getattr(settings, 'ESI_APP_VERSION', None)
 ESI_CLIENT_TENANT = getattr(settings, 'ESI_CLIENT_TENANT', 'tranquility')
 """ESI client tenant, usually 'tranquility'."""
 
-ESI_COMPATIBILITY_DATE = getattr(settings, 'ESI_COMPATIBILITY_DATE', '2025-08-26')
+ESI_COMPATIBILITY_DATE = getattr(settings, 'ESI_COMPATIBILITY_DATE', '2025-09-26')
 """ESI compatibility date, in YYYY-MM-DD format."""
 
 ESI_CACHE_BACKEND_NAME = getattr(settings, 'ESI_CACHE_BACKEND_NAME', 'esi')

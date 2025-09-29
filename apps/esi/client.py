@@ -31,6 +31,7 @@ from apps.esi.exceptions import HTTPNotModified
 from apps.esi.models import Token
 from apps.esi.plugins import Add304ContentType
 from apps.esi.plugins import PatchCompatibilityDatePlugin
+from apps.esi.plugins import PrefixReservedKeywords
 from apps.esi.plugins import Trim204ContentType
 
 logger = logging.getLogger(__name__)
@@ -97,7 +98,12 @@ def _load_openapi_plugins():
 
     This can be extended in the future to add custom plugins for logging, metrics, etc.
     """
-    return [PatchCompatibilityDatePlugin(), Trim204ContentType(), Add304ContentType()]
+    return [
+        PatchCompatibilityDatePlugin(),
+        Trim204ContentType(),
+        Add304ContentType(),
+        PrefixReservedKeywords(),
+    ]
 
 
 def _load_aiopenapi_client() -> OpenAPI:
@@ -122,7 +128,7 @@ def _load_aiopenapi_client() -> OpenAPI:
         )
 
     return OpenAPI.load_sync(
-        url=app_settings.ESI_OPENAPI_URL,
+        url=app_settings.ESI_OPENAPI_URL + f'?compatibility_date={app_settings.ESI_COMPATIBILITY_DATE}',
         session_factory=session_factory,
         use_operation_tags=True,
         plugins=_load_openapi_plugins(),

@@ -1,7 +1,7 @@
-# flake8: noqa=E501
+# ruff: noqa
 # Auto Generated do not edit
 from typing import Any, List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from apps.esi.client import ESIClientOperation
 from apps.esi.models import Token
 
@@ -10,18 +10,24 @@ class AlliancesAllianceIdGet(BaseModel):
     creator_corporation_id: int
     creator_id: int
     date_founded: str
-    executor_corporation_id: int = None
-    faction_id: int = None
+    executor_corporation_id: Optional[int] = None
+    faction_id: Optional[int] = None
     name: str
     ticker: str
 
 class AlliancesAllianceIdIconsGet(BaseModel):
-    px128x128: str = None
-    px64x64: str = None
+    px128x128: Optional[str] = None
+    px64x64: Optional[str] = None
 
 class InlineModel(BaseModel):
-    killmail_hash: str
-    killmail_id: int
+    is_blueprint_copy: Optional[bool] = None
+    is_singleton: bool
+    item_id: int
+    location_flag: str
+    location_id: int
+    location_type: str
+    quantity: int
+    type_id: int
 
 class CharactersCharacterIdCalendarEventIdGet(BaseModel):
     date: str
@@ -36,65 +42,65 @@ class CharactersCharacterIdCalendarEventIdGet(BaseModel):
     title: str
 
 class CharactersCharacterIdGet(BaseModel):
-    alliance_id: int = None
+    alliance_id: Optional[int] = None
     birthday: str
     bloodline_id: int
     corporation_id: int
-    description: str = None
-    faction_id: int = None
+    description: Optional[str] = None
+    faction_id: Optional[int] = None
     gender: str
     name: str
     race_id: int
-    security_status: float = None
-    title: str = None
+    security_status: Optional[float] = None
+    title: Optional[str] = None
 
 class CharactersCharacterIdFatigueGet(BaseModel):
-    jump_fatigue_expire_date: str = None
-    last_jump_date: str = None
-    last_update_date: str = None
+    jump_fatigue_expire_date: Optional[str] = None
+    last_jump_date: Optional[str] = None
+    last_update_date: Optional[str] = None
 
 class CharactersCharacterIdPortraitGet(BaseModel):
-    px128x128: str = None
-    px256x256: str = None
-    px512x512: str = None
-    px64x64: str = None
+    px128x128: Optional[str] = None
+    px256x256: Optional[str] = None
+    px512x512: Optional[str] = None
+    px64x64: Optional[str] = None
 
 class CharactersCharacterIdRolesGet(BaseModel):
-    roles: List[str] = None
-    roles_at_base: List[str] = None
-    roles_at_hq: List[str] = None
-    roles_at_other: List[str] = None
+    roles: Optional[List[str]] = None
+    roles_at_base: Optional[List[str]] = None
+    roles_at_hq: Optional[List[str]] = None
+    roles_at_other: Optional[List[str]] = None
 
 class CharactersCharacterIdClonesGet(BaseModel):
-    home_location: InlineModel = None
+    home_location: Optional[InlineModel] = None
     jump_clones: List[InlineModel]
-    last_clone_jump_date: str = None
-    last_station_change_date: str = None
+    last_clone_jump_date: Optional[str] = None
+    last_station_change_date: Optional[str] = None
 
 class CorporationsCorporationIdGet(BaseModel):
-    alliance_id: int = None
+    alliance_id: Optional[int] = None
     ceo_id: int
     creator_id: int
-    date_founded: str = None
-    description: str = None
-    faction_id: int = None
-    home_station_id: int = None
+    date_founded: Optional[str] = None
+    description: Optional[str] = None
+    faction_id: Optional[int] = None
+    home_station_id: Optional[int] = None
     member_count: int
     name: str
-    shares: int = None
+    shares: Optional[int] = None
     tax_rate: float
     ticker: str
-    url: str = None
-    war_eligible: bool = None
+    url: Optional[str] = None
+    war_eligible: Optional[bool] = None
 
 class CorporationsCorporationIdDivisionsGet(BaseModel):
-    hangar: List[InlineModel] = None
-    wallet: List[InlineModel] = None
+    hangar: Optional[List[InlineModel]] = None
+    wallet: Optional[List[InlineModel]] = None
 
 class CorporationsCorporationIdIconsGet(BaseModel):
-    px128x128: str = None
-    px256x256: str = None
-    px64x64: str = None
+    px128x128: Optional[str] = None
+    px256x256: Optional[str] = None
+    px64x64: Optional[str] = None
 
 class CorporationsCorporationIdStarbasesStarbaseIdGet(BaseModel):
     allow_alliance_members: bool
@@ -102,11 +108,11 @@ class CorporationsCorporationIdStarbasesStarbaseIdGet(BaseModel):
     anchor: str
     attack_if_at_war: bool
     attack_if_other_security_status_dropping: bool
-    attack_security_status_threshold: float = None
-    attack_standing_threshold: float = None
+    attack_security_status_threshold: Optional[float] = None
+    attack_standing_threshold: Optional[float] = None
     fuel_bay_take: str
     fuel_bay_view: str
-    fuels: List[InlineModel] = None
+    fuels: Optional[List[InlineModel]] = None
     offline: str
     online: str
     unanchor: str
@@ -114,39 +120,81 @@ class CorporationsCorporationIdStarbasesStarbaseIdGet(BaseModel):
 
 class CorporationsProjectsContribution(BaseModel):
     contributed: int
-    last_modified: str = None
+    last_modified: Optional[str] = None
 
 class CorporationsProjectsContributors(BaseModel):
     contributors: List[CorporationsProjectsContributorsContributor]
-    cursor: Cursor = None
+    cursor: Optional[Cursor] = None
+
+class CorporationsProjectsContributorsContributor(BaseModel):
+    contributed: int
+    id: int
+    name: str
+
+class Cursor(BaseModel):
+    after: Optional[str] = None
+    before: Optional[str] = None
 
 class CorporationsProjectsDetail(BaseModel):
     configuration: Any
-    contribution: CorporationsProjectsDetailContribution = None
+    contribution: Optional[CorporationsProjectsDetailContribution] = None
     creator: CorporationsProjectsDetailCreator
     details: CorporationsProjectsDetailDetails
     id: str
     last_modified: str
     name: str
     progress: CorporationsProjectsDetailProgress
-    reward: CorporationsProjectsDetailReward = None
+    reward: Optional[CorporationsProjectsDetailReward] = None
     state: str
 
+class CorporationsProjectsDetailContribution(BaseModel):
+    participation_limit: Optional[int] = None
+    reward_per_contribution: Optional[float] = None
+    submission_limit: Optional[int] = None
+    submission_multiplier: Optional[float] = None
+
+class CorporationsProjectsDetailCreator(BaseModel):
+    id: int
+    name: str
+
+class CorporationsProjectsDetailDetails(BaseModel):
+    career: str
+    created: str
+    description: str
+    expires: Optional[str] = None
+    finished: Optional[str] = None
+
+class CorporationsProjectsDetailProgress(BaseModel):
+    current: int
+    desired: int
+
+class CorporationsProjectsDetailReward(BaseModel):
+    initial: float
+    remaining: float
+
 class CorporationsProjectsListing(BaseModel):
-    cursor: Cursor = None
+    cursor: Optional[Cursor] = None
     projects: List[CorporationsProjectsDetailProject]
+
+class CorporationsProjectsDetailProject(BaseModel):
+    id: str
+    last_modified: str
+    name: str
+    progress: CorporationsProjectsDetailProgress
+    reward: Optional[CorporationsProjectsDetailReward] = None
+    state: str
 
 class DogmaAttributesAttributeIdGet(BaseModel):
     attribute_id: int
-    default_value: float = None
-    description: str = None
-    display_name: str = None
-    high_is_good: bool = None
-    icon_id: int = None
-    name: str = None
-    published: bool = None
-    stackable: bool = None
-    unit_id: int = None
+    default_value: Optional[float] = None
+    description: Optional[str] = None
+    display_name: Optional[str] = None
+    high_is_good: Optional[bool] = None
+    icon_id: Optional[int] = None
+    name: Optional[str] = None
+    published: Optional[bool] = None
+    stackable: Optional[bool] = None
+    unit_id: Optional[int] = None
 
 class DogmaDynamicItemsTypeIdItemIdGet(BaseModel):
     created_by: int
@@ -156,41 +204,41 @@ class DogmaDynamicItemsTypeIdItemIdGet(BaseModel):
     source_type_id: int
 
 class DogmaEffectsEffectIdGet(BaseModel):
-    description: str = None
-    disallow_auto_repeat: bool = None
-    discharge_attribute_id: int = None
-    display_name: str = None
-    duration_attribute_id: int = None
-    effect_category: int = None
+    description: Optional[str] = None
+    disallow_auto_repeat: Optional[bool] = None
+    discharge_attribute_id: Optional[int] = None
+    display_name: Optional[str] = None
+    duration_attribute_id: Optional[int] = None
+    effect_category: Optional[int] = None
     effect_id: int
-    electronic_chance: bool = None
-    falloff_attribute_id: int = None
-    icon_id: int = None
-    is_assistance: bool = None
-    is_offensive: bool = None
-    is_warp_safe: bool = None
-    modifiers: List[InlineModel] = None
-    name: str = None
-    post_expression: int = None
-    pre_expression: int = None
-    published: bool = None
-    range_attribute_id: int = None
-    range_chance: bool = None
-    tracking_speed_attribute_id: int = None
+    electronic_chance: Optional[bool] = None
+    falloff_attribute_id: Optional[int] = None
+    icon_id: Optional[int] = None
+    is_assistance: Optional[bool] = None
+    is_offensive: Optional[bool] = None
+    is_warp_safe: Optional[bool] = None
+    modifiers: Optional[List[InlineModel]] = None
+    name: Optional[str] = None
+    post_expression: Optional[int] = None
+    pre_expression: Optional[int] = None
+    published: Optional[bool] = None
+    range_attribute_id: Optional[int] = None
+    range_chance: Optional[bool] = None
+    tracking_speed_attribute_id: Optional[int] = None
 
 class CharactersCharacterIdFwStatsGet(BaseModel):
-    current_rank: int = None
-    enlisted_on: str = None
-    faction_id: int = None
-    highest_rank: int = None
+    current_rank: Optional[int] = None
+    enlisted_on: Optional[str] = None
+    faction_id: Optional[int] = None
+    highest_rank: Optional[int] = None
     kills: InlineModel
     victory_points: InlineModel
 
 class CorporationsCorporationIdFwStatsGet(BaseModel):
-    enlisted_on: str = None
-    faction_id: int = None
+    enlisted_on: Optional[str] = None
+    faction_id: Optional[int] = None
     kills: InlineModel
-    pilots: int = None
+    pilots: Optional[int] = None
     victory_points: InlineModel
 
 class FwLeaderboardsGet(BaseModel):
@@ -231,20 +279,20 @@ class KillmailsKillmailIdKillmailHashGet(BaseModel):
     attackers: List[InlineModel]
     killmail_id: int
     killmail_time: str
-    moon_id: int = None
+    moon_id: Optional[int] = None
     solar_system_id: int
     victim: InlineModel
-    war_id: int = None
+    war_id: Optional[int] = None
 
 class CharactersCharacterIdLocationGet(BaseModel):
     solar_system_id: int
-    station_id: int = None
-    structure_id: int = None
+    station_id: Optional[int] = None
+    structure_id: Optional[int] = None
 
 class CharactersCharacterIdOnlineGet(BaseModel):
-    last_login: str = None
-    last_logout: str = None
-    logins: int = None
+    last_login: Optional[str] = None
+    last_logout: Optional[str] = None
+    logins: Optional[int] = None
     online: bool
 
 class CharactersCharacterIdShipGet(BaseModel):
@@ -253,23 +301,23 @@ class CharactersCharacterIdShipGet(BaseModel):
     ship_type_id: int
 
 class CharactersCharacterIdMailLabelsGet(BaseModel):
-    labels: List[InlineModel] = None
-    total_unread_count: int = None
+    labels: Optional[List[InlineModel]] = None
+    total_unread_count: Optional[int] = None
 
 class CharactersCharacterIdMailMailIdGet(BaseModel):
-    body: str = None
-    from: int = None
-    labels: List[int] = None
-    read: bool = None
-    recipients: List[InlineModel] = None
-    subject: str = None
-    timestamp: str = None
+    body: Optional[str] = None
+    labels: Optional[List[int]] = None
+    read: Optional[bool] = None
+    recipients: Optional[List[InlineModel]] = None
+    subject: Optional[str] = None
+    timestamp: Optional[str] = None
+    _from: Optional[int] = Field(None, alias='from')
 
 class MarketsGroupsMarketGroupIdGet(BaseModel):
     description: str
     market_group_id: int
     name: str
-    parent_group_id: int = None
+    parent_group_id: Optional[int] = None
     types: List[int]
 
 class MetaChangelog(BaseModel):
@@ -288,24 +336,24 @@ class UniverseSchematicsSchematicIdGet(BaseModel):
     schematic_name: str
 
 class CharactersCharacterIdSearchGet(BaseModel):
-    agent: List[int] = None
-    alliance: List[int] = None
-    character: List[int] = None
-    constellation: List[int] = None
-    corporation: List[int] = None
-    faction: List[int] = None
-    inventory_type: List[int] = None
-    region: List[int] = None
-    solar_system: List[int] = None
-    station: List[int] = None
-    structure: List[int] = None
+    agent: Optional[List[int]] = None
+    alliance: Optional[List[int]] = None
+    character: Optional[List[int]] = None
+    constellation: Optional[List[int]] = None
+    corporation: Optional[List[int]] = None
+    faction: Optional[List[int]] = None
+    inventory_type: Optional[List[int]] = None
+    region: Optional[List[int]] = None
+    solar_system: Optional[List[int]] = None
+    station: Optional[List[int]] = None
+    structure: Optional[List[int]] = None
 
 class CharactersCharacterIdAttributesGet(BaseModel):
-    accrued_remap_cooldown_date: str = None
-    bonus_remaps: int = None
+    accrued_remap_cooldown_date: Optional[str] = None
+    bonus_remaps: Optional[int] = None
     charisma: int
     intelligence: int
-    last_remap_date: str = None
+    last_remap_date: Optional[str] = None
     memory: int
     perception: int
     willpower: int
@@ -313,13 +361,13 @@ class CharactersCharacterIdAttributesGet(BaseModel):
 class CharactersCharacterIdSkillsGet(BaseModel):
     skills: List[InlineModel]
     total_sp: int
-    unallocated_sp: int = None
+    unallocated_sp: Optional[int] = None
 
 class StatusGet(BaseModel):
     players: int
     server_version: str
     start_time: str
-    vip: bool = None
+    vip: Optional[bool] = None
 
 class UniverseAsteroidBeltsAsteroidBeltIdGet(BaseModel):
     name: str
@@ -340,14 +388,14 @@ class UniverseConstellationsConstellationIdGet(BaseModel):
     systems: List[int]
 
 class UniverseGraphicsGraphicIdGet(BaseModel):
-    collision_file: str = None
-    graphic_file: str = None
+    collision_file: Optional[str] = None
+    graphic_file: Optional[str] = None
     graphic_id: int
-    icon_folder: str = None
-    sof_dna: str = None
-    sof_fation_name: str = None
-    sof_hull_name: str = None
-    sof_race_name: str = None
+    icon_folder: Optional[str] = None
+    sof_dna: Optional[str] = None
+    sof_fation_name: Optional[str] = None
+    sof_hull_name: Optional[str] = None
+    sof_race_name: Optional[str] = None
 
 class UniverseGroupsGroupIdGet(BaseModel):
     category_id: int
@@ -371,7 +419,7 @@ class UniversePlanetsPlanetIdGet(BaseModel):
 
 class UniverseRegionsRegionIdGet(BaseModel):
     constellations: List[int]
-    description: str = None
+    description: Optional[str] = None
     name: str
     region_id: int
 
@@ -397,9 +445,9 @@ class UniverseStationsStationIdGet(BaseModel):
     max_dockable_ship_volume: float
     name: str
     office_rental_cost: float
-    owner: int = None
+    owner: Optional[int] = None
     position: InlineModel
-    race_id: int = None
+    race_id: Optional[int] = None
     reprocessing_efficiency: float
     reprocessing_stations_take: float
     services: List[str]
@@ -410,53 +458,53 @@ class UniverseStationsStationIdGet(BaseModel):
 class UniverseStructuresStructureIdGet(BaseModel):
     name: str
     owner_id: int
-    position: InlineModel = None
+    position: Optional[InlineModel] = None
     solar_system_id: int
-    type_id: int = None
+    type_id: Optional[int] = None
 
 class UniverseSystemsSystemIdGet(BaseModel):
     constellation_id: int
     name: str
-    planets: List[InlineModel] = None
+    planets: Optional[List[InlineModel]] = None
     position: InlineModel
-    security_class: str = None
+    security_class: Optional[str] = None
     security_status: float
-    star_id: int = None
-    stargates: List[int] = None
-    stations: List[int] = None
+    star_id: Optional[int] = None
+    stargates: Optional[List[int]] = None
+    stations: Optional[List[int]] = None
     system_id: int
 
 class UniverseTypesTypeIdGet(BaseModel):
-    capacity: float = None
+    capacity: Optional[float] = None
     description: str
-    dogma_attributes: List[InlineModel] = None
-    dogma_effects: List[InlineModel] = None
-    graphic_id: int = None
+    dogma_attributes: Optional[List[InlineModel]] = None
+    dogma_effects: Optional[List[InlineModel]] = None
+    graphic_id: Optional[int] = None
     group_id: int
-    icon_id: int = None
-    market_group_id: int = None
-    mass: float = None
+    icon_id: Optional[int] = None
+    market_group_id: Optional[int] = None
+    mass: Optional[float] = None
     name: str
-    packaged_volume: float = None
-    portion_size: int = None
+    packaged_volume: Optional[float] = None
+    portion_size: Optional[int] = None
     published: bool
-    radius: float = None
+    radius: Optional[float] = None
     type_id: int
-    volume: float = None
+    volume: Optional[float] = None
 
 class WarsWarIdGet(BaseModel):
     aggressor: InlineModel
-    allies: List[InlineModel] = None
+    allies: Optional[List[InlineModel]] = None
     declared: str
     defender: InlineModel
-    finished: str = None
+    finished: Optional[str] = None
     id: int
     mutual: bool
     open_for_allies: bool
-    retracted: str = None
-    started: str = None
+    retracted: Optional[str] = None
+    started: Optional[str] = None
 
-class GetAlliancesOperation(EsiOperation):
+class GetAlliancesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """List all active player alliances"""
@@ -471,7 +519,7 @@ class GetAlliancesOperation(EsiOperation):
         ...
 
 
-class GetAlliancesAllianceIdOperation(EsiOperation):
+class GetAlliancesAllianceIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> AlliancesAllianceIdGet:
         """Public information about an alliance"""
@@ -486,7 +534,7 @@ class GetAlliancesAllianceIdOperation(EsiOperation):
         ...
 
 
-class GetAlliancesAllianceIdCorporationsOperation(EsiOperation):
+class GetAlliancesAllianceIdCorporationsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """List all current member corporations of an alliance"""
@@ -501,7 +549,7 @@ class GetAlliancesAllianceIdCorporationsOperation(EsiOperation):
         ...
 
 
-class GetAlliancesAllianceIdIconsOperation(EsiOperation):
+class GetAlliancesAllianceIdIconsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> AlliancesAllianceIdIconsGet:
         """Get the icon urls for a alliance  This route expires daily at 11:05"""
@@ -516,7 +564,7 @@ class GetAlliancesAllianceIdIconsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdAssetsOperation(EsiOperation):
+class GetCharactersCharacterIdAssetsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of the characters assets"""
@@ -531,7 +579,7 @@ class GetCharactersCharacterIdAssetsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdAssetsOperation(EsiOperation):
+class GetCorporationsCorporationIdAssetsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of the corporation assets"""
@@ -546,7 +594,7 @@ class GetCorporationsCorporationIdAssetsOperation(EsiOperation):
         ...
 
 
-class PostCharactersCharacterIdAssetsLocationsOperation(EsiOperation):
+class PostCharactersCharacterIdAssetsLocationsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)"""
@@ -561,7 +609,7 @@ class PostCharactersCharacterIdAssetsLocationsOperation(EsiOperation):
         ...
 
 
-class PostCharactersCharacterIdAssetsNamesOperation(EsiOperation):
+class PostCharactersCharacterIdAssetsNamesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships."""
@@ -576,7 +624,7 @@ class PostCharactersCharacterIdAssetsNamesOperation(EsiOperation):
         ...
 
 
-class PostCorporationsCorporationIdAssetsLocationsOperation(EsiOperation):
+class PostCorporationsCorporationIdAssetsLocationsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)"""
@@ -591,7 +639,7 @@ class PostCorporationsCorporationIdAssetsLocationsOperation(EsiOperation):
         ...
 
 
-class PostCorporationsCorporationIdAssetsNamesOperation(EsiOperation):
+class PostCorporationsCorporationIdAssetsNamesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Return names for a set of item ids, which you can get from corporation assets endpoint. Only valid for items that can customize names, like containers or ships"""
@@ -606,7 +654,7 @@ class PostCorporationsCorporationIdAssetsNamesOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdCalendarOperation(EsiOperation):
+class GetCharactersCharacterIdCalendarOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get 50 event summaries from the calendar. If no from_event ID is given, the resource will return the next 50 chronological event summaries from now. If a from_event ID is specified, it will return the next 50 chronological event summaries from after that event"""
@@ -621,7 +669,7 @@ class GetCharactersCharacterIdCalendarOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdCalendarEventIdOperation(EsiOperation):
+class GetCharactersCharacterIdCalendarEventIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdCalendarEventIdGet:
         """Get all the information for a specific event"""
@@ -636,7 +684,7 @@ class GetCharactersCharacterIdCalendarEventIdOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdCalendarEventIdAttendeesOperation(EsiOperation):
+class GetCharactersCharacterIdCalendarEventIdAttendeesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get all invited attendees for a given event"""
@@ -651,13 +699,13 @@ class GetCharactersCharacterIdCalendarEventIdAttendeesOperation(EsiOperation):
         ...
 
 
-class PutCharactersCharacterIdCalendarEventIdOperation(EsiOperation):
+class PutCharactersCharacterIdCalendarEventIdOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Set your response status to an event"""
         ...
 
-class GetCharactersCharacterIdOperation(EsiOperation):
+class GetCharactersCharacterIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdGet:
         """Public information about a character"""
@@ -672,7 +720,7 @@ class GetCharactersCharacterIdOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdAgentsResearchOperation(EsiOperation):
+class GetCharactersCharacterIdAgentsResearchOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of agents research information for a character. The formula for finding the current research points with an agent is: currentPoints = remainderPoints + pointsPerDay * days(currentTime - researchStartDate)"""
@@ -687,7 +735,7 @@ class GetCharactersCharacterIdAgentsResearchOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdBlueprintsOperation(EsiOperation):
+class GetCharactersCharacterIdBlueprintsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of blueprints the character owns"""
@@ -702,7 +750,7 @@ class GetCharactersCharacterIdBlueprintsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdCorporationhistoryOperation(EsiOperation):
+class GetCharactersCharacterIdCorporationhistoryOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get a list of all the corporations a character has been a member of"""
@@ -717,7 +765,7 @@ class GetCharactersCharacterIdCorporationhistoryOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdFatigueOperation(EsiOperation):
+class GetCharactersCharacterIdFatigueOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdFatigueGet:
         """Return a character's jump activation and fatigue information"""
@@ -732,7 +780,7 @@ class GetCharactersCharacterIdFatigueOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdMedalsOperation(EsiOperation):
+class GetCharactersCharacterIdMedalsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of medals the character has"""
@@ -747,7 +795,7 @@ class GetCharactersCharacterIdMedalsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdNotificationsOperation(EsiOperation):
+class GetCharactersCharacterIdNotificationsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return character notifications"""
@@ -762,7 +810,7 @@ class GetCharactersCharacterIdNotificationsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdNotificationsContactsOperation(EsiOperation):
+class GetCharactersCharacterIdNotificationsContactsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return notifications about having been added to someone's contact list"""
@@ -777,7 +825,7 @@ class GetCharactersCharacterIdNotificationsContactsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdPortraitOperation(EsiOperation):
+class GetCharactersCharacterIdPortraitOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdPortraitGet:
         """Get portrait urls for a character  This route expires daily at 11:05"""
@@ -792,7 +840,7 @@ class GetCharactersCharacterIdPortraitOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdRolesOperation(EsiOperation):
+class GetCharactersCharacterIdRolesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdRolesGet:
         """Returns a character's corporation roles"""
@@ -807,7 +855,7 @@ class GetCharactersCharacterIdRolesOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdStandingsOperation(EsiOperation):
+class GetCharactersCharacterIdStandingsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return character standings from agents, NPC corporations, and factions"""
@@ -822,7 +870,7 @@ class GetCharactersCharacterIdStandingsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdTitlesOperation(EsiOperation):
+class GetCharactersCharacterIdTitlesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns a character's titles"""
@@ -837,7 +885,7 @@ class GetCharactersCharacterIdTitlesOperation(EsiOperation):
         ...
 
 
-class PostCharactersAffiliationOperation(EsiOperation):
+class PostCharactersAffiliationOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Bulk lookup of character IDs to corporation, alliance and faction"""
@@ -852,7 +900,7 @@ class PostCharactersAffiliationOperation(EsiOperation):
         ...
 
 
-class PostCharactersCharacterIdCspaOperation(EsiOperation):
+class PostCharactersCharacterIdCspaOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> float:
         """Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost"""
@@ -867,7 +915,7 @@ class PostCharactersCharacterIdCspaOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdClonesOperation(EsiOperation):
+class GetCharactersCharacterIdClonesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdClonesGet:
         """A list of the character's clones"""
@@ -882,7 +930,7 @@ class GetCharactersCharacterIdClonesOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdImplantsOperation(EsiOperation):
+class GetCharactersCharacterIdImplantsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Return implants on the active clone of a character"""
@@ -897,13 +945,13 @@ class GetCharactersCharacterIdImplantsOperation(EsiOperation):
         ...
 
 
-class DeleteCharactersCharacterIdContactsOperation(EsiOperation):
+class DeleteCharactersCharacterIdContactsOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Bulk delete contacts"""
         ...
 
-class GetAlliancesAllianceIdContactsOperation(EsiOperation):
+class GetAlliancesAllianceIdContactsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return contacts of an alliance"""
@@ -918,7 +966,7 @@ class GetAlliancesAllianceIdContactsOperation(EsiOperation):
         ...
 
 
-class GetAlliancesAllianceIdContactsLabelsOperation(EsiOperation):
+class GetAlliancesAllianceIdContactsLabelsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return custom labels for an alliance's contacts"""
@@ -933,7 +981,7 @@ class GetAlliancesAllianceIdContactsLabelsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdContactsOperation(EsiOperation):
+class GetCharactersCharacterIdContactsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return contacts of a character"""
@@ -948,7 +996,7 @@ class GetCharactersCharacterIdContactsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdContactsLabelsOperation(EsiOperation):
+class GetCharactersCharacterIdContactsLabelsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return custom labels for a character's contacts"""
@@ -963,7 +1011,7 @@ class GetCharactersCharacterIdContactsLabelsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdContactsOperation(EsiOperation):
+class GetCorporationsCorporationIdContactsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return contacts of a corporation"""
@@ -978,7 +1026,7 @@ class GetCorporationsCorporationIdContactsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdContactsLabelsOperation(EsiOperation):
+class GetCorporationsCorporationIdContactsLabelsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return custom labels for a corporation's contacts"""
@@ -993,7 +1041,7 @@ class GetCorporationsCorporationIdContactsLabelsOperation(EsiOperation):
         ...
 
 
-class PostCharactersCharacterIdContactsOperation(EsiOperation):
+class PostCharactersCharacterIdContactsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Bulk add contacts with same settings"""
@@ -1008,13 +1056,13 @@ class PostCharactersCharacterIdContactsOperation(EsiOperation):
         ...
 
 
-class PutCharactersCharacterIdContactsOperation(EsiOperation):
+class PutCharactersCharacterIdContactsOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Bulk edit contacts with same settings"""
         ...
 
-class GetCharactersCharacterIdContractsOperation(EsiOperation):
+class GetCharactersCharacterIdContractsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is "in_progress"."""
@@ -1029,7 +1077,7 @@ class GetCharactersCharacterIdContractsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdContractsContractIdBidsOperation(EsiOperation):
+class GetCharactersCharacterIdContractsContractIdBidsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Lists bids on a particular auction contract"""
@@ -1044,7 +1092,7 @@ class GetCharactersCharacterIdContractsContractIdBidsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdContractsContractIdItemsOperation(EsiOperation):
+class GetCharactersCharacterIdContractsContractIdItemsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Lists items of a particular contract"""
@@ -1059,7 +1107,7 @@ class GetCharactersCharacterIdContractsContractIdItemsOperation(EsiOperation):
         ...
 
 
-class GetContractsPublicBidsContractIdOperation(EsiOperation):
+class GetContractsPublicBidsContractIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Lists bids on a public auction contract"""
@@ -1074,7 +1122,7 @@ class GetContractsPublicBidsContractIdOperation(EsiOperation):
         ...
 
 
-class GetContractsPublicItemsContractIdOperation(EsiOperation):
+class GetContractsPublicItemsContractIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Lists items of a public contract"""
@@ -1089,7 +1137,7 @@ class GetContractsPublicItemsContractIdOperation(EsiOperation):
         ...
 
 
-class GetContractsPublicRegionIdOperation(EsiOperation):
+class GetContractsPublicRegionIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns a paginated list of all public contracts in the given region"""
@@ -1104,7 +1152,7 @@ class GetContractsPublicRegionIdOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdContractsOperation(EsiOperation):
+class GetCorporationsCorporationIdContractsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns contracts available to a corporation, only if the corporation is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is "in_progress"."""
@@ -1119,7 +1167,7 @@ class GetCorporationsCorporationIdContractsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdContractsContractIdBidsOperation(EsiOperation):
+class GetCorporationsCorporationIdContractsContractIdBidsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Lists bids on a particular auction contract"""
@@ -1134,7 +1182,7 @@ class GetCorporationsCorporationIdContractsContractIdBidsOperation(EsiOperation)
         ...
 
 
-class GetCorporationsCorporationIdContractsContractIdItemsOperation(EsiOperation):
+class GetCorporationsCorporationIdContractsContractIdItemsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Lists items of a particular contract"""
@@ -1149,7 +1197,7 @@ class GetCorporationsCorporationIdContractsContractIdItemsOperation(EsiOperation
         ...
 
 
-class GetCorporationsCorporationIdOperation(EsiOperation):
+class GetCorporationsCorporationIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CorporationsCorporationIdGet:
         """Public information about a corporation"""
@@ -1164,7 +1212,7 @@ class GetCorporationsCorporationIdOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdAlliancehistoryOperation(EsiOperation):
+class GetCorporationsCorporationIdAlliancehistoryOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get a list of all the alliances a corporation has been a member of"""
@@ -1179,7 +1227,7 @@ class GetCorporationsCorporationIdAlliancehistoryOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdBlueprintsOperation(EsiOperation):
+class GetCorporationsCorporationIdBlueprintsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns a list of blueprints the corporation owns"""
@@ -1194,7 +1242,7 @@ class GetCorporationsCorporationIdBlueprintsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdContainersLogsOperation(EsiOperation):
+class GetCorporationsCorporationIdContainersLogsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation"""
@@ -1209,7 +1257,7 @@ class GetCorporationsCorporationIdContainersLogsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdDivisionsOperation(EsiOperation):
+class GetCorporationsCorporationIdDivisionsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CorporationsCorporationIdDivisionsGet:
         """Return corporation hangar and wallet division names, only show if a division is not using the default name"""
@@ -1224,7 +1272,7 @@ class GetCorporationsCorporationIdDivisionsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdFacilitiesOperation(EsiOperation):
+class GetCorporationsCorporationIdFacilitiesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a corporation's facilities"""
@@ -1239,7 +1287,7 @@ class GetCorporationsCorporationIdFacilitiesOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdIconsOperation(EsiOperation):
+class GetCorporationsCorporationIdIconsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CorporationsCorporationIdIconsGet:
         """Get the icon urls for a corporation"""
@@ -1254,7 +1302,7 @@ class GetCorporationsCorporationIdIconsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdMedalsOperation(EsiOperation):
+class GetCorporationsCorporationIdMedalsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns a corporation's medals"""
@@ -1269,7 +1317,7 @@ class GetCorporationsCorporationIdMedalsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdMedalsIssuedOperation(EsiOperation):
+class GetCorporationsCorporationIdMedalsIssuedOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns medals issued by a corporation"""
@@ -1284,7 +1332,7 @@ class GetCorporationsCorporationIdMedalsIssuedOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdMembersOperation(EsiOperation):
+class GetCorporationsCorporationIdMembersOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Return the current member list of a corporation, the token's character need to be a member of the corporation."""
@@ -1299,7 +1347,7 @@ class GetCorporationsCorporationIdMembersOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdMembersLimitOperation(EsiOperation):
+class GetCorporationsCorporationIdMembersLimitOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> int:
         """Return a corporation's member limit, not including CEO himself"""
@@ -1314,7 +1362,7 @@ class GetCorporationsCorporationIdMembersLimitOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdMembersTitlesOperation(EsiOperation):
+class GetCorporationsCorporationIdMembersTitlesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns a corporation's members' titles"""
@@ -1329,7 +1377,7 @@ class GetCorporationsCorporationIdMembersTitlesOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdMembertrackingOperation(EsiOperation):
+class GetCorporationsCorporationIdMembertrackingOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns additional information about a corporation's members which helps tracking their activities"""
@@ -1344,7 +1392,7 @@ class GetCorporationsCorporationIdMembertrackingOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdRolesOperation(EsiOperation):
+class GetCorporationsCorporationIdRolesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return the roles of all members if the character has the personnel manager role or any grantable role."""
@@ -1359,7 +1407,7 @@ class GetCorporationsCorporationIdRolesOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdRolesHistoryOperation(EsiOperation):
+class GetCorporationsCorporationIdRolesHistoryOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return how roles have changed for a coporation's members, up to a month"""
@@ -1374,7 +1422,7 @@ class GetCorporationsCorporationIdRolesHistoryOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdShareholdersOperation(EsiOperation):
+class GetCorporationsCorporationIdShareholdersOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return the current shareholders of a corporation."""
@@ -1389,7 +1437,7 @@ class GetCorporationsCorporationIdShareholdersOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdStandingsOperation(EsiOperation):
+class GetCorporationsCorporationIdStandingsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return corporation standings from agents, NPC corporations, and factions"""
@@ -1404,7 +1452,7 @@ class GetCorporationsCorporationIdStandingsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdStarbasesOperation(EsiOperation):
+class GetCorporationsCorporationIdStarbasesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns list of corporation starbases (POSes)"""
@@ -1419,7 +1467,7 @@ class GetCorporationsCorporationIdStarbasesOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdStarbasesStarbaseIdOperation(EsiOperation):
+class GetCorporationsCorporationIdStarbasesStarbaseIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CorporationsCorporationIdStarbasesStarbaseIdGet:
         """Returns various settings and fuels of a starbase (POS)"""
@@ -1434,7 +1482,7 @@ class GetCorporationsCorporationIdStarbasesStarbaseIdOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdStructuresOperation(EsiOperation):
+class GetCorporationsCorporationIdStructuresOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get a list of corporation structures. This route's version includes the changes to structures detailed in this blog: https://www.eveonline.com/article/upwell-2.0-structures-changes-coming-on-february-13th"""
@@ -1449,7 +1497,7 @@ class GetCorporationsCorporationIdStructuresOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdTitlesOperation(EsiOperation):
+class GetCorporationsCorporationIdTitlesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns a corporation's titles"""
@@ -1464,7 +1512,7 @@ class GetCorporationsCorporationIdTitlesOperation(EsiOperation):
         ...
 
 
-class GetCorporationsNpccorpsOperation(EsiOperation):
+class GetCorporationsNpccorpsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Get a list of npc corporations  This route expires daily at 11:05"""
@@ -1479,7 +1527,7 @@ class GetCorporationsNpccorpsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsProjectsContributionOperation(EsiOperation):
+class GetCorporationsProjectsContributionOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CorporationsProjectsContribution:
         """Show your contribution to a corporation project."""
@@ -1494,7 +1542,7 @@ class GetCorporationsProjectsContributionOperation(EsiOperation):
         ...
 
 
-class GetCorporationsProjectsContributorsOperation(EsiOperation):
+class GetCorporationsProjectsContributorsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CorporationsProjectsContributors:
         """Listing of all contributors to a corporation project."""
@@ -1509,7 +1557,7 @@ class GetCorporationsProjectsContributorsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsProjectsDetailOperation(EsiOperation):
+class GetCorporationsProjectsDetailOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CorporationsProjectsDetail:
         """Get the details of a corporation project."""
@@ -1524,7 +1572,7 @@ class GetCorporationsProjectsDetailOperation(EsiOperation):
         ...
 
 
-class GetCorporationsProjectsListingOperation(EsiOperation):
+class GetCorporationsProjectsListingOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CorporationsProjectsListing:
         """Listing of all (active) corporation projects."""
@@ -1539,7 +1587,7 @@ class GetCorporationsProjectsListingOperation(EsiOperation):
         ...
 
 
-class GetDogmaAttributesOperation(EsiOperation):
+class GetDogmaAttributesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Get a list of dogma attribute ids  This route expires daily at 11:05"""
@@ -1554,7 +1602,7 @@ class GetDogmaAttributesOperation(EsiOperation):
         ...
 
 
-class GetDogmaAttributesAttributeIdOperation(EsiOperation):
+class GetDogmaAttributesAttributeIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> DogmaAttributesAttributeIdGet:
         """Get information on a dogma attribute  This route expires daily at 11:05"""
@@ -1569,7 +1617,7 @@ class GetDogmaAttributesAttributeIdOperation(EsiOperation):
         ...
 
 
-class GetDogmaDynamicItemsTypeIdItemIdOperation(EsiOperation):
+class GetDogmaDynamicItemsTypeIdItemIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> DogmaDynamicItemsTypeIdItemIdGet:
         """Returns info about a dynamic item resulting from mutation with a mutaplasmid.  This route expires daily at 11:05"""
@@ -1584,7 +1632,7 @@ class GetDogmaDynamicItemsTypeIdItemIdOperation(EsiOperation):
         ...
 
 
-class GetDogmaEffectsOperation(EsiOperation):
+class GetDogmaEffectsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Get a list of dogma effect ids  This route expires daily at 11:05"""
@@ -1599,7 +1647,7 @@ class GetDogmaEffectsOperation(EsiOperation):
         ...
 
 
-class GetDogmaEffectsEffectIdOperation(EsiOperation):
+class GetDogmaEffectsEffectIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> DogmaEffectsEffectIdGet:
         """Get information on a dogma effect  This route expires daily at 11:05"""
@@ -1614,7 +1662,7 @@ class GetDogmaEffectsEffectIdOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdFwStatsOperation(EsiOperation):
+class GetCharactersCharacterIdFwStatsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdFwStatsGet:
         """Statistical overview of a character involved in faction warfare  This route expires daily at 11:05"""
@@ -1629,7 +1677,7 @@ class GetCharactersCharacterIdFwStatsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdFwStatsOperation(EsiOperation):
+class GetCorporationsCorporationIdFwStatsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CorporationsCorporationIdFwStatsGet:
         """Statistics about a corporation involved in faction warfare  This route expires daily at 11:05"""
@@ -1644,7 +1692,7 @@ class GetCorporationsCorporationIdFwStatsOperation(EsiOperation):
         ...
 
 
-class GetFwLeaderboardsOperation(EsiOperation):
+class GetFwLeaderboardsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> FwLeaderboardsGet:
         """Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
@@ -1659,7 +1707,7 @@ class GetFwLeaderboardsOperation(EsiOperation):
         ...
 
 
-class GetFwLeaderboardsCharactersOperation(EsiOperation):
+class GetFwLeaderboardsCharactersOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> FwLeaderboardsCharactersGet:
         """Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
@@ -1674,7 +1722,7 @@ class GetFwLeaderboardsCharactersOperation(EsiOperation):
         ...
 
 
-class GetFwLeaderboardsCorporationsOperation(EsiOperation):
+class GetFwLeaderboardsCorporationsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> FwLeaderboardsCorporationsGet:
         """Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday  This route expires daily at 11:05"""
@@ -1689,7 +1737,7 @@ class GetFwLeaderboardsCorporationsOperation(EsiOperation):
         ...
 
 
-class GetFwStatsOperation(EsiOperation):
+class GetFwStatsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Statistical overviews of factions involved in faction warfare  This route expires daily at 11:05"""
@@ -1704,7 +1752,7 @@ class GetFwStatsOperation(EsiOperation):
         ...
 
 
-class GetFwSystemsOperation(EsiOperation):
+class GetFwSystemsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """An overview of the current ownership of faction warfare solar systems"""
@@ -1719,7 +1767,7 @@ class GetFwSystemsOperation(EsiOperation):
         ...
 
 
-class GetFwWarsOperation(EsiOperation):
+class GetFwWarsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Data about which NPC factions are at war  This route expires daily at 11:05"""
@@ -1734,13 +1782,13 @@ class GetFwWarsOperation(EsiOperation):
         ...
 
 
-class DeleteCharactersCharacterIdFittingsFittingIdOperation(EsiOperation):
+class DeleteCharactersCharacterIdFittingsFittingIdOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Delete a fitting from a character"""
         ...
 
-class GetCharactersCharacterIdFittingsOperation(EsiOperation):
+class GetCharactersCharacterIdFittingsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return fittings of a character"""
@@ -1755,7 +1803,7 @@ class GetCharactersCharacterIdFittingsOperation(EsiOperation):
         ...
 
 
-class PostCharactersCharacterIdFittingsOperation(EsiOperation):
+class PostCharactersCharacterIdFittingsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdFittingsPost:
         """Save a new fitting for a character"""
@@ -1770,25 +1818,25 @@ class PostCharactersCharacterIdFittingsOperation(EsiOperation):
         ...
 
 
-class DeleteFleetsFleetIdMembersMemberIdOperation(EsiOperation):
+class DeleteFleetsFleetIdMembersMemberIdOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Kick a fleet member"""
         ...
 
-class DeleteFleetsFleetIdSquadsSquadIdOperation(EsiOperation):
+class DeleteFleetsFleetIdSquadsSquadIdOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Delete a fleet squad, only empty squads can be deleted"""
         ...
 
-class DeleteFleetsFleetIdWingsWingIdOperation(EsiOperation):
+class DeleteFleetsFleetIdWingsWingIdOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Delete a fleet wing, only empty wings can be deleted. The wing may contain squads, but the squads must be empty"""
         ...
 
-class GetCharactersCharacterIdFleetOperation(EsiOperation):
+class GetCharactersCharacterIdFleetOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdFleetGet:
         """Return the fleet ID the character is in, if any."""
@@ -1803,7 +1851,7 @@ class GetCharactersCharacterIdFleetOperation(EsiOperation):
         ...
 
 
-class GetFleetsFleetIdOperation(EsiOperation):
+class GetFleetsFleetIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> FleetsFleetIdGet:
         """Return details about a fleet"""
@@ -1818,7 +1866,7 @@ class GetFleetsFleetIdOperation(EsiOperation):
         ...
 
 
-class GetFleetsFleetIdMembersOperation(EsiOperation):
+class GetFleetsFleetIdMembersOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return information about fleet members"""
@@ -1833,7 +1881,7 @@ class GetFleetsFleetIdMembersOperation(EsiOperation):
         ...
 
 
-class GetFleetsFleetIdWingsOperation(EsiOperation):
+class GetFleetsFleetIdWingsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return information about wings in a fleet"""
@@ -1848,7 +1896,7 @@ class GetFleetsFleetIdWingsOperation(EsiOperation):
         ...
 
 
-class PostFleetsFleetIdMembersOperation(EsiOperation):
+class PostFleetsFleetIdMembersOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Invite a character into the fleet. If a character has a CSPA charge set it is not possible to invite them to the fleet using ESI"""
@@ -1863,7 +1911,7 @@ class PostFleetsFleetIdMembersOperation(EsiOperation):
         ...
 
 
-class PostFleetsFleetIdWingsOperation(EsiOperation):
+class PostFleetsFleetIdWingsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> FleetsFleetIdWingsPost:
         """Create a new wing in a fleet"""
@@ -1878,7 +1926,7 @@ class PostFleetsFleetIdWingsOperation(EsiOperation):
         ...
 
 
-class PostFleetsFleetIdWingsWingIdSquadsOperation(EsiOperation):
+class PostFleetsFleetIdWingsWingIdSquadsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> FleetsFleetIdWingsWingIdSquadsPost:
         """Create a new squad in a fleet"""
@@ -1893,31 +1941,31 @@ class PostFleetsFleetIdWingsWingIdSquadsOperation(EsiOperation):
         ...
 
 
-class PutFleetsFleetIdOperation(EsiOperation):
+class PutFleetsFleetIdOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Update settings about a fleet"""
         ...
 
-class PutFleetsFleetIdMembersMemberIdOperation(EsiOperation):
+class PutFleetsFleetIdMembersMemberIdOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Move a fleet member around"""
         ...
 
-class PutFleetsFleetIdSquadsSquadIdOperation(EsiOperation):
+class PutFleetsFleetIdSquadsSquadIdOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Rename a fleet squad"""
         ...
 
-class PutFleetsFleetIdWingsWingIdOperation(EsiOperation):
+class PutFleetsFleetIdWingsWingIdOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Rename a fleet wing"""
         ...
 
-class GetIncursionsOperation(EsiOperation):
+class GetIncursionsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of current incursions"""
@@ -1932,7 +1980,7 @@ class GetIncursionsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdIndustryJobsOperation(EsiOperation):
+class GetCharactersCharacterIdIndustryJobsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """List industry jobs placed by a character"""
@@ -1947,7 +1995,7 @@ class GetCharactersCharacterIdIndustryJobsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdMiningOperation(EsiOperation):
+class GetCharactersCharacterIdMiningOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Paginated record of all mining done by a character for the past 30 days"""
@@ -1962,7 +2010,7 @@ class GetCharactersCharacterIdMiningOperation(EsiOperation):
         ...
 
 
-class GetCorporationCorporationIdMiningExtractionsOperation(EsiOperation):
+class GetCorporationCorporationIdMiningExtractionsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Extraction timers for all moon chunks being extracted by refineries belonging to a corporation."""
@@ -1977,7 +2025,7 @@ class GetCorporationCorporationIdMiningExtractionsOperation(EsiOperation):
         ...
 
 
-class GetCorporationCorporationIdMiningObserversOperation(EsiOperation):
+class GetCorporationCorporationIdMiningObserversOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Paginated list of all entities capable of observing and recording mining for a corporation"""
@@ -1992,7 +2040,7 @@ class GetCorporationCorporationIdMiningObserversOperation(EsiOperation):
         ...
 
 
-class GetCorporationCorporationIdMiningObserversObserverIdOperation(EsiOperation):
+class GetCorporationCorporationIdMiningObserversObserverIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Paginated record of all mining seen by an observer"""
@@ -2007,7 +2055,7 @@ class GetCorporationCorporationIdMiningObserversObserverIdOperation(EsiOperation
         ...
 
 
-class GetCorporationsCorporationIdIndustryJobsOperation(EsiOperation):
+class GetCorporationsCorporationIdIndustryJobsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """List industry jobs run by a corporation"""
@@ -2022,7 +2070,7 @@ class GetCorporationsCorporationIdIndustryJobsOperation(EsiOperation):
         ...
 
 
-class GetIndustryFacilitiesOperation(EsiOperation):
+class GetIndustryFacilitiesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of industry facilities"""
@@ -2037,7 +2085,7 @@ class GetIndustryFacilitiesOperation(EsiOperation):
         ...
 
 
-class GetIndustrySystemsOperation(EsiOperation):
+class GetIndustrySystemsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return cost indices for solar systems"""
@@ -2052,7 +2100,7 @@ class GetIndustrySystemsOperation(EsiOperation):
         ...
 
 
-class GetInsurancePricesOperation(EsiOperation):
+class GetInsurancePricesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return available insurance levels for all ship types"""
@@ -2067,7 +2115,7 @@ class GetInsurancePricesOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdKillmailsRecentOperation(EsiOperation):
+class GetCharactersCharacterIdKillmailsRecentOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of a character's kills and losses going back 90 days"""
@@ -2082,7 +2130,7 @@ class GetCharactersCharacterIdKillmailsRecentOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdKillmailsRecentOperation(EsiOperation):
+class GetCorporationsCorporationIdKillmailsRecentOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get a list of a corporation's kills and losses going back 90 days"""
@@ -2097,7 +2145,7 @@ class GetCorporationsCorporationIdKillmailsRecentOperation(EsiOperation):
         ...
 
 
-class GetKillmailsKillmailIdKillmailHashOperation(EsiOperation):
+class GetKillmailsKillmailIdKillmailHashOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> KillmailsKillmailIdKillmailHashGet:
         """Return a single killmail from its ID and hash"""
@@ -2112,7 +2160,7 @@ class GetKillmailsKillmailIdKillmailHashOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdLocationOperation(EsiOperation):
+class GetCharactersCharacterIdLocationOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdLocationGet:
         """Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable"""
@@ -2127,7 +2175,7 @@ class GetCharactersCharacterIdLocationOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdOnlineOperation(EsiOperation):
+class GetCharactersCharacterIdOnlineOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdOnlineGet:
         """Checks if the character is currently online"""
@@ -2142,7 +2190,7 @@ class GetCharactersCharacterIdOnlineOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdShipOperation(EsiOperation):
+class GetCharactersCharacterIdShipOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdShipGet:
         """Get the current ship type, name and id"""
@@ -2157,7 +2205,7 @@ class GetCharactersCharacterIdShipOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdLoyaltyPointsOperation(EsiOperation):
+class GetCharactersCharacterIdLoyaltyPointsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of loyalty points for all corporations the character has worked for"""
@@ -2172,7 +2220,7 @@ class GetCharactersCharacterIdLoyaltyPointsOperation(EsiOperation):
         ...
 
 
-class GetLoyaltyStoresCorporationIdOffersOperation(EsiOperation):
+class GetLoyaltyStoresCorporationIdOffersOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of offers from a specific corporation's loyalty store  This route expires daily at 11:05"""
@@ -2187,19 +2235,19 @@ class GetLoyaltyStoresCorporationIdOffersOperation(EsiOperation):
         ...
 
 
-class DeleteCharactersCharacterIdMailLabelsLabelIdOperation(EsiOperation):
+class DeleteCharactersCharacterIdMailLabelsLabelIdOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Delete a mail label"""
         ...
 
-class DeleteCharactersCharacterIdMailMailIdOperation(EsiOperation):
+class DeleteCharactersCharacterIdMailMailIdOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Delete a mail"""
         ...
 
-class GetCharactersCharacterIdMailOperation(EsiOperation):
+class GetCharactersCharacterIdMailOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return the 50 most recent mail headers belonging to the character that match the query criteria. Queries can be filtered by label, and last_mail_id can be used to paginate backwards"""
@@ -2214,7 +2262,7 @@ class GetCharactersCharacterIdMailOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdMailLabelsOperation(EsiOperation):
+class GetCharactersCharacterIdMailLabelsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdMailLabelsGet:
         """Return a list of the users mail labels, unread counts for each label and a total unread count."""
@@ -2229,7 +2277,7 @@ class GetCharactersCharacterIdMailLabelsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdMailListsOperation(EsiOperation):
+class GetCharactersCharacterIdMailListsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return all mailing lists that the character is subscribed to"""
@@ -2244,7 +2292,7 @@ class GetCharactersCharacterIdMailListsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdMailMailIdOperation(EsiOperation):
+class GetCharactersCharacterIdMailMailIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdMailMailIdGet:
         """Return the contents of an EVE mail"""
@@ -2259,7 +2307,7 @@ class GetCharactersCharacterIdMailMailIdOperation(EsiOperation):
         ...
 
 
-class PostCharactersCharacterIdMailOperation(EsiOperation):
+class PostCharactersCharacterIdMailOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> int:
         """Create and send a new mail"""
@@ -2274,7 +2322,7 @@ class PostCharactersCharacterIdMailOperation(EsiOperation):
         ...
 
 
-class PostCharactersCharacterIdMailLabelsOperation(EsiOperation):
+class PostCharactersCharacterIdMailLabelsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> int:
         """Create a mail label"""
@@ -2289,13 +2337,13 @@ class PostCharactersCharacterIdMailLabelsOperation(EsiOperation):
         ...
 
 
-class PutCharactersCharacterIdMailMailIdOperation(EsiOperation):
+class PutCharactersCharacterIdMailMailIdOperation(ESIClientOperation):
     """ESIClientOperation, use result()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> None:
         """Update metadata about a mail"""
         ...
 
-class GetCharactersCharacterIdOrdersOperation(EsiOperation):
+class GetCharactersCharacterIdOrdersOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """List open market orders placed by a character"""
@@ -2310,7 +2358,7 @@ class GetCharactersCharacterIdOrdersOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdOrdersHistoryOperation(EsiOperation):
+class GetCharactersCharacterIdOrdersHistoryOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """List cancelled and expired market orders placed by a character up to 90 days in the past."""
@@ -2325,7 +2373,7 @@ class GetCharactersCharacterIdOrdersHistoryOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdOrdersOperation(EsiOperation):
+class GetCorporationsCorporationIdOrdersOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """List open market orders placed on behalf of a corporation"""
@@ -2340,7 +2388,7 @@ class GetCorporationsCorporationIdOrdersOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdOrdersHistoryOperation(EsiOperation):
+class GetCorporationsCorporationIdOrdersHistoryOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past."""
@@ -2355,7 +2403,7 @@ class GetCorporationsCorporationIdOrdersHistoryOperation(EsiOperation):
         ...
 
 
-class GetMarketsGroupsOperation(EsiOperation):
+class GetMarketsGroupsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Get a list of item groups  This route expires daily at 11:05"""
@@ -2370,7 +2418,7 @@ class GetMarketsGroupsOperation(EsiOperation):
         ...
 
 
-class GetMarketsGroupsMarketGroupIdOperation(EsiOperation):
+class GetMarketsGroupsMarketGroupIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> MarketsGroupsMarketGroupIdGet:
         """Get information on an item group  This route expires daily at 11:05"""
@@ -2385,7 +2433,7 @@ class GetMarketsGroupsMarketGroupIdOperation(EsiOperation):
         ...
 
 
-class GetMarketsPricesOperation(EsiOperation):
+class GetMarketsPricesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of prices"""
@@ -2400,7 +2448,7 @@ class GetMarketsPricesOperation(EsiOperation):
         ...
 
 
-class GetMarketsRegionIdHistoryOperation(EsiOperation):
+class GetMarketsRegionIdHistoryOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of historical market statistics for the specified type in a region  This route expires daily at 11:05"""
@@ -2415,7 +2463,7 @@ class GetMarketsRegionIdHistoryOperation(EsiOperation):
         ...
 
 
-class GetMarketsRegionIdOrdersOperation(EsiOperation):
+class GetMarketsRegionIdOrdersOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of orders in a region"""
@@ -2430,7 +2478,7 @@ class GetMarketsRegionIdOrdersOperation(EsiOperation):
         ...
 
 
-class GetMarketsRegionIdTypesOperation(EsiOperation):
+class GetMarketsRegionIdTypesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Return a list of type IDs that have active orders in the region, for efficient market indexing."""
@@ -2445,7 +2493,7 @@ class GetMarketsRegionIdTypesOperation(EsiOperation):
         ...
 
 
-class GetMarketsStructuresStructureIdOperation(EsiOperation):
+class GetMarketsStructuresStructureIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return all orders in a structure"""
@@ -2460,7 +2508,7 @@ class GetMarketsStructuresStructureIdOperation(EsiOperation):
         ...
 
 
-class GetMetaChangelogOperation(EsiOperation):
+class GetMetaChangelogOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> MetaChangelog:
         """Get the changelog of this API."""
@@ -2475,7 +2523,7 @@ class GetMetaChangelogOperation(EsiOperation):
         ...
 
 
-class GetMetaCompatibilityDatesOperation(EsiOperation):
+class GetMetaCompatibilityDatesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> MetaCompatibilityDates:
         """Get a list of compatibility dates."""
@@ -2490,7 +2538,7 @@ class GetMetaCompatibilityDatesOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdPlanetsOperation(EsiOperation):
+class GetCharactersCharacterIdPlanetsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Returns a list of all planetary colonies owned by a character."""
@@ -2505,7 +2553,7 @@ class GetCharactersCharacterIdPlanetsOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdPlanetsPlanetIdOperation(EsiOperation):
+class GetCharactersCharacterIdPlanetsPlanetIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdPlanetsPlanetIdGet:
         """Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met."""
@@ -2520,7 +2568,7 @@ class GetCharactersCharacterIdPlanetsPlanetIdOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdCustomsOfficesOperation(EsiOperation):
+class GetCorporationsCorporationIdCustomsOfficesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """List customs offices owned by a corporation"""
@@ -2535,7 +2583,7 @@ class GetCorporationsCorporationIdCustomsOfficesOperation(EsiOperation):
         ...
 
 
-class GetUniverseSchematicsSchematicIdOperation(EsiOperation):
+class GetUniverseSchematicsSchematicIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseSchematicsSchematicIdGet:
         """Get information on a planetary factory schematic"""
@@ -2550,7 +2598,7 @@ class GetUniverseSchematicsSchematicIdOperation(EsiOperation):
         ...
 
 
-class GetRouteOriginDestinationOperation(EsiOperation):
+class GetRouteOriginDestinationOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Get the systems between origin and destination"""
@@ -2565,7 +2613,7 @@ class GetRouteOriginDestinationOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdSearchOperation(EsiOperation):
+class GetCharactersCharacterIdSearchOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdSearchGet:
         """Search for entities that match a given sub-string."""
@@ -2580,7 +2628,7 @@ class GetCharactersCharacterIdSearchOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdAttributesOperation(EsiOperation):
+class GetCharactersCharacterIdAttributesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdAttributesGet:
         """Return attributes of a character"""
@@ -2595,7 +2643,7 @@ class GetCharactersCharacterIdAttributesOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdSkillqueueOperation(EsiOperation):
+class GetCharactersCharacterIdSkillqueueOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """List the configured skill queue for the given character"""
@@ -2610,7 +2658,7 @@ class GetCharactersCharacterIdSkillqueueOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdSkillsOperation(EsiOperation):
+class GetCharactersCharacterIdSkillsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> CharactersCharacterIdSkillsGet:
         """List all trained skills for the given character"""
@@ -2625,7 +2673,7 @@ class GetCharactersCharacterIdSkillsOperation(EsiOperation):
         ...
 
 
-class GetSovereigntyCampaignsOperation(EsiOperation):
+class GetSovereigntyCampaignsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Shows sovereignty data for campaigns."""
@@ -2640,7 +2688,7 @@ class GetSovereigntyCampaignsOperation(EsiOperation):
         ...
 
 
-class GetSovereigntyMapOperation(EsiOperation):
+class GetSovereigntyMapOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Shows sovereignty information for solar systems"""
@@ -2655,7 +2703,7 @@ class GetSovereigntyMapOperation(EsiOperation):
         ...
 
 
-class GetSovereigntyStructuresOperation(EsiOperation):
+class GetSovereigntyStructuresOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Shows sovereignty data for structures."""
@@ -2670,7 +2718,7 @@ class GetSovereigntyStructuresOperation(EsiOperation):
         ...
 
 
-class GetStatusOperation(EsiOperation):
+class GetStatusOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> StatusGet:
         """EVE Server status"""
@@ -2685,7 +2733,7 @@ class GetStatusOperation(EsiOperation):
         ...
 
 
-class GetUniverseAncestriesOperation(EsiOperation):
+class GetUniverseAncestriesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get all character ancestries  This route expires daily at 11:05"""
@@ -2700,7 +2748,7 @@ class GetUniverseAncestriesOperation(EsiOperation):
         ...
 
 
-class GetUniverseAsteroidBeltsAsteroidBeltIdOperation(EsiOperation):
+class GetUniverseAsteroidBeltsAsteroidBeltIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseAsteroidBeltsAsteroidBeltIdGet:
         """Get information on an asteroid belt  This route expires daily at 11:05"""
@@ -2715,7 +2763,7 @@ class GetUniverseAsteroidBeltsAsteroidBeltIdOperation(EsiOperation):
         ...
 
 
-class GetUniverseBloodlinesOperation(EsiOperation):
+class GetUniverseBloodlinesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get a list of bloodlines  This route expires daily at 11:05"""
@@ -2730,7 +2778,7 @@ class GetUniverseBloodlinesOperation(EsiOperation):
         ...
 
 
-class GetUniverseCategoriesOperation(EsiOperation):
+class GetUniverseCategoriesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Get a list of item categories  This route expires daily at 11:05"""
@@ -2745,7 +2793,7 @@ class GetUniverseCategoriesOperation(EsiOperation):
         ...
 
 
-class GetUniverseCategoriesCategoryIdOperation(EsiOperation):
+class GetUniverseCategoriesCategoryIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseCategoriesCategoryIdGet:
         """Get information of an item category  This route expires daily at 11:05"""
@@ -2760,7 +2808,7 @@ class GetUniverseCategoriesCategoryIdOperation(EsiOperation):
         ...
 
 
-class GetUniverseConstellationsOperation(EsiOperation):
+class GetUniverseConstellationsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Get a list of constellations  This route expires daily at 11:05"""
@@ -2775,7 +2823,7 @@ class GetUniverseConstellationsOperation(EsiOperation):
         ...
 
 
-class GetUniverseConstellationsConstellationIdOperation(EsiOperation):
+class GetUniverseConstellationsConstellationIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseConstellationsConstellationIdGet:
         """Get information on a constellation  This route expires daily at 11:05"""
@@ -2790,7 +2838,7 @@ class GetUniverseConstellationsConstellationIdOperation(EsiOperation):
         ...
 
 
-class GetUniverseFactionsOperation(EsiOperation):
+class GetUniverseFactionsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get a list of factions  This route expires daily at 11:05"""
@@ -2805,7 +2853,7 @@ class GetUniverseFactionsOperation(EsiOperation):
         ...
 
 
-class GetUniverseGraphicsOperation(EsiOperation):
+class GetUniverseGraphicsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Get a list of graphics  This route expires daily at 11:05"""
@@ -2820,7 +2868,7 @@ class GetUniverseGraphicsOperation(EsiOperation):
         ...
 
 
-class GetUniverseGraphicsGraphicIdOperation(EsiOperation):
+class GetUniverseGraphicsGraphicIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseGraphicsGraphicIdGet:
         """Get information on a graphic  This route expires daily at 11:05"""
@@ -2835,7 +2883,7 @@ class GetUniverseGraphicsGraphicIdOperation(EsiOperation):
         ...
 
 
-class GetUniverseGroupsOperation(EsiOperation):
+class GetUniverseGroupsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Get a list of item groups  This route expires daily at 11:05"""
@@ -2850,7 +2898,7 @@ class GetUniverseGroupsOperation(EsiOperation):
         ...
 
 
-class GetUniverseGroupsGroupIdOperation(EsiOperation):
+class GetUniverseGroupsGroupIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseGroupsGroupIdGet:
         """Get information on an item group  This route expires daily at 11:05"""
@@ -2865,7 +2913,7 @@ class GetUniverseGroupsGroupIdOperation(EsiOperation):
         ...
 
 
-class GetUniverseMoonsMoonIdOperation(EsiOperation):
+class GetUniverseMoonsMoonIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseMoonsMoonIdGet:
         """Get information on a moon  This route expires daily at 11:05"""
@@ -2880,7 +2928,7 @@ class GetUniverseMoonsMoonIdOperation(EsiOperation):
         ...
 
 
-class GetUniversePlanetsPlanetIdOperation(EsiOperation):
+class GetUniversePlanetsPlanetIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniversePlanetsPlanetIdGet:
         """Get information on a planet  This route expires daily at 11:05"""
@@ -2895,7 +2943,7 @@ class GetUniversePlanetsPlanetIdOperation(EsiOperation):
         ...
 
 
-class GetUniverseRacesOperation(EsiOperation):
+class GetUniverseRacesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get a list of character races  This route expires daily at 11:05"""
@@ -2910,7 +2958,7 @@ class GetUniverseRacesOperation(EsiOperation):
         ...
 
 
-class GetUniverseRegionsOperation(EsiOperation):
+class GetUniverseRegionsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Get a list of regions  This route expires daily at 11:05"""
@@ -2925,7 +2973,7 @@ class GetUniverseRegionsOperation(EsiOperation):
         ...
 
 
-class GetUniverseRegionsRegionIdOperation(EsiOperation):
+class GetUniverseRegionsRegionIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseRegionsRegionIdGet:
         """Get information on a region  This route expires daily at 11:05"""
@@ -2940,7 +2988,7 @@ class GetUniverseRegionsRegionIdOperation(EsiOperation):
         ...
 
 
-class GetUniverseStargatesStargateIdOperation(EsiOperation):
+class GetUniverseStargatesStargateIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseStargatesStargateIdGet:
         """Get information on a stargate  This route expires daily at 11:05"""
@@ -2955,7 +3003,7 @@ class GetUniverseStargatesStargateIdOperation(EsiOperation):
         ...
 
 
-class GetUniverseStarsStarIdOperation(EsiOperation):
+class GetUniverseStarsStarIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseStarsStarIdGet:
         """Get information on a star  This route expires daily at 11:05"""
@@ -2970,7 +3018,7 @@ class GetUniverseStarsStarIdOperation(EsiOperation):
         ...
 
 
-class GetUniverseStationsStationIdOperation(EsiOperation):
+class GetUniverseStationsStationIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseStationsStationIdGet:
         """Get information on a station  This route expires daily at 11:05"""
@@ -2985,7 +3033,7 @@ class GetUniverseStationsStationIdOperation(EsiOperation):
         ...
 
 
-class GetUniverseStructuresOperation(EsiOperation):
+class GetUniverseStructuresOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """List all public structures"""
@@ -3000,7 +3048,7 @@ class GetUniverseStructuresOperation(EsiOperation):
         ...
 
 
-class GetUniverseStructuresStructureIdOperation(EsiOperation):
+class GetUniverseStructuresStructureIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseStructuresStructureIdGet:
         """Returns information on requested structure if you are on the ACL. Otherwise, returns "Forbidden" for all inputs."""
@@ -3015,7 +3063,7 @@ class GetUniverseStructuresStructureIdOperation(EsiOperation):
         ...
 
 
-class GetUniverseSystemJumpsOperation(EsiOperation):
+class GetUniverseSystemJumpsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get the number of jumps in solar systems within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with jumps will be listed"""
@@ -3030,7 +3078,7 @@ class GetUniverseSystemJumpsOperation(EsiOperation):
         ...
 
 
-class GetUniverseSystemKillsOperation(EsiOperation):
+class GetUniverseSystemKillsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed"""
@@ -3045,7 +3093,7 @@ class GetUniverseSystemKillsOperation(EsiOperation):
         ...
 
 
-class GetUniverseSystemsOperation(EsiOperation):
+class GetUniverseSystemsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Get a list of solar systems  This route expires daily at 11:05"""
@@ -3060,7 +3108,7 @@ class GetUniverseSystemsOperation(EsiOperation):
         ...
 
 
-class GetUniverseSystemsSystemIdOperation(EsiOperation):
+class GetUniverseSystemsSystemIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseSystemsSystemIdGet:
         """Get information on a solar system.  This route expires daily at 11:05"""
@@ -3075,7 +3123,7 @@ class GetUniverseSystemsSystemIdOperation(EsiOperation):
         ...
 
 
-class GetUniverseTypesOperation(EsiOperation):
+class GetUniverseTypesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Get a list of type ids  This route expires daily at 11:05"""
@@ -3090,7 +3138,7 @@ class GetUniverseTypesOperation(EsiOperation):
         ...
 
 
-class GetUniverseTypesTypeIdOperation(EsiOperation):
+class GetUniverseTypesTypeIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> UniverseTypesTypeIdGet:
         """Get information on a type  This route expires daily at 11:05"""
@@ -3105,7 +3153,7 @@ class GetUniverseTypesTypeIdOperation(EsiOperation):
         ...
 
 
-class PostUniverseIdsOperation(EsiOperation):
+class PostUniverseIdsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Resolve a set of names to IDs in the following categories: agents, alliances, characters, constellations, corporations factions, inventory_types, regions, stations, and systems. Only exact matches will be returned. All names searched for are cached for 12 hours"""
@@ -3120,7 +3168,7 @@ class PostUniverseIdsOperation(EsiOperation):
         ...
 
 
-class PostUniverseNamesOperation(EsiOperation):
+class PostUniverseNamesOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types, Factions"""
@@ -3135,7 +3183,7 @@ class PostUniverseNamesOperation(EsiOperation):
         ...
 
 
-class PostUiAutopilotWaypointOperation(EsiOperation):
+class PostUiAutopilotWaypointOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Set a solar system as autopilot waypoint"""
@@ -3150,7 +3198,7 @@ class PostUiAutopilotWaypointOperation(EsiOperation):
         ...
 
 
-class PostUiOpenwindowContractOperation(EsiOperation):
+class PostUiOpenwindowContractOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Open the contract window inside the client"""
@@ -3165,7 +3213,7 @@ class PostUiOpenwindowContractOperation(EsiOperation):
         ...
 
 
-class PostUiOpenwindowInformationOperation(EsiOperation):
+class PostUiOpenwindowInformationOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Open the information window for a character, corporation or alliance inside the client"""
@@ -3180,7 +3228,7 @@ class PostUiOpenwindowInformationOperation(EsiOperation):
         ...
 
 
-class PostUiOpenwindowMarketdetailsOperation(EsiOperation):
+class PostUiOpenwindowMarketdetailsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Open the market details window for a specific typeID inside the client"""
@@ -3195,7 +3243,7 @@ class PostUiOpenwindowMarketdetailsOperation(EsiOperation):
         ...
 
 
-class PostUiOpenwindowNewmailOperation(EsiOperation):
+class PostUiOpenwindowNewmailOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> Any:
         """Open the New Mail window, according to settings from the request if applicable"""
@@ -3210,7 +3258,7 @@ class PostUiOpenwindowNewmailOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdWalletOperation(EsiOperation):
+class GetCharactersCharacterIdWalletOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> float:
         """Returns a character's wallet balance"""
@@ -3225,7 +3273,7 @@ class GetCharactersCharacterIdWalletOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdWalletJournalOperation(EsiOperation):
+class GetCharactersCharacterIdWalletJournalOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Retrieve the given character's wallet journal going 30 days back"""
@@ -3240,7 +3288,7 @@ class GetCharactersCharacterIdWalletJournalOperation(EsiOperation):
         ...
 
 
-class GetCharactersCharacterIdWalletTransactionsOperation(EsiOperation):
+class GetCharactersCharacterIdWalletTransactionsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get wallet transactions of a character"""
@@ -3255,7 +3303,7 @@ class GetCharactersCharacterIdWalletTransactionsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdWalletsOperation(EsiOperation):
+class GetCorporationsCorporationIdWalletsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get a corporation's wallets"""
@@ -3270,7 +3318,7 @@ class GetCorporationsCorporationIdWalletsOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdWalletsDivisionJournalOperation(EsiOperation):
+class GetCorporationsCorporationIdWalletsDivisionJournalOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Retrieve the given corporation's wallet journal for the given division going 30 days back"""
@@ -3285,7 +3333,7 @@ class GetCorporationsCorporationIdWalletsDivisionJournalOperation(EsiOperation):
         ...
 
 
-class GetCorporationsCorporationIdWalletsDivisionTransactionsOperation(EsiOperation):
+class GetCorporationsCorporationIdWalletsDivisionTransactionsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Get wallet transactions of a corporation"""
@@ -3300,7 +3348,7 @@ class GetCorporationsCorporationIdWalletsDivisionTransactionsOperation(EsiOperat
         ...
 
 
-class GetWarsOperation(EsiOperation):
+class GetWarsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[int]:
         """Return a list of wars"""
@@ -3315,7 +3363,7 @@ class GetWarsOperation(EsiOperation):
         ...
 
 
-class GetWarsWarIdOperation(EsiOperation):
+class GetWarsWarIdOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> WarsWarIdGet:
         """Return details about a war"""
@@ -3330,7 +3378,7 @@ class GetWarsWarIdOperation(EsiOperation):
         ...
 
 
-class GetWarsWarIdKillmailsOperation(EsiOperation):
+class GetWarsWarIdKillmailsOperation(ESIClientOperation):
     """ESIClientOperation, use result(), results() or results_localized()"""
     def result(self, use_etag: bool = True, return_response: bool = False, force_refresh: bool = False, use_cache: bool = True, **extra) -> List[InlineModel]:
         """Return a list of kills related to a war"""
