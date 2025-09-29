@@ -32,12 +32,11 @@
     </ul>
   </div>
   <div class="navbar-end">
-    {% if user.is_authenticated %}
+    {% comment %} {% if user.is_authenticated %} {% endcomment %}
     <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
         <div class="w-10 rounded-full">
-          <img alt="Tailwind CSS Navbar component"
-               src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+          <svg data-jdenticon-value="{{ user.username }}" width="40" height="40"></svg>
         </div>
       </div>
       <ul tabindex="0"
@@ -56,9 +55,9 @@
         </li>
       </ul>
     </div>
-    {% else %}
+    {% comment %} {% else %}
     <a class="btn btn-soft btn-accent ml-2" href="{% url 'account_login' %}">Login</a>
     <a class="btn btn-info ml-2" href="{% url 'account_signup' %}">Sign Up</a>
-    {% endif %}
+    {% endif %} {% endcomment %}
   </div>
 </div>
