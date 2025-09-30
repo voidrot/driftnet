@@ -8,7 +8,8 @@
     "operationindex",
     "postrun",
     "prerun",
-    "Refreshable"
+    "Refreshable",
+    "serverstatus"
   ],
   "mypy-type-checker.args": [
     "\"mypy-type-checker.args\" = [\"--config-file=pyproject.toml\"]"
