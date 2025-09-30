@@ -25,7 +25,7 @@ from tenacity import wait_exponential
 
 from apps.esi import app_settings
 from apps.esi.client_stubs import ESIClientStub
-from apps.esi.exceptions import ESIErrorLimitException
+from apps.esi.exceptions import ESIErrorLimitException, HTTPCacheError, HTTPServerError
 from apps.esi.exceptions import HTTPClientError
 from apps.esi.exceptions import HTTPNotModified
 from apps.esi.models import Token
@@ -53,7 +53,7 @@ def _get_user_agent() -> str:
     return f'{name}/{version} {email}{f" (+{url})" if url else ""}'
 
 
-def _httpx_exception_retries(exception: Exception) -> bool:
+def _httpx_exception_retries(exception: BaseException) -> bool:
     """
     Determines whether the given exception should trigger a retry for ESI requests.
 
@@ -65,6 +65,8 @@ def _httpx_exception_retries(exception: Exception) -> bool:
     if isinstance(exception, ESIErrorLimitException):
         return False
     if isinstance(exception, RequestError):
+        return True
+    if isinstance(exception, HTTPCacheError):
         return True
     if (  # noqa: SIM103
         isinstance(exception, HTTPStatusError)
@@ -219,6 +221,15 @@ class BaseESIClientOperation:
         """
         return f'{self._cache_key()}:etag'
 
+    def _data_cache_key(self) -> str:
+        """
+        Returns the cache key used to store the response data for this operation.
+
+        The data cache key is derived from the operation's cache key and is used to
+        efficiently retrieve cached response data.
+        """
+        return f'{self._cache_key()}:data'
+
     def _cache_key(self) -> str:
         """
         Generates a unique cache key for the current ESI client operation.
@@ -336,8 +347,6 @@ class BaseESIClientOperation:
             logger.debug('Cache hit for key %s', cache_key)
             if etag:
                 if cache.headers.get('etag') == etag:
-                    logger.debug('ETag match for key %s', cache_key)
-                    # Reset ETag ttl
                     self._store_etag(
                         etag
                     )  # TODO: move this to the same area we will reset cached data?
@@ -363,6 +372,7 @@ class BaseESIClientOperation:
         if isinstance(etag, dict):
             etag = etag.get('etag')
         self._cache.set(self._etag_cache_key(), etag, DEFAULT_EXPIRY)
+        logger.debug('Stored ETag %s for key %s', etag, self._etag_cache_key())
 
     def _remove_etag(self) -> None:
         """
@@ -374,6 +384,7 @@ class BaseESIClientOperation:
         """
         try:
             self._cache.delete(self._etag_cache_key())
+            logger.debug('Deleted ETag cache for key %s', self._etag_cache_key())
         except Exception as e:
             logger.error('Error deleting etag cache: %s', e, exc_info=True)  # noqa: G201
 
@@ -411,7 +422,7 @@ class BaseESIClientOperation:
         will not use stale cached data. Useful when the cached response is outdated or needs to be refreshed.
         """
         try:
-            self._cache.delete(self._cache_key())
+            self._cache.delete(self._data_cache_key())
         except Exception as e:
             logger.error('Error deleting response cache: %s', e, exc_info=True)  # noqa: G201
 
@@ -542,7 +553,7 @@ class ESIClientOperation(BaseESIClientOperation):
         self.token = self._get_token_param()
         self.body = self._get_body_params()
         parameters = self._kwargs | extra
-        cache_key = self._cache_key()
+        cache_key = self._data_cache_key()
         etag_key = self._etag_cache_key()
         etag = None
 
@@ -553,41 +564,37 @@ class ESIClientOperation(BaseESIClientOperation):
         if use_etag:
             etag = self._cache.get(etag_key)
 
-        headers, data, response = (
-            self._get_cache(cache_key, etag=etag) if use_cache else (None, None, None)
-        )
 
-        if not response:
-            logger.debug(f'cache disabled or missed {self.url}')
-            try:
-                headers, _data, response = self._make_request(parameters, etag=etag)
-                if response.status_code == 420:  # noqa: PLR2004
-                    reset = response.headers.get('X-RateLimit-Reset', None)
-                    self._cache.set('esi_error_limit_reset', reset, timeout=reset)
-                    raise ESIErrorLimitException(reset=reset)
-            except BaseHTTPClientError as e:
-                raise HTTPClientError(
-                    status_code=e.status_code,
-                    headers=e.headers,
-                    data=e.data,
-                ) from e
-            except BaseHTTPServerError as e:
-                raise HTTPError(
-                    status_code=e.status_code,
-                    headers=e.headers,
-                    data=e.data,
-                ) from e
-
-            if response.status_code == 304:  # noqa: PLR2004
-                self._store_etag(response.headers)
-                # We dont have a cached response, so we need to make a new request without the etag
-                # TODO: Delete etag when missing cache?
-                raise HTTPNotModified(
-                    status_code=304,
-                    headers=headers,
+        try:
+            headers, data, response = self._make_request(parameters, etag=etag)
+            if response.status_code == 420:  # noqa: PLR2004
+                reset = response.headers.get('X-RateLimit-Reset', None)
+                self._cache.set('esi_error_limit_reset', reset, timeout=reset)
+                raise ESIErrorLimitException(reset=reset)
+        except BaseHTTPServerError as e:
+            raise HTTPServerError(
+                status_code=e.status_code,
+                headers=e.headers,
+                data=e.data,
+            ) from e
+        except BaseHTTPClientError as e:
+            raise HTTPClientError(
+                status_code=e.status_code,
+                headers=e.headers,
+                data=e.data,
+            ) from e
+        if response.status_code == 304:  # noqa: PLR2004
+            logger.debug('Received 304 Not Modified, using cached data')
+            headers, data, response = self._get_cache(cache_key, etag=etag)
+            logger.debug('Cached response: %s', response)
+            if not response:
+                self._remove_etag()
+                raise HTTPCacheError(
+                    'Received 304 Not Modified but no cached response available'
                 )
-        # Store cache again without including the cached None response from the 304
-        self._store_response(cache_key, response)
+        if response and use_etag:
+            self._store_etag(response.headers.get('etag', ''))
+            self._store_response(cache_key, response)
         # Return the data and response if requested or just the data if not
         return (data, response) if return_response else data
 
