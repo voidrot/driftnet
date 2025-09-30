@@ -11,7 +11,7 @@ DJANGO_APPS = [
     'django.forms',
 ]
 
-PROJECT_APPS = ['apps.sde', 'apps.users', 'apps.esi', 'apps.market']
+PROJECT_APPS = ['apps.sde', 'apps.users', 'apps.esi', 'apps.market', 'apps.serverstatus']
 
 THIRD_PARTY_APPS = [
     # 'django_extensions',
