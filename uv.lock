@@ -671,16 +671,16 @@ wheels = [
 
 [[package]]
 name = "django-tailwind-cli"
-version = "4.4.0"
+version = "4.4.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
     { name = "django-typer" },
     { name = "semver" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ab/79/a7d7ec29ebeaf405375b09f1e742601ff4191a6b3b23305b661799fdd419/django_tailwind_cli-4.4.0.tar.gz", hash = "sha256:7dd5c33b9d40538492728ec20e79efb08b54571074698f78b0943f0cf79881d0", size = 96505, upload-time = "2025-09-21T14:17:47.518Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/86/09/8359181201a03871e34d8d47685b15244e778c8ece9f209a86d543cb7767/django_tailwind_cli-4.4.2.tar.gz", hash = "sha256:c3ad962710fc95acf1bb45b1b7747fe549d50ff99228cadc4cf2f28fd8d4e8ce", size = 97420, upload-time = "2025-09-23T15:07:23.876Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/90/17/8e71149de46eecc58eabc57f931fa8381d9debce4d9868f4e3a22ed9fa87/django_tailwind_cli-4.4.0-py3-none-any.whl", hash = "sha256:976fb98aca8c0fee80ab3bdb77845efd28904ce6c47db0e518425d9f60ea23a8", size = 31411, upload-time = "2025-09-21T14:17:45.616Z" },
+    { url = "https://files.pythonhosted.org/packages/cf/08/8b8c7c4a4f9f4ad3c4815f53c4f98de19b5c37803a9af767d0cebd779af4/django_tailwind_cli-4.4.2-py3-none-any.whl", hash = "sha256:8d1d69ae19209b5d6fd66150d916edbced1d154eee55895d807441dbfe282cae", size = 31688, upload-time = "2025-09-23T15:07:22.16Z" },
 ]
 
 [[package]]
