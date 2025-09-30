@@ -19,6 +19,10 @@ run = 'docker compose down'
 description = "Run Django migrations"
 run = "uv run python manage.py migrate"
 
+[tasks.make-migrations]
+description = "Create new Django migrations"
+run = "uv run python manage.py makemigrations"
+
 [tasks.dev]
 description = "Run the Django development server"
 depends = ['compose-up']

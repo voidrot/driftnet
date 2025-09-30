@@ -22,6 +22,10 @@ def collect_files(collection_dir: Path):
 # Update as needed for new queries
 MODEL_INDEX_RULES = {
     'inv_positions': ["models.Index(fields=['item_id'])"],
+    'types': [
+        "models.Index(fields=['market_group_id'])",
+        "models.Index(fields=['group_id'])",
+    ],
 }
 
 # Define primary key ID overrides for models

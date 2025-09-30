@@ -11,13 +11,16 @@ DJANGO_APPS = [
     'django.forms',
 ]
 
-PROJECT_APPS = ['apps.sde', 'apps.users', 'apps.esi', 'apps.market', 'apps.serverstatus']
+PROJECT_APPS = [
+    'apps.sde',
+    'apps.users',
+    'apps.esi',
+    'apps.market',
+    'apps.serverstatus',
+]
 
 THIRD_PARTY_APPS = [
-    # 'django_extensions',
     'django_cotton',
-    # 'django_cotton.apps.SimpleAppConfig',
-    # 'template_partials.apps.SimpleAppConfig',
     'django_htmx',
     'csp',
     'organizations',
@@ -26,8 +29,6 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.mfa',
     'allauth.usersessions',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.eveonline',
     'django_celery_results',
     'django_celery_beat',
     'crispy_forms',
