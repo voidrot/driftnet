@@ -2,7 +2,6 @@ import logging
 from hashlib import blake2b
 from typing import Any
 
-from aiopenapi3 import HTTPError
 from aiopenapi3 import OpenAPI
 from aiopenapi3._types import ResponseDataType
 from aiopenapi3._types import ResponseHeadersType
@@ -12,6 +11,7 @@ from aiopenapi3.request import OperationIndex
 from aiopenapi3.request import RequestBase
 from django.core.cache import CacheHandler
 from django.core.cache import caches
+from django.core.cache.backends.base import BaseCache
 from httpx import Client
 from httpx import HTTPStatusError
 from httpx import RequestError
@@ -25,9 +25,10 @@ from tenacity import wait_exponential
 
 from apps.esi import app_settings
 from apps.esi.client_stubs import ESIClientStub
-from apps.esi.exceptions import ESIErrorLimitException, HTTPCacheError, HTTPServerError
+from apps.esi.exceptions import ESIErrorLimitException
+from apps.esi.exceptions import HTTPCacheError
 from apps.esi.exceptions import HTTPClientError
-from apps.esi.exceptions import HTTPNotModified
+from apps.esi.exceptions import HTTPServerError
 from apps.esi.models import Token
 from apps.esi.plugins import Add304ContentType
 from apps.esi.plugins import PatchCompatibilityDatePlugin
@@ -140,8 +141,8 @@ def _load_aiopenapi_client() -> OpenAPI:
 
 class BaseESIClientOperation:
     def __init__(self, operation, api: OpenAPI) -> None:
-        logger.info('operation param is %s', type(operation))
-        self._cache: CacheHandler = caches[app_settings.ESI_CACHE_BACKEND_NAME]
+        logger.debug('operation param is %s', type(operation))
+        self._cache: BaseCache = caches[app_settings.ESI_CACHE_BACKEND_NAME]
         self.api = api
         self.token: Token | None = None
         self._args = []
@@ -564,9 +565,8 @@ class ESIClientOperation(BaseESIClientOperation):
         if use_etag:
             etag = self._cache.get(etag_key)
 
-
         try:
-            headers, data, response = self._make_request(parameters, etag=etag)
+            headers, data, response = self._make_request(parameters, etag=etag)  # noqa: RUF059
             if response.status_code == 420:  # noqa: PLR2004
                 reset = response.headers.get('X-RateLimit-Reset', None)
                 self._cache.set('esi_error_limit_reset', reset, timeout=reset)
@@ -585,13 +585,12 @@ class ESIClientOperation(BaseESIClientOperation):
             ) from e
         if response.status_code == 304:  # noqa: PLR2004
             logger.debug('Received 304 Not Modified, using cached data')
-            headers, data, response = self._get_cache(cache_key, etag=etag)
+            _headers, data, response = self._get_cache(cache_key, etag=etag)
             logger.debug('Cached response: %s', response)
             if not response:
                 self._remove_etag()
-                raise HTTPCacheError(
-                    'Received 304 Not Modified but no cached response available'
-                )
+                msg = 'Received 304 Not Modified but no cached response available'
+                raise HTTPCacheError(msg)
         if response and use_etag:
             self._store_etag(response.headers.get('etag', ''))
             self._store_response(cache_key, response)
