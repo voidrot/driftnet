@@ -34,8 +34,9 @@ class HTTPNotModified(Exception):  # noqa: N818
     def __str__(self):
         return f"""<{self.__class__.__name__} {self.status_code} {self.headers}>"""
 
+
 @dataclasses.dataclass(repr=False)
-class HTTPCacheError(Exception):  # noqa: N818
+class HTTPCacheError(Exception):
     """
     Exception representing an error related to HTTP caching.
 
@@ -47,6 +48,7 @@ class HTTPCacheError(Exception):  # noqa: N818
 
     def __str__(self):
         return f"""<{self.__class__.__name__} {self.message}>"""
+
 
 @dataclasses.dataclass(repr=False)
 class HTTPClientError(BaseHTTPClientError):
