@@ -36,3 +36,15 @@ run = [
   'uv run ruff format || true',
   'uv run djlint . --reformat || true'
 ]
+
+[tasks.celery-beat]
+description = "Run the Celery beat scheduler"
+run = "uv run watchmedo auto-restart --directory=./apps --directory=./config --pattern=*.py --recursive -- celery -A config.celery_app beat -l INFO"
+
+[tasks.celery-worker]
+description = "Run the Celery worker"
+run = "uv run watchmedo auto-restart --directory=./apps --directory=./config --pattern=*.py --recursive -- celery -A config.celery_app worker -l INFO"
+
+[tasks.celery-flower]
+description = "Run the Celery Flower monitoring tool"
+run = "uv run watchmedo auto-restart --directory=./apps --directory=./config --pattern=*.py --recursive -- celery -A config.celery_app flower --port=5555"

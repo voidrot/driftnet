@@ -5,7 +5,7 @@ from environs import env
 from config.settings.components.common import TIME_ZONE
 from config.settings.components.common import USE_TZ
 
-REDIS_URL = env.str('REDIS_CELERY_URL', default='redis://redis:6379/5')  # type: ignore  # noqa: PGH003
+REDIS_URL = env.str('REDIS_APP_URL', default='redis://redis:6379/5')  # type: ignore  # noqa: PGH003
 REDIS_SSL = REDIS_URL.startswith('rediss://')  # type: ignore  # noqa: PGH003
 
 if USE_TZ:
