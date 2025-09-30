@@ -12,6 +12,11 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 4096M
 
   redis:
     image: redis:latest
@@ -20,7 +25,12 @@ services:
       - redis_data:/data
     ports:
       - "6379:6379"
-  
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1024M
+
   mailpit:
     image: axllent/mailpit
     restart: unless-stopped

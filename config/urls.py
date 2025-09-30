@@ -30,6 +30,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('teams/', include('organizations.urls')),
     path('users/', include('apps.users.urls', namespace='users')),
+    path('market/', include('apps.market.urls', namespace='market')),
     path('admin/', admin.site.urls),
 ]
 

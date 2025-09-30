@@ -9,5 +9,15 @@
     //     "PENPOT_PASSWORD": "S!ipstr3am"
     //   }
     // }
+    "postgres": {
+      "command": "uvx",
+      "args": [
+        "postgres-mcp",
+        "--access-mode=unrestricted"
+      ],
+      "env": {
+        "DATABASE_URI": "postgres://postgres:postgres@localhost:5432/postgres"
+      }
+    }
   }
 }

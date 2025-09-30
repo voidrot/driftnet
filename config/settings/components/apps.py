@@ -11,17 +11,13 @@ DJANGO_APPS = [
     'django.forms',
 ]
 
-PROJECT_APPS = [
-    'apps.sde',
-    'apps.users',
-    'apps.esi',
-]
+PROJECT_APPS = ['apps.sde', 'apps.users', 'apps.esi', 'apps.market']
 
 THIRD_PARTY_APPS = [
     # 'django_extensions',
-    # 'django_cotton',
-    'django_cotton.apps.SimpleAppConfig',
-    'template_partials.apps.SimpleAppConfig',
+    'django_cotton',
+    # 'django_cotton.apps.SimpleAppConfig',
+    # 'template_partials.apps.SimpleAppConfig',
     'django_htmx',
     'csp',
     'organizations',
@@ -37,6 +33,7 @@ THIRD_PARTY_APPS = [
     'crispy_forms',
     'widget_tweaks',
     'slippers',
+    'cacheops',
 ]
 
 INSTALLED_APPS = [*DJANGO_APPS, *PROJECT_APPS, *THIRD_PARTY_APPS]

@@ -11,7 +11,8 @@
             "program": "${workspaceFolder}/manage.py",
             "args": [
                 "tailwind",
-                "runserver"
+                "runserver",
+                "--force-default-runserver"
             ],
             "django": true
         },

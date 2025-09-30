@@ -11,24 +11,24 @@ APP_TEMPLATE_DIRS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(APPS_DIR / 'templates'), *APP_TEMPLATE_DIRS],
-        # 'APP_DIRS': True,
+        'DIRS': [str(APPS_DIR / 'templates')],
+        'APP_DIRS': True,
         'OPTIONS': {
-            'loaders': [
-                (
-                    'template_partials.loader.Loader',
-                    [
-                        (
-                            'django.template.loaders.cached.Loader',
-                            [
-                                'django_cotton.cotton_loader.Loader',
-                                'django.template.loaders.filesystem.Loader',
-                                'django.template.loaders.app_directories.Loader',
-                            ],
-                        )
-                    ],
-                ),
-            ],
+            # 'loaders': [
+            #     (
+            #         'template_partials.loader.Loader',
+            #         [
+            #             (
+            #                 'django.template.loaders.cached.Loader',
+            #                 [
+            #                     'django_cotton.cotton_loader.Loader',
+            #                     'django.template.loaders.filesystem.Loader',
+            #                     'django.template.loaders.app_directories.Loader',
+            #                 ],
+            #             )
+            #         ],
+            #     ),
+            # ],
             'context_processors': [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -40,7 +40,6 @@ TEMPLATES = [
             ],
             'builtins': [
                 'django_cotton.templatetags.cotton',
-                # 'template_partials.templatetags.partials',
             ],
         },
     },

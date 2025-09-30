@@ -1,0 +1,8 @@
+<ul class="menu bg-base-200 rounded-box min-w-56">
+  <li class="menu-title">
+    <span class="font-semibold text-center">Market</span>
+  </li>
+  {% for market_group in market_groups|dictsort:"name" %}
+    {% include "market-sidebar-group.html" with group=market_group %}
+  {% endfor %}
+</ul>

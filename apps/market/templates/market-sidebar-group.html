@@ -1,0 +1,25 @@
+<li>
+  <details>
+    <summary>{{ group.name }}</summary>
+    <ul>
+      {% for subgroup in group.children %}
+        {% if subgroup.children|length > 0 %}
+          {% include "market-sidebar-group.html" with group=subgroup %}
+        {% else %}
+          <li>
+            <details>
+              <summary>{{ subgroup.name }}</summary>
+              <ul>
+                {% for market_item in subgroup.market_items %}
+                  <li>
+                    <a href="#" class="hover:underline">{{ market_item.item_name }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </details>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </details>
+</li>

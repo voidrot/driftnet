@@ -40,6 +40,7 @@ driftnet is a django project that consumes data from EVE Online API, zKillboard 
 5. Ensure that all javascript lives outside of the HTML templates and is included as static files.
 6. Build all frontend code with accessibility in mind (see a11y.instructions.md, WCAG 2.2 AA).
 7. Optimize for frontend performance (see performance-optimization.instructions.md).
+8. Use [django-cotton](https://django-cotton.com/) for building template partils and components
 
 ### Commenting Standards
 - Write self-explanatory code. Only comment to explain WHY, not WHAT. See self-explanatory-code-commenting.instructions.md.
