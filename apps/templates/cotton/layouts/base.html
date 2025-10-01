@@ -1,6 +1,6 @@
 {% load static %}
-{% load django_htmx %}
 
+{% comment %} {% load django_htmx %} {% endcomment %}
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
   <head>
@@ -12,9 +12,10 @@
       {% endblock title %}
     </title>
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
-    {% htmx_script %}
-    <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.3.0/dist/jdenticon.min.js" async integrity="sha384-LfouGM03m83ArVtne1JPk926e3SGD0Tz8XHtW2OKGsgeBU/UfR0Fa8eX+UlwSSAZ" crossorigin="anonymous">
-    </script>
+    <script src="{% static 'js/chart.js' %}" defer></script>
+    <script src="{% static 'js/jdenticon.js' %}" async></script>
+    <script src="{% static 'js/htmx.js' %}" defer></script>
+    <script src="{% static 'js/debug.js' %}" defer></script>
   </head>
   <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
     <c-navbar />

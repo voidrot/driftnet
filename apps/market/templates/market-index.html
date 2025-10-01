@@ -1,12 +1,62 @@
 <c-layouts.market>
 <div class="flex flex-row min-h-screen">
-  <div class="flex-none bg-base-200">{% include "market-sidebar.html" %}</div>
+  {% comment %} <div class="flex-none bg-base-200">{% include "market-sidebar.html" %}</div> {% endcomment %}
+  <div hx-get="{% url 'market:market-sidebar' %}"
+       hx-trigger="load"
+       hx-target="this"
+       hx-swap="innerHTML"
+       class="flex-none bg-base-200">
+    <ul class="menu bg-base-200 rounded-box min-w-65">
+      <li class="menu-title">
+        <span class="font-semibold text-center">Market</span>
+      </li>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+      <div class="skeleton h-6 w-full mb-2"></div>
+    </ul>
+  </div>
   <div class="flex-1 flex-col bg-base-300">
     <c-market-item-details />
-    <div class="flex justify-center h-full w-full mt-8">
-      <p class="text-center text-lg italic text-base-content/50">
-        Please select an item from the market groups on the left to view market details.
-      </p>
+    <div class="flex flex-col h-full w-full mt-1">
+      <ul id="market-detail-options"
+          class="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box p-2 shadow-lg">
+        <li>
+          <a href="#">Market Overview</a>
+        </li>
+        <li>
+          <a href="#">My Orders</a>
+        </li>
+        <li>
+          <a href="#">Order History</a>
+        </li>
+        <li>
+          <a href="#">Watchlist</a>
+        </li>
+      </ul>
+      <div id="market-item-details-div">
+        <div class="justify-center items-center h-full w-full mt-8">
+          <p class="text-center text-lg italic text-base-content/50">
+            Please select an item from the market groups on the left to view market details.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

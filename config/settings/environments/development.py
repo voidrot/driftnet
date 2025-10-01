@@ -21,7 +21,7 @@ THIRD_PARTY_APPS = [
     'django_tailwind_cli',
     'whitenoise.runserver_nostatic',
     *THIRD_PARTY_APPS,
-    'debug_toolbar',
+    # 'debug_toolbar',
     'zeal',
     'django_prometheus',
     'dbbackup',
@@ -32,7 +32,7 @@ INSTALLED_APPS = [*DJANGO_APPS, *PROJECT_APPS, *THIRD_PARTY_APPS]
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
     *MIDDLEWARE,
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'zeal.middleware.zeal_middleware',
     'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
@@ -77,4 +77,4 @@ STORAGES['dbbackup'] = {
     },
 }
 
-CONTENT_SECURITY_POLICY = {}
+# CONTENT_SECURITY_POLICY = {}

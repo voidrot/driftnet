@@ -1,0 +1,110 @@
+<div>
+  <div>
+    <div class="flex flex-row items-center gap-4">
+      <div>
+        <img src="https://images.evetech.net/types/11568/bp?size=64"
+             alt="Name Image" />
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold">Item Name</h1>
+      </div>
+      <div class="badge badge-primary">Item Type</div>
+      <div class="badge badge-secondary">Item Category</div>
+    </div>
+  </div>
+  {% comment %} Price History Chart Renders in the canvas {% endcomment %}
+  <div class="flex flex-col h-full w-full justify-center items-center">
+    <div class="flex flex-1 min-w-8/10 min-h-5/8">
+      <canvas id="price-history-chart"></canvas>
+    </div>
+    <div class="flex flex-1 min-w-8/10 min-h-5/8">
+      <canvas id="volume-history-chart"></canvas>
+    </div>
+  </div>
+</div>
+<script>
+    const priceCTX = document.getElementById('price-history-chart')
+    const volumeCTX = document.getElementById('volume-history-chart')
+
+    new Chart(priceCTX, {
+      type: 'line',
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+          label: 'Price History',
+          data: [65, 59, 80, 81, 56, 55, 40],
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Price History Over Time'
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Month'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Price (ISK)'
+            },
+            beginAtZero: true
+          }
+        }
+      }
+    })
+
+    new Chart(volumeCTX, {
+      type: 'bar',
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+          label: 'Volume History',
+          data: [200, 300, 250, 400, 350, 500, 450],
+          backgroundColor: 'rgba(153, 102, 255, 0.5)',
+          borderColor: 'rgba(153, 102, 255, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Volume History Over Time'
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Month'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Volume'
+            },
+            beginAtZero: true
+          }
+        }
+      }
+    })
+  </script>

@@ -2,9 +2,9 @@
 
 <div class="mr-8 text-center">
   <p class="text-sm">
-    Tranquility: <font color="{{ server_status.color }}">{{ server_status.text }}</font>
+    Tranquility: <span class="{{ server_status_color }}">{{ server_status_text }}</span>
   </p>
   <p class="text-sm">
-    Players: <font color="{{ player_count_color }}">{{ current_players|intcomma }}</font>
+    Players: <span class="{{ player_count_color }}">{{ current_players|intcomma }}</span>
   </p>
 </div>

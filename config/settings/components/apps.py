@@ -22,7 +22,7 @@ PROJECT_APPS = [
 THIRD_PARTY_APPS = [
     'django_cotton',
     'django_htmx',
-    'csp',
+    # 'csp',
     'organizations',
     'allauth_ui',
     'allauth',

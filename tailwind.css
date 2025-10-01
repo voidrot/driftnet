@@ -2,3 +2,15 @@
 @plugin "daisyui" {
     themes: 'all';
 }
+
+.server-status-text-red {
+  color: #ff0000 !important;
+}
+
+.server-status-text-green {
+  color: #00ff00 !important;
+}
+
+.server-status-text-orange {
+  color: #FFA500 !important;
+}

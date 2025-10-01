@@ -4,7 +4,7 @@
     <ul>
       {% for subgroup in group.children %}
         {% if subgroup.children|length > 0 %}
-          {% include "market-sidebar-group.html" with group=subgroup %}
+          {% include "partials/market-sidebar-group.html" with group=subgroup %}
         {% else %}
           <li>
             <details>
@@ -12,7 +12,10 @@
               <ul>
                 {% for market_item in subgroup.market_items %}
                   <li>
-                    <a href="#" class="hover:underline">{{ market_item.item_name }}</a>
+                    <a hx-get="{% url 'market:item-details' market_item.id %}"
+                       hx-target="#market-item-details-div"
+                       hx-swap="innerHTML"
+                       hx-on="click">{{ market_item.item_name }}</a>
                   </li>
                 {% endfor %}
               </ul>

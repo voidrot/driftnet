@@ -1,8 +1,8 @@
-<ul class="menu bg-base-200 rounded-box min-w-56">
+<ul class="menu bg-base-200 rounded-box min-w-65">
   <li class="menu-title">
     <span class="font-semibold text-center">Market</span>
   </li>
   {% for market_group in market_groups|dictsort:"name" %}
-    {% include "market-sidebar-group.html" with group=market_group %}
+    {% include "partials/market-sidebar-group.html" with group=market_group %}
   {% endfor %}
 </ul>
