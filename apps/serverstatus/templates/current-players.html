@@ -1,0 +1,9 @@
+{% load humanize %}
+<div class="mr-8 text-center">
+  <p class="text-sm">
+    Tranquility: <font color="{{ server_status.color }}">{{ server_status.text }}</font>
+  </p>
+  <p class="text-sm">
+    Players: <font color="{{ player_count_color }}">{{ current_players|intcomma }}</font>
+  </p>
+</div>

@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Migration(migrations.Migration):
-    initial = True
+    initial = False
 
     dependencies = [
         ('market', '0001_market_group_with_types_view'),
