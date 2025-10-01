@@ -101,10 +101,10 @@ if not settings.DEBUG and not settings.TEST:  # pyright: ignore[reportAttributeA
 
     app.conf.task_routes = {
         'apps.esi.tasks.*': {'queue': 'esi', 'exchange': 'esi', 'routing_key': 'esi'},
-        'apps.server_status.tasks.*': {
-            'queue': 'esi_server_status',
-            'exchange': 'esi_server_status',
-            'routing_key': 'esi_server_status',
+        'apps.serverstatus.tasks.*': {
+            'queue': 'esi_serverstatus',
+            'exchange': 'esi_serverstatus',
+            'routing_key': 'esi_serverstatus',
         },
         'apps.wars.tasks.*': {
             'queue': 'esi_wars',
