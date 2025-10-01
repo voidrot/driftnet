@@ -51,3 +51,5 @@ USE_I18N = True
 USE_TZ = True
 
 ASGI_APPLICATION = 'config.asgi.application'
+
+SILENCED_SYSTEM_CHECKS = ['slippers.E001']

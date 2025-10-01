@@ -60,7 +60,7 @@ CELERY_BEAT_SCHEDULE = {
     # Server Status Jobs
     'server_status_query': {
         'task': 'apps.serverstatus.tasks.fetch_server_status',
-        'schedule': 30.0,  # every 30 seconds
+        'schedule': 60.0,  # every minute
     },
     # # Wars Jobs
     # 'get_wars': {  # This will queue up jobs to get ware info and killmails for active wars

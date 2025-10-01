@@ -1,5 +1,6 @@
 import logging
 from hashlib import blake2b
+from typing import TYPE_CHECKING
 from typing import Any
 
 from aiopenapi3 import OpenAPI
@@ -9,9 +10,7 @@ from aiopenapi3.errors import HTTPClientError as BaseHTTPClientError
 from aiopenapi3.errors import HTTPServerError as BaseHTTPServerError
 from aiopenapi3.request import OperationIndex
 from aiopenapi3.request import RequestBase
-from django.core.cache import CacheHandler
 from django.core.cache import caches
-from django.core.cache.backends.base import BaseCache
 from httpx import Client
 from httpx import HTTPStatusError
 from httpx import RequestError
@@ -34,6 +33,9 @@ from apps.esi.plugins import Add304ContentType
 from apps.esi.plugins import PatchCompatibilityDatePlugin
 from apps.esi.plugins import PrefixReservedKeywords
 from apps.esi.plugins import Trim204ContentType
+
+if TYPE_CHECKING:
+    from django.core.cache.backends.base import BaseCache
 
 logger = logging.getLogger(__name__)
 

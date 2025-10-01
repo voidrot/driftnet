@@ -32,6 +32,9 @@
     </ul>
   </div>
   <div class="navbar-end">
+    <div id="server-status-display"
+         hx-get="{% url 'serverstatus:current-status' %}"
+         hx-trigger="load, every 60s"></div>
     {% if user.is_authenticated %}
       <div class="dropdown dropdown-end">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">

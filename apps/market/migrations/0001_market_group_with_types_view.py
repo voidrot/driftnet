@@ -18,9 +18,8 @@ DROP VIEW IF EXISTS market_group_with_types;
 
 
 class Migration(migrations.Migration):
-    dependencies = [
-        # Update this to the latest migration in market app if needed
-    ]
+    initial = True
+    dependencies = [('sde', '0003_type_sde_type_market__9297cf_idx_and_more')]
 
     operations = [
         migrations.RunSQL(VIEW_SQL, DROP_VIEW_SQL),
