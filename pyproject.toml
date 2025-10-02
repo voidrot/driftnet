@@ -46,6 +46,8 @@ dependencies = [
   "uvicorn[standard]>=0.36.0",
   "whitenoise[brotli]>=6.11.0",
   "django-cacheops>=7.2",
+  "jsonlines>=4.0.0",
+  "pyyaml>=6.0.2",
 ]
 
 [dependency-groups]
@@ -67,6 +69,7 @@ dev = [
   "pytest-playwright>=0.7.1",
   "pytest-sugar>=1.1.1",
   "ruff>=0.13.1",
+  "textcase>=0.4.4",
   "watchdog>=6.0.0",
   "watchfiles>=1.1.0",
   "werkzeug[watchdog]>=3.1.3",

@@ -1,53 +1,82 @@
-import contextlib
-import json
 import logging
-import re
 from pathlib import Path
-
+from pprint import pprint
+import re
+from typing import Literal
 import inflect
-from django.conf import settings
-from django.core.management.base import BaseCommand
-from django.template import Context
-from django.template import Template
+import jsonlines
+import textcase
 
 from apps.sde import app_settings
+from django.core.management.base import BaseCommand
 
-from .helpers import INIT_MODEL_TEMPLATE
-from .helpers import MODEL_INDEX_RULES
-from .helpers import MODEL_PRIMARY_KEY_ID_OVERRIDE
-from .helpers import MODEL_TEMPLATE
-from .helpers import UNIVERSE_LOOKUP_TEMPLATE
-from .helpers import collect_files
-
-with contextlib.suppress(ImportError):
-    pass
+from apps.sde.management.commands.helpers import MODEL_FOREIGN_KEY_OVERRIDE, MODEL_INDEX_RULES
 
 logger = logging.getLogger(__name__)
 p = inflect.engine()
 
+COLUMN_TYPE_MAP = {
+    'int': (
+        'models.IntegerField(default=None, null=True)',
+        'models.IntegerField()',
+    ),
+    'bigint': (
+        'models.BigIntegerField(default=None, null=True)',
+        'models.BigIntegerField()',
+    ),
+    'float': (
+        'models.FloatField(default=None, null=True)',
+        'models.FloatField()',
+    ),
+    'str': (
+        'models.TextField(default=None, null=True)',
+        'models.TextField()'
+    ),
+    'bool': (
+        'models.BooleanField(default=False, null=True)',
+        'models.BooleanField()',
+    ),
+    'list': (
+        'models.JSONField(default=list, null=True)',
+        'models.JSONField()'
+    ),
+    'dict': (
+        'models.JSONField(default=dict, null=True)',
+        'models.JSONField()'
+    ),
+}
+
+PG_INT_MIN = -2147483648
+PG_INT_MAX = 2147483647
+
+IGNORED_FILES = [
+    '_sde.jsonl',
+    'translationLanguages.jsonl'
+]
+
+IGNORED_CONVERT_TO_SINGULAR = [
+    'typeBonus.jsonl',
+    'typeDogma.jsonl',
+    'agentsInSpace.jsonl',
+    'types.jsonl',
+]
 
 class Command(BaseCommand):
     help = 'Generate SDE models'
 
-    universe_files = []
-    bsd_files = []
-    fsd_files = []
+    workspace_dir = Path(app_settings.SDE_WORKSPACE)
+    extracted_dir = workspace_dir / 'extracted'
+    model_context = []
 
-    def collect_all_files(self):
-        self.universe_files = collect_files(
-            Path(app_settings.SDE_WORKSPACE / 'universe')
-        )
-        self.bsd_files = collect_files(Path(app_settings.SDE_WORKSPACE / 'bsd'))
-        self.fsd_files = collect_files(Path(app_settings.SDE_WORKSPACE / 'fsd'))
-
-        ignored_files = ['translationLanguages.json']
-
-        # Filter out ignored files
-        self.universe_files = [
-            f for f in self.universe_files if f.name not in ignored_files
+    def collect_files(self):
+        """Recursively collect all .json files in the extracted directory."""
+        self.target_files = [
+            entry
+            for entry in self.extracted_dir.rglob('*')
+            if entry.is_file()
+            and entry.suffix in ['.jsonl']
+            and entry.name not in IGNORED_FILES
         ]
-        self.bsd_files = [f for f in self.bsd_files if f.name not in ignored_files]
-        self.fsd_files = [f for f in self.fsd_files if f.name not in ignored_files]
 
     def convert_to_snake_case(self, name):
         """Convert a string to snake_case."""
@@ -62,10 +91,6 @@ class Command(BaseCommand):
             return name
         return ''.join(word.title() for word in name.split('_'))
 
-    def is_complex_type(self, field_type):
-        """Check if the field type is complex."""
-        return isinstance(field_type, (list, dict))
-
     def convert_to_singular_noun(self, name):
         """Convert a string to singular noun."""
         word = p.singular_noun(name)
@@ -74,278 +99,106 @@ class Command(BaseCommand):
             return name
         return word
 
-    def extract_fields(self, data, model_name):  # noqa: C901, PLR0912
-        fields = {}
-        field_types = {}
-        field_found = {}
-        int_field_ranges = {}
+    def extract_fields_and_types(self):
+        column_types: dict[str, dict[str, str]] = {} # model_name -> field_name -> field_type
+        field_found: dict[str, dict[str, int]] = {} # model_name -> field_name -> count
+        field_count: dict[str, int] = {} # model_name -> total_count
+        def get_field_type(value) -> Literal['int', 'bigint', 'float', 'str', 'bool', 'list', 'dict'] | None:  # noqa: PLR0911
+            # Map Python types to field types
+            if isinstance(value, int):
+                return 'int' if PG_INT_MIN <= value <= PG_INT_MAX else 'bigint'
+            if isinstance(value, float):
+                return 'float'
+            if isinstance(value, str):
+                return 'str'
+            if isinstance(value, bool):
+                return 'bool'
+            if isinstance(value, list):
+                return 'list'
+            if isinstance(value, dict):
+                return 'dict'
+            return None
 
-        converted_data = []
+        for file in self.target_files:
+            model_file_name = textcase.snake(
+                self.convert_to_singular_noun(file.stem) if file.name not in IGNORED_CONVERT_TO_SINGULAR else file.stem
+            )
+            model_name = textcase.pascal(
+                self.convert_to_singular_noun(file.stem) if file.name not in IGNORED_CONVERT_TO_SINGULAR else file.stem
+            )
+            logger.info(f'Processing file: {file.name}, File Name: {model_file_name}, Model: {model_name}')
+            column_types.setdefault(model_name, {})
+            field_found.setdefault(model_name, {})
+            field_count.setdefault(model_name, 0)
+            with jsonlines.open(file) as reader:
+                for obj in reader:
+                    field_count[model_name] += 1
+                    for key, value in obj.items():
+                        if key not in field_found[model_name]:
+                            field_found[model_name][key] = 0
+                        field_found[model_name][key] += 1
+                        if key not in column_types[model_name]:
+                            field_type = get_field_type(value)
+                            if field_type:
+                                column_types[model_name][key] = field_type
+                            else:
+                                logger.warning(f'Unknown type for key {key}: {type(value)}')
+        logger.info('Completed processing all files.')
 
-        if isinstance(data, list):
-            converted_data = data
-        elif isinstance(data, dict):
-            for item in data.items():
-                converted_data.append(item[1])
-        else:
-            logger.warning(f'Unsupported data type: {type(data)}')
-            return fields
-
-        for item in converted_data:
-            for key, value in item.items():
-                field_name = self.convert_to_snake_case(key)
-
-                if field_name not in field_found:
-                    field_types[field_name] = []
-                    field_found[field_name] = 1
-                    if isinstance(value, int):
-                        int_field_ranges[field_name] = [value, value]
+        # Determine final field types with nullability
+        final_column_types: dict[str, dict[str, str]] = {}
+        for model, fields in column_types.items():
+            final_column_types[model] = {}
+            for field in fields:
+                field_type = fields[field]
+                if field_found[model][field] < field_count[model]:
+                    final_column_types[model][field] = COLUMN_TYPE_MAP[field_type][0]  # nullable
                 else:
-                    field_found[field_name] += 1
-                    if isinstance(value, int):
-                        if field_name in int_field_ranges:
-                            int_field_ranges[field_name][0] = min(
-                                int_field_ranges[field_name][0], value
-                            )
-                            int_field_ranges[field_name][1] = max(
-                                int_field_ranges[field_name][1], value
-                            )
-                        else:
-                            int_field_ranges[field_name] = [value, value]
-                if type(value).__name__ not in field_types[field_name]:
-                    field_types[field_name].append(type(value).__name__)
+                    final_column_types[model][field] = COLUMN_TYPE_MAP[field_type][1]  # non-nullable
 
-        # Postgres integer range: -2147483648 to 2147483647
-        pg_int_min = -2147483648
-        pg_int_max = 2147483647
+        self.model_columns = final_column_types
 
-        type_map = {
-            'int': (
-                'models.IntegerField(default=None, null=True)',
-                'models.IntegerField()',
-            ),
-            'bigint': (
-                'models.BigIntegerField(default=None, null=True)',
-                'models.BigIntegerField()',
-            ),
-            'float': (
-                'models.FloatField(default=None, null=True)',
-                'models.FloatField()',
-            ),
-            'str': ('models.TextField(default=None, null=True)', 'models.TextField()'),
-            'bool': (
-                'models.BooleanField(default=False, null=True)',
-                'models.BooleanField()',
-            ),
-            'list': ('models.JSONField(default=list, null=True)', 'models.JSONField()'),
-            'dict': ('models.JSONField(default=dict, null=True)', 'models.JSONField()'),
-        }
-
-        for field_name, field_values in field_types.items():
-            is_optional = field_found[field_name] != len(converted_data)
-            logging.debug(
-                f'optional: {is_optional} | {field_name}: {field_found[field_name]} vs {len(converted_data)}'
-            )
-            chosen_type = None
-            if len(field_values) > 1:
-                if 'float' in field_values:
-                    chosen_type = 'float'
-                if 'int' in field_values and 'str' in field_values:
-                    chosen_type = 'str'
-            else:
-                chosen_type = field_values[0]
-
-            # Determine if int or bigint is needed
-            if chosen_type == 'int' and field_name in int_field_ranges:
-                min_val, max_val = int_field_ranges[field_name]
-                if min_val < pg_int_min or max_val > pg_int_max:
-                    chosen_type = 'bigint'
-
-            for py_type, (optional_field, required_field) in type_map.items():
-                if py_type == chosen_type:
-                    if model_name in MODEL_PRIMARY_KEY_ID_OVERRIDE:
-                        if field_name == MODEL_PRIMARY_KEY_ID_OVERRIDE[model_name]:
-                            fields[field_name] = (
-                                required_field.split('(')[0] + '(primary_key=True)'
-                            )
-                            break
-                    fields[field_name] = (
-                        optional_field if is_optional else required_field
-                    )
-
-        return fields
-
-    def gen_fsd_models(self):
-        for fsd_file in self.fsd_files:
-            fields = {}
-            logger.info(f'Processing FSD file: {fsd_file.parts[-1]}')
-            model_file_name = self.convert_to_snake_case(
-                fsd_file.parts[-1].replace('.json', '')
-            )
-            with Path(fsd_file).open('r', encoding='utf-8') as f:
-                fields = self.extract_fields(json.load(f), model_file_name)
-            self.gen_model_file(model_file_name, fields)
-
-    def gen_bsd_models(self):
-        for bsd_file in self.bsd_files:
-            fields = {}
-            logger.info(f'Processing BSD file: {bsd_file.parts[-1]}')
-            model_file_name = self.convert_to_snake_case(
-                bsd_file.parts[-1].replace('.json', '')
-            )
-            with Path(bsd_file).open('r', encoding='utf-8') as f:
-                fields = self.extract_fields(json.load(f), model_file_name)
-            self.gen_model_file(model_file_name, fields)
-
-    def gen_universe_models(self):  # noqa: C901, PLR0912, PLR0915
-        # Build files into single objects
-        region_collection = []
-        constellation_collection = []
-        solar_system_collection = []
-        landmark_collection = []
-        planets_collection = []
-        moons_collection = []
-        stars_collection = []
-        stargates_collection = []
-        astroid_belts_collection = []
-
-        for universe_file in self.universe_files:
-            if universe_file.parts[-1] == 'region.json':
-                with Path(universe_file).open('r', encoding='utf-8') as f:
-                    region_collection.append(json.load(f))
-            elif universe_file.parts[-1] == 'constellation.json':
-                with Path(universe_file).open('r', encoding='utf-8') as f:
-                    constellation_collection.append(json.load(f))
-            elif universe_file.parts[-1] == 'solarsystem.json':
-                with Path(universe_file).open('r', encoding='utf-8') as f:
-                    solar_system_data = json.load(f)
-                    planets = solar_system_data.get('planets', {})
-                    for k, v in planets.items():
-                        moons = v.get('moons', {})
-                        if len(moons) > 0:
-                            for mv in moons.values():
-                                moons_collection.append(mv)  # noqa: PERF402
-                            del planets[k]['moons']
-                        astroid_belts = v.get('asteroidBelts', {})
-                        if len(astroid_belts) > 0:
-                            for av in astroid_belts.values():
-                                astroid_belts_collection.append(av)  # noqa: PERF402
-                            del planets[k]['asteroidBelts']
-                        planets_collection.append(v)
-                    del solar_system_data['planets']
-                    if 'star' in solar_system_data:
-                        stars_collection.append(solar_system_data.get('star', {}))
-                        del solar_system_data['star']
-                    if 'stargates' in solar_system_data:
-                        for sgv in solar_system_data.get('stargates', {}).values():
-                            stargates_collection.append(sgv)  # noqa: PERF402
-                        del solar_system_data['stargates']
-                    solar_system_collection.append(solar_system_data)
-            elif universe_file.parts[-1] == 'landmarks.json':
-                with Path(universe_file).open('r', encoding='utf-8') as f:
-                    landmark_collection = json.load(f)
-
-        # Generate region model
-        model_file_name = self.convert_to_snake_case('regions')
-        region_fields = self.extract_fields(region_collection, model_file_name)
-        self.gen_model_file(model_file_name, region_fields)
-        # generate constellation model
-        model_file_name = self.convert_to_snake_case('constellations')
-        constellation_fields = self.extract_fields(
-            constellation_collection, model_file_name
-        )
-        self.gen_model_file(model_file_name, constellation_fields)
-        # generate solar system model
-        model_file_name = self.convert_to_snake_case('solarSystems')
-        solar_system_fields = self.extract_fields(
-            solar_system_collection, model_file_name
-        )
-        self.gen_model_file(model_file_name, solar_system_fields)
-        # generate planet model
-        model_file_name = self.convert_to_snake_case('planets')
-        planet_fields = self.extract_fields(planets_collection, model_file_name)
-        self.gen_model_file(model_file_name, planet_fields)
-        # generate moon model
-        model_file_name = self.convert_to_snake_case('moons')
-        moon_fields = self.extract_fields(moons_collection, model_file_name)
-        self.gen_model_file(model_file_name, moon_fields)
-        # generate star model
-        model_file_name = self.convert_to_snake_case('stars')
-        star_fields = self.extract_fields(stars_collection, model_file_name)
-        self.gen_model_file(model_file_name, star_fields)
-        # generate stargate model
-        model_file_name = self.convert_to_snake_case('stargates')
-        stargate_fields = self.extract_fields(stargates_collection, model_file_name)
-        self.gen_model_file(model_file_name, stargate_fields)
-        # generate asteroid belt model
-        model_file_name = self.convert_to_snake_case('asteroidBelts')
-        asteroid_belt_fields = self.extract_fields(
-            astroid_belts_collection, model_file_name
-        )
-        self.gen_model_file(model_file_name, asteroid_belt_fields)
-        # generate landmark model
-        model_file_name = self.convert_to_snake_case('landmarks')
-        landmark_fields = self.extract_fields(landmark_collection, model_file_name)
-        self.gen_model_file(model_file_name, landmark_fields)
-
-    def gen_model_file(self, model_name, fields):
+    def modify_model_context_with_rules(self, model_name: str, columns: dict[str, str]) -> dict[str, str]:
         context = {
-            'model_name': self.convert_to_singular_noun(
-                self.convert_to_pascal_case(model_name)
-            ),
-            'fields': fields,
-            'indexes': MODEL_INDEX_RULES.get(model_name, []),
+            'model_file_name': textcase.snake(model_name),
+            'model_name': model_name,
+            'fields': [],
+            'indexes': [],
+            'imports': [],
+            'verbose_name': textcase.title(model_name) or model_name,
+            'verbose_name_plural': p.plural_noun(textcase.title(model_name)) or textcase.title(model_name),
         }
+        foreign_key_update = MODEL_FOREIGN_KEY_OVERRIDE.get(context['model_file_name'], None)
 
-        template = Template(MODEL_TEMPLATE)
+        for field, _type in columns.items():
+            field_name = 'id' if field == '_key' else self.convert_to_snake_case(field)
+            if field_name == 'id':
+                field_split = _type.split('(')
+                field_type = field_split[0] + '(primary_key=True' + field_split[1]
+            elif foreign_key_update and field_name in foreign_key_update:
+                field_type = foreign_key_update[field_name]['field']
+                context['imports'].append(foreign_key_update[field_name]['import'])
+            else:
+                field_type = _type
+            context['fields'].append({
+                'name': field_name,
+                'type': field_type,
+            })
 
-        with Path(
-            settings.BASE_DIR / 'apps' / 'sde' / 'models' / f'{model_name}.py'
-        ).open('w', encoding='utf-8') as f:
-            f.write(template.render(Context(context)))
+        if context['model_file_name'] in MODEL_INDEX_RULES:
+            context['indexes'].extend(MODEL_INDEX_RULES[context['model_file_name']])
 
-    def gen_model_init(self):
-        context = {'models': [], 'imports': []}
-        template = Template(INIT_MODEL_TEMPLATE)
+        return context
 
-        # get all model files in the models directory
-        model_files = set(
-            Path(settings.BASE_DIR / 'apps' / 'sde' / 'models').glob('*.py')
-        )
-
-        for model_file in model_files:
-            if model_file.parts[-1] == '__init__.py':
-                continue
-            file = model_file.parts[-1].replace('.py', '')
-            name = self.convert_to_singular_noun(self.convert_to_pascal_case(file))
-            context['models'].append(name)
-            context['imports'].append(f'from .{file} import {name}')
-
-        with Path(settings.BASE_DIR / 'apps' / 'sde' / 'models' / '__init__.py').open(
-            'w', encoding='utf-8'
-        ) as f:
-            f.write(template.render(Context(context)))
-
-    def gen_universe_lookup_model(self):
-        template = Template(UNIVERSE_LOOKUP_TEMPLATE)
-        context = {}
-        with Path(
-            settings.BASE_DIR / 'apps' / 'sde' / 'models' / 'universe_lookup.py'
-        ).open('w', encoding='utf-8') as f:
-            f.write(template.render(Context(context)))
+    def gen_model_files(self):
+        for model, columns in self.model_columns.items():
+            self.model_context.append(self.modify_model_context_with_rules(model, columns))
 
     def handle(self, *args, **options):
         logger.info('Generating SDE models...')
         logger.info('Collecting all SDE files...')
-        self.collect_all_files()
-        logger.info('Generating universe models...')
-        self.gen_universe_models()
-        logger.info('Generating BSD models...')
-        self.gen_bsd_models()
-        logger.info('Generating FSD models...')
-        self.gen_fsd_models()
-        logger.info('Generating universe_lookup.py model...')
-        self.gen_universe_lookup_model()
-        logger.info('Generating __init__.py for models...')
-        self.gen_model_init()
-        logger.info('SDE model generation complete.')
+        self.collect_files()
+        self.extract_fields_and_types()
+        # pprint(self.model_columns)
+        self.gen_model_files()
+        pprint(self.model_context)

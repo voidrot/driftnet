@@ -821,8 +821,10 @@ dependencies = [
     { name = "h2" },
     { name = "hiredis" },
     { name = "httpx", extra = ["http2"] },
+    { name = "jsonlines" },
     { name = "psycopg", extra = ["binary", "pool"] },
     { name = "python-jose", extra = ["cryptography"] },
+    { name = "pyyaml" },
     { name = "redis", extra = ["hiredis"] },
     { name = "sentry-sdk" },
     { name = "slippers" },
@@ -852,6 +854,7 @@ dev = [
     { name = "pytest-playwright" },
     { name = "pytest-sugar" },
     { name = "ruff" },
+    { name = "textcase" },
     { name = "watchdog" },
     { name = "watchfiles" },
     { name = "werkzeug", extra = ["watchdog"] },
@@ -890,8 +893,10 @@ requires-dist = [
     { name = "h2", specifier = ">=4.3.0" },
     { name = "hiredis", specifier = ">=3.2.1" },
     { name = "httpx", extras = ["http2"], specifier = ">=0.28.1" },
+    { name = "jsonlines", specifier = ">=4.0.0" },
     { name = "psycopg", extras = ["binary", "pool"], specifier = ">=3.2.10" },
     { name = "python-jose", extras = ["cryptography"], specifier = ">=3.5.0" },
+    { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "redis", extras = ["hiredis"], specifier = ">=6.4.0" },
     { name = "sentry-sdk", specifier = ">=2.38.0" },
     { name = "slippers", specifier = ">=0.6.2" },
@@ -921,6 +926,7 @@ dev = [
     { name = "pytest-playwright", specifier = ">=0.7.1" },
     { name = "pytest-sugar", specifier = ">=1.1.1" },
     { name = "ruff", specifier = ">=0.13.1" },
+    { name = "textcase", specifier = ">=0.4.4" },
     { name = "watchdog", specifier = ">=6.0.0" },
     { name = "watchfiles", specifier = ">=1.1.0" },
     { name = "werkzeug", extras = ["watchdog"], specifier = ">=3.1.3" },
@@ -1324,6 +1330,18 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/12/ae/929aee9619e9eba9015207a9d2c1c54db18311da7eb4dcf6d41ad6f0eb67/json5-0.12.1.tar.gz", hash = "sha256:b2743e77b3242f8d03c143dd975a6ec7c52e2f2afe76ed934e53503dd4ad4990", size = 52191, upload-time = "2025-08-12T19:47:42.583Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/85/e2/05328bd2621be49a6fed9e3030b1e51a2d04537d3f816d211b9cc53c5262/json5-0.12.1-py3-none-any.whl", hash = "sha256:d9c9b3bc34a5f54d43c35e11ef7cb87d8bdd098c6ace87117a7b7e83e705c1d5", size = 36119, upload-time = "2025-08-12T19:47:41.131Z" },
+]
+
+[[package]]
+name = "jsonlines"
+version = "4.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "attrs" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/35/87/bcda8e46c88d0e34cad2f09ee2d0c7f5957bccdb9791b0b934ec84d84be4/jsonlines-4.0.0.tar.gz", hash = "sha256:0c6d2c09117550c089995247f605ae4cf77dd1533041d366351f6f298822ea74", size = 11359, upload-time = "2023-09-01T12:34:44.187Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f8/62/d9ba6323b9202dd2fe166beab8a86d29465c41a0288cbe229fac60c1ab8d/jsonlines-4.0.0-py3-none-any.whl", hash = "sha256:185b334ff2ca5a91362993f42e83588a360cf95ce4b71a73548502bda52a7c55", size = 8701, upload-time = "2023-09-01T12:34:42.563Z" },
 ]
 
 [[package]]
@@ -2218,6 +2236,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/ab/e2/e9a00f0ccb71718418230718b3d900e71a5d16e701a3dae079a21e9cd8f8/text-unidecode-1.3.tar.gz", hash = "sha256:bad6603bb14d279193107714b288be206cac565dfa49aa5b105294dd5c4aab93", size = 76885, upload-time = "2019-08-30T21:36:45.405Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a6/a5/c0b6468d3824fe3fde30dbb5e1f687b291608f9473681bbf7dabbf5a87d7/text_unidecode-1.3-py2.py3-none-any.whl", hash = "sha256:1311f10e8b895935241623731c2ba64f4c455287888b18189350b67134a822e8", size = 78154, upload-time = "2019-08-30T21:37:03.543Z" },
+]
+
+[[package]]
+name = "textcase"
+version = "0.4.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/1f/fa/61085c42bb62c83565453fb8b1aee823576aade439ba24faa83975519ee9/textcase-0.4.4.tar.gz", hash = "sha256:4af6f5e029f7c5a1d48bc49e3758351e15ff28e8f09c929ffb704f71b894ecab", size = 6981, upload-time = "2025-10-01T17:03:03.065Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/5a/21/896ad43ee6a42a5e18fdf5b2761eb5a74d4e5554f74a33fda01e14301482/textcase-0.4.4-py3-none-any.whl", hash = "sha256:a9fad2e148bba3fb9dc40cdbb97ea948e8d548b5d486c9405faba5bc92fdce22", size = 6497, upload-time = "2025-10-01T17:03:01.569Z" },
 ]
 
 [[package]]

@@ -25,6 +25,16 @@
                 "test_client"
             ],
             "django": true
-        }
+        },
+        {
+            "name": "Python Debugger: Django SDE Generate Models",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "sde_gen_models"
+            ],
+            "django": true
+        },
     ]
 }
