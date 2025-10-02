@@ -1,31 +1,28 @@
-from pathlib import Path
+# def collect_files(collection_dir: Path):
+#     """
+#     Recursively collect all .json files in the given directory.
 
+#     Args:
+#         collection_dir (Path): The root directory to search for JSON files.
 
-def collect_files(collection_dir: Path):
-    """
-    Recursively collect all .json files in the given directory.
-
-    Args:
-        collection_dir (Path): The root directory to search for JSON files.
-
-    Returns:
-        list[Path]: List of Path objects for each .json file found.
-    """
-    return [
-        entry
-        for entry in collection_dir.rglob('**')
-        if entry.is_file() and entry.suffix in ['.json']
-    ]
+#     Returns:
+#         list[Path]: List of Path objects for each .json file found.
+#     """
+#     return [
+#         entry
+#         for entry in collection_dir.rglob('**')
+#         if entry.is_file() and entry.suffix in ['.json']
+#     ]
 
 
 # Define rules for adding indexes to models based on field names
 # Update as needed for new queries
 MODEL_INDEX_RULES = {
-    'inv_positions': ["models.Index(fields=['item_id'])"],
-    'types': [
-        "models.Index(fields=['market_group_id'])",
-        "models.Index(fields=['group_id'])",
-    ],
+    # 'inv_positions': ["models.Index(fields=['item_id'])"],
+    # 'types': [
+    #     "models.Index(fields=['market_group_id'])",
+    #     "models.Index(fields=['group_id'])",
+    # ],
     # 'regions': [
     #     "models.Index(fields=['name_id'])",
     # ],
@@ -33,26 +30,27 @@ MODEL_INDEX_RULES = {
 
 # Define primary key ID overrides for models
 MODEL_PRIMARY_KEY_ID_OVERRIDE = {
-    'inv_items': 'item_id',
-    'inv_flags': 'flag_id',
-    'inv_names': 'item_id',
-    'inv_positions': 'item_id',
-    'inv_unique_names': 'item_id',
-    'sta_stations': 'station_id',
-    'stars': 'id',
-    'regions': 'region_id',
-    'constellations': 'constellation_id',
-    'solar_systems': 'solar_system_id',
-    'tournament_rule_sets': 'rule_set_id',
+    # 'inv_items': 'item_id',
+    # 'inv_flags': 'flag_id',
+    # 'inv_names': 'item_id',
+    # 'inv_positions': 'item_id',
+    # 'inv_unique_names': 'item_id',
+    # 'sta_stations': 'station_id',
+    # 'stars': 'id',
+    # 'regions': 'region_id',
+    # 'constellations': 'constellation_id',
+    # 'solar_systems': 'solar_system_id',
+    # 'tournament_rule_sets': 'rule_set_id',
 }
 
 MODEL_FOREIGN_KEY_OVERRIDE = {
-    'regions': {
-        'name_id': {
-            'import': 'from .inv_unique_names import InvUniqueName',
-            'field': 'models.ForeignKey(InvUniqueName, null=True, on_delete=models.CASCADE, to_field="item_id", db_column="name_id")',
-        }
-    }
+
+    # 'regions': {
+    #     'name_id': {
+    #         'import': 'from .inv_unique_names import InvUniqueName',
+    #         'field': 'models.ForeignKey(InvUniqueName, null=True, on_delete=models.CASCADE, to_field="item_id", db_column="name_id")',
+    #     }
+    # }
 }
 
 MODEL_TEMPLATE = """
@@ -61,20 +59,26 @@ MODEL_TEMPLATE = """
 # Last Generate: {% now "F j, Y" %}
 
 from django.db import models
-{% for extra_import in extra_imports %}
+{% for extra_import in imports %}
 {{ extra_import }}
 {% endfor %}
 
 
 class {{model_name}}(models.Model):
-    {% for field_name, field_type in fields.items %}
-    {{ field_name }} = {{ field_type }}{% endfor %}
+    {% for column in fields %}{{ column.name }} = {{ column.type }}
+    {% endfor %}
 
-    {% if indexes %}class Meta:
+    class Meta:
+        verbose_name = "{{ verbose_name }}"
+        verbose_name_plural = "{{ verbose_name_plural }}"
+    {% if indexes %}
         indexes = [
             {% for index in indexes %}{{ index }},{% endfor %}
         ]
     {% endif %}
+
+    def __str__(self):
+        return f'{{ model_name }}: {% verbatim %}{self.id}{% endverbatim %}'
 {% endautoescape %}
 
 """
