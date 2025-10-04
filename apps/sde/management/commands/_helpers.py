@@ -1,20 +1,3 @@
-# def collect_files(collection_dir: Path):
-#     """
-#     Recursively collect all .json files in the given directory.
-
-#     Args:
-#         collection_dir (Path): The root directory to search for JSON files.
-
-#     Returns:
-#         list[Path]: List of Path objects for each .json file found.
-#     """
-#     return [
-#         entry
-#         for entry in collection_dir.rglob('**')
-#         if entry.is_file() and entry.suffix in ['.json']
-#     ]
-
-
 # Define rules for adding indexes to models based on field names
 # Update as needed for new queries
 MODEL_INDEX_RULES = {
@@ -28,35 +11,11 @@ MODEL_INDEX_RULES = {
     # ],
 }
 
-# Define primary key ID overrides for models
-MODEL_PRIMARY_KEY_ID_OVERRIDE = {
-    # 'inv_items': 'item_id',
-    # 'inv_flags': 'flag_id',
-    # 'inv_names': 'item_id',
-    # 'inv_positions': 'item_id',
-    # 'inv_unique_names': 'item_id',
-    # 'sta_stations': 'station_id',
-    # 'stars': 'id',
-    # 'regions': 'region_id',
-    # 'constellations': 'constellation_id',
-    # 'solar_systems': 'solar_system_id',
-    # 'tournament_rule_sets': 'rule_set_id',
-}
-
 DO_NOT_CONVERT_TO_SINGULAR = []
 
 IGNORED_FILES = ['_sde.jsonl', 'translationLanguages.jsonl', 'masteries.jsonl']
 
 DO_NOT_CONVERT_TO_CAMEL_FILES = ['sovereigntyUpgrades.jsonl']
-
-MODEL_FOREIGN_KEY_OVERRIDE = {
-    # 'regions': {
-    #     'name_id': {
-    #         'import': 'from .inv_unique_names import InvUniqueName',
-    #         'field': 'models.ForeignKey(InvUniqueName, null=True, on_delete=models.CASCADE, to_field="item_id", db_column="name_id")',
-    #     }
-    # }
-}
 
 IGNORED_CONVERT_TO_SINGULAR = [
     'typeBonus.jsonl',
