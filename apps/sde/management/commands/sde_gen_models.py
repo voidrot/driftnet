@@ -12,10 +12,12 @@ from django.template import Context
 from django.template import Template
 
 from apps.sde import app_settings
-from apps.sde.management.commands.helpers import INIT_MODEL_TEMPLATE
-from apps.sde.management.commands.helpers import MODEL_FOREIGN_KEY_OVERRIDE
-from apps.sde.management.commands.helpers import MODEL_INDEX_RULES
-from apps.sde.management.commands.helpers import MODEL_TEMPLATE
+from apps.sde.management.commands._helpers import IGNORED_CONVERT_TO_SINGULAR
+from apps.sde.management.commands._helpers import IGNORED_FILES
+from apps.sde.management.commands._helpers import INIT_MODEL_TEMPLATE
+from apps.sde.management.commands._helpers import MODEL_FOREIGN_KEY_OVERRIDE
+from apps.sde.management.commands._helpers import MODEL_INDEX_RULES
+from apps.sde.management.commands._helpers import MODEL_TEMPLATE
 
 logger = logging.getLogger(__name__)
 p = inflect.engine()
@@ -30,8 +32,8 @@ COLUMN_TYPE_MAP = {
         'models.BigIntegerField()',
     ),
     'float': (
-        'models.FloatField(default=None, null=True)',
-        'models.FloatField()',
+        'models.DecimalField(default=None, null=True, max_digits=50, decimal_places=30)',
+        'models.DecimalField(max_digits=50, decimal_places=30)',
     ),
     'str': ('models.TextField(default=None, null=True)', 'models.TextField()'),
     'bool': (
@@ -44,15 +46,6 @@ COLUMN_TYPE_MAP = {
 
 PG_INT_MIN = -2147483648
 PG_INT_MAX = 2147483647
-
-IGNORED_FILES = ['_sde.jsonl', 'translationLanguages.jsonl']
-
-IGNORED_CONVERT_TO_SINGULAR = [
-    'typeBonus.jsonl',
-    'typeDogma.jsonl',
-    'agentsInSpace.jsonl',
-    'types.jsonl',
-]
 
 
 class Command(BaseCommand):
@@ -104,14 +97,18 @@ class Command(BaseCommand):
             value,
         ) -> Literal['int', 'bigint', 'float', 'str', 'bool', 'list', 'dict'] | None:
             # Map Python types to field types
+            # Note: bool is a subclass of int, so check for bool first
+            if isinstance(value, bool):
+                return 'bool'
             if isinstance(value, int):
-                return 'int' if PG_INT_MIN <= value <= PG_INT_MAX else 'bigint'
+                # Python ints are unlimited precision; use 32-bit signed range for 'int', else 'bigint'
+                if value < PG_INT_MIN or value > PG_INT_MAX:
+                    return 'bigint'
+                return 'int'
             if isinstance(value, float):
                 return 'float'
             if isinstance(value, str):
                 return 'str'
-            if isinstance(value, bool):
-                return 'bool'
             if isinstance(value, list):
                 return 'list'
             if isinstance(value, dict):
@@ -142,14 +139,21 @@ class Command(BaseCommand):
                         if key not in field_found[model_name]:
                             field_found[model_name][key] = 0
                         field_found[model_name][key] += 1
+                        field_type = get_field_type(value)
                         if key not in column_types[model_name]:
-                            field_type = get_field_type(value)
                             if field_type:
                                 column_types[model_name][key] = field_type
                             else:
                                 logger.warning(
                                     f'Unknown type for key {key}: {type(value)}'
                                 )
+                        else:
+                            # Only upgrade int -> bigint, never downgrade
+                            prev_type = column_types[model_name][key]
+                            if prev_type == 'int' and field_type == 'bigint':
+                                column_types[model_name][key] = 'bigint'
+                            # If already bigint, keep as bigint
+                            # For other types, keep the first detected type
         logger.info('Completed processing all files.')
 
         # Determine final field types with nullability
@@ -189,8 +193,7 @@ class Command(BaseCommand):
         for field, _type in columns.items():
             field_name = 'id' if field == '_key' else self.convert_to_snake_case(field)
             if field_name == 'id':
-                field_split = _type.split('(')
-                field_type = field_split[0] + '(primary_key=True' + field_split[1]
+                field_type = 'models.BigIntegerField(primary_key=True)'
             elif foreign_key_update and field_name in foreign_key_update:
                 field_type = foreign_key_update[field_name]['field']
                 context['imports'].append(foreign_key_update[field_name]['import'])

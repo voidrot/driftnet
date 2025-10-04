@@ -43,8 +43,13 @@ MODEL_PRIMARY_KEY_ID_OVERRIDE = {
     # 'tournament_rule_sets': 'rule_set_id',
 }
 
-MODEL_FOREIGN_KEY_OVERRIDE = {
+DO_NOT_CONVERT_TO_SINGULAR = []
 
+IGNORED_FILES = ['_sde.jsonl', 'translationLanguages.jsonl', 'masteries.jsonl']
+
+DO_NOT_CONVERT_TO_CAMEL_FILES = ['sovereigntyUpgrades.jsonl']
+
+MODEL_FOREIGN_KEY_OVERRIDE = {
     # 'regions': {
     #     'name_id': {
     #         'import': 'from .inv_unique_names import InvUniqueName',
@@ -52,6 +57,13 @@ MODEL_FOREIGN_KEY_OVERRIDE = {
     #     }
     # }
 }
+
+IGNORED_CONVERT_TO_SINGULAR = [
+    'typeBonus.jsonl',
+    'typeDogma.jsonl',
+    'agentsInSpace.jsonl',
+    'types.jsonl',
+]
 
 MODEL_TEMPLATE = """
 {% autoescape off %}
